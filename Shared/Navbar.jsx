@@ -19,7 +19,7 @@ const Navbar = () => {
                             <RxHamburgerMenu className='md:text-3xl text-2xl ' />
                         </div>
                         {/* logo */}
-                        <p className='uppercase font-bold md:text-3xl text-xl'><span>Happy shop</span>.co</p>
+                        <p className='uppercase font-bold md:text-3xl text-xl'><span>shop</span>.co</p>
                     </div>
                     <div className='hidden lg:block'>
                         {/* navlinks */}
