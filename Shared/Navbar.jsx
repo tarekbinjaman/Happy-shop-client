@@ -8,6 +8,7 @@ import { RxHamburgerMenu } from 'react-icons/rx';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     return (
 
         <nav className='py-4 bg-white'>
@@ -26,9 +27,9 @@ const Navbar = () => {
                         <div>
                             <ul className='flex text-[18px] font-normal gap-4'>
                                 <div className=''>
-                                <li className='group'> <span className='flex items-center gap-1 '>Shop <GoChevronDown className='group-hover:text-orange-300' /></span>
-                                <div className='relative'>
-                                    <ul className='absolute top-2 left-0 bg-white shadow-xl py-3 w-28 space-y-1 border  border-gray-200
+                                    <li className='group'> <span className='flex items-center gap-1 '>Shop <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                        <div className='relative'>
+                                            <ul className='absolute top-2 left-0 bg-white shadow-xl py-3 w-28 space-y-1 border  border-gray-200
                                     opacity-0 invisible
                                     group-hover:visible group-hover:opacity-100
                                     transform 
@@ -39,12 +40,12 @@ const Navbar = () => {
                                     group-hover:translate-x-0
 
                                     '>
-                                        <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Mens</li>
-                                        <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Women</li>
-                                        <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
-                                    </ul>
-                                </div>
-                                </li>
+                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Mens</li>
+                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Women</li>
+                                                <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
+                                            </ul>
+                                        </div>
+                                    </li>
                                 </div>
                                 <li>On sale</li>
                                 <li>New Arrivals</li>
@@ -67,28 +68,40 @@ const Navbar = () => {
                 </div>
             </div>
             {
-                    <div className={`fixed top-0 left-0 w-64 h-full bg-gray-300 backdrop:blur-lg shadow-lg z-50 p-4
+                <div className={`fixed top-0 left-0 w-64 h-full bg-gray-300 backdrop:blur-lg shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
                     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
                     `}
-                    >
-                        <div className='flex justify-between'>
-                            <div></div>
+                >
+                    <div className='flex justify-between mb-4'>
+                        <div></div>
                         <button
-                        className='text-2xl text-black'
-                        onClick={() =>setIsSidebarOpen(false)}
+                            className='text-2xl text-black'
+                            onClick={() => setIsSidebarOpen(false)}
                         >
                             <IoMdClose />
                         </button>
-                        </div>
-                        <ul className='space-y-4'>
-                            <li>Shop</li>
-                            <li>On sale</li>
-                            <li>New Arrivals</li>
-                            <li>Brands</li>
-                        </ul>
                     </div>
-                
+                    <ul className='space-y-4'>
+                        <li className='border-b-2 border-gray-400'>
+                            <span onClick={() => setIsOpen(!isOpen)} className='flex items-center gap-1 justify-between'>Shop <GoChevronDown className={`group-hover:text-orange-300 text-3xl cursor-pointer transition-transform duration-300 ${isOpen ? 'rotate-180' : '' }`} /></span>
+
+                            <div className='relative transition-all duration-300 ease-in-out'>
+                                <ul className={` transition-all  duration-300 ease-in-out 
+                                    ${isOpen ? 'max-h-screen opacity-100 ' : 'max-h-0 opacity-0'}
+                                    `}>
+                                    <li className='border-b-2 border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Mens</li>
+                                    <li className='border-b-2 border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Women</li>
+                                    <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li className='border-b border-gray-400'>On sale</li>
+                        <li className='border-b border-gray-400'>New Arrivals</li>
+                        <li className='border-b-2 border-gray-400'>Brands</li>
+                    </ul>
+                </div>
+
             }
         </nav>
 
