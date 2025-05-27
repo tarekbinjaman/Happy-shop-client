@@ -1,26 +1,33 @@
 import React, { useState } from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
+import { CiHeart } from 'react-icons/ci';
 import { FaAlignLeft } from 'react-icons/fa';
 import { GoChevronDown } from 'react-icons/go';
+import { ImCancelCircle } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
+import { MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import { TbLogout2, TbShoppingCartCheck } from 'react-icons/tb';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
+    const [isProfileOpen, setIsProfileOpen] = useState(false);
     return (
 
         <nav className='py-4 bg-white'>
             <div className='flex items-center'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
+                    {/* logo */}
                     <div className='flex items-center gap-2'>
                         {/* sidebar icon */}
                         <div className='lg:hidden block' onClick={() => setIsSidebarOpen(true)}>
                             <RxHamburgerMenu className='md:text-3xl text-2xl ' />
                         </div>
                         {/* logo */}
-                        <p className='uppercase font-bold md:text-3xl text-xl'><span>shop</span>.co</p>
+                       <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-xl'><span>shop</span>.co</p></Link> 
                     </div>
                     <div className='hidden lg:block'>
                         {/* navlinks */}
@@ -60,13 +67,36 @@ const Navbar = () => {
                 {/* search bar */}
                 <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden md:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
                 <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" />
-
+                
+                {/* cart and profile icons */}
+                <div>
                 <div className='flex md:gap-4 gap-2 items-center whitespace-nowrap'>
                     {/* profile and cart */}
                     <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
-                    <CgProfile className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
+                    <CgProfile onClick={() => setIsProfileOpen(!isProfileOpen)} className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
+                </div>
+                <div className='relative'>
+                    <div className={`bg-white shadow-xl px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-44 z-50
+                        invisible transition-all duration-300 ease-in-out
+                        ${isProfileOpen ? 'visible opacity-100 translate-y-0 ' : 'invisible opacity-0 '}
+                        `}>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Manage my account</span></NavLink>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><TbShoppingCartCheck /><span className='whitespace-nowrap hover:text-orange-300'>My order</span></NavLink>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><CiHeart /><span className='whitespace-nowrap hover:text-orange-300'>Wishlist</span></NavLink>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><MdOutlineRateReview /><span className='whitespace-nowrap hover:text-orange-300'>My reviews</span></NavLink>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><ImCancelCircle /><span className='whitespace-nowrap hover:text-orange-300'>My return and cancellation</span></NavLink>
+                    <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><TbLogout2 /><span className='whitespace-nowrap hover:text-orange-300'>Logout</span></NavLink>
+                    </div>
+                    
+                </div>
                 </div>
             </div>
+
+
+
+
+
+            {/* Sidebar */}
             {
                 <div className={`fixed top-0 left-0 w-64 h-full bg-gray-300 backdrop:blur-lg shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
