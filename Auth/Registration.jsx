@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import UseAuth from '../Context/UseAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const Registration = () => {
     const { googleSignin, userRegister, updateUser } = UseAuth();
@@ -29,6 +30,25 @@ const Registration = () => {
             const result = await googleSignin();
             const user = result.user;
             console.log(user)
+            const userData = {
+                name: user?.displayName,
+                email: user?.email,
+                userType: "regular",
+                number_of_meal_added: 0,
+                photo: user?.photoURL
+            };
+
+            // api call
+           const res =  await fetch('http://localhost:5000/api/users', {
+                method: 'POST',
+                headers: {'content-Type': 'application/json'},
+                body: JSON.stringify(userData)
+            })
+            
+            if(!res.ok) throw new Error("User data storage failed")
+            
+            toast.success("Registration Successfully")
+
         } catch (error) {
             console.log(error)
         }
