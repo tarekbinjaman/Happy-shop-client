@@ -33,7 +33,7 @@ const Registration = () => {
             const userData = {
                 name: user?.displayName,
                 email: user?.email,
-                userType: "regular",
+                isAdmin: false,
                 number_of_meal_added: 0,
                 photo: user?.photoURL
             };
