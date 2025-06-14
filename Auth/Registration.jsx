@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import login_bg from '../Assets/img/tt.jpg'
 import { GoArrowRight } from 'react-icons/go';
+import { p } from 'framer-motion/client';
 
 const Registration = () => {
     const { googleSignin, userRegister, updateUser } = UseAuth();
@@ -113,59 +114,83 @@ const onsubmit = async (data) => {
             <div className='flex justify-center'>
             <div className='flex justify-between gap-3'>
                 <div className='w-[400px] relative shadow-xl'>
-                    <img src={login_bg} className='rounded-t-2xl h-[500px] w-full object-cover' alt="" />
+                    <img src={login_bg} className='rounded-t-2xl h-[460px] w-full object-cover' alt="" />
                     <div className='absolute bg-gradient-to-b z-50 -mt-50 ml-44 from-red-400 to-red-600 p-3 rounded-full'>
                     <GoArrowRight className='text-white text-2xl' />
                     </div>
-                    <div className=' bg-white rounded-2xl p-6 pt-8 absolute w-full z-10 -mt-45'>
+                    <div className=' bg-white rounded-2xl p-6 pt-8 absolute w-full z-10 -mt-46'>
                         <h3 className='text-4xl'> <span className='font-semibold'>Welcome to </span><span className='uppercase font-bold text-red-500'>shop.co</span></h3>
                         <p className='text-sm mt-2'>Let's connect & buy your product in best price.</p>
                         <p className='text-xl mt-2 '>Sign up now!</p>
                     </div>
                 </div>
-                <div className='flex flex-col space-y-3'>
+                <div className='flex flex-col space-y-3 border-pink-400 border-2 p-4 rounded-t-2xl w-[400px]'>
+                    <h2 className='text-2xl font-bold mb-8 mt-8 text-pink-500'>Register Form</h2>
                     <form className='' onSubmit={handleSubmit(onsubmit)}>
+                        <div className='grid grid-cols-2 gap-x-3 gap-y-8 mb-8'>
                         <div className='form-control'>
-                            <label className='label'>Name</label>
+                            <label className='label text-xl text-gray-500 mb-2'>Name</label>
+                            <div>
                             <input type="text"
-                            placeholder='Name'
+                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            
                             {...register('name', {require: 'Name is required'})}
                             />
+                            </div>
                             {errors.name && <p>{errors.name.message}</p>}
                         </div>
                         <div className='form-control'>
-                            <label className='label'>Photo URL</label>
+                            <label className='label text-xl mb-2 text-gray-500'>Photo</label>
+                            <div>
                             <input type="url"
-                            placeholder='your photo link'
+                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            
                             {...register('url', {require: 'Image link is required'})}
                             />
+                            </div>
                             {errors.url && <p>{errors.url.message}</p>}
                         </div>
                         <div className='form-control'>
-                            <label className='label'>Email</label>
+                            <label className='label text-xl mb-2 text-gray-500'>Email</label>
+                            <div>
                             <input type="email"
-                            placeholder='Email'
+                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            
                             {...register('email', {require: 'Email is required'})}
                             />
+                            </div>
                             {errors.email && <p>{errors.email.message}</p>}
                         </div>
                         <div className='form-control'>
-                            <label className='label'>Password</label>
+                            <label className='label text-xl mb-2 text-gray-500'>Password</label>
+                            <div>
                             <input type="password"
-                            placeholder='password'
+                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            
                             {...register('password', {require: 'password is required'})}
                             />
+                            </div>
                             {errors.password && <p>{errors.password.message}</p>}
                         </div>
-                        <div className='from-control'>
+                        </div>
+                        <div className='form-control'>
+                            <label className='flex items-center gap-2 text-sm'>
+                                <input type="checkbox" 
+                                {...register("agree",{required:"you must agree to the terms and conditions"})}
+                                />
+                                I agree to the <span className='text-blue-600 underline cursor-pointer'>terms and conditions</span>
+                            </label>
+                            {errors.agree && <p className='text-red-500 text-sm'>{errors.agree.message}</p> }
+                        </div>
+                        <div className='from-control mt-8'>
                             <button type='submit' className='btn btn-primary'>Register now</button>
                         </div>
                     </form>
-                </div>
-            </div>
-            </div>
             <div className='flex justify-center mt-14'>
                 <button className='cursor-pointer' onClick={googleClick}>Google sign in</button>
+            </div>
+                </div>
+            </div>
             </div>
         </div>
     );
