@@ -45,6 +45,7 @@ const Authprovider = ({ children }) => {
                 // if user logged in
                 setUser(currentUser);
                 if(currentUser) {
+                    console.log(currentUser)
                     const loggedUser = {email : currentUser.email};
                     await axios.post('http://localhost:5000/api/login', loggedUser, {withCredentials: true});
                 } else {

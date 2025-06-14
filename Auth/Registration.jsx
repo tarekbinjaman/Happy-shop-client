@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import UseAuth from '../Context/UseAuth';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import login_bg from '../Assets/img/tt.jpg'
 import { GoArrowRight } from 'react-icons/go';
 import { p } from 'framer-motion/client';
+import { FcGoogle } from 'react-icons/fc';
 
 const Registration = () => {
     const { googleSignin, userRegister, updateUser } = UseAuth();
@@ -38,7 +39,7 @@ const Registration = () => {
                 email: user?.email,
                 isAdmin: false,
                 number_of_meal_added: 0,
-                photo: user?.photoURL
+                photo: user?.photoURL,
             };
 
             // api call
@@ -64,7 +65,7 @@ const Registration = () => {
     }
 
 const onsubmit = async (data) => {
-    const { name, email, url, password } = data;
+    const { name, email, url, password, agree } = data;
     
     // password validation
     const validationErrors = validatePassword(password);
@@ -91,7 +92,8 @@ const onsubmit = async (data) => {
             email: email,
             isAdmin: false,
             number_of_meal_added: 0,
-            photoURL: url
+            photoURL: url,
+            agree: agree 
         };
 
         const res = await fetch('http://localhost:5000/api/users', {
@@ -124,7 +126,7 @@ const onsubmit = async (data) => {
                         <p className='text-xl mt-2 '>Sign up now!</p>
                     </div>
                 </div>
-                <div className='flex flex-col space-y-3 border-pink-400 border-2 p-4 rounded-t-2xl w-[400px]'>
+                <div className='flex flex-col space-y-3 p-4 rounded-t-2xl w-[400px] bg-white shadow-2xl'>
                     <h2 className='text-2xl font-bold mb-8 mt-8 text-pink-500'>Register Form</h2>
                     <form className='' onSubmit={handleSubmit(onsubmit)}>
                         <div className='grid grid-cols-2 gap-x-3 gap-y-8 mb-8'>
@@ -132,7 +134,7 @@ const onsubmit = async (data) => {
                             <label className='label text-xl text-gray-500 mb-2'>Name</label>
                             <div>
                             <input type="text"
-                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            className='border-pink-400 border-2 p-1 w-[170px]'
                             
                             {...register('name', {require: 'Name is required'})}
                             />
@@ -140,10 +142,10 @@ const onsubmit = async (data) => {
                             {errors.name && <p>{errors.name.message}</p>}
                         </div>
                         <div className='form-control'>
-                            <label className='label text-xl mb-2 text-gray-500'>Photo</label>
+                            <label className='label text-xl mb-2 text-gray-500'>Photo url</label>
                             <div>
                             <input type="url"
-                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            className='border-pink-400 border-2 p-1 w-[170px]'
                             
                             {...register('url', {require: 'Image link is required'})}
                             />
@@ -154,7 +156,7 @@ const onsubmit = async (data) => {
                             <label className='label text-xl mb-2 text-gray-500'>Email</label>
                             <div>
                             <input type="email"
-                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            className='border-pink-400 border-2 p-1 w-[170px]'
                             
                             {...register('email', {require: 'Email is required'})}
                             />
@@ -165,7 +167,7 @@ const onsubmit = async (data) => {
                             <label className='label text-xl mb-2 text-gray-500'>Password</label>
                             <div>
                             <input type="password"
-                            className='border-gray-300 border-2 p-1 w-[170px]'
+                            className='border-pink-400 border-2 p-1 w-[170px]'
                             
                             {...register('password', {require: 'password is required'})}
                             />
@@ -183,11 +185,13 @@ const onsubmit = async (data) => {
                             {errors.agree && <p className='text-red-500 text-sm'>{errors.agree.message}</p> }
                         </div>
                         <div className='from-control mt-8'>
-                            <button type='submit' className='btn btn-primary'>Register now</button>
+                            <button type='submit' className='btn btn-primary bg-pink-500'>Register now</button>
                         </div>
                     </form>
-            <div className='flex justify-center mt-14'>
-                <button className='cursor-pointer' onClick={googleClick}>Google sign in</button>
+                    <div className="divider">or</div>
+                    <p className='text-center'>Already have an account? <Link to={'/login'} className='text-blue-400 underline'>Login</Link></p>
+            <div className='flex justify-center 4'>
+                <button className='cursor-pointer flex gap-2 items-center btn' onClick={googleClick}> <FcGoogle className='text-xl' /> Sign up</button>
             </div>
                 </div>
             </div>
