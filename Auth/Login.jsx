@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const Login = () => {
-    const { userLogin } = UseAuth();
+    const { userLogin, googleSignin } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
     const [error, setError] = useState(null);
@@ -16,8 +16,42 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
+        // google signin fuction
+        const googleClick = async () => {
+            try {
+                const result = await googleSignin();
+                const user = result.user;
+                console.log(user)
+                const userData = {
+                    name: user?.displayName,
+                    email: user?.email,
+                    isAdmin: false,
+                    number_of_meal_added: 0,
+                    photo: user?.photoURL,
+                    agree: agree 
+                };
+    
+                // api call
+               const res =  await fetch('http://localhost:5000/api/users', {
+                    method: 'POST',
+                    headers: {'content-Type': 'application/json'},
+                    body: JSON.stringify(userData)
+                })
+                
+                if(!res.ok) throw new Error("User data storage failed")
+                
+                toast.success("Registration Successfully")
+    
+            } catch (error) {
+                console.log(error)
+            }
+    
+        };
+
     const onsubmit = (data) => {
         const {email, password} = data;
+        console.log(email, password)
         userLogin(email, password)
         .then(result => {
             console.log(result);
@@ -41,8 +75,26 @@ const Login = () => {
                     <GoArrowRight className='text-white text-2xl' />
                 </div>
                 <div className=' bg-white rounded-2xl p-6 pt-8 absolute w-full z-10 -mt-46'>
-                    <h3 className='text-2xl'>Sign in</h3>
-
+                    <h3 className='text-2xl font-bold mb-2'>Sign in</h3>
+                    <div className='form-control'>
+                        <form onSubmit={handleSubmit(onsubmit)}>
+                            <div className='flex flex-col '>
+                        <label>Email</label>
+                        <input type="email" 
+                        className='border-pink-400 border-2 p-1 rounded-md'
+                        {...register('email', {required: "Email is required"})}
+                        />
+                            </div>
+                            <div className='flex flex-col'>
+                        <label>Password</label>
+                        <input type="password"
+                        className='border-pink-400 border-2 p-1 rounded-md'
+                        {...register('password', {required: "Email is required"})}
+                        />
+                            </div>
+                        <button className='btn bg-pink-500 text-white'>Submit</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
