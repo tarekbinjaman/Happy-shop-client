@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GoArrowRight } from 'react-icons/go';
 import login_bg from '../Assets/img/tt.jpg'
 import UseAuth from '../Context/UseAuth';
@@ -10,6 +10,7 @@ const Login = () => {
     const { userLogin } = UseAuth();
     const navigate = useNavigate();
     const location = useLocation();
+    const [error, setError] = useState(null);
     const {
         register,
         handleSubmit,
@@ -25,6 +26,7 @@ const Login = () => {
         })
         .catch(err => {
             // todo set catches
+            setError(err.code)
         })
     }
     return (
