@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BsCart2 } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { CiHeart } from 'react-icons/ci';
@@ -19,10 +19,24 @@ const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const [dropdownOpen, setDropdownOpen] = useState(false);
+    const dropdownref = useRef();
     const handleLogout = () => {
         logOut();
         navigate('/login')
     }
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if(dropdownref.current && !dropdownref.current.contains(event.target)) {
+                setDropdownOpen(false);
+                {dropdownOpen ? console.log('dropdown true'): "dropdown false"}
+            }
+        };
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+            document.removeEventListener('click', handleClickOutside);
+        }
+    },[]);
     return (
 
         <nav className='py-4 bg-white'>
@@ -81,9 +95,15 @@ const Navbar = () => {
                     <div className='flex md:gap-4 gap-2 items-center whitespace-nowrap'>
                         {/* profile and cart */}
                         <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
-                        {user?.photoURL
-                            ? <div onClick={() => setIsProfileOpen(!isProfileOpen)}>
-                                <img className='w-[44px] h-[44px] rounded-full border-2 border-slate-300 object-cover cursor-pointer' src={user?.photoURL} alt="" />
+                        {user?.email
+                            ? <div onClick={() => setDropdownOpen(!dropdownOpen)} ref={dropdownref}>
+                                <img 
+                                className='w-[44px] h-[44px] rounded-full
+                                 border-2 border-slate-300
+                                 object-cover cursor-pointer'
+                                 src={user?.photoURL}
+                                 onClick={() => setDropdownOpen(!dropdownOpen)}
+                                 alt="profile iamge" />
                                 </div>
                             : 
                             // <CgProfile onClick={() => setIsProfileOpen(!isProfileOpen)} className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
@@ -91,16 +111,22 @@ const Navbar = () => {
                             }
                     </div>
                     <div className='relative'>
-                        <div className={`bg-white shadow-xl px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-44 z-50
+                        <div className={`bg-white border-2 rounded-2xl border-blue-300 px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-44 z-50
                         invisible transition-all duration-300 ease-in-out
-                        ${isProfileOpen ? 'visible opacity-100 translate-y-0 ' : 'invisible opacity-0 '}
-                        `}>
+                        ${dropdownOpen ? 'visible opacity-100 translate-y-0 ' : 'hidden opacity-0 '}
+                        `
+                        }
+                        >
+                            {dropdownOpen &&
+                            <div>
                             <NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Manage my account</span></NavLink>
                             <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><TbShoppingCartCheck /><span className='whitespace-nowrap hover:text-orange-300'>My order</span></NavLink>
                             <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><CiHeart /><span className='whitespace-nowrap hover:text-orange-300'>Wishlist</span></NavLink>
                             <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><MdOutlineRateReview /><span className='whitespace-nowrap hover:text-orange-300'>My reviews</span></NavLink>
                             <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><ImCancelCircle /><span className='whitespace-nowrap hover:text-orange-300'>My return and cancellation</span></NavLink>
                             <NavLink className={`flex gap-2 items-center pt-4`} onClick={handleLogout}><TbLogout2 /><span className='whitespace-nowrap hover:text-orange-300'>Logout</span></NavLink>
+                            </div>
+                            }
                         </div>
 
                     </div>
