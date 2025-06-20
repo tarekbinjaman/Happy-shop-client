@@ -12,6 +12,7 @@ import { TbLogout2, TbShoppingCartCheck } from 'react-icons/tb';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import UseAuth from '../Context/UseAuth';
 import { img } from 'framer-motion/client';
+import currentUser from '../api/currentUser';
 
 const Navbar = () => {
     const { logOut, user } = UseAuth();
@@ -20,6 +21,8 @@ const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownref = useRef();
+    const email = user?.email;
+    const [userData, refetchUserList, currentUserEmail] = currentUser(email)
     const handleLogout = () => {
         logOut();
         navigate('/login')
@@ -36,8 +39,8 @@ const Navbar = () => {
             document.removeEventListener('click', handleClickOutside);
         }
     }, []);
+    console.log("userData:", userData)
     return (
-
         <nav className='py-4 bg-white'>
             <div className='flex items-center'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
@@ -118,7 +121,7 @@ const Navbar = () => {
                         >
                             {dropdownOpen &&
                                 <div>
-                                    {user?.isAdmin ?
+                                    {userData?.isAdmin ?
                                         (<NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Admin Dashboard</span></NavLink>)
                                         : (<NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>User Dashboard</span></NavLink>)
                                     }

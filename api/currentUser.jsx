@@ -14,7 +14,7 @@ const currentUser = (email) => {
         enabled: !!email,
         throwOnError: (err) => console.error('User list fetch error', err)
     });
-    return [query.data ?? [], query.refetch, user?.email]
+    return [query?.data?.users[0] ?? [], query.refetch, user?.email]
 };
 
 export default currentUser;

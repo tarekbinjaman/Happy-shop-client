@@ -41,7 +41,7 @@ const Login = () => {
             })
 
             if (!res.ok) throw new Error("User data storage failed")
-
+            navigate('/')
             toast.success("Registration Successfully")
 
         } catch (error) {
