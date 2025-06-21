@@ -122,7 +122,7 @@ const Navbar = () => {
                             {dropdownOpen &&
                                 <div>
                                     {userData?.isAdmin ?
-                                        (<NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Admin Dashboard</span></NavLink>)
+                                        (<NavLink className={`flex gap-2 items-center pt-4`} to={`/adminDashboard/adminProfile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Admin Dashboard</span></NavLink>)
                                         : (<NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>User Dashboard</span></NavLink>)
                                     }
                                     <NavLink className={`flex gap-2 items-center pt-4`} to={`/myProfile`}><TbShoppingCartCheck /><span className='whitespace-nowrap hover:text-orange-300'>My order</span></NavLink>

@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 
 const AdminDashboard = () => {
     return (
+        
         <div className='max-w-4xl flex justify-center md:mt-12'>
         <div className='flex '>
             <div className='md:w-64 w-32 shadow-xl px-4 py-8 border-gray-200 border'>
@@ -11,7 +12,7 @@ const AdminDashboard = () => {
                         <span className='text-[18px] font-bold text-gray-500'>Manage my account</span>
                         <ul className='ml-4'>
                             <li>My profile </li>
-                            <li>Address Book </li>
+                            <li>Add products </li>
                         </ul>
                     </li>
                     <li>

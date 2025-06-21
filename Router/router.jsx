@@ -8,6 +8,7 @@ import Myprofile from '../UserDashBoard/Routes/Myprofile';
 import Address from '../UserDashBoard/Routes/Address';
 import Login from '../Auth/Login';
 import Registration from '../Auth/Registration';
+import AdminProfile from '../AdminDashboard/routes/AdminProfile';
 
 const router = createBrowserRouter([
     {
@@ -32,8 +33,8 @@ const router = createBrowserRouter([
                 element: <AdminDashboard />,
                 children: [
                     {
-                        path: "myprofile",
-                        // element: <adminProfile />
+                        path: "adminProfile",
+                        element: <AdminProfile />
                     }
                 ]
             },
