@@ -2,8 +2,8 @@ import React from 'react';
 
 const AddProduct = () => {
     return (
-        <div>
-            <h1>add product page</h1>
+        <div className='border border-black'>
+            <h1>Add Poduct </h1>
         </div>
     );
 };

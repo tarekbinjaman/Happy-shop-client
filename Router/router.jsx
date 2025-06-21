@@ -9,6 +9,7 @@ import Address from '../UserDashBoard/Routes/Address';
 import Login from '../Auth/Login';
 import Registration from '../Auth/Registration';
 import AdminProfile from '../AdminDashboard/routes/AdminProfile';
+import AddProduct from '../AdminDashboard/routes/AddProduct';
 
 const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                     {
                         path: "adminProfile",
                         element: <AdminProfile />
+                    },
+                    {
+                        path: "addProduct",
+                        element:<AddProduct />
                     }
                 ]
             },

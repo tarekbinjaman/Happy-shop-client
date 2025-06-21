@@ -22,7 +22,8 @@ const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownref = useRef();
     const email = user?.email;
-    const [userData, refetchUserList, currentUserEmail] = currentUser(email)
+    const [userData, refetchUserList, currentUserEmail] = currentUser(email);
+    const isActive = ({ isActive }) => isActive ? 'text-blue-500 bg-slate-200' : '';
     const handleLogout = () => {
         logOut();
         navigate('/login')
