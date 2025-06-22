@@ -15,7 +15,7 @@ const AddProduct = () => {
         setUploading(true);
         setErrorMsg('');
         const urls = [];
-        
+
         try {
             for (const file of files) {
                 const formData = new FormData();
@@ -28,7 +28,7 @@ const AddProduct = () => {
         } catch (error) {
             setErrorMsg('Image upload failed. Please try again')
         } finally {
-            setUploading (false);
+            setUploading(false);
         }
     };
 
@@ -49,56 +49,100 @@ const AddProduct = () => {
         <div className='border border-black'>
             <h1>Add Poduct </h1>
             <form onSubmit={handleSubmit(onsubmit)} className='max-w-4xl mx-auto p-6 bg-white rounded-xl shadow space-y-6'>
-            <div className='form-control'>
-            <input 
-            {...register('title', {required: 'Title required'})}
-            placeholder="Product Title"
-            className='w-full border p-2 rounded'
-            />
-            {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
-            </div>
-            <div className='form-control'>
-                <textarea
-                {...register('description', {required: 'Product description required'})}
-                placeholder='Prouduct description'
-                className='w-full border p-2 rounded'
-                />
-            {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
-            </div>
-            <div className='form-control'>
-                <input 
-                {...register('price', {required: 'Price is required'})}
-                placeholder='Price'
-                className='w-full border p-2 rounded'
-                />
-                {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
-            </div>
-            <div className='form-control'>
-            <label className='block font-semibold'>Upload Product Images (Max: 4)</label>
-            <input type="file"
-                accept="image/*"
-                multiple
-                onChange={(e) => handleImageUpload(e.target.files)}
-            />
-            {uploading && <p className='text-blue-500'>Uploading...</p>}
-            {errorMsg && <p className='text-red-500'>{errorMsg}</p>}
-            {
-                imageUrls.length > 0 && (
-                    <div className='mt-2 grid grid-cols-2 gap-2'>
-                        {(imageUrls.map((url, i) => (
-                            <img key={i} src={url} alt={`preview-${i}`} className='w-full h-32 object-cover rounded' />
-                        )))}
+                <div className='form-control'>
+                    <input
+                        {...register('title', { required: 'Title required' })}
+                        placeholder="Product Title"
+                        className='w-full border p-2 rounded'
+                    />
+                    {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
+                </div>
+                <div className='form-control'>
+                    <textarea
+                        {...register('description', { required: 'Product description required' })}
+                        placeholder='Prouduct description'
+                        className='w-full border p-2 rounded'
+                    />
+                    {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
+                </div>
+                <div className='form-control'>
+                    <input
+                        {...register('price', { required: 'Price is required' })}
+                        placeholder='Price'
+                        className='w-full border p-2 rounded'
+                    />
+                    {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
+                </div>
+                <div className="form-control">
+                    <label className="block font-semibold mb-2">Upload Product Images (Max: 4)</label>
+
+                    {/* Styled upload area */}
+                    <div className="border-2 border-dashed border-gray-300 p-6 rounded-md text-center hover:border-blue-500 transition duration-300">
+                        <div className="flex flex-col items-center space-y-2">
+                            {/* Icon */}
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                className="h-10 w-10 text-gray-400"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M3 16l4-4a1 1 0 011.414 0L12 15l4.586-4.586A2 2 0 0118 11h0a2 2 0 012 2v5H3v-2z"
+                                />
+                            </svg>
+
+                            <span className="text-sm text-gray-500">Click below to select images</span>
+
+                            {/* Hidden file input */}
+                            <input
+                                type="file"
+                                accept="image/*"
+                                multiple
+                                id="imageUpload"
+                                onChange={(e) => handleImageUpload(e.target.files)}
+                                className="hidden"
+                            />
+
+                            {/* Trigger label as button */}
+                            <label
+                                htmlFor="imageUpload"
+                                className="bg-gray-200 px-4 py-2 text-sm rounded cursor-pointer hover:bg-gray-300"
+                            >
+                                Select Images
+                            </label>
+                        </div>
                     </div>
-                )
-            }
-            </div>
-            <button
-            type='submit'
-            className='bg-black text-white px-6 py-2 rounded hover:bg-gray-800 disabled:opacity-50'
-            disabled={uploading}
-            >
-                Submit Product
-            </button>
+
+                    {/* Uploading message */}
+                    {uploading && <p className="text-blue-500 mt-2">Uploading...</p>}
+                    {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
+
+                    {/* Image preview */}
+                    {imageUrls.length > 0 && (
+                        <div className="mt-4 grid grid-cols-2 gap-2">
+                            {imageUrls.map((url, i) => (
+                                <img
+                                    key={i}
+                                    src={url}
+                                    alt={`preview-${i}`}
+                                    className="w-full h-32 object-cover rounded"
+                                />
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <button
+                    type='submit'
+                    className='bg-black text-white px-6 py-2 rounded hover:bg-gray-800 disabled:opacity-50'
+                    disabled={uploading}
+                >
+                    Submit Product
+                </button>
             </form>
         </div>
     );
