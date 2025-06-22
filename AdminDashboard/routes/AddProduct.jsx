@@ -1,28 +1,29 @@
 import axios from 'axios';
 import { div, img } from 'framer-motion/client';
+import { image } from 'framer-motion/m';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { GoDash } from 'react-icons/go';
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [imageUrls, setImageUrls] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
-
     const imgbbApiKey = import.meta.env.VITE_imgbbApiKey; // imgbb api key
 
     const handleImageUpload = async (files) => {
         setUploading(true);
         setErrorMsg('');
-        const urls = [];
+        const urls = [...imageUrls];
 
         try {
             for (const file of files) {
                 const formData = new FormData();
                 formData.append('image', file);
-
                 const response = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData);
                 urls.push(response.data.data.url);
+                console.log(urls)
             }
             setImageUrls(urls);
         } catch (error) {
@@ -125,12 +126,22 @@ const AddProduct = () => {
                     {imageUrls.length > 0 && (
                         <div className="mt-4 grid grid-cols-2 gap-2">
                             {imageUrls.map((url, i) => (
-                                <img
-                                    key={i}
-                                    src={url}
-                                    alt={`preview-${i}`}
-                                    className="w-full h-32 object-cover rounded"
-                                />
+                                <div key={i} className='relative'>
+                                    <button
+                                    onClick={() => {
+                                        const updateImages = imageUrls.filter((_, index) => index !== i);
+                                        setImageUrls(updateImages)
+                                    }}
+                                    className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
+                                    >
+                                        <GoDash />
+                                    </button>
+                                    <img
+                                        src={url}
+                                        alt={`preview-${i}`}
+                                        className="w-full h-32 object-cover rounded"
+                                    />
+                                </div>
                             ))}
                         </div>
                     )}
