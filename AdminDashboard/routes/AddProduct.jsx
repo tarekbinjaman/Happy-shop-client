@@ -10,6 +10,7 @@ const AddProduct = () => {
     const [imageUrls, setImageUrls] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
+    const [isDragging, setIsDragging] = useState(false);
     const imgbbApiKey = import.meta.env.VITE_imgbbApiKey; // imgbb api key
 
     const handleImageUpload = async (files) => {
@@ -27,7 +28,7 @@ const AddProduct = () => {
             }
             setImageUrls(urls);
         } catch (error) {
-            setErrorMsg('Image upload failed. Please try again')
+            setErrorMsg('Image upload failed. Please try again. Try to upload one after another')
         } finally {
             setUploading(false);
         }
@@ -78,7 +79,19 @@ const AddProduct = () => {
                     <label className="block font-semibold mb-2">Upload Product Images (Max: 4)</label>
 
                     {/* Styled upload area */}
-                    <div className="border-2 border-dashed border-gray-300 p-6 rounded-md text-center hover:border-blue-500 transition duration-300">
+                    <div className={`border-2 border-dashed p-6 rounded-md text-center
+                        ${isDragging ? 'border-gray-300' : 'border-blue-500 transition duration-300'}`}
+                        onDragOver={(e) => {
+                            e.preventDefault();
+                            setIsDragging(true);
+                        }}
+                        onDragLeave={() => setIsDragging(false)}
+                        onDrop={(e) => {
+                            e.preventDefault();
+                            setIsDragging(false);
+                            handleImageUpload(e.dataTransfer.files)
+                        }}
+                        >
                         <div className="flex flex-col items-center space-y-2">
                             {/* Icon */}
                             <svg
@@ -129,12 +142,12 @@ const AddProduct = () => {
                                 <div key={i} className='relative'>
                                     <button
                                     onClick={() => {
-                                        const updateImages = imageUrls.filter((_, index) => index !== i);
+                                        const updateImages = imageUrls.filter((img, index) => index !== i);
                                         setImageUrls(updateImages)
                                     }}
                                     className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
                                     >
-                                        <GoDash />
+                                        <GoDash className='font-bold' />
                                     </button>
                                     <img
                                         src={url}
@@ -149,7 +162,7 @@ const AddProduct = () => {
 
                 <button
                     type='submit'
-                    className='bg-black text-white px-6 py-2 rounded hover:bg-gray-800 disabled:opacity-50'
+                    className='bg-black text-white px-6 py-2 rounded hover:bg-gray-700 disabled:opacity-50'
                     disabled={uploading}
                 >
                     Submit Product
