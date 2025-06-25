@@ -13,6 +13,7 @@ const AdminDashboard = () => {
                         <span className='text-[18px] font-bold text-gray-500'>Manage my account</span>
                         <ul className='ml-4'>
                             <li><NavLink className={isActive} to={'/adminDashboard/adminProfile'}>My profile </NavLink></li>
+                            <li><NavLink className={isActive} to={'/adminDashboard/allProduct'}>All proudcts</NavLink></li>
                             <li><NavLink className={isActive} to={'/adminDashboard/addProduct'}>Add products</NavLink></li>
                         </ul>
                     </li>

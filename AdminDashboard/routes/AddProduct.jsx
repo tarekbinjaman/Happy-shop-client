@@ -11,9 +11,12 @@ const AddProduct = () => {
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [isDragging, setIsDragging] = useState(false);
+    // images to preview
+    const images = imageUrls.url;
     const imgbbApiKey = import.meta.env.VITE_imgbbApiKey; // imgbb api key
 
     const handleImageUpload = async (files) => {
+        console.log("Files", files)
         setUploading(true);
         setErrorMsg('');
         const urls = [...imageUrls];
@@ -22,15 +25,37 @@ const AddProduct = () => {
             for (const file of files) {
                 const formData = new FormData();
                 formData.append('image', file);
+                console.log('Form data',formData)
                 const response = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData);
-                urls.push(response.data.data.url);
-                console.log(urls)
+                urls.push({
+                    url:response.data.data.url,
+                    deleteUrl: response.data.data.delete_url
+                });
+                
+                
             }
             setImageUrls(urls);
         } catch (error) {
             setErrorMsg('Image upload failed. Please try again. Try to upload one after another')
         } finally {
             setUploading(false);
+            console.log("Urls here:",imageUrls);
+            console.log('Images', images);
+        }
+    };
+
+    const deleteImage = async (index) => {
+        const imageToDelete = imageUrls[index];
+        // remove from local state
+        const updateImages = imageUrls.filter((_, i) => i !== index);
+        setImageUrls(updateImages);
+        try {
+            // delete from imageBB serve
+            await axios.delete(imageToDelete.deleteUrl);
+
+        } catch (error) {
+            console.error("Delete failed:", error);
+            setErrorMsg('Failed to delete image from server');
         }
     };
 
@@ -41,7 +66,7 @@ const AddProduct = () => {
         }
         const fullData = {
             ...data,
-            images: imageUrls,
+            images: imageUrls.map(img => img.url),
         };
         console.log("Final Product Data", fullData);
         // from here you will send data to backend
@@ -109,7 +134,7 @@ const AddProduct = () => {
                                 />
                             </svg>
 
-                            <span className="text-sm text-gray-500">Click below to select images</span>
+                            <span className="text-sm text-gray-500">Drag and drop images or click to upload</span>
 
                             {/* Hidden file input */}
                             <input
@@ -136,21 +161,21 @@ const AddProduct = () => {
                     {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
 
                     {/* Image preview */}
+                    
                     {imageUrls.length > 0 && (
                         <div className="mt-4 grid grid-cols-2 gap-2">
                             {imageUrls.map((url, i) => (
                                 <div key={i} className='relative'>
                                     <button
                                     onClick={() => {
-                                        const updateImages = imageUrls.filter((img, index) => index !== i);
-                                        setImageUrls(updateImages)
+                                        deleteImage(i);
                                     }}
                                     className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
                                     >
                                         <GoDash className='font-bold' />
                                     </button>
                                     <img
-                                        src={url}
+                                        src={url.url}
                                         alt={`preview-${i}`}
                                         className="w-full h-32 object-cover rounded"
                                     />
