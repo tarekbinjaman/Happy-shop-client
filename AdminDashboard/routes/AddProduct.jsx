@@ -11,6 +11,11 @@ const AddProduct = () => {
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [isDragging, setIsDragging] = useState(false);
+    
+    //cloudinary configuration 
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+
     // images to preview
     const images = imageUrls.url;
     const imgbbApiKey = import.meta.env.VITE_imgbbApiKey; // imgbb api key
@@ -24,22 +29,23 @@ const AddProduct = () => {
         try {
             for (const file of files) {
                 const formData = new FormData();
-                formData.append('image', file);
-                console.log('Form data',formData)
-                const response = await axios.post(`https://api.imgbb.com/1/upload?key=${imgbbApiKey}`, formData);
+                formData.append('file', file);
+                formData.append('upload_preset', uploadPreset);
+                console.log('Form data', formData)
+                const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData);
                 urls.push({
-                    url:response.data.data.url,
-                    deleteUrl: response.data.data.delete_url
+                    url: response.data.secure_url,
+                    public_id: response.data.public_id, // needed for delete
                 });
-                
-                
+
+
             }
             setImageUrls(urls);
         } catch (error) {
             setErrorMsg('Image upload failed. Please try again. Try to upload one after another')
         } finally {
             setUploading(false);
-            console.log("Urls here:",imageUrls);
+            console.log("Urls here:", imageUrls);
             console.log('Images', images);
         }
     };
@@ -51,7 +57,9 @@ const AddProduct = () => {
         setImageUrls(updateImages);
         try {
             // delete from imageBB serve
-            await axios.delete(imageToDelete.deleteUrl);
+            await axios.post('http://localhost:5000/api/delete-image', {
+                public_id: imageToDelete.public_id
+            });
 
         } catch (error) {
             console.error("Delete failed:", error);
@@ -116,7 +124,7 @@ const AddProduct = () => {
                             setIsDragging(false);
                             handleImageUpload(e.dataTransfer.files)
                         }}
-                        >
+                    >
                         <div className="flex flex-col items-center space-y-2">
                             {/* Icon */}
                             <svg
@@ -161,16 +169,16 @@ const AddProduct = () => {
                     {errorMsg && <p className="text-red-500 mt-2">{errorMsg}</p>}
 
                     {/* Image preview */}
-                    
+
                     {imageUrls.length > 0 && (
                         <div className="mt-4 grid grid-cols-2 gap-2">
                             {imageUrls.map((url, i) => (
                                 <div key={i} className='relative'>
                                     <button
-                                    onClick={() => {
-                                        deleteImage(i);
-                                    }}
-                                    className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
+                                        onClick={() => {
+                                            deleteImage(i);
+                                        }}
+                                        className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
                                     >
                                         <GoDash className='font-bold' />
                                     </button>
