@@ -18,7 +18,6 @@ const AddProduct = () => {
 
     // images to preview
     const images = imageUrls.url;
-    const imgbbApiKey = import.meta.env.VITE_imgbbApiKey; // imgbb api key
 
     const handleImageUpload = async (files) => {
         console.log("Files", files)
