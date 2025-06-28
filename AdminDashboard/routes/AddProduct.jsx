@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { color } from 'framer-motion';
 import { div, img } from 'framer-motion/client';
 import { image } from 'framer-motion/m';
 import React, { useState } from 'react';
@@ -12,6 +13,7 @@ const AddProduct = () => {
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [isDragging, setIsDragging] = useState(false);
+    const [colorInput, setColorInputs] = useState(['#000000']); // defalut color
 
     const gender = ['Men', 'Women'];
 
@@ -21,6 +23,20 @@ const AddProduct = () => {
 
     // images to preview
     const images = imageUrls.url;
+
+    const handleAddColor = () => {
+        if (colorInput.length < 4) {
+            setColorInputs([...colorInput, '#000000']);
+        } else {
+            toast.warning('Max 5 colors');
+        }
+    };
+
+    const handleColorChange = (index, value) => {
+        const updated = [...colorInput];
+        updated[index] = value;
+        setColorInputs(updated);
+    }
 
     const handleImageUpload = async (files) => {
         if (imageUrls.length >= 4) {
@@ -79,9 +95,13 @@ const AddProduct = () => {
             setErrorMsg('Please upload product images first');
             return;
         }
+        const { price, discount } = data;
+        const finalPrice = Math.floor(price - (price / discount));
         const fullData = {
             ...data,
             images: imageUrls.map(img => img.url),
+            color: colorInput,
+            finalPrice: finalPrice
         };
         console.log("Final Product Data", fullData);
         // from here you will send data to backend
@@ -114,6 +134,14 @@ const AddProduct = () => {
                         className='w-full border p-2 rounded'
                     />
                     {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
+                </div>
+                <div className='form-control'>
+                    <input
+                    type='number'
+                        {...register('discount')}
+                        placeholder='Discount %'
+                        className='w-full border p-2 rounded'
+                    />
                 </div>
                 <div className="form-control">
                     <label className="block font-semibold mb-2">Upload Product Images (Max: 4)</label>
@@ -197,7 +225,7 @@ const AddProduct = () => {
                                         onClick={() => {
                                             deleteImage(i);
                                         }}
-                                        className='bg-white p-1 mt-1 absolute rounded-full left-64 hover:bg-gray-300 cursor-pointer'
+                                        className='bg-white p-1 mt-1 absolute rounded-full left-60 hover:bg-gray-300 cursor-pointer'
                                     >
                                         <GoDash className='font-bold' />
                                     </button>
@@ -220,6 +248,57 @@ const AddProduct = () => {
                         <option value="Men">Men</option>
                         <option value="Women">Women</option>
                         <option value="Kids">Kids</option>
+                    </select>
+                    {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
+                </div>
+
+                <div className='from-control'>
+                    <label className='font-semibold block mb-2'>Select available Colors</label>
+                    <div className='flex flex-wrap gap-4 items-center mb-2'>
+                        {colorInput.map((color, index) => (
+                            <div key={index} className='relative inline-block'>
+                                <input
+                                    key={index}
+                                    type="color"
+                                    value={color}
+                                    onChange={(e) => handleColorChange(index, e.target.value)}
+                                    className='w-10 h-10 p-1 rounded'
+                                />
+                                <button
+                                    type='button'
+                                    onClick={() => {
+                                        const updated = [...colorInput];
+                                        updated.splice(index, 1);
+                                        setColorInputs(updated);
+                                    }}
+                                    className='absolute -top-2 -right-2 bg-red-500 text-white rounded-full
+                                w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600
+                                '
+                                >
+                                    ✕
+                                </button>
+                            </div>
+                        ))}
+                        <button
+                            type='button'
+                            onClick={handleAddColor}
+                            className='text-sm px-3 py-1 border rounded bg-gray-100 hover:bg-gray-200'
+                        >
+                            + Add Color
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label className='font-semibold block mb-2'>Select size</label>
+                    <select
+                        {...register('size', { required: 'Size is required' })}
+                        className='border border-blue-500'
+                    >
+                        <option value="">Size</option>
+                        <option value="Small">Small</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Large">Large</option>
+                        <option value="X-Large">X-Large</option>
                     </select>
                     {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                 </div>
