@@ -163,12 +163,19 @@ const AddProduct = () => {
 
                             {/* Trigger label as button */}
                             <label
-                                htmlFor="imageUpload"
-                                className={`px-4 py-2 text-sm rounded cursor-pointer 
-        ${imageUrls.length >= 4
+                                onClick={(e) => {
+                                    if (imageUrls.length >= 4) {
+                                        e.preventDefault();
+                                        toast.error("You can upload a maximum of 4 images");
+                                        return;
+                                    }
+                                    document.getElementById("imageUpload").click(); // manually trigger
+                                }}
+                                className={`px-4 py-2 text-sm rounded 
+                                        ${imageUrls.length >= 4
                                         ? 'bg-red-400 text-white cursor-not-allowed'
-                                        : 'bg-gray-200 hover:bg-gray-300'}
-    `}
+                                        : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'}
+                                         `}
                             >
                                 Select Images
                             </label>
@@ -212,6 +219,7 @@ const AddProduct = () => {
                         <option value="">Gender</option>
                         <option value="Men">Men</option>
                         <option value="Women">Women</option>
+                        <option value="Kids">Kids</option>
                     </select>
                     {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                 </div>
