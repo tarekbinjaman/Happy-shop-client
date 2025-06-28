@@ -4,6 +4,7 @@ import { image } from 'framer-motion/m';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { GoDash } from 'react-icons/go';
+import { toast } from 'react-toastify';
 
 const AddProduct = () => {
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -11,7 +12,9 @@ const AddProduct = () => {
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
     const [isDragging, setIsDragging] = useState(false);
-    
+
+    const gender = ['Men', 'Women'];
+
     //cloudinary configuration 
     const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
     const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -20,6 +23,11 @@ const AddProduct = () => {
     const images = imageUrls.url;
 
     const handleImageUpload = async (files) => {
+        if (imageUrls.length >= 4) {
+            toast.error('You can upload a maximum of 4 images')
+            setErrorMsg('You can upload a maximum of 4 images')
+            return;
+        }
         console.log("Files", files)
         setUploading(true);
         setErrorMsg('');
@@ -150,17 +158,22 @@ const AddProduct = () => {
                                 multiple
                                 id="imageUpload"
                                 onChange={(e) => handleImageUpload(e.target.files)}
-                                className="hidden"
+                                className="hidden "
                             />
 
                             {/* Trigger label as button */}
                             <label
                                 htmlFor="imageUpload"
-                                className="bg-gray-200 px-4 py-2 text-sm rounded cursor-pointer hover:bg-gray-300"
+                                className={`px-4 py-2 text-sm rounded cursor-pointer 
+        ${imageUrls.length >= 4
+                                        ? 'bg-red-400 text-white cursor-not-allowed'
+                                        : 'bg-gray-200 hover:bg-gray-300'}
+    `}
                             >
                                 Select Images
                             </label>
                         </div>
+
                     </div>
 
                     {/* Uploading message */}
@@ -190,6 +203,17 @@ const AddProduct = () => {
                             ))}
                         </div>
                     )}
+                </div>
+                <div>
+                    <select
+                        {...register('gender', { required: 'Gender is required' })}
+                        className='border border-blue-500'
+                    >
+                        <option value="">Gender</option>
+                        <option value="Men">Men</option>
+                        <option value="Women">Women</option>
+                    </select>
+                    {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                 </div>
 
                 <button
