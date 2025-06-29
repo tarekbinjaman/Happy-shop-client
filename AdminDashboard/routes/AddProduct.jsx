@@ -1,7 +1,4 @@
 import axios from 'axios';
-import { color } from 'framer-motion';
-import { div, img } from 'framer-motion/client';
-import { image } from 'framer-motion/m';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { GoDash } from 'react-icons/go';
@@ -117,7 +114,7 @@ const AddProduct = () => {
             return;
         }
         const { price, discount } = data;
-        const finalPrice = Math.floor(price - (price / discount));
+        const finalPrice = Math.floor(price - (price *(discount / 100)));
         const fullData = {
             ...data,
             images: imageUrls.map(img => img.url),
@@ -127,6 +124,13 @@ const AddProduct = () => {
         };
         console.log("Final Product Data", fullData);
         // from here you will send data to backend
+        try {
+            const res = await axios.post('http://localhost:5000/api/products', fullData)
+                toast.success("Product added");
+        } catch (error) {
+            console.error("Add product error", error)
+            toast.error("Product add failed")
+        }
     };
 
     return (
