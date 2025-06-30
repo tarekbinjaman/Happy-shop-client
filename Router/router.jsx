@@ -10,6 +10,7 @@ import Login from '../Auth/Login';
 import Registration from '../Auth/Registration';
 import AdminProfile from '../AdminDashboard/routes/AdminProfile';
 import AddProduct from '../AdminDashboard/routes/AddProduct';
+import AllProduct from '../AdminDashboard/routes/AllProduct';
 
 const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
                     {
                         path: "addProduct",
                         element:<AddProduct />
+                    },
+                    {
+                        path: "allProduct",
+                        element: <AllProduct />
                     }
                 ]
             },
