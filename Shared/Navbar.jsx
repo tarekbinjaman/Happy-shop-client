@@ -10,8 +10,7 @@ import { MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import { TbLogout2, TbShoppingCartCheck } from 'react-icons/tb';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import UseAuth from '../Context/UseAuth';
-import { img } from 'framer-motion/client';
+import UseAuth from '../Context/UseAuth'
 import currentUser from '../api/currentUser';
 
 const Navbar = () => {
@@ -22,7 +21,8 @@ const Navbar = () => {
     const [dropdownOpen, setDropdownOpen] = useState(false);
     const dropdownref = useRef();
     const email = user?.email;
-    const [userData, refetchUserList, currentUserEmail] = currentUser(email);
+    const [currentUerData, refetchUserList] = currentUser(email);
+    const userData = currentUerData?.[0];
     const isActive = ({ isActive }) => isActive ? 'text-blue-500 bg-slate-200' : '';
     const handleLogout = () => {
         logOut();

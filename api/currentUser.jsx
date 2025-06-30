@@ -12,7 +12,7 @@ const currentUser = (email) => {
             return res.data;
         }
     })
-    return [currentUser.users[0], refetch]
+    return [currentUser?.users, refetch]
 };
 
 export default currentUser;
