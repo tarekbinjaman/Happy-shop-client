@@ -16,16 +16,17 @@ const AllProduct = () => {
         return <p>Produt is loading....</p>
     };
     const openModal = (id) => {
-        const modal = document.getElementById('my_modal_3');
-        setSelectedProductId(id);
-        if(modal) {
-            modal.showModal();
-        }
+      setSelectedProductId(id);
+      document.getElementById('my_modal_3')?.showModal();
     };
+    const closeModal = () => {
+      setSelectedProductId(null)
+      document.getElementById('my_modal_3')?.close();
+    }
     return (
         <div className='w-full border border-black'>
             <h1>This is all Product page. <br /> Toatal products ({productdata?.length})</h1>
-            <div className='w-full max-w-7xl border border-black'>
+            <div className='w-full max-w-5xl max-h-72 border border-black'>
 
             
             <ul className=" bg-base-100 shadow-md w-[800px] ">
@@ -35,7 +36,7 @@ const AllProduct = () => {
     
     <div className='flex gap-4 items-center'>
         <div className="text-4xl font-thin opacity-30 tabular-nums">{index + 1}</div>
-        <img className="size-20 object-cover rounded-box" src={product?.images[0]}/>        
+        <img className="size-20 object-cover rounded-box" src={product?.images[0]?.url}/>        
     <div className="">
       <div className='text-xl'>{product?.title}</div>
       <div className="text-sm font-semibold opacity-60">{product?.description?.slice(0, 15)}</div>
@@ -52,13 +53,13 @@ const AllProduct = () => {
 </ul>
     </div>
      <dialog id="my_modal_3" className="modal">
-        <div className="modal-box max-w-7xl">
-          <form method="dialog">
-            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+        <div className="modal-box max-w-4xl p-4">
+          <form method="dialog" className='mb-8'>
+            <button className="text-white  bg-red-500 btn-ghost absolute right-2 top-2 px-3 py-1 rounded cursor-pointer hover:bg-red-400">
               ✕
             </button>
           </form>
-          {selectedProductId && <EditModal id={selectedProductId} />}
+          {selectedProductId && <EditModal id={selectedProductId} handleClose={closeModal} />}
         </div>
       </dialog>
       </div>

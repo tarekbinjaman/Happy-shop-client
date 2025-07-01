@@ -5,7 +5,7 @@ import { GoDash } from 'react-icons/go';
 import { toast } from 'react-toastify';
 
 const AddProduct = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [imageUrls, setImageUrls] = useState([]);
     const [uploading, setUploading] = useState(false);
     const [errorMsg, setErrorMsg] = useState('');
@@ -115,9 +115,10 @@ const AddProduct = () => {
         }
         const { price, discount } = data;
         const finalPrice = Math.floor(price - (price *(discount / 100)));
+        console.log('add product image fileld', imageUrls)
         const fullData = {
             ...data,
-            images: imageUrls.map(img => img.url),
+            images: imageUrls,
             color: colorInput,
             finalPrice: finalPrice,
             size: size
@@ -127,6 +128,10 @@ const AddProduct = () => {
         try {
             const res = await axios.post('http://localhost:5000/api/products', fullData)
                 toast.success("Product added");
+                reset();
+                setImageUrls([]);
+                setSize([]);
+                setColorInputs([]);
         } catch (error) {
             console.error("Add product error", error)
             toast.error("Product add failed")

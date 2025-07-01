@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { GoDash } from 'react-icons/go';
-const EditModal = ({id}) => {
+const EditModal = ({id, handleClose}) => {
     const [allProducts, isLoading, productRefetch] = useProducts();
     if (isLoading) {
         return <p>Produt is loading....</p>
@@ -12,7 +12,7 @@ const EditModal = ({id}) => {
     const productdata = allProducts?.products || [];
     const editProductData = productdata.find(item => item._id === id)
         const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-        const [imageUrls, setImageUrls] = useState(['']);
+        const [imageUrls, setImageUrls] = useState([]);
         const [uploading, setUploading] = useState(false);
         const [errorMsg, setErrorMsg] = useState('');
         const [isDragging, setIsDragging] = useState(false);
@@ -24,6 +24,7 @@ const EditModal = ({id}) => {
         //cloudinary configuration 
         const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
         const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+        console.log('all images in edit product data', editProductData?.images)
     
         
 
@@ -37,7 +38,7 @@ const EditModal = ({id}) => {
                 // size, colors,images
                 setSize(editProductData.size);
                 setColorInputs(editProductData.color || ['#000000']);
-                setImageUrls(editProductData.images?.map(url => ({url})) || []);
+                setImageUrls(editProductData.images);
             }
         }, [])
     
@@ -106,12 +107,12 @@ const EditModal = ({id}) => {
             } finally {
                 setUploading(false);
                 console.log("Urls here:", imageUrls);
-                console.log('Images', images);
             }
         };
     
         const deleteImage = async (index) => {
             const imageToDelete = imageUrls[index];
+            console.log('image to delete', imageToDelete)
             // remove from local state
             const updateImages = imageUrls.filter((_, i) => i !== index);
             setImageUrls(updateImages);
@@ -136,7 +137,7 @@ const EditModal = ({id}) => {
             const finalPrice = Math.floor(price - (price *(discount / 100)));
             const fullData = {
                 ...data,
-                images: imageUrls.map(img => img.url),
+                images: imageUrls,
                 color: colorInput,
                 finalPrice: finalPrice,
                 size: size
@@ -148,6 +149,8 @@ const EditModal = ({id}) => {
                 //     toast.success("Product added");
                 const res = await axios.put(`http://localhost:5000/api/products/${id}`, fullData)
                 toast.success("Product update successfully")
+                handleClose();
+                productRefetch();
             } catch (error) {
                 console.error("Add product error", error)
                 toast.error("Product add failed")
@@ -155,7 +158,7 @@ const EditModal = ({id}) => {
         };
     return (
         <div className='flex justify-center'>
-            <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-5xl md:w-full '>
+            <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-4xl h-[700px] md:w-full '>
                 <div className=''>
                     {/* main div */}
 
@@ -322,7 +325,7 @@ const EditModal = ({id}) => {
 
                             {imageUrls.length > 0 && (
                                 <div className="mt-4 grid grid-cols-2 gap-2">
-                                    {imageUrls.map((url, i) => (
+                                    {imageUrls.map((img, i) => (
                                         <div key={i} className='relative'>
                                             <button
                                                 onClick={() => {
@@ -333,7 +336,7 @@ const EditModal = ({id}) => {
                                                 <GoDash className='font-bold' />
                                             </button>
                                             <img
-                                                src={url.url}
+                                                src={img?.url}
                                                 alt={`preview-${i}`}
                                                 className="w-full h-32 object-cover rounded"
                                             />
@@ -399,7 +402,7 @@ const EditModal = ({id}) => {
                 </div>
                 <button
                     type='submit'
-                    className='bg-black text-white px-6 py-2 rounded hover:bg-gray-700 disabled:opacity-50 w-full'
+                    className='bg-black text-white px-6 py-2 rounded hover:bg-gray-700 disabled:opacity-50 w-full mb-4'
                     disabled={uploading}
                 >
                     Update Product
