@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useProducts from '../api/useProducts';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
@@ -11,8 +11,8 @@ const EditModal = ({id}) => {
     };
     const productdata = allProducts?.products || [];
     const editProductData = productdata.find(item => item._id === id)
-        const { register, handleSubmit, formState: { errors } } = useForm();
-        const [imageUrls, setImageUrls] = useState([editProductData?.images]);
+        const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+        const [imageUrls, setImageUrls] = useState(['']);
         const [uploading, setUploading] = useState(false);
         const [errorMsg, setErrorMsg] = useState('');
         const [isDragging, setIsDragging] = useState(false);
@@ -25,8 +25,21 @@ const EditModal = ({id}) => {
         const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
         const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
     
-        // images to preview
-        const images = imageUrls.url;
+        
+
+        useEffect(() => {
+            if(editProductData) {
+                setValue('title', editProductData.title);
+                setValue('description', editProductData.description);
+                setValue('price', editProductData.price);
+                setValue('discount', editProductData.discount);
+                setValue('gender', editProductData.gender);
+                // size, colors,images
+                setSize(editProductData.size);
+                setColorInputs(editProductData.color || ['#000000']);
+                setImageUrls(editProductData.images?.map(url => ({url})) || []);
+            }
+        }, [])
     
         const handleAddSize = () => {
             if (size.length < 5) {
@@ -131,8 +144,10 @@ const EditModal = ({id}) => {
             console.log("Final Product Data", fullData);
             // from here you will send data to backend
             try {
-                const res = await axios.post('http://localhost:5000/api/products', fullData)
-                    toast.success("Product added");
+                // const res = await axios.post('http://localhost:5000/api/products', fullData)
+                //     toast.success("Product added");
+                const res = await axios.put(`http://localhost:5000/api/products/${id}`, fullData)
+                toast.success("Product update successfully")
             } catch (error) {
                 console.error("Add product error", error)
                 toast.error("Product add failed")
