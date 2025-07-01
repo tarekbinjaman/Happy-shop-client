@@ -158,7 +158,7 @@ const EditModal = ({id, handleClose}) => {
         };
     return (
         <div className='flex justify-center'>
-            <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-4xl h-[700px] md:w-full '>
+            <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-4xl md:w-full '>
                 <div className=''>
                     {/* main div */}
 
