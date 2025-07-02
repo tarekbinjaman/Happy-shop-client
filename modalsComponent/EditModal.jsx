@@ -40,7 +40,7 @@ const EditModal = ({id, handleClose}) => {
                 setColorInputs(editProductData.color || ['#000000']);
                 setImageUrls(editProductData.images);
             }
-        }, [])
+        }, [id])
     
         const handleAddSize = () => {
             if (size.length < 5) {
@@ -77,9 +77,9 @@ const EditModal = ({id, handleClose}) => {
         }
     
         const handleImageUpload = async (files) => {
-            if (imageUrls.length >= 4) {
-                toast.error('You can upload a maximum of 4 images')
-                setErrorMsg('You can upload a maximum of 4 images')
+            if (imageUrls.length >= 3) {
+                toast.error('You can upload a maximum of 3 images')
+                setErrorMsg('You can upload a maximum of 3 images')
                 return;
             }
             console.log("Files", files)
@@ -298,15 +298,15 @@ const EditModal = ({id, handleClose}) => {
                                     {/* Trigger label as button */}
                                     <label
                                         onClick={(e) => {
-                                            if (imageUrls.length >= 4) {
+                                            if (imageUrls.length >= 3) {
                                                 e.preventDefault();
-                                                toast.error("You can upload a maximum of 4 images");
+                                                toast.error("You can upload a maximum of 3 images");
                                                 return;
                                             }
                                             document.getElementById("imageUpload").click(); // manually trigger
                                         }}
                                         className={`px-4 py-2 text-sm rounded 
-                                        ${imageUrls.length >= 4
+                                        ${imageUrls.length >= 3
                                                 ? 'bg-red-400 text-white cursor-not-allowed'
                                                 : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'}
                                          `}
@@ -331,7 +331,7 @@ const EditModal = ({id, handleClose}) => {
                                                 onClick={() => {
                                                     deleteImage(i);
                                                 }}
-                                                className='bg-white p-1 mt-1 absolute rounded-full left-60 hover:bg-gray-300 cursor-pointer'
+                                                className='bg-white p-1 mt-1 absolute rounded-full left-90 hover:bg-gray-300 cursor-pointer'
                                             >
                                                 <GoDash className='font-bold' />
                                             </button>

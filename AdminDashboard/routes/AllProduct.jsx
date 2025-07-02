@@ -8,10 +8,12 @@ import EditModal from '../../modalsComponent/editModal';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import ViewProductModal from '../../modalsComponent/ViewProductModal';
 
 const AllProduct = () => {
   const [allProducts, isLoading, productRefetch] = useProducts();
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [selectedViewProductId, setSelectedViewProductId] = useState(null);
   console.log("All products", allProducts);
   const productdata = allProducts?.products;
   console.log("products data", productdata);
@@ -25,6 +27,14 @@ const AllProduct = () => {
   const closeModal = () => {
     setSelectedProductId(null)
     document.getElementById('my_modal_3')?.close();
+  }
+  const openProductModal = (id) => {
+    setSelectedViewProductId(id);
+    document.getElementById('my_modal_4')?.showModal();
+  };
+  const closeProductModal = () => {
+    setSelectedViewProductId(null)
+    document.getElementById('my_modal_4')?.close();
   }
   const deleteProduct = async (id) => {
     Swal.fire({
@@ -74,7 +84,7 @@ const AllProduct = () => {
               </div>
               <div className='flex gap-6 items-center text-3xl'>
                 {/* Icons view > edit > delete */}
-                <FaEye className='cursor-pointer hover:opacity-50' />
+                <FaEye className='cursor-pointer hover:opacity-50' onClick={() => openProductModal(product?._id)} />
                 <CiEdit onClick={() => openModal(product?._id)} className='cursor-pointer hover:opacity-50' />
                 <TiDelete className='cursor-pointer hover:opacity-50' onClick={() => { deleteProduct(product?._id) }} />
               </div>
@@ -82,6 +92,8 @@ const AllProduct = () => {
           ))}
         </ul>
       </div>
+
+      {/* Edit product modal */}
       <dialog id="my_modal_3" className="modal">
         <div className="modal-box max-w-4xl h-[700px] p-4">
           <form method="dialog" className='mb-8'>
@@ -90,6 +102,18 @@ const AllProduct = () => {
             </button>
           </form>
           {selectedProductId && <EditModal id={selectedProductId} handleClose={closeModal} />}
+        </div>
+      </dialog>
+
+      {/* View product modal */}
+      <dialog id="my_modal_4" className="modal">
+        <div className="modal-box max-w-4xl h-[700px] p-4">
+          <form method="dialog" className='mb-8'>
+            <button className="text-white  bg-red-500 btn-ghost absolute right-2 top-2 px-3 py-1 rounded cursor-pointer hover:bg-red-400">
+              ✕
+            </button>
+          </form>
+          {selectedViewProductId && <ViewProductModal id={selectedViewProductId} handleClose={closeProductModal}/>  }
         </div>
       </dialog>
     </div>

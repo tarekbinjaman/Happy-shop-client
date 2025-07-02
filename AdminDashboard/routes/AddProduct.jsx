@@ -57,7 +57,7 @@ const AddProduct = () => {
     }
 
     const handleImageUpload = async (files) => {
-        if (imageUrls.length >= 4) {
+        if (imageUrls.length >= 3) {
             toast.error('You can upload a maximum of 4 images')
             setErrorMsg('You can upload a maximum of 4 images')
             return;
@@ -281,15 +281,15 @@ const AddProduct = () => {
                                     {/* Trigger label as button */}
                                     <label
                                         onClick={(e) => {
-                                            if (imageUrls.length >= 4) {
+                                            if (imageUrls.length >= 3) {
                                                 e.preventDefault();
-                                                toast.error("You can upload a maximum of 4 images");
+                                                toast.error("You can upload a maximum of 3 images");
                                                 return;
                                             }
                                             document.getElementById("imageUpload").click(); // manually trigger
                                         }}
                                         className={`px-4 py-2 text-sm rounded 
-                                        ${imageUrls.length >= 4
+                                        ${imageUrls.length >= 3
                                                 ? 'bg-red-400 text-white cursor-not-allowed'
                                                 : 'bg-gray-200 hover:bg-gray-300 cursor-pointer'}
                                          `}
