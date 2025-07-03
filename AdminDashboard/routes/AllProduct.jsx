@@ -107,7 +107,7 @@ const AllProduct = () => {
 
       {/* View product modal */}
       <dialog id="my_modal_4" className="modal">
-        <div className="modal-box max-w-5xl h-[700px] p-4">
+        <div className="modal-box max-w-5xl h-[590px] p-4">
           <form method="dialog" className='mb-8'>
             <button className="text-white  bg-red-500 btn-ghost absolute right-2 top-2 px-3 py-1 rounded cursor-pointer hover:bg-red-400">
               ✕

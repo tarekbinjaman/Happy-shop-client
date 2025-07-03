@@ -25,24 +25,24 @@ const ViewProductModal = ({ id }) => {
                 <div className={`flex gap-2`}>
                     {imageContainer1.length > 1 && (
 
-                        <div className='h-[400px] w-[120px] flex flex-col overflow-y-auto space-y-2'>
+                        <div className='h-[422px] w-[140px] flex flex-col overflow-y-auto space-y-2.5'>
                             {/* all images */}
                             {
                                 imageContainer1.map((img, index) => (
                                     <img src={img?.url} alt=""
                                         onClick={() => { setShowImage(img?.url) }}
-                                        className={`w-full h-full object-cover rounded-md
-                                ${showImage === img?.url ? 'border-4 border-blue-500 rounded-md' : ''}
+                                        className={`w-full h-[133px] object-cover rounded-md
+                                ${showImage === img?.url ? 'border-2 border-blue-500 rounded-md' : ''}
                                 `}
                                     />
                                 ))
                             }
                         </div>
                     )}
-                    <div className='h-[400px]'>
+                    <div className='h-[422px]'>
                         {/* single images */}
                         <img src={showImage}
-                            className='w-[400px] h-full object-cover'
+                            className='w-[400px] h-full object-cover rounded-md'
                             alt="" />
                     </div>
                 </div>
@@ -123,6 +123,7 @@ const ViewProductModal = ({ id }) => {
                                 }
                             </div>
                             <div className='divider'></div>
+                            <button className='btn bg-black w-full text-white hover:bg-black/90'>View in Product page</button>
                         </div>
                     </div>
                 </div>
