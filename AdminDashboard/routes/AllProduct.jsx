@@ -65,7 +65,7 @@ const AllProduct = () => {
   }
   return (
     <div className='w-full'>
-      <div className='w-full'>
+      <div className='w-full px-4'>
 
 
         <ul className="bg-base-100 shadow-md">

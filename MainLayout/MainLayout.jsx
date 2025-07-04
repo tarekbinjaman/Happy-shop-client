@@ -1,16 +1,19 @@
 import React from 'react';
 import Navbar from '../Shared/Navbar';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Shared/Footer';
 
 const MainLayout = () => {
+    const location = useLocation();
+    const hideLayout = location.pathname.startsWith('/adminDashboard')
     return (
         <div className='flex flex-col min-h-screen'>
-            <Navbar />
+            {/* <div className='max-w-11/12 mx-auto'> */}
+            {!hideLayout && <Navbar />}
             <div className='flex-grow'>
                 <Outlet />
             </div>
-            <Footer />
+            {!hideLayout && <Footer />}
         </div>
     );
 };

@@ -331,9 +331,9 @@ const EditModal = ({id, handleClose}) => {
                                                 onClick={() => {
                                                     deleteImage(i);
                                                 }}
-                                                className='bg-white p-1 mt-1 absolute rounded-full left-90 hover:bg-gray-300 cursor-pointer'
+                                                className='bg-red-500 p-1 mt-1 absolute rounded-full border left-90 hover:bg-red-400 cursor-pointer'
                                             >
-                                                <GoDash className='font-bold' />
+                                                <GoDash className='font-bold text-white' />
                                             </button>
                                             <img
                                                 src={img?.url}

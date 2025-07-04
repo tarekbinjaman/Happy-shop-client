@@ -139,6 +139,7 @@ const AddProduct = () => {
     };
 
     return (
+        <div className='flex justify-center'>
         <div className='rounded-2xl  shadow-md border-t-4 border-blue-400 lg:w-7xl  shadow-blue-500/50'>
             <h1 className='pl-6 pt-4 text-xl font-bold'>Add Poduct </h1>
             <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-7xl md:w-[500px] '>
@@ -391,6 +392,7 @@ const AddProduct = () => {
                     Submit Product
                 </button>
             </form>
+        </div>
         </div>
     );
 };

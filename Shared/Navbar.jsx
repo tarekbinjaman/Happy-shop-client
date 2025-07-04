@@ -42,7 +42,7 @@ const Navbar = () => {
     }, []);
     console.log("userData:", userData)
     return (
-        <nav className='py-4 bg-white'>
+        <nav className='py-4 bg-white px-12'>
             <div className='flex items-center'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
                     {/* logo */}
@@ -124,14 +124,14 @@ const Navbar = () => {
                                 <div>
                                     {userData && (
                                         userData?.isAdmin ?
-                                            (<NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300`} to={`/adminDashboard/adminProfile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Admin Dashboard</span></NavLink>)
-                                            : (<NavLink className={`flex gap-2 items-center pt-4`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>User Dashboard</span></NavLink>)
+                                            (<NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`} to={`/adminDashboard/adminProfile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>Admin Dashboard</span></NavLink>)
+                                            : (<NavLink className={`flex gap-2 items-center pt-4 pb-2`} to={`/userDashboard/myprofile`}><MdOutlineManageAccounts /> <span className='whitespace-nowrap hover:text-orange-300'>User Dashboard</span></NavLink>)
                                     )
                                     }
-                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300`} to={`/myProfile`}><TbShoppingCartCheck /><span className='whitespace-nowrap hover:text-orange-300'>My order</span></NavLink>
-                                    <NavLink className={`flex gap-2 items-center pt-4  border-b border-gray-300`} to={`/myProfile`}><CiHeart /><span className='whitespace-nowrap hover:text-orange-300'>Wishlist</span></NavLink>
-                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300`} to={`/myProfile`}><MdOutlineRateReview /><span className='whitespace-nowrap hover:text-orange-300'>My reviews</span></NavLink>
-                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300`} to={`/myProfile`}><ImCancelCircle /><span className='whitespace-nowrap hover:text-orange-300'>My return and cancellation</span></NavLink>
+                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`} to={`/myProfile`}><TbShoppingCartCheck /><span className='whitespace-nowrap hover:text-orange-300'>My order</span></NavLink>
+                                    <NavLink className={`flex gap-2 items-center pt-4  border-b border-gray-300 pb-2`} to={`/myProfile`}><CiHeart /><span className='whitespace-nowrap hover:text-orange-300'>Wishlist</span></NavLink>
+                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`} to={`/myProfile`}><MdOutlineRateReview /><span className='whitespace-nowrap hover:text-orange-300'>My reviews</span></NavLink>
+                                    <NavLink className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`} to={`/myProfile`}><ImCancelCircle /><span className='whitespace-nowrap hover:text-orange-300'>My return and cancellation</span></NavLink>
                                     <NavLink className={`flex gap-2 items-center pt-4 `} onClick={handleLogout}><TbLogout2 /><span className='whitespace-nowrap hover:text-orange-300'>Logout</span></NavLink>
                                 </div>
                             }
