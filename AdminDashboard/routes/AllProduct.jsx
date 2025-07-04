@@ -65,11 +65,10 @@ const AllProduct = () => {
   }
   return (
     <div className='w-full'>
-      <h1>This is all Product page. <br /> Toatal products ({productdata?.length})</h1>
-      <div className='w-full max-w-5xl max-h-72 '>
+      <div className='w-full'>
 
 
-        <ul className=" bg-base-100 shadow-md w-[800px] ">
+        <ul className="bg-base-100 shadow-md">
           {productdata.map((product, index) => (
 
             <li className="flex gap-2 justify-between w-full mb-3 border border-gray-400 p-3 rounded hover:shadow-2xl">
