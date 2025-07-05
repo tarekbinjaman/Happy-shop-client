@@ -1,2 +1,9 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@font-face {
+    font-family: 'Integral CF';
+    src: url('/src/assets/integralcf-regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}

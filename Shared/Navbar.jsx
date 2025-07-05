@@ -42,7 +42,8 @@ const Navbar = () => {
     }, []);
     console.log("userData:", userData)
     return (
-        <nav className='py-4 bg-white px-12'>
+        <nav
+        className='py-4 bg-white px-12 font-integral '>
             <div className='flex items-center'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
                     {/* logo */}
@@ -52,7 +53,9 @@ const Navbar = () => {
                             <RxHamburgerMenu className='md:text-3xl text-2xl ' />
                         </div>
                         {/* logo */}
-                        <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-xl'><span>shop</span>.co</p></Link>
+                        <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-xl' 
+                                style={{fontFamily: 'Integral CF'}}
+                        ><span>shop</span>.co</p></Link>
                     </div>
                     <div className='hidden lg:block'>
                         {/* navlinks */}
@@ -90,7 +93,7 @@ const Navbar = () => {
                 </div>
 
                 {/* search bar */}
-                <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden md:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
+                <input className='md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden md:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
                 <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" />
 
                 {/* cart and profile icons */}
