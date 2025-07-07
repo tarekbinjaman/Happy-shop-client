@@ -43,7 +43,7 @@ const Navbar = () => {
     console.log("userData:", userData)
     return (
         <nav
-        className='py-4 bg-white px-12 font-integral '>
+        className='py-4 bg-white md:px-12 '>
             <div className='flex items-center'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
                     {/* logo */}
@@ -100,7 +100,7 @@ const Navbar = () => {
                 <div>
                     <div className='flex md:gap-4 gap-2 items-center whitespace-nowrap'>
                         {/* profile and cart */}
-                        <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
+                        <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black hidden md:block' />
                         {user?.email
                             ? <div onClick={() => setDropdownOpen(!dropdownOpen)} ref={dropdownref}>
                                 <img
@@ -117,7 +117,7 @@ const Navbar = () => {
                         }
                     </div>
                     <div className='relative'>
-                        <div className={`bg-white border-2 rounded-2xl border-blue-300 px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-44 z-50
+                        <div className={`bg-white border-2 rounded-2xl border-blue-300 px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-54 z-50
                         invisible transition-all duration-300 ease-in-out
                         ${dropdownOpen ? 'visible opacity-100 translate-y-0 ' : 'hidden opacity-0 '}
                         `
@@ -165,7 +165,7 @@ const Navbar = () => {
                         </button>
                     </div>
                     <ul className='space-y-4'>
-                        <li className='border-b-2 border-gray-400'>
+                        <li className='border-b border-gray-400'>
                             <span onClick={() => setIsOpen(!isOpen)} className='flex items-center gap-1 justify-between'>Shop <GoChevronDown className={`group-hover:text-orange-300 text-3xl cursor-pointer transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} /></span>
 
                             <div className='relative transition-all duration-300 ease-in-out'>
@@ -180,7 +180,8 @@ const Navbar = () => {
                         </li>
                         <li className='border-b border-gray-400'>On sale</li>
                         <li className='border-b border-gray-400'>New Arrivals</li>
-                        <li className='border-b-2 border-gray-400'>Brands</li>
+                        <li className='border-b border-gray-400'>Brands</li>
+                        <li className='border-b border-gray-400'>Wishlist</li>
                     </ul>
                 </div>
 
