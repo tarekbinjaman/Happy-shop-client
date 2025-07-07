@@ -2,11 +2,12 @@ import React from 'react';
 import CountUp from 'react-countup';
 
 import img1 from '../../../src/assets/hero/ChatGPT Image Jul 7, 2025, 07_53_28 PM.png'
+import star from '../../../src/assets/hero/star.png'
 
 const Hero = () => {
     return (
         <div className='bg-[#f2f0f1]'>
-            <div className='w-11/12 mx-auto'>
+            <div className='w-10/12 mx-auto'>
             <div className='flex justify-between'>
             <div className='flex flex-col space-y-8 py-16'>
                 {/* text area */}
@@ -63,8 +64,10 @@ const Hero = () => {
                     </div>
                 </div>
             </div>
-            <div>
-                <img src={img1} className='w-[700px]'  alt="models" />
+            <div className='relative'>
+                <img src={img1} className='w-[700px]'  alt="" />
+                <img src={star} className='absolute -mt-100 w-[90px]' alt="" />
+                <img src={star} className='absolute -mt-150 ml-140 w-[140px]' alt="" />
             </div>
             </div>
             </div>

@@ -54,7 +54,7 @@ const Navbar = () => {
                         </div>
                         {/* logo */}
                         <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-xl' 
-                                style={{fontFamily: 'Integral CF'}}
+                                style={{fontFamily: 'Integral CF', letterSpacing: '2px'}}
                         ><span>shop</span>.co</p></Link>
                     </div>
                     <div className='hidden lg:block'>
