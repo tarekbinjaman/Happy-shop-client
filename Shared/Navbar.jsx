@@ -43,18 +43,18 @@ const Navbar = () => {
     console.log("userData:", userData)
     return (
         <nav
-        className='py-4 bg-white md:px-12 '>
-            <div className='flex items-center'>
+            className='py-4 bg-white md:px-12 '>
+            <div className='flex items-center justify-between'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
                     {/* logo */}
-                    <div className='flex items-center gap-2'>
+                    <div className='flex items-end gap-2'>
                         {/* sidebar icon */}
                         <div className='lg:hidden block' onClick={() => setIsSidebarOpen(true)}>
-                            <RxHamburgerMenu className='md:text-3xl text-2xl ' />
+                            <RxHamburgerMenu className='md:text-3xl text-[26px] ' />
                         </div>
                         {/* logo */}
-                        <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-xl' 
-                                style={{fontFamily: 'Integral CF', letterSpacing: '2px'}}
+                        <Link to={`/`}><p className='uppercase font-bold md:text-3xl text-2xl'
+                            style={{ fontFamily: 'Integral CF', letterSpacing: '2px' }}
                         ><span>shop</span>.co</p></Link>
                     </div>
                     <div className='hidden lg:block'>
@@ -94,13 +94,13 @@ const Navbar = () => {
 
                 {/* search bar */}
                 <input className='md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden md:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
-                <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" />
+                {/* <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" /> */}
 
                 {/* cart and profile icons */}
                 <div>
                     <div className='flex md:gap-4 gap-2 items-center whitespace-nowrap'>
                         {/* profile and cart */}
-                        <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black hidden md:block' />
+                        <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black ' />
                         {user?.email
                             ? <div onClick={() => setDropdownOpen(!dropdownOpen)} ref={dropdownref}>
                                 <img
@@ -117,9 +117,9 @@ const Navbar = () => {
                         }
                     </div>
                     <div className='relative'>
-                        <div className={`bg-white border-2 rounded-2xl border-blue-300 px-4 py-3 -translate-y-4 absolute mt-4 md:-ml-40 -ml-54 z-50
-                        invisible transition-all duration-300 ease-in-out
-                        ${dropdownOpen ? 'visible opacity-100 translate-y-0 ' : 'hidden opacity-0 '}
+                        <div className={`bg-[#f2f0f1]/60 backdrop-blur-lg border-2 border-white rounded-2xl border-black-300 px-4 py-3 -translate-y-4 absolute mt-8 md:-ml-40 -ml-44 z-50
+                        invisible  transition-opacity duration-300 ease-in-out
+                        ${dropdownOpen ? 'visible opacity-100 translate-y-0 ' : '-translate-y-4 opacity-0 invisible '}
                         `
                         }
                         >
@@ -143,14 +143,20 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-
+            <div className='relative w-[95%] mx-auto mt-2 md:hidden'>
+                {/* here will be search bar for small device */}
+                <input type="text" className='border w-full px-2 py-1 rounded focus:border-gray-400' id="" />
+                <button className="absolute right-[1px] top-1/2 transform -translate-y-1/2 text-white bg-black/80 px-2 py-1">
+                  Search
+                </button>
+            </div>
 
 
 
 
             {/* Sidebar */}
             {
-                <div className={`fixed top-0 left-0 w-64 h-full bg-gray-300 backdrop:blur-lg shadow-lg z-50 p-4
+                <div className={`fixed top-0 left-0 w-64 h-full bg-gray-300/50 backdrop-blur-lg shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
                     ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}
                     `}
