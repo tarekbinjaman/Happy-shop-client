@@ -64,7 +64,7 @@ const Navbar = () => {
                                 <div className=''>
                                     <li className='group'> <span className='flex items-center gap-1 '>Shop <GoChevronDown className='group-hover:text-orange-300' /></span>
                                         <div className='relative'>
-                                            <ul className='absolute top-2 left-0 bg-white shadow-xl py-3 w-28 space-y-1 border  border-gray-200
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-28 space-y-1 border  border-white
                                     opacity-0 invisible
                                     group-hover:visible group-hover:opacity-100
                                     transform 
