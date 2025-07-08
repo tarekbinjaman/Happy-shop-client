@@ -1,13 +1,12 @@
-import products from './Product';
-
-const NewArrival = () => {
+import product2 from "./Product2";
+const TopSelling = () => {
     return (
-        <div>
-            <h1 style={{ fontFamily: 'Integral CF' }} className='text-4xl text-center'>New Arrivals</h1>
+        <div className='mt-12'>
+            <h1 style={{ fontFamily: 'Integral CF' }} className='text-4xl text-center'>Top Selling</h1>
             <div className='flex justify-center'>
             <div className='grid grid-cols-4 gap-x-20 justify-center mt-18'>
                 {
-                    products.map((product, index) => (
+                    product2.map((product, index) => (
                         <div key={index} className=' w-[250px]'>
                             <img src={product?.images[0].url} alt="product imae"
                                 className='bg-[#F8F8F8] w-full h-[270px] object-cover rounded-2xl mb-2'
@@ -64,4 +63,4 @@ const NewArrival = () => {
     );
 };
 
-export default NewArrival;
+export default TopSelling;
