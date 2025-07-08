@@ -5,12 +5,12 @@ const NewArrival = () => {
         <div>
             <h1 style={{ fontFamily: 'Integral CF' }} className='text-4xl text-center'>New Arrivals</h1>
             <div className='flex justify-center'>
-            <div className='grid grid-cols-4 gap-x-20 justify-center mt-18'>
+            <div className='grid lg:grid-cols-4 grid-cols-2 md:gap-x-20 gap-x-2 justify-center mt-18'>
                 {
                     products.map((product, index) => (
-                        <div key={index} className=' w-[250px]'>
+                        <div key={index} className=' md:w-[250px] w-[180px]'>
                             <img src={product?.images[0].url} alt="product imae"
-                                className='bg-[#F8F8F8] w-full h-[270px] object-cover rounded-2xl mb-2'
+                                className='bg-[#F8F8F8] w-full md:h-[270px] h-[200px] object-cover rounded-2xl mb-2'
                             />
                             <h1 className='font-bold'>{product?.title}</h1>
                             <div>
