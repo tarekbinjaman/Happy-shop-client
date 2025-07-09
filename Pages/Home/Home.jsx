@@ -3,6 +3,7 @@ import Hero from './HomeComponent/Hero';
 import HeroBottom from './HomeComponent/HeroBottom';
 import NewArrival from './HomeComponent/NewArrival';
 import TopSelling from './HomeComponent/TopSelling';
+import BrowseBy from './HomeComponent/BrowseBy';
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
            <HeroBottom />
            <NewArrival />
            <TopSelling />
+           <BrowseBy />
         </div>
     );
 };
