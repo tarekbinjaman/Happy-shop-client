@@ -14,8 +14,8 @@ const BrowseBy = () => {
                     <div className='mx-10'>
                         <div className='md:grid grid-cols-7 gap-x-4 flex flex-col gap-y-4'>
                             <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400 overflow-hidden rounded-2xl relative'>
-                                <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Casual</h1>
-                                <img src={img1} alt="casual" className='h-[280px] rounded-2xl object-fill pr-2 hover:lg:left-12 transition-all duration-1000 ease-in-out' />
+                                <h1 className='ml-5 mt-2 absolute text-xl font-bold z-10'>Casual</h1>
+                                <img src={img1} alt="casual" className='h-[280px]  w-auto object-contain transition-all duration-1000 ease-in-out hover:translate-x-[-20px]' />
                             </div>
                             <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative'>
                                 <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Formal</h1>
