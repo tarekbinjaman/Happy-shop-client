@@ -3,6 +3,7 @@ import React, { useRef } from 'react';
 import reviews from './reviews';
 import { BiChevronLeft } from 'react-icons/bi';
 import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
+import icon from '../../../src/assets/icons8-verified-account-48.png'
 
 const ReviewComponent = () => {
     const scrollRef = useRef();
@@ -16,33 +17,68 @@ const ReviewComponent = () => {
         }
     }
     return (
-        <div className='w-full border'>
+        <div className='w-full mt-20 '>
+            <div className='max-w-5xl '>
+            <h1
+            style={{fontFamily: 'Integral CF'}}
+            className='ml-100 text-3xl mb-8'
+            >Our happy Customers</h1>
+            </div>
             <div className='relative'>
 
-
-                <div className='relative w-full overflow-x-auto scroll-smooth scrollbar-hide px-4'>
-                    {/* Blur effect */}
-                    <div className="absolute top-0 left-0 w-32 h-full z-10 pointer-events-none 
+                {/* Blur effect */}
+                <div className="absolute top-0 left-0 w-32 h-full z-10 pointer-events-none 
                bg-gradient-to-r  from-white to-transparent" />
-                    <div className="absolute top-0 right-0 w-32 h-full z-10 pointer-events-none 
+                <div className="absolute top-0 right-0 w-32 h-full z-10 pointer-events-none 
                bg-gradient-to-l  from-white to-transparent" />
-                    <div
+
+                {/* scroll bar container */}
+                <div
                     ref={scrollRef}
-                    className='flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-4'>
-                        {
-                            reviews.map((review, index) => (
-                                <div key={index} className='border px-4 py-4 w-[200px] h-[130px] overflow-hidden rounded'>
-                                    <h1>{review.name}</h1>
-                                    <h1>{review.comment}</h1>
+                    style={{ scrollbarWidth: 'none' }}
+                    className='flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-4 py-4'>
+                    {
+                        reviews.map((review, index) => (
+                            <div key={index} className='border border-gray-300 px-4 py-4 min-w-[300px] h-[160px] overflow-hidden rounded-xl'>
+                                <div class="inline-flex items-center"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                    fill="currentColor" class="w-6 h-6 text-yellow-500 cursor-pointer">
+                                    <path fill-rule="evenodd"
+                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                        clip-rule="evenodd"></path>
+                                </svg></span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-6 h-6 text-yellow-500 cursor-pointer">
+                                    <path fill-rule="evenodd"
+                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                        clip-rule="evenodd"></path>
+                                </svg></span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-6 h-6 text-yellow-500 cursor-pointer">
+                                    <path fill-rule="evenodd"
+                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                        clip-rule="evenodd"></path>
+                                </svg></span><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                                    class="w-6 h-6 text-yellow-500 cursor-pointer">
+                                    <path fill-rule="evenodd"
+                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                        clip-rule="evenodd"></path>
+                                </svg></span>
+                                    <span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                                        fill="currentColor" class="w-6 h-6 text-yellow-500 cursor-pointer">
+                                        <path fill-rule="evenodd"
+                                            d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                                            clip-rule="evenodd"></path>
+                                    </svg></span>
                                 </div>
-                            ))
-                        }
-                    </div>
+                                <h1 className='text-md font-bold flex items-center gap-2'>{review.name} <span><img src={icon} className='w-[22px]' alt="" /></span></h1>
+                                <h1>{review.comment}</h1>
+                            </div>
+                        ))
+                    }
                 </div>
-                <button onClick={() => scroll('left')} className='absolute left-2 top-1/2 bg-white  p-2 rounded-full shadow z-20'>
+
+                <button onClick={() => scroll('left')} className='absolute left-2 top-1/2 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
                     <GoArrowLeft size={20} />
                 </button>
-                <button onClick={() => scroll('right')} className='absolute right-2 top-1/2 bg-white  p-2 rounded-full shadow z-20'>
+                <button onClick={() => scroll('right')} className='absolute right-2 top-1/2 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
                     <GoArrowRight size={20} />
                 </button>
             </div>
