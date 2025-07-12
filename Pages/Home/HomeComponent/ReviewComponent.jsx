@@ -18,10 +18,10 @@ const ReviewComponent = () => {
     }
     return (
         <div className='w-full mt-20 '>
-            <div className='max-w-5xl '>
+            <div className='max-w-5xl'>
             <h1
             style={{fontFamily: 'Integral CF'}}
-            className='ml-100 text-3xl mb-8'
+            className='lg:ml-100 md:ml-10  mt-20 md:mb-8 text-3xl md:w-full w-1/2 ml-2'
             >Our happy Customers</h1>
             </div>
             <div className='relative'>
@@ -75,10 +75,10 @@ const ReviewComponent = () => {
                     }
                 </div>
 
-                <button onClick={() => scroll('left')} className='absolute left-2 top-1/2 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
+                <button onClick={() => scroll('left')} className='absolute lg:right-120  right-18 lg:-top-15 md:-top-20 -top-10 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
                     <GoArrowLeft size={20} />
                 </button>
-                <button onClick={() => scroll('right')} className='absolute right-2 top-1/2 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
+                <button onClick={() => scroll('right')} className='absolute lg:right-105  right-4  lg:-top-15 md:-top-20 -top-10 bg-white  p-2 rounded-full shadow z-20 cursor-pointer'>
                     <GoArrowRight size={20} />
                 </button>
             </div>
