@@ -39,7 +39,7 @@ const ReviewComponent = () => {
                     className='flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-4 py-4'>
                     {
                         reviews.map((review, index) => (
-                            <div key={index} className='border border-gray-300 px-4 py-4 min-w-[300px] h-[160px] overflow-hidden rounded-xl'>
+                            <div key={index} className='border border-gray-300 px-4 py-4 min-w-[300px] h-[160px] overflow-hidden rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-700'>
                                 <div class="inline-flex items-center"><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                     fill="currentColor" class="w-6 h-6 text-yellow-500 cursor-pointer">
                                     <path fill-rule="evenodd"

@@ -13,23 +13,23 @@ const BrowseBy = () => {
 
                     <div className='mx-10'>
                         <div className='md:grid grid-cols-7 gap-x-4 flex flex-col gap-y-4'>
-                            <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400 overflow-hidden rounded-2xl relative'>
+                            <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400 overflow-hidden rounded-2xl relative group'>
                                 <h1 className='ml-5 mt-2 absolute text-xl font-bold z-10'>Casual</h1>
-                                <img src={img1} alt="casual" className='h-[280px]  w-auto object-contain transition-all duration-1000 ease-in-out hover:translate-x-[-20px]' />
+                                <img src={img1} alt="casual" className='h-[280px]  w-auto object-contain transition-all duration-1000 ease-in-out  group-hover:translate-x-[-20px]' />
                             </div>
-                            <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative'>
+                            <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative group'>
                                 <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Formal</h1>
-                                <img src={img2} alt="casual" className='h-[380px] object-fit absolute lg:left-22 md:left-14 hover:lg:left-18 transition-all duration-1000 ease-in-out' />
+                                <img src={img2} alt="casual" className='h-[380px] object-fit absolute lg:left-22 md:left-14 group-hover:lg:left-18 transition-all duration-1000 ease-in-out' />
                             </div>
                         </div>
                         <div className='md:grid grid-cols-7 gap-x-4 mt-4 flex flex-col gap-y-4'>
-                            <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative'>
+                            <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative group'>
                                <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Party</h1>
-                                <img src={img3} alt="casual" className='h-[280px] rounded-2xl object-fill pr-2 absolute lg:left-34 md:left-12  hover:lg:left-38 transition-all duration-1000 ease-in-out' />
+                                <img src={img3} alt="casual" className='h-[280px] rounded-2xl object-fill pr-2 absolute lg:left-34 md:left-12  group-hover:lg:left-38 transition-all duration-1000 ease-in-out' />
                             </div>
-                            <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative'>
+                            <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative group'>
                                 <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Gym</h1>
-                                <img src={img4} alt="casual" className='h-[280px] object-fill absolute lg:left-18 md:left-8 hover:lg:left-14 transition-all duration-1000 ease-in-out' />
+                                <img src={img4} alt="casual" className='h-[280px] object-fill absolute lg:left-18 md:left-8 group-hover:lg:left-14 transition-all duration-1000 ease-in-out' />
                             </div>
                         </div>
 
