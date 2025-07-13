@@ -17,7 +17,7 @@ const ReviewComponent = () => {
         }
     }
     return (
-        <div className='w-full mt-20 '>
+        <div className='w-full mt-20 mb-20'>
             <div className='max-w-5xl'>
             <h1
             style={{fontFamily: 'Integral CF'}}
