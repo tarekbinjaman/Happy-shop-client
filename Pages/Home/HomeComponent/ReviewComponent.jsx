@@ -21,7 +21,7 @@ const ReviewComponent = () => {
             <div className='max-w-5xl'>
             <h1
             style={{fontFamily: 'Integral CF'}}
-            className='lg:ml-100 md:ml-10  mt-20 md:mb-8 text-3xl md:w-full w-1/2 ml-2'
+            className='lg:ml-100 md:ml-10  mt-20 md:mb-8 text-3xl lg:w-1/2 ml-2'
             >Our happy Customers</h1>
             </div>
             <div className='relative'>
@@ -36,7 +36,7 @@ const ReviewComponent = () => {
                 <div
                     ref={scrollRef}
                     style={{ scrollbarWidth: 'none' }}
-                    className='flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-4 py-4'>
+                    className='flex gap-2 overflow-x-auto scroll-smooth scrollbar-hide px-4 py-4 '>
                     {
                         reviews.map((review, index) => (
                             <div key={index} className='border border-gray-300 px-4 py-4 min-w-[300px] h-[160px] overflow-hidden rounded-xl hover:border-blue-300 hover:bg-blue-50 transition-all duration-700'>

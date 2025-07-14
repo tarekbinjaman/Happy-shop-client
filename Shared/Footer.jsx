@@ -34,7 +34,7 @@ const Footer = () => {
                     </div>
                 </div>
                 </div>
-                 <div className='flex md:flex-row flex-col gap-14 md:gap-x-24 md:gap-y-0'> 
+                 <div className='flex md:flex-row flex-col gap-14 md:gap-x-4 md:mr-8 lg:mr-0 lg:gap-x-24 md:gap-y-0'> 
                 {/* component 2 */}
                 <div className='flex md:gap-6 gap-20 lg:ml-0 ml-4'>
                 <div>
@@ -84,9 +84,9 @@ const Footer = () => {
              <div className='divider w-full '></div>
              </div>
              <div className='lg:max-w-7xl w-full mx-auto mb-8'>
-            <div className='flex lg:flex-row flex-col lg:justify-between justify-center'>
-                <p className='text-gray-400 md:text-start text-center'>Shop.co © 2000-2023. All Rights Reserved</p>
-                <div className='flex items-center md:justify-start justify-center gap-3 md:mt-0 mt-2'>
+            <div className='flex lg:flex-row md:flex-col flex-col lg:justify-between justify-center'>
+                <p className='text-gray-400 lg:text-start  text-center'>Shop.co © 2000-2023. All Rights Reserved</p>
+                <div className='flex items-center lg:justify-start justify-center gap-3 md:mt-0 mt-2'>
                     <SiVisa className='text-blue-500 text-4xl' />
                     <RiMastercardFill className='text-4xl' />
                     <FaCcPaypal  className='text-3xl' />
