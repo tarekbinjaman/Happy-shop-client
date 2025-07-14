@@ -15,7 +15,7 @@ const Footer = () => {
             <div className='flex flex-col space-y-3'>
                 <h1 className='text-4xl lg:ml-0 ml-4' style={{ fontFamily: 'Integral CF' }}>SHOP.CO</h1>
                 <p className='text-gray-400 lg:w-1/2 lg:ml-0 ml-4'>We have clothes that suits your style and
-                    which you•re proud to wear. From
+                    which youre proud to wear From
                     women to men.</p>
                     {/* component 1 */}
                 <div className='flex gap-2 items-center lg:ml-0 ml-4'>
