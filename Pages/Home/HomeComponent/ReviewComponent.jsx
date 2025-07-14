@@ -21,7 +21,7 @@ const ReviewComponent = () => {
             <div className='max-w-5xl'>
             <h1
             style={{fontFamily: 'Integral CF'}}
-            className='lg:ml-100 md:ml-10  mt-20 md:mb-8 text-3xl lg:w-1/2 ml-2'
+            className='lg:ml-100 md:ml-10  mt-20 md:mb-8 text-3xl lg:w-1/2 md:w-1/2 w-1/2 mb-2 ml-2'
             >Our happy Customers</h1>
             </div>
             <div className='relative'>
