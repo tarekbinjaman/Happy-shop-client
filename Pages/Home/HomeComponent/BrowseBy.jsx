@@ -25,11 +25,11 @@ const BrowseBy = () => {
                         <div className='md:grid grid-cols-7 gap-x-4 mt-4 flex flex-col gap-y-4'>
                             <div className='col-span-4 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative group'>
                                <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Party</h1>
-                                <img src={img3} alt="casual" className='h-[280px] rounded-2xl object-fill pr-2 absolute lg:left-26 md:left-12  group-hover:lg:left-32 transition-all duration-1000 ease-in-out' />
+                                <img src={img3} alt="casual" className='h-[280px] rounded-2xl object-fill pr-2 absolute lg:left-20 md:left-12  group-hover:lg:left-28 transition-all duration-1000 ease-in-out' />
                             </div>
                             <div className='col-span-3 h-[240px] bg-white hover:bg-gray-200 transition-color duration-400  overflow-hidden rounded-2xl relative group'>
                                 <h1 className='ml-5 mt-2 absolute text-xl font-bold'>Gym</h1>
-                                <img src={img4} alt="casual" className='h-[280px] object-fill absolute lg:left-18 md:left-8 left-10 group-hover:lg:left-14 transition-all duration-1000 ease-in-out' />
+                                <img src={img4} alt="casual" className='h-[280px] object-fill absolute lg:left-14 md:left-8 left-10 group-hover:lg:left-8 transition-all duration-1000 ease-in-out' />
                             </div>
                         </div>
 

@@ -7,30 +7,95 @@ import img4 from '../../../src/assets/logos/4.jpg'
 import img5 from '../../../src/assets/logos/5.jpg'
 
 const HeroBottom = () => {
-    const images = [img1, img2, img3, img4, img5]
+    const images = [img1, img2, img3, img4, img5];
     return (
-
-        <div className="relative overflow-hidden w-full h-20 bg-black mb-24">
+        <div className=' '>
+        <div className='flex gap-20 items-center overflow-hidden md:h-20 h-14 w-full bg-black md:mb-24 mb-0 md:py-12'>
             <motion.div
-                className="flex gap-20 w-max absolute"
-                animate={{ x: ['0%', '-50%'] }}
+                className="flex gap-20 shrink-0 items-center"
+                animate={{ x: ['0%', '-100%'] }}
                 transition={{
+                    repeatType: 'loop',
                     repeat: Infinity,
                     ease: 'linear',
-                    duration: 20,
+                    duration: 30 
                 }}
             >
-                {/* Repeat images twice in a row to allow continuous scrolling */}
                 {[...images, ...images].map((img, i) => (
                     <img
                         key={i}
                         src={img}
                         alt={`logo-${i}`}
-                        className="h-16 w-auto object-contain"
+                        className="md:h-16 h-12"
                     />
                 ))}
+
+            </motion.div>
+            <motion.div
+                className="flex gap-20 shrink-0 items-center"
+                animate={{ x: ['0%', '-100%'] }}
+                transition={{
+                    repeatType: 'loop',
+                    repeat: Infinity,
+                    ease: 'linear',
+                    duration: 30 
+                }}
+            >
+                {[...images, ...images].map((img, i) => (
+                    <img
+                        key={i}
+                        src={img}
+                        alt={`logo-${i}`}
+                        className="md:h-16 h-12"
+                    />
+                ))}
+
             </motion.div>
         </div>
+        <div className='flex gap-20 items-center overflow-hidden md:h-20 h-14 w-full bg-black mb-24 md:py-12 md:hidden'>
+            <motion.div
+                className="flex gap-20 shrink-0 items-center"
+                animate={{ x: ['-100%', '0%'] }}
+                transition={{
+                    repeatType: 'loop',
+                    repeat: Infinity,
+                    ease: 'linear',
+                    duration: 30 
+                }}
+            >
+                {[...images, ...images].map((img, i) => (
+                    <img
+                        key={i}
+                        src={img}
+                        alt={`logo-${i}`}
+                        className="md:h-16 h-12"
+                    />
+                ))}
+
+            </motion.div>
+            <motion.div
+                className="flex gap-20 shrink-0 items-center"
+                animate={{ x: ['-100%', '0%'] }}
+                transition={{
+                    repeatType: 'loop',
+                    repeat: Infinity,
+                    ease: 'linear',
+                    duration: 30 
+                }}
+            >
+                {[...images, ...images].map((img, i) => (
+                    <img
+                        key={i}
+                        src={img}
+                        alt={`logo-${i}`}
+                        className="md:h-16 h-12"
+                    />
+                ))}
+
+            </motion.div>
+        </div>
+        </div>
+
 
     );
 };
