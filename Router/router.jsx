@@ -11,6 +11,7 @@ import Registration from '../Auth/Registration';
 import AdminProfile from '../AdminDashboard/routes/AdminProfile';
 import AddProduct from '../AdminDashboard/routes/AddProduct';
 import AllProduct from '../AdminDashboard/routes/AllProduct';
+import Products from '../Pages/Products/Products';
 
 const router = createBrowserRouter([
     {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element: <Login />
+            },
+            {
+                path: 'allProducts',
+                element: <Products />
             },
             {
                 path: "register",
