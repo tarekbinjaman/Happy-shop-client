@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import DualRangeSlider from './ProductComponent/DualRangeSlider ';
 import useProducts from '../../api/useProducts';
+import { p } from 'framer-motion/client';
 
 const Products = () => {
     const [priceRange, setPriceRange] = useState([0, 2000]);
@@ -19,6 +20,11 @@ const Products = () => {
                 </aside>
                 <section className='w-9/11 p-4'>
                 <h1>This is all product area</h1>
+                {
+                    products.map(product => (
+                        <p>{product.title}</p>
+                    ))
+                }
                 </section>
             </div>
         </div>

@@ -15,7 +15,8 @@ const AllProduct = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [selectedViewProductId, setSelectedViewProductId] = useState(null);
   console.log("All products", allProducts);
-  const productdata = allProducts?.products;
+  console.log('Selected Product Id', selectedProductId)
+  const productdata = allProducts;
   console.log("products data", productdata);
   if (isLoading) {
     return <p>Produt is loading....</p>
@@ -69,7 +70,7 @@ const AllProduct = () => {
 
 
         <ul className="bg-base-100 shadow-md">
-          {productdata.map((product, index) => (
+          {allProducts.map((product, index) => (
 
             <li className="flex gap-2 justify-between w-full mb-3 border border-gray-400 p-3 rounded hover:shadow-2xl">
 

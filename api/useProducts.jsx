@@ -2,8 +2,9 @@ import React from 'react';
 import useAxiosSecure from '../axiosSecure/axiosSecure';
 import UseAuth from '../Context/UseAuth';
 import { useQuery } from '@tanstack/react-query';
+import { data } from 'react-router-dom';
 
-const useProducts = (minPrice, maxPrice) => {
+const useProducts = (minPrice = 0, maxPrice = 1000000) => {
     const axiosSecure = useAxiosSecure();
     const {user} = UseAuth();
      const {refetch, isLoading, data: useProducts = []} = useQuery({
@@ -13,7 +14,8 @@ const useProducts = (minPrice, maxPrice) => {
             return res.data;
         }
      })
-    return [useProducts, isLoading, refetch];
+     const products = useProducts.products || [];
+    return [products, isLoading, refetch];
 };
 
 export default useProducts;

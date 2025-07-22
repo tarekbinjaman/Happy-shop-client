@@ -9,8 +9,8 @@ const EditModal = ({id, handleClose}) => {
     if (isLoading) {
         return <p>Produt is loading....</p>
     };
-    const productdata = allProducts?.products || [];
-    const editProductData = productdata.find(item => item._id === id)
+    // const productdata = allProducts?.products || [];
+    const editProductData = allProducts.find(item => item._id === id)
         const { register, handleSubmit, setValue, formState: { errors } } = useForm();
         const [imageUrls, setImageUrls] = useState([]);
         const [uploading, setUploading] = useState(false);
