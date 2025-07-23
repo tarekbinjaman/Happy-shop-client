@@ -2,7 +2,7 @@ import './DualSlider.css'
 import React, { useState } from 'react';
 import Slider from 'react-slider'
 
-const DualRangeSlider = ({values, setValues}) => {
+const DualRangeSlider = ({values, setValues, refetch}) => {
     const Min = 0;
     const Max = 2000;
 
@@ -16,17 +16,19 @@ const DualRangeSlider = ({values, setValues}) => {
     console.log('Values', values)
 
     const handleGoClick = () => {
-        setValues(tempValues)
+        setValues(tempValues);
+        refetch();
+        console.log('Refetch', refetch())
     }
 
     return (
         <div className="w-full px-2 py-4">
             <p className="font-bold">Price</p>
             <div>
-                <p className='font-bold'>${values[0]} - ${values[1]}</p>
+                <p className='font-bold'>${tempValues[0]} - ${tempValues[1]}</p>
             </div>
             <div>
-                <small className='text-gray-500'>Current range: ${values[1] - values[0]}</small>
+                <small className='text-gray-500'>Current range: ${tempValues[1] - tempValues[0]}</small>
             </div>
             <div className='flex gap-4'>
                 <div className='w-full'>

@@ -7,8 +7,8 @@ const ViewProductModal = ({ id }) => {
     if (isLoading) {
         <div>Product is loading...</div>
     }
-    const productData = allProducts?.products;
-    const viewProduct = productData.find(item => item?._id === id);
+    // const productData = allProducts?.products;
+    const viewProduct = allProducts.find(item => item?._id === id);
     const imageContainer1 = viewProduct?.images;
     const firstImage = imageContainer1[0]?.url
     console.log('view product', viewProduct)

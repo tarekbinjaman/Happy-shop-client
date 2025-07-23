@@ -8,7 +8,7 @@ const useProducts = (minPrice = 0, maxPrice = 1000000) => {
     const axiosSecure = useAxiosSecure();
     const {user} = UseAuth();
      const {refetch, isLoading, data: useProducts = []} = useQuery({
-        queryKey: ['useProducts'],
+        queryKey: ['useProducts', minPrice, maxPrice],
         queryFn: async () => {
             const res = await axiosSecure.get(`http://localhost:5000/api/products?minPrice=${minPrice}&maxPrice=${maxPrice}`);
             return res.data;

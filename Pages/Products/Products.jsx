@@ -5,7 +5,7 @@ import { p } from 'framer-motion/client';
 
 const Products = () => {
     const [priceRange, setPriceRange] = useState([0, 2000]);
-    const [products, isLoading] = useProducts(priceRange[0], priceRange[1]);
+    const [products, isLoading, refetch] = useProducts(priceRange[0], priceRange[1]);
     useEffect(() => {
         const [minPrice, maxPrice] = Array.isArray(priceRange) ? priceRange : [0, 2000]
     },[priceRange])
@@ -16,7 +16,7 @@ const Products = () => {
             <div className='flex'>
                 <aside className='w-2/11 border-r'>
                 <h1>This is sidebar of all Products</h1>
-                <DualRangeSlider values={priceRange} setValues={setPriceRange} />
+                <DualRangeSlider values={priceRange} setValues={setPriceRange} refetch={refetch} />
                 </aside>
                 <section className='w-9/11 p-4'>
                 <h1>This is all product area</h1>
