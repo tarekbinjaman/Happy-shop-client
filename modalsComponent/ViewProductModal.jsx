@@ -94,7 +94,20 @@ const ViewProductModal = ({ id }) => {
                         <div>
                             {/* description */}
                             <p>{viewProduct?.description.slice(0, 40)}...</p>
-                            <div className='divider mb-0'></div>
+                            <div className='flex items-center gap-4 mt-2'>
+                        <div>
+                            <p className='text-xl font-bold text-gray-400'>Brand</p>
+                            <p>{viewProduct?.brand}</p>
+                        </div>
+                        <div>
+                            <p className='text-xl font-bold text-gray-400'>Fit Type</p>
+                            <p>{viewProduct?.fitType}</p>
+                        </div>
+                        <div>
+                            <p className='text-xl font-bold text-gray-400'>Materials</p>
+                            <p>{viewProduct?.materials}</p>
+                        </div>
+                            </div>
                         </div>
                         <div>
                             {/* colors */}
