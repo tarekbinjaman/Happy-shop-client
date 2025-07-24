@@ -185,10 +185,11 @@ const AddProduct = () => {
                                     />
                                 </div>
                             </div>
+
                             {/* Size */}
                             <div>
                                 <label className='font-semibold block mb-2'>Available size</label>
-                                <div className=' mb-3'>
+                                <div className=''>
                                     <select
                                         className='border-2 p-1 border-blue-300'
                                         value=""
@@ -225,55 +226,73 @@ const AddProduct = () => {
 
                                 </div>
                             </div>
-                            {/* brand */}
-                            <div>
-                                <label className='font-semibold block mb-2'>Brand</label>
-                                <select
-                                    {...register('brand', { required: 'Brand Is required' })}
-                                    className='border-2 p-1 border-blue-300'
-                                >
-                                    <option value="">Brand</option>
-                                    <option value="Gucci">Gucci</option>
-                                    <option value="Puma">Puma</option>
-                                    <option value="Calvin Klein">Calvin Klein</option>
-                                    <option value="Garments">Garments</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                                {errors.brand && <p className='text-red-500'>{errors.brand.message}</p>}
-                            </div>
-                        </div>
-                        {/* fit type */}
-                        <div>
-                            <label className='font-semibold block mb-2' >Fit type</label>
-                            <select
-                            {...register('fitType', {required: 'Fit type is required'})}
-                            className='border-2 p-1 border-blue-300'
-                            >
-                                <option value="">Select Fit type</option>
-                                <option value="Fitted">Fitted</option>
-                                <option value="Loose">Loose</option>
-                                <option value="Straight">Straight</option>
-                            </select>
-                            {errors.fitType &&  <p className='text-red-500'>{errors.fitType.message}</p>}
-                        </div>
+                            <div className='flex gap-4 my-4 justify-between'>
+                                {/* brand */}
+                                <div>
+                                    <label className='font-semibold block mb-2'>Brand</label>
+                                    <select
+                                        {...register('brand', { required: 'Brand Is required' })}
+                                        className='border-2 p-1 border-blue-300'
+                                    >
+                                        <option value="">Select Brand</option>
+                                        <option value="Gucci">Gucci</option>
+                                        <option value="Puma">Puma</option>
+                                        <option value="Calvin Klein">Calvin Klein</option>
+                                        <option value="Garments">Garments</option>
+                                        <option value="Others">Others</option>
+                                    </select>
+                                    {errors.brand && <p className='text-red-500'>{errors.brand.message}</p>}
+                                </div>
 
-                        {/* Materials */}
-                        <div>
-                            <label className='font-semibold block mb-2' >Materials</label>
-                            <select 
-                            {...register('materials', {required: "Materials is required"})}
-                            className='border-2 p-1 border-blue-300'
-                            >
-                                <option value="">Select Materials</option>
-                                <option value="Polyster">Polyster</option>
-                                <option value="Cotton">Cotton</option>
-                                <option value="Nylon">Nylon</option>
-                                <option value="Acrylic">Acrylic</option>
-                                <option value="Cashmere">Cashmere</option>
-                                <option value="Latex">Latex</option>
-                                <option value="Leather">Leather</option>
-                            </select>
-                         {errors.materials &&  <p className='text-red-500'>{errors.materials.message}</p>}
+                                {/* fit type */}
+                                <div>
+                                    <label className='font-semibold block mb-2' >Fit type</label>
+                                    <select
+                                        {...register('fitType', { required: 'Fit type is required' })}
+                                        className='border-2 p-1 border-blue-300'
+                                    >
+                                        <option value="">Select Fit type</option>
+                                        <option value="Fitted">Fitted</option>
+                                        <option value="Loose">Loose</option>
+                                        <option value="Straight">Straight</option>
+                                    </select>
+                                    {errors.fitType && <p className='text-red-500'>{errors.fitType.message}</p>}
+                                </div>
+
+                                {/* Materials */}
+                                <div>
+                                    <label className='font-semibold block mb-2' >Materials</label>
+                                    <select
+                                        {...register('materials', { required: "Materials is required" })}
+                                        className='border-2 p-1 border-blue-300'
+                                    >
+                                        <option value="">Select Materials</option>
+                                        <option value="Polyster">Polyster</option>
+                                        <option value="Cotton">Cotton</option>
+                                        <option value="Nylon">Nylon</option>
+                                        <option value="Acrylic">Acrylic</option>
+                                        <option value="Cashmere">Cashmere</option>
+                                        <option value="Latex">Latex</option>
+                                        <option value="Leather">Leather</option>
+                                    </select>
+                                    {errors.materials && <p className='text-red-500'>{errors.materials.message}</p>}
+                                </div>
+                                    {/* Gender */}
+                                <div>
+                                    <label className='font-semibold block mb-2'>Select Gender</label>
+                                    <select
+                                        {...register('gender', { required: 'Gender is required' })}
+                                        className='border-2 p-1 border-blue-300'
+                                    >
+                                        <option value="">Gender</option>
+                                        <option value="Men">Men</option>
+                                        <option value="Women">Women</option>
+                                        <option value="Kids">Kids</option>
+                                    </select>
+                                    {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
+                                </div>
+
+                            </div>
                         </div>
 
                         {/* here one */}
@@ -376,19 +395,6 @@ const AddProduct = () => {
                                         ))}
                                     </div>
                                 )}
-                            </div>
-                            <div>
-                                <label className='font-semibold block mb-2'>Select Gender</label>
-                                <select
-                                    {...register('gender', { required: 'Gender is required' })}
-                                    className='border-2 p-1 border-blue-300'
-                                >
-                                    <option value="">Gender</option>
-                                    <option value="Men">Men</option>
-                                    <option value="Women">Women</option>
-                                    <option value="Kids">Kids</option>
-                                </select>
-                                {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                             </div>
 
                             <div className='from-control'>

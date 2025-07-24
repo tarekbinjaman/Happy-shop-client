@@ -4,158 +4,158 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { GoDash } from 'react-icons/go';
-const EditModal = ({id, handleClose}) => {
+const EditModal = ({ id, handleClose }) => {
     const [allProducts, isLoading, productRefetch] = useProducts();
     if (isLoading) {
         return <p>Produt is loading....</p>
     };
     // const productdata = allProducts?.products || [];
     const editProductData = allProducts.find(item => item._id === id)
-        const { register, handleSubmit, setValue, formState: { errors } } = useForm();
-        const [imageUrls, setImageUrls] = useState([]);
-        const [uploading, setUploading] = useState(false);
-        const [errorMsg, setErrorMsg] = useState('');
-        const [isDragging, setIsDragging] = useState(false);
-        const [colorInput, setColorInputs] = useState(['#000000']); // defalut color
-        const [size, setSize] = useState([]);
-    
-        const gender = ['Men', 'Women'];
-    
-        //cloudinary configuration 
-        const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
-        const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
-        console.log('all images in edit product data', editProductData?.images)
-    
-        
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm();
+    const [imageUrls, setImageUrls] = useState([]);
+    const [uploading, setUploading] = useState(false);
+    const [errorMsg, setErrorMsg] = useState('');
+    const [isDragging, setIsDragging] = useState(false);
+    const [colorInput, setColorInputs] = useState(['#000000']); // defalut color
+    const [size, setSize] = useState([]);
 
-        useEffect(() => {
-            if(editProductData) {
-                setValue('title', editProductData.title);
-                setValue('description', editProductData.description);
-                setValue('price', editProductData.price);
-                setValue('discount', editProductData.discount);
-                setValue('gender', editProductData.gender);
-                // size, colors,images
-                setSize(editProductData.size);
-                setColorInputs(editProductData.color || ['#000000']);
-                setImageUrls(editProductData.images);
-            }
-        }, [id])
-    
-        const handleAddSize = () => {
-            if (size.length < 5) {
-                setSize([...size, '']);
-            } else {
-                toast.warning('Max 5 size')
-            }
-        };
-    
-        const handleSizeChange = (index, value) => {
-            const updated = [...size];
-            updated[index] = value;
-            setSize(updated);
-        };
-    
-        const handleRemoveSize = (index) => {
-            const updated = [...size];
-            updated.splice(index, 1);
-            setSize(updated)
-        };
-    
-        const handleAddColor = () => {
-            if (colorInput.length < 4) {
-                setColorInputs([...colorInput, '#000000']);
-            } else {
-                toast.warning('Max 4 colors');
-            }
-        };
-    
-        const handleColorChange = (index, value) => {
-            const updated = [...colorInput];
-            updated[index] = value;
-            setColorInputs(updated);
+    const gender = ['Men', 'Women'];
+
+    //cloudinary configuration 
+    const cloudName = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+    const uploadPreset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+    console.log('all images in edit product data', editProductData?.images)
+
+
+
+    useEffect(() => {
+        if (editProductData) {
+            setValue('title', editProductData.title);
+            setValue('description', editProductData.description);
+            setValue('price', editProductData.price);
+            setValue('discount', editProductData.discount);
+            setValue('gender', editProductData.gender);
+            // size, colors,images
+            setSize(editProductData.size);
+            setColorInputs(editProductData.color || ['#000000']);
+            setImageUrls(editProductData.images);
         }
-    
-        const handleImageUpload = async (files) => {
-            if (imageUrls.length >= 3) {
-                toast.error('You can upload a maximum of 3 images')
-                setErrorMsg('You can upload a maximum of 3 images')
-                return;
-            }
-            console.log("Files", files)
-            setUploading(true);
-            setErrorMsg('');
-            const urls = [...imageUrls];
-    
-            try {
-                for (const file of files) {
-                    const formData = new FormData();
-                    formData.append('file', file);
-                    formData.append('upload_preset', uploadPreset);
-                    console.log('Form data', formData)
-                    const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData);
-                    urls.push({
-                        url: response.data.secure_url,
-                        public_id: response.data.public_id, // needed for delete
-                    });
-    
-    
-                }
-                setImageUrls(urls);
-            } catch (error) {
-                setErrorMsg('Image upload failed. Please try again. Try to upload one after another')
-            } finally {
-                setUploading(false);
-                console.log("Urls here:", imageUrls);
-            }
-        };
-    
-        const deleteImage = async (index) => {
-            const imageToDelete = imageUrls[index];
-            console.log('image to delete', imageToDelete)
-            // remove from local state
-            const updateImages = imageUrls.filter((_, i) => i !== index);
-            setImageUrls(updateImages);
-            try {
-                // delete from imageBB serve
-                await axios.post('http://localhost:5000/api/delete-image', {
-                    public_id: imageToDelete.public_id
+    }, [id])
+
+    const handleAddSize = () => {
+        if (size.length < 5) {
+            setSize([...size, '']);
+        } else {
+            toast.warning('Max 5 size')
+        }
+    };
+
+    const handleSizeChange = (index, value) => {
+        const updated = [...size];
+        updated[index] = value;
+        setSize(updated);
+    };
+
+    const handleRemoveSize = (index) => {
+        const updated = [...size];
+        updated.splice(index, 1);
+        setSize(updated)
+    };
+
+    const handleAddColor = () => {
+        if (colorInput.length < 4) {
+            setColorInputs([...colorInput, '#000000']);
+        } else {
+            toast.warning('Max 4 colors');
+        }
+    };
+
+    const handleColorChange = (index, value) => {
+        const updated = [...colorInput];
+        updated[index] = value;
+        setColorInputs(updated);
+    }
+
+    const handleImageUpload = async (files) => {
+        if (imageUrls.length >= 3) {
+            toast.error('You can upload a maximum of 3 images')
+            setErrorMsg('You can upload a maximum of 3 images')
+            return;
+        }
+        console.log("Files", files)
+        setUploading(true);
+        setErrorMsg('');
+        const urls = [...imageUrls];
+
+        try {
+            for (const file of files) {
+                const formData = new FormData();
+                formData.append('file', file);
+                formData.append('upload_preset', uploadPreset);
+                console.log('Form data', formData)
+                const response = await axios.post(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, formData);
+                urls.push({
+                    url: response.data.secure_url,
+                    public_id: response.data.public_id, // needed for delete
                 });
-    
-            } catch (error) {
-                console.error("Delete failed:", error);
-                setErrorMsg('Failed to delete image from server');
+
+
             }
+            setImageUrls(urls);
+        } catch (error) {
+            setErrorMsg('Image upload failed. Please try again. Try to upload one after another')
+        } finally {
+            setUploading(false);
+            console.log("Urls here:", imageUrls);
+        }
+    };
+
+    const deleteImage = async (index) => {
+        const imageToDelete = imageUrls[index];
+        console.log('image to delete', imageToDelete)
+        // remove from local state
+        const updateImages = imageUrls.filter((_, i) => i !== index);
+        setImageUrls(updateImages);
+        try {
+            // delete from imageBB serve
+            await axios.post('http://localhost:5000/api/delete-image', {
+                public_id: imageToDelete.public_id
+            });
+
+        } catch (error) {
+            console.error("Delete failed:", error);
+            setErrorMsg('Failed to delete image from server');
+        }
+    };
+
+    const onsubmit = async (data) => {
+        if (imageUrls.length === 0) {
+            setErrorMsg('Please upload product images first');
+            return;
+        }
+        const { price, discount } = data;
+        const finalPrice = Math.floor(price - (price * (discount / 100)));
+        const fullData = {
+            ...data,
+            images: imageUrls,
+            color: colorInput,
+            finalPrice: finalPrice,
+            size: size
         };
-    
-        const onsubmit = async (data) => {
-            if (imageUrls.length === 0) {
-                setErrorMsg('Please upload product images first');
-                return;
-            }
-            const { price, discount } = data;
-            const finalPrice = Math.floor(price - (price *(discount / 100)));
-            const fullData = {
-                ...data,
-                images: imageUrls,
-                color: colorInput,
-                finalPrice: finalPrice,
-                size: size
-            };
-            console.log("Final Product Data", fullData);
-            // from here you will send data to backend
-            try {
-                // const res = await axios.post('http://localhost:5000/api/products', fullData)
-                //     toast.success("Product added");
-                const res = await axios.put(`http://localhost:5000/api/products/${id}`, fullData)
-                toast.success("Product update successfully")
-                handleClose();
-                productRefetch();
-            } catch (error) {
-                console.error("Add product error", error)
-                toast.error("Product add failed")
-            }
-        };
+        console.log("Final Product Data", fullData);
+        // from here you will send data to backend
+        try {
+            // const res = await axios.post('http://localhost:5000/api/products', fullData)
+            //     toast.success("Product added");
+            const res = await axios.put(`http://localhost:5000/api/products/${id}`, fullData)
+            toast.success("Product update successfully")
+            handleClose();
+            productRefetch();
+        } catch (error) {
+            console.error("Add product error", error)
+            toast.error("Product add failed")
+        }
+    };
     return (
         <div className='flex justify-center'>
             <form onSubmit={handleSubmit(onsubmit)} className=' p-6 bg-white rounded-xl shadow space-y-6 lg:w-4xl md:w-full '>
@@ -184,63 +184,117 @@ const EditModal = ({id, handleClose}) => {
                             {errors.description && <p className='text-red-500'>{errors.description.message}</p>}
                         </div>
                         <div className='flex justify-between gap-1'>
-                        <div className='form-control w-full'>
-                            <label className='font-semibold block mb-2'>Price</label>
-                            <input
-                                {...register('price', { required: 'Price is required' })}
-                                placeholder='Price'
-                                className='w-full border-2 border-blue-300 p-2 rounded-md'
-                            />
-                            {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
-                        </div>
-                        <div className='form-control w-full'>
-                            <label className='font-semibold block mb-2'>Discount</label>
-                            <input
-                                type='number'
-                                {...register('discount')}
-                                placeholder='Discount %'
-                                className='w-full border-2 border-blue-300 p-2 rounded-md'
-                            />
-                        </div>
-                        </div>
-                        <div>
-                            <label className='font-semibold block mb-2'>Available size</label>
-                            <div className=' mb-3'>
-                                <select
-                                    className='border-2 p-1 border-blue-300'
-                                    value=""
-                                    onChange={(e) => {
-                                        const value = e.target.value;
-                                        if (value && !size.includes(value)) {
-                                            setSize([...size, value]);
-                                        } else if (size.includes(value)) {
-                                            toast.info("Size already added")
-                                        }
-                                    }}
-                                >
-                                    <option value="">Select Size</option>
-                                    <option value="Small">Small</option>
-                                    <option value="Medium">Medium</option>
-                                    <option value="Large">Large</option>
-                                    <option value="X-Large">X-Large</option>
-                                    <option value="XX-Large">XX-Large</option>
-                                </select>
-                                <div className='md:grid md:grid-cols-2 lg:grid-cols-5 gap-2 mt-2'>
-                                    {size.map((SZ, index) => (
-                                        <div key={index} className='flex items-center justify-between gap-3 border rounded bg-gray-100'>
-                                            <span className='pl-1'>{SZ}</span>
-                                            <button
-                                                type='button'
-                                                onClick={() => handleRemoveSize(index)}
-                                                className='text-white text-sm bg-red-500 px-2 py-1'
-                                            >
-                                                ✕
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
-
+                            <div className='form-control w-full'>
+                                <label className='font-semibold block mb-2'>Price</label>
+                                <input
+                                    {...register('price', { required: 'Price is required' })}
+                                    placeholder='Price'
+                                    className='w-full border-2 border-blue-300 p-2 rounded-md'
+                                />
+                                {errors.price && <p className='text-red-500'>{errors.price.message}</p>}
                             </div>
+                            <div className='form-control w-full'>
+                                <label className='font-semibold block mb-2'>Discount</label>
+                                <input
+                                    type='number'
+                                    {...register('discount')}
+                                    placeholder='Discount %'
+                                    className='w-full border-2 border-blue-300 p-2 rounded-md'
+                                />
+                            </div>
+                        </div>
+                            {/* Size */}
+                            <div>
+                                <label className='font-semibold block mb-2'>Available size</label>
+                                <div className=''>
+                                    <select
+                                        className='border-2 p-1 border-blue-300'
+                                        value=""
+                                        onChange={(e) => {
+                                            const value = e.target.value;
+                                            if (value && !size.includes(value)) {
+                                                setSize([...size, value]);
+                                            } else if (size.includes(value)) {
+                                                toast.info("Size already added")
+                                            }
+                                        }}
+                                    >
+                                        <option value="">Select Size</option>
+                                        <option value="Small">Small</option>
+                                        <option value="Medium">Medium</option>
+                                        <option value="Large">Large</option>
+                                        <option value="X-Large">X-Large</option>
+                                        <option value="XX-Large">XX-Large</option>
+                                    </select>
+                                    <div className='md:grid md:grid-cols-2 lg:grid-cols-5 gap-2 mt-2'>
+                                        {size.map((SZ, index) => (
+                                            <div key={index} className='flex items-center justify-between gap-3 border rounded bg-gray-100'>
+                                                <span className='pl-1'>{SZ}</span>
+                                                <button
+                                                    type='button'
+                                                    onClick={() => handleRemoveSize(index)}
+                                                    className='text-white text-sm bg-red-500 px-2 py-1'
+                                                >
+                                                    ✕
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                </div>
+                            </div>
+                        <div className='flex gap-4 my-4 justify-between'>
+                            {/* brand */}
+                            <div>
+                                <label className='font-semibold block mb-2'>Brand</label>
+                                <select
+                                    {...register('brand', { required: 'Brand Is required' })}
+                                    className='border-2 p-1 border-blue-300'
+                                >
+                                    <option value="">Select Brand</option>
+                                    <option value="Gucci">Gucci</option>
+                                    <option value="Puma">Puma</option>
+                                    <option value="Calvin Klein">Calvin Klein</option>
+                                    <option value="Garments">Garments</option>
+                                    <option value="Others">Others</option>
+                                </select>
+                                {errors.brand && <p className='text-red-500'>{errors.brand.message}</p>}
+                            </div>
+
+                            {/* fit type */}
+                            <div>
+                                <label className='font-semibold block mb-2' >Fit type</label>
+                                <select
+                                    {...register('fitType', { required: 'Fit type is required' })}
+                                    className='border-2 p-1 border-blue-300'
+                                >
+                                    <option value="">Select Fit type</option>
+                                    <option value="Fitted">Fitted</option>
+                                    <option value="Loose">Loose</option>
+                                    <option value="Straight">Straight</option>
+                                </select>
+                                {errors.fitType && <p className='text-red-500'>{errors.fitType.message}</p>}
+                            </div>
+
+                            {/* Materials */}
+                            <div>
+                                <label className='font-semibold block mb-2' >Materials</label>
+                                <select
+                                    {...register('materials', { required: "Materials is required" })}
+                                    className='border-2 p-1 border-blue-300'
+                                >
+                                    <option value="">Select Materials</option>
+                                    <option value="Polyster">Polyster</option>
+                                    <option value="Cotton">Cotton</option>
+                                    <option value="Nylon">Nylon</option>
+                                    <option value="Acrylic">Acrylic</option>
+                                    <option value="Cashmere">Cashmere</option>
+                                    <option value="Latex">Latex</option>
+                                    <option value="Leather">Leather</option>
+                                </select>
+                                {errors.materials && <p className='text-red-500'>{errors.materials.message}</p>}
+                            </div>
+
                         </div>
                     </div>
 
