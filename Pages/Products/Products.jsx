@@ -4,10 +4,12 @@ import useProducts from '../../api/useProducts';
 import { p } from 'framer-motion/client';
 import { RiProhibited2Line } from 'react-icons/ri';
 import { HiEmojiSad } from 'react-icons/hi';
+import { useSearchParams } from 'react-router-dom';
 
 const Products = () => {
+    const [searchParams] = useSearchParams();
     const [filters, setFilters] = useState({
-        gender: '',
+        gender: searchParams.get('gender') || '',
         brand: [],
         fitType: [],
         materials: [],
@@ -72,7 +74,7 @@ const Products = () => {
                     <label><input type="checkbox" onChange={() => handleCheckBoxChange('fitType', 'Straight')} /> Straight</label>
                 </div>
                 <h2 className='font-bold mb-2 mt-2'>Materials</h2>
-                <div className='flex flex-col'>
+                <div className='flex flex-col mb-4'>
                     <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Polyster')} /> Polyster</label>
                     <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Nylon')} /> Nylon</label>
                     <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Acrylic')} /> Acrylic</label>

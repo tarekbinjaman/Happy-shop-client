@@ -75,7 +75,7 @@ const Navbar = () => {
                                     group-hover:translate-x-0
 
                                     '>
-                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Mens</li>
+                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'><Link to={'/allProducts?gender=Men'}>Mens</Link></li>
                                                 <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Women</li>
                                                 <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
                                             </ul>
