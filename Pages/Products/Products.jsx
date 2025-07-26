@@ -8,7 +8,7 @@ import { HiEmojiSad } from 'react-icons/hi';
 const Products = () => {
     const [filters, setFilters] = useState({
         gender: '',
-        brands: [],
+        brand: [],
         fitType: [],
         materials: [],
         minPrice: '',
@@ -35,7 +35,7 @@ const Products = () => {
     },[priceRange])
     const filterParams = {
         gender: filters.gender,
-        brands: filters.brands.join(','),
+        brand: filters.brand.join(','),
         fitType: filters.fitType.join(','),
         materials: filters.materials.join(','),
         minPrice: filters.minPrice,
@@ -51,11 +51,11 @@ const Products = () => {
                 <DualRangeSlider values={priceRange} setValues={setPriceRange} refetch={refetch} />
                 <h2 className='font-bold mb-2'>Brands</h2>
                 <div className='flex flex-col'>
-                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'gucci')} /> Gucci</label>
-                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'puma')} /> Puma</label>
-                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'calvin_klein')} /> Calvin Klein</label>
-                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'garments')} /> Garments</label>
-                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'others')} /> Others</label>
+                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Gucci')} /> Gucci</label>
+                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Puma')} /> Puma</label>
+                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Calvin Klein')} /> Calvin Klein</label>
+                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Garments')} /> Garments</label>
+                <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Others')} /> Others</label>
                 </div>
                 </aside>
                 <section className='w-9/11 p-4'>
