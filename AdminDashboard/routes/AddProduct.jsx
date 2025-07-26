@@ -287,7 +287,8 @@ const AddProduct = () => {
                                         <option value="">Gender</option>
                                         <option value="Men">Men</option>
                                         <option value="Women">Women</option>
-                                        <option value="Kids">Kids</option>
+                                        <option value="Boys">Boys</option>
+                                        <option value="Girls">Girls</option>
                                     </select>
                                     {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                                 </div>

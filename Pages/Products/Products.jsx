@@ -57,6 +57,29 @@ const Products = () => {
                 <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Garments')} /> Garments</label>
                 <label><input type="checkbox" onChange={() => handleCheckBoxChange('brand', 'Others')} /> Others</label>
                 </div>
+                <h2 className='font-bold mb-2 mt-2'>Gender</h2>
+                <div className='flex flex-col'>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('gender', 'Men')} /> Men</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('gender', 'Women')} /> Women</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('gender', 'Boys')} /> Boys</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('gender', 'Girls')} /> Girls</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('gender', 'Babies')} /> Babies</label>
+                </div>
+                <h2 className='font-bold mb-2 mt-2'>Fit type</h2>
+                <div className='flex flex-col'>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('fitType', 'Fitted')} /> Fitted</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('fitType', 'Loose')} /> Loose</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('fitType', 'Straight')} /> Straight</label>
+                </div>
+                <h2 className='font-bold mb-2 mt-2'>Materials</h2>
+                <div className='flex flex-col'>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Polyster')} /> Polyster</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Nylon')} /> Nylon</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Acrylic')} /> Acrylic</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Cashmere')} /> Cashmere</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Lotex')} /> Lotex</label>
+                    <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Leather')} /> Leather</label>
+                </div>
                 </aside>
                 <section className='w-9/11 p-4'>
                 <h1>This is all product area</h1>

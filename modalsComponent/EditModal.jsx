@@ -203,46 +203,46 @@ const EditModal = ({ id, handleClose }) => {
                                 />
                             </div>
                         </div>
-                            {/* Size */}
-                            <div>
-                                <label className='font-semibold block mb-2'>Available size</label>
-                                <div className=''>
-                                    <select
-                                        className='border-2 p-1 border-blue-300'
-                                        value=""
-                                        onChange={(e) => {
-                                            const value = e.target.value;
-                                            if (value && !size.includes(value)) {
-                                                setSize([...size, value]);
-                                            } else if (size.includes(value)) {
-                                                toast.info("Size already added")
-                                            }
-                                        }}
-                                    >
-                                        <option value="">Select Size</option>
-                                        <option value="Small">Small</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Large">Large</option>
-                                        <option value="X-Large">X-Large</option>
-                                        <option value="XX-Large">XX-Large</option>
-                                    </select>
-                                    <div className='md:grid md:grid-cols-2 lg:grid-cols-5 gap-2 mt-2'>
-                                        {size.map((SZ, index) => (
-                                            <div key={index} className='flex items-center justify-between gap-3 border rounded bg-gray-100'>
-                                                <span className='pl-1'>{SZ}</span>
-                                                <button
-                                                    type='button'
-                                                    onClick={() => handleRemoveSize(index)}
-                                                    className='text-white text-sm bg-red-500 px-2 py-1'
-                                                >
-                                                    ✕
-                                                </button>
-                                            </div>
-                                        ))}
-                                    </div>
-
+                        {/* Size */}
+                        <div>
+                            <label className='font-semibold block mb-2'>Available size</label>
+                            <div className=''>
+                                <select
+                                    className='border-2 p-1 border-blue-300'
+                                    value=""
+                                    onChange={(e) => {
+                                        const value = e.target.value;
+                                        if (value && !size.includes(value)) {
+                                            setSize([...size, value]);
+                                        } else if (size.includes(value)) {
+                                            toast.info("Size already added")
+                                        }
+                                    }}
+                                >
+                                    <option value="">Select Size</option>
+                                    <option value="Small">Small</option>
+                                    <option value="Medium">Medium</option>
+                                    <option value="Large">Large</option>
+                                    <option value="X-Large">X-Large</option>
+                                    <option value="XX-Large">XX-Large</option>
+                                </select>
+                                <div className='md:grid md:grid-cols-2 lg:grid-cols-5 gap-2 mt-2'>
+                                    {size.map((SZ, index) => (
+                                        <div key={index} className='flex items-center justify-between gap-3 border rounded bg-gray-100'>
+                                            <span className='pl-1'>{SZ}</span>
+                                            <button
+                                                type='button'
+                                                onClick={() => handleRemoveSize(index)}
+                                                className='text-white text-sm bg-red-500 px-2 py-1'
+                                            >
+                                                ✕
+                                            </button>
+                                        </div>
+                                    ))}
                                 </div>
+
                             </div>
+                        </div>
                         <div className='flex gap-4 my-4 justify-between'>
                             {/* brand */}
                             <div>
@@ -293,6 +293,21 @@ const EditModal = ({ id, handleClose }) => {
                                     <option value="Leather">Leather</option>
                                 </select>
                                 {errors.materials && <p className='text-red-500'>{errors.materials.message}</p>}
+                            </div>
+                            {/* gender */}
+                            <div>
+                                <label className='font-semibold block mb-2'>Select Gender</label>
+                                <select
+                                    {...register('gender', { required: 'Gender is required' })}
+                                    className='border-2 p-1 border-blue-300'
+                                >
+                                    <option value="">Gender</option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Boys">Boys</option>
+                                    <option value="Girls">Girls</option>
+                                </select>
+                                {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                             </div>
 
                         </div>
@@ -399,19 +414,7 @@ const EditModal = ({ id, handleClose }) => {
                                 </div>
                             )}
                         </div>
-                        <div>
-                            <label className='font-semibold block mb-2'>Select Gender</label>
-                            <select
-                                {...register('gender', { required: 'Gender is required' })}
-                                className='border-2 p-1 border-blue-300'
-                            >
-                                <option value="">Gender</option>
-                                <option value="Men">Men</option>
-                                <option value="Women">Women</option>
-                                <option value="Kids">Kids</option>
-                            </select>
-                            {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
-                        </div>
+
 
                         <div className='from-control'>
                             <label className='font-semibold block mb-2'>Select available Colors</label>
