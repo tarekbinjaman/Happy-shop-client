@@ -3,6 +3,7 @@ import CountUp from 'react-countup';
 
 import img1 from '../../../src/assets/hero/ChatGPT Image Jul 7, 2025, 07_53_28 PM.png'
 import star from '../../../src/assets/hero/star.png'
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
     return (
@@ -25,7 +26,7 @@ const Hero = () => {
                     to bring out your individuality and cater to your sense of style.</p>
                     <div className='md:inline-block'>
                 <button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button>
-                <button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out hidden lg:block'>Shop now</button>
+                <button className='text-sm hover:shadow-2xl text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-white hover:text-black transition-colors duration-400 ease-in-out hidden lg:block'><Link to={'/allProducts'}>Shop now</Link></button>
                     </div>
                 <div className='flex md:gap-12 gap-4'>
                     {/* here will be a count up */}
@@ -72,8 +73,8 @@ const Hero = () => {
             </div>
             <div className='relative'>
                 <img src={img1} className='md:w-[700px] w-[400px]'  alt="" />
-                <img src={star} className='absolute -mt-100 w-[90px] hidden lg:block md:block' alt="" />
-                <img src={star} className='absolute -mt-150 ml-140 w-[140px] hidden lg:block md:block' alt="" />
+                <img src={star} className='absolute -mt-100 w-[90px] hidden lg:block md:hidden' alt="" />
+                <img src={star} className='absolute -mt-150 ml-140 w-[140px] hidden lg:block md:hidden' alt="" />
             </div>
             </div>
             </div>

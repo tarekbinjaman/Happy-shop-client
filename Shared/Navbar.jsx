@@ -61,6 +61,7 @@ const Navbar = () => {
                         {/* navlinks */}
                         <div>
                             <ul className='flex text-[18px] font-normal gap-4'>
+                                <li><Link to={'/'}>Home</Link></li>
                                 <div className=''>
                                     <li className='group'> <span className='flex items-center gap-1 '>Shop <GoChevronDown className='group-hover:text-orange-300' /></span>
                                         <div className='relative'>
@@ -82,7 +83,6 @@ const Navbar = () => {
                                         </div>
                                     </li>
                                 </div>
-                                <li>On sale</li>
                                 <li>New Arrivals</li>
                                 <li>Brands</li>
                             </ul>

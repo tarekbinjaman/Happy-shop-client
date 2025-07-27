@@ -1,5 +1,6 @@
 import './DualSlider.css'
 import React, { useState } from 'react';
+import { BiAbacus } from 'react-icons/bi';
 import Slider from 'react-slider'
 
 const DualRangeSlider = ({values, setValues, refetch}) => {
@@ -22,7 +23,11 @@ const DualRangeSlider = ({values, setValues, refetch}) => {
     }
 
     return (
-        <div className="w-full px-2 py-4">
+        <div className="w-full py-4">
+            <div className='flex justify-between items-center mb-4'>
+                <span className='font-semibold text-xl'>Filter</span>
+                <img src="https://img.icons8.com/?size=30&id=100355&format=png" className='w-[20px]' alt="" />
+            </div>
             <p className="font-bold">Price</p>
             <div>
                 <p className='font-bold'>${tempValues[0]} - ${tempValues[1]}</p>
@@ -30,7 +35,7 @@ const DualRangeSlider = ({values, setValues, refetch}) => {
             <div>
                 <small className='text-gray-500'>Current range: ${tempValues[1] - tempValues[0]}</small>
             </div>
-            <div className='flex gap-4'>
+            <div className='flex gap-1'>
                 <div className='w-full'>
             <Slider className="slider"
                     onChange={setTempValues}

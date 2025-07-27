@@ -9,7 +9,7 @@ import img5 from '../../../src/assets/logos/5.jpg'
 const HeroBottom = () => {
     const images = [img1, img2, img3, img4, img5];
     return (
-        <div className=' '>
+        <div className=' lg:hidden'>
         <div className='flex gap-20 items-center overflow-hidden md:h-20 h-14 w-full bg-black md:mb-24 mb-0 md:py-12'>
             <motion.div
                 className="flex gap-20 shrink-0 items-center"

@@ -49,8 +49,8 @@ const Products = () => {
     return (
         <div>
             <div className='flex'>
-                <aside className='w-1/7 border-r'>
-                    <h1>This is sidebar of all Products</h1>
+                <aside className='w-1/7'>
+                <div className='border border-gray-400 m-4 p-2 rounded-2xl'>
                     <DualRangeSlider values={priceRange} setValues={setPriceRange} refetch={refetch} />
                     <h2 className='font-bold mb-2'>Brands</h2>
                     <div className='flex flex-col'>
@@ -83,9 +83,9 @@ const Products = () => {
                         <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Lotex')} /> Lotex</label>
                         <label><input type="checkbox" onChange={() => handleCheckBoxChange('materials', 'Leather')} /> Leather</label>
                     </div>
+                </div>
                 </aside>
                 <section className='w-6/7 p-4'>
-                    <h1>This is all product area</h1>
                     {
                         isLoading ? <div className='flex justify-center items-center'><span className="loading loading-ring loading-xl"></span></div> :
                             products.length === 0 ? <div className='flex justify-center'>
