@@ -15,7 +15,9 @@ const MainLayout = () => {
                 <Outlet />
             </div>
             {!hideLayout && <Footer />}
+            <div className='hidden lg:block'>
             <CustomCursor />
+            </div>
         </div>
     );
 };
