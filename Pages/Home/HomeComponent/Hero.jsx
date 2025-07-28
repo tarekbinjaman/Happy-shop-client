@@ -4,7 +4,6 @@ import CountUp from 'react-countup';
 import img1 from '../../../src/assets/hero/ChatGPT Image Jul 7, 2025, 07_53_28 PM.png'
 import star from '../../../src/assets/hero/star.png'
 import { Link } from 'react-router-dom';
-import FluidGlass from './FluidGlass';
 
 const Hero = () => {
     return (

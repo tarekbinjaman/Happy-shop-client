@@ -3,7 +3,7 @@ import { BsCart2 } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { CiHeart } from 'react-icons/ci';
 import { FaAlignLeft } from 'react-icons/fa';
-import { GoChevronDown } from 'react-icons/go';
+import { GoArrowUpRight, GoChevronDown } from 'react-icons/go';
 import { ImCancelCircle } from 'react-icons/im';
 import { IoMdClose } from 'react-icons/io';
 import { MdOutlineManageAccounts, MdOutlineRateReview } from 'react-icons/md';
@@ -60,12 +60,12 @@ const Navbar = () => {
                     <div className='hidden lg:block'>
                         {/* navlinks */}
                         <div>
-                            <ul className='flex text-[18px] font-normal gap-8'>
+                            <ul className='flex text-[18px] font-normal gap-8 '>
                                 <li className='hover:text-orange-300'><Link to={'/'}>Home</Link></li>
                                 <div className=''>
                                     <li className='group'> <span className='flex items-center gap-1 '>Men <GoChevronDown className='group-hover:text-orange-300' /></span>
                                         <div className='relative'>
-                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-28 space-y-1 border  border-white
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-56 pr-2 space-y-1 border  border-white
                                     opacity-0 invisible
                                     group-hover:visible group-hover:opacity-100
                                     transform 
@@ -75,11 +75,12 @@ const Navbar = () => {
                                     -translate-x-2
                                     group-hover:translate-x-0
                                     z-50
-
+                                    divide-y divide-gray-300
                                     '>
-                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'><Link to={'/tShirts'}>T Shirt</Link></li>
-                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Polo Shirt</li>
-                                                <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/tShirts'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer h font-semibold flex justify-between items-center group/li'><span className='hover:ml-2 transition-all duration-300 '>Polo Shirt</span></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'>Cuban Collar Shirt</span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'>Kids</span></li>
                                             </ul>
                                         </div>
                                     </li>
@@ -151,7 +152,7 @@ const Navbar = () => {
                 {/* here will be search bar for small device */}
                 <input type="text" className='border w-full px-2 py-1 rounded focus:border-gray-400' id="" />
                 <button className="absolute right-[1px] top-1/2 transform -translate-y-1/2 text-white bg-black/80 px-2 py-1">
-                  Search
+                    Search
                 </button>
             </div>
 

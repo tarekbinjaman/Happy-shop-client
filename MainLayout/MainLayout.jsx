@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../Shared/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
 import Footer from '../Shared/Footer';
+import CustomCursor from '../src/Cursor/CustomCursor';
 
 const MainLayout = () => {
     const location = useLocation();
@@ -14,6 +15,7 @@ const MainLayout = () => {
                 <Outlet />
             </div>
             {!hideLayout && <Footer />}
+            <CustomCursor />
         </div>
     );
 };
