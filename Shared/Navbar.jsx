@@ -60,10 +60,10 @@ const Navbar = () => {
                     <div className='hidden lg:block'>
                         {/* navlinks */}
                         <div>
-                            <ul className='flex text-[18px] font-normal gap-4'>
+                            <ul className='flex text-[18px] font-normal gap-8'>
                                 <li><Link to={'/'}>Home</Link></li>
                                 <div className=''>
-                                    <li className='group'> <span className='flex items-center gap-1 '>Shop <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                    <li className='group'> <span className='flex items-center gap-1 '>Men <GoChevronDown className='group-hover:text-orange-300' /></span>
                                         <div className='relative'>
                                             <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-28 space-y-1 border  border-white
                                     opacity-0 invisible
@@ -74,17 +74,21 @@ const Navbar = () => {
                                     ease-in-out
                                     -translate-x-2
                                     group-hover:translate-x-0
+                                    z-50
 
                                     '>
-                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'><Link to={'/allProducts'}>Shop</Link></li>
-                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Women</li>
+                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'><Link to={'/tShirts'}>T Shirt</Link></li>
+                                                <li className='border-b border-gray-300 pl-4 cursor-pointer hover:text-orange-300'>Polo Shirt</li>
                                                 <li className=' pl-4 cursor-pointer hover:text-orange-300'>Kids</li>
                                             </ul>
                                         </div>
                                     </li>
                                 </div>
-                                <li>New Arrivals</li>
-                                <li>Brands</li>
+                                <li>Women</li>
+                                <li>Girls</li>
+                                <li>Boys</li>
+                                <li>Kids</li>
+                                <li>New Arrival</li>
                             </ul>
                         </div>
 

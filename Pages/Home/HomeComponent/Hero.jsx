@@ -25,8 +25,8 @@ const Hero = () => {
                 <p className='text-md font-normal text-gray-400'>Browse through our diverse range of meticulously crafted garments. designed <br />
                     to bring out your individuality and cater to your sense of style.</p>
                     <div className='md:inline-block'>
-                <button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button>
-                <button className='text-sm hover:shadow-2xl text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-white hover:text-black transition-colors duration-400 ease-in-out hidden lg:block'><Link to={'/allProducts'}>Shop now</Link></button>
+                <Link to={'/allProducts'}><button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button></Link>
+                <Link to={'/allProducts'}><button className='text-sm hover:shadow-2xl text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-white hover:text-black transition-colors duration-400 ease-in-out hidden lg:block'>Shop now</button></Link>
                     </div>
                 <div className='flex md:gap-12 gap-4'>
                     {/* here will be a count up */}
