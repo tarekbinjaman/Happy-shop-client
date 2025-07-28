@@ -61,7 +61,7 @@ const Navbar = () => {
                         {/* navlinks */}
                         <div>
                             <ul className='flex text-[18px] font-normal gap-8'>
-                                <li><Link to={'/'}>Home</Link></li>
+                                <li className='hover:text-orange-300'><Link to={'/'}>Home</Link></li>
                                 <div className=''>
                                     <li className='group'> <span className='flex items-center gap-1 '>Men <GoChevronDown className='group-hover:text-orange-300' /></span>
                                         <div className='relative'>
