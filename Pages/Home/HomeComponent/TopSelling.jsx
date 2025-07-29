@@ -7,9 +7,9 @@ const TopSelling = () => {
                 <div className='grid lg:grid-cols-4 grid-cols-2 md:gap-x-20 gap-x-2 gap-y-8 justify-center mt-18'>
                     {
                         product2.map((product, index) => (
-                            <div key={index} className=' md:w-[250px] w-[180px]'>
+                            <div key={index} className=' md:w-[250px] w-[180px] lg:w-[160px]'>
                                 <img src={product?.images[0].url} alt="product imae"
-                                    className='bg-[#F8F8F8] w-full md:h-[270px] h-[200px] object-cover rounded-2xl mb-2'
+                                    className='bg-[#F8F8F8] w-full md:h-[270px] lg:h-[180px] 2xl:h-[200px] xl:w-[200px] object-cover rounded-2xl mb-2'
                                 />
                                 <h1 className='font-bold hidden md:block'>{product?.title}</h1>
                                 <h1 className='font-bold text-sm md:text-base md:hidden'>{product?.title.slice(0, 20)}...</h1>

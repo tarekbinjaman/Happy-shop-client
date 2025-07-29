@@ -57,7 +57,7 @@ const Navbar = () => {
                             style={{ fontFamily: 'Integral CF', letterSpacing: '2px' }}
                         ><span>shop</span>.co</p></Link>
                     </div>
-                    <div className='hidden lg:block'>
+                    <div className='hidden 2xl:block xl:block'>
                         {/* navlinks */}
                         <div>
                             <ul className='flex text-[18px] font-normal gap-8 '>
