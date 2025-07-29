@@ -46,13 +46,13 @@ const Navbar = () => {
     console.log("userData:", userData)
     return (
         <nav
-            className='py-4 bg-white md:px-12 '>
-            <div className='flex items-center justify-between'>
+            className='py-4 bg-white md:px-12'>
+            <div className='flex items-center justify-between px-4'>
                 <div className='flex items-center gap-6 whitespace-nowrap'>
                     {/* logo */}
                     <div className='flex items-end gap-2'>
                         {/* sidebar icon */}
-                        <div className='lg:hidden block' onClick={() => setIsSidebarOpen(true)}>
+                        <div className='lg:hidden block mr-3' onClick={() => setIsSidebarOpen(true)}>
                             <RxHamburgerMenu className='md:text-3xl text-[26px] ' />
                         </div>
                         {/* logo */}
@@ -109,7 +109,7 @@ const Navbar = () => {
                     <div className='flex md:gap-4 gap-4 items-center whitespace-nowrap'>
                         {/* profile and cart */}
                         <div className='flex items-center gap-4'>
-                            <FaMagnifyingGlass className='text-2xl font-bold text-gray-500 cursor-pointer hover:text-black ' onClick={() => setIsSearchBarOpen(!isSearchBarOpen)} />
+                            <FaMagnifyingGlass className='text-2xl font-bold text-gray-500 cursor-pointer hover:text-black md:hidden' onClick={() => setIsSearchBarOpen(!isSearchBarOpen)} />
                             <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black ' />
                         </div>
                         {user?.email
@@ -154,8 +154,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className='relative'>
-                <div class={`w-full max-w-sm min-w-[200px]  z-50 ml-5 ${isSearchBarOpen ? 'block opacity-100' : 'hidden opacity-0' } mt-4`}>
+            <div className='relative flex justify-center'>
+                <div class={`w-full max-w-sm min-w-[200px] ${isSearchBarOpen ? 'block opacity-100' : 'hidden opacity-0' } mt-4`}>
                     <div class="relative flex items-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600">
                             <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
