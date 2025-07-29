@@ -52,7 +52,7 @@ const Navbar = () => {
                     {/* logo */}
                     <div className='flex items-end gap-2'>
                         {/* sidebar icon */}
-                        <div className='lg:hidden block mr-3' onClick={() => setIsSidebarOpen(true)}>
+                        <div className='xl:hidden block mr-3' onClick={() => setIsSidebarOpen(true)}>
                             <RxHamburgerMenu className='md:text-3xl text-[26px] ' />
                         </div>
                         {/* logo */}
@@ -101,7 +101,7 @@ const Navbar = () => {
                 </div>
 
                 {/* search bar */}
-                <input className='md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden md:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
+                <input className='md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden xl:block' placeholder='  🔍 Search for products...' type="text" name="" id="" />
                 {/* <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" /> */}
 
                 {/* cart and profile icons */}
@@ -109,7 +109,7 @@ const Navbar = () => {
                     <div className='flex md:gap-4 gap-4 items-center whitespace-nowrap'>
                         {/* profile and cart */}
                         <div className='flex items-center gap-4'>
-                            <FaMagnifyingGlass className='text-2xl font-bold text-gray-500 cursor-pointer hover:text-black md:hidden' onClick={() => setIsSearchBarOpen(!isSearchBarOpen)} />
+                            <FaMagnifyingGlass className='text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden xl:hidden' onClick={() => setIsSearchBarOpen(!isSearchBarOpen)} />
                             <BsCart2 className='text-3xl text-gray-500 cursor-pointer hover:text-black ' />
                         </div>
                         {user?.email
@@ -155,7 +155,7 @@ const Navbar = () => {
                 </div>
             </div>
             <div className='relative flex justify-center'>
-                <div class={`w-full max-w-sm min-w-[200px] ${isSearchBarOpen ? 'block opacity-100' : 'hidden opacity-0' } mt-4`}>
+                <div class={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${isSearchBarOpen ? 'block opacity-100' : 'hidden opacity-0' } mt-4`}>
                     <div class="relative flex items-center ">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600">
                             <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd" />
