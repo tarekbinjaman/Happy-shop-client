@@ -88,7 +88,7 @@ const Hero = () => {
                         <img src={star} className='absolute lg:-mt-60 w-[90px] hidden lg:block 2xl:block xl:block  md:hidden' alt="" />
                         <img src={star} className='absolute  lg:-mt-90 2xl:ml-140 lg:ml-80 w-[120px] hidden lg:block 2xl:block xl:block  md:hidden' alt="" />
                     </div>
-                    <div className='relative lg:hidden 2xl:block xl:block md:flex md:justify-center '>
+                    <div className='relative lg:hidden 2xl:block xl:block md:flex md:justify-center sm:justify-center'>
                         <img src={img1} className='2xl:w-[700px] xl:w-[600px] lg:w-[600px]  md:w-[500px] w-[400px] ' alt="" />
                         <img src={star} className='absolute 2xl:-mt-100 lg:-mt-80 w-[90px] hidden 2xl:block xl:block  md:hidden' alt="" />
                         <img src={star} className='absolute 2xl:-mt-150 lg:-mt-140 2xl:ml-140 lg:ml-120 w-[140px] hidden 2xl:block xl:block md:hidden' alt="" />
