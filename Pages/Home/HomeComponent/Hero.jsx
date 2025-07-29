@@ -32,7 +32,9 @@ const Hero = () => {
                             YOUR STYLE</h1>
                         <p className='2xl:text-md xl:text-base lg:text-base font-normal text-gray-400 lg:text-justify hidden 2xl:block xl:block '>Browse through our diverse range of meticulously crafted garments. designed <br />
                             to bring out your individuality and cater to your sense of style.</p>
-                        <p className='2xl:text-md xl:text-base lg:text-sm font-normal text-gray-400 lg:text-justify 2xl:hidden xl:hidden hidden lg:block w-sm'>Browse through our diverse range of meticulously crafted garments. designed
+                        <p className='2xl:text-md xl:text-base lg:text-sm font-normal text-gray-400 lg:text-justify 2xl:hidden xl:hidden hidden lg:block md:block lg:w-sm'>Browse through our diverse range of meticulously crafted garments. designed
+                            to bring out your individuality and cater to your sense of style.</p>
+                        <p className='2xl:text-md xl:text-base lg:text-sm font-normal text-gray-400 text-justify md:hidden lg:hidden xl:hidden 2xl:hidden'>Browse through our diverse range of meticulously crafted garments. designed
                             to bring out your individuality and cater to your sense of style.</p>
                         <div className='md:inline-block'>
                             <Link to={'/tShirts'}><button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button></Link>
