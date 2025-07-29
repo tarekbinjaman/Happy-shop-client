@@ -8,7 +8,7 @@ import img5 from '../../../src/assets/logos/5.jpg'
 
 const BottomMarquee = () => {
     return (
-        <div className='bg-black mb-10 hidden md:hidden lg:block'>
+        <div className='bg-black mb-10 hidden md:hidden xl:block 2xl:block'>
             <Marquee speed={70}>
                 <img src={img1} className='mx-10 w-56 object-fill' alt="" />
                 {/* <img src={img2} className='mx-10 w-56 object-fill' alt="" /> */}

@@ -30,7 +30,7 @@ const Hero = () => {
                         >FIND CLOTHES <br />
                             THAT MATCHES <br />
                             YOUR STYLE</h1>
-                        <p className='2xl:text-md xl:text-base lg:text-base font-normal text-gray-400 lg:text-justify hidden 2xl:block xl:block'>Browse through our diverse range of meticulously crafted garments. designed <br />
+                        <p className='2xl:text-md xl:text-base lg:text-base font-normal text-gray-400 lg:text-justify hidden 2xl:block xl:block '>Browse through our diverse range of meticulously crafted garments. designed <br />
                             to bring out your individuality and cater to your sense of style.</p>
                         <p className='2xl:text-md xl:text-base lg:text-sm font-normal text-gray-400 lg:text-justify 2xl:hidden xl:hidden hidden lg:block w-sm'>Browse through our diverse range of meticulously crafted garments. designed
                             to bring out your individuality and cater to your sense of style.</p>
