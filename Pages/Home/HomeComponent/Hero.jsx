@@ -53,7 +53,7 @@ const Hero = () => {
                                         )}
                                     </CountUp>
                                 </div>
-                                <p className='md:text-md text-sm text-gray-500 font-normal 2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-xl lg:text-[12px] lg:text-start'>Total Brands</p>
+                                <p className='md:text-md text-sm text-gray-500 font-normal 2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-base lg:text-[12px] lg:text-start'>Total Brands</p>
                             </div>
                             <div className='mx-4 border-x-1 border-gray-300 px-8'>
                                 <div className='2xl:text-6xl xl:text-3xl lg:text-xl md:text-4xl font-bold'>
@@ -66,7 +66,7 @@ const Hero = () => {
                                         )}
                                     </CountUp>
                                 </div>
-                                <p className='md:text-md text-sm text-gray-500 font-normal  2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-xl lg:text-[12px] lg:text-start'>High-Quality products</p>
+                                <p className='md:text-md text-sm text-gray-500 font-normal  2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-base lg:text-[12px] lg:text-start'>High-Quality products</p>
                             </div>
                             <div >
                                 <div className='2xl:text-6xl xl:text-3xl lg:text-xl md:text-4xl font-bold'>
@@ -79,7 +79,7 @@ const Hero = () => {
                                         )}
                                     </CountUp>
                                 </div>
-                                <p className='md:text-md text-sm text-gray-500 font-normal  2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-xl lg:text-[12px] lg:text-start'>Happy Customers</p>
+                                <p className='md:text-md text-sm text-gray-500 font-normal  2xl:whitespace-nowrap xl:whitespace-nowrap 2xl:text-base lg:text-[12px] lg:text-start'>Happy Customers</p>
                             </div>
                         </div>
                     </div>
