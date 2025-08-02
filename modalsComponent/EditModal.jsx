@@ -35,12 +35,16 @@ const EditModal = ({ id, handleClose }) => {
             setValue('price', editProductData.price);
             setValue('discount', editProductData.discount);
             setValue('gender', editProductData.gender);
+            setValue('category', editProductData.category)
+            setValue('brand', editProductData.brand);         
+            setValue('fitType', editProductData.fitType);      
+            setValue('materials', editProductData.materials);
             // size, colors,images
             setSize(editProductData.size);
             setColorInputs(editProductData.color || ['#000000']);
             setImageUrls(editProductData.images);
         }
-    }, [id])
+    }, [editProductData])
 
     const handleAddSize = () => {
         if (size.length < 5) {
@@ -244,6 +248,22 @@ const EditModal = ({ id, handleClose }) => {
                             </div>
                         </div>
                         <div className='flex gap-4 my-4 justify-between'>
+                            {/* category */}
+                            <div>
+                                <label className='font-semibold block mb-2'>Category</label>
+                                <select
+                                    {...register('category', { required: 'Category is required' })}
+                                    className='border-2 p-1 border-blue-300'
+                                >
+                                    <option value="">Select Category</option>
+                                    <option value="T-Shirt">T-shirt</option>
+                                    <option value="Polo Shirt">Polo Shirt</option>
+                                    <option value="Cuban Collar Shirt">Cuban Collar Shirt</option>
+                                    <option value="Dress Shirt">Dress Shirt</option>
+                                    <option value="V Neck">V Neck</option>
+                                </select>
+                                {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                            </div>
                             {/* brand */}
                             <div>
                                 <label className='font-semibold block mb-2'>Brand</label>

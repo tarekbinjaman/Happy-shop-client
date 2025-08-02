@@ -80,8 +80,8 @@ const Navbar = () => {
                                     z-50
                                     divide-y divide-gray-300
                                     '>
-                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/tShirts'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
-                                                <li className=' pl-4 cursor-pointer h font-semibold flex justify-between items-center group/li'><span className='hover:ml-2 transition-all duration-300 '>Polo Shirt</span></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'>Cuban Collar Shirt</span> </li>
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'>Dress Shirt</span> </li>
                                                 <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'>V-neck</span></li>

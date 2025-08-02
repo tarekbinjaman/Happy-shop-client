@@ -9,6 +9,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import ViewProductModal from '../../modalsComponent/ViewProductModal';
+import { useParams } from 'react-router-dom';
 
 const AllProduct = () => {
   const [allProducts, isLoading, productRefetch] = useProducts();

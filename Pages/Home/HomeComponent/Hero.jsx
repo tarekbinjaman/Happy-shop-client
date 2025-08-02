@@ -37,8 +37,8 @@ const Hero = () => {
                         <p className='2xl:text-md xl:text-base lg:text-sm font-normal text-gray-400 text-justify md:hidden lg:hidden xl:hidden 2xl:hidden'>Browse through our diverse range of meticulously crafted garments. designed
                             to bring out your individuality and cater to your sense of style.</p>
                         <div className='md:inline-block'>
-                            <Link to={'/tShirts'}><button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button></Link>
-                            <Link to={'/tShirts'}><button className='text-sm hover:shadow-2xl text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-white hover:text-black transition-colors duration-400 ease-in-out hidden lg:block lg:my-2'>Shop now</button></Link>
+                            <Link to={'/productsList'}><button className='text-sm text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-gray-600 transition-colors duration-400 ease-in-out w-full lg:hidden'>Shop now</button></Link>
+                            <Link to={'/productsList'}><button className='text-sm hover:shadow-2xl text-white bg-black px-12 py-3 rounded-3xl cursor-pointer hover:bg-white hover:text-black transition-colors duration-400 ease-in-out hidden lg:block lg:my-2'>Shop now</button></Link>
                         </div>
                         <div className='flex 2xl:gap-12 xl:gap-8 lg:gap-2 md:gap-6 gap-4 md:justify-center lg:justify-start'>
                             {/* here will be a count up */}

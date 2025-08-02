@@ -4,18 +4,19 @@ import useProducts from '../../api/useProducts';
 import { p } from 'framer-motion/client';
 import { RiProhibited2Line } from 'react-icons/ri';
 import { HiEmojiSad } from 'react-icons/hi';
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams } from 'react-router-dom';
 import ProductsCard from './ProductsCard';
 
 const Products = () => {
-    const [searchParams] = useSearchParams();
+    const {categoryName} = useParams();
     const [filters, setFilters] = useState({
         gender: '',
         brand: [],
         fitType: [],
         materials: [],
         minPrice: '',
-        maxPrice: ''
+        maxPrice: '',
+        category: categoryName
     })
     const [priceRange, setPriceRange] = useState([0, 2000]);
 
@@ -42,7 +43,8 @@ const Products = () => {
         fitType: filters.fitType.join(','),
         materials: filters.materials.join(','),
         minPrice: filters.minPrice,
-        maxPrice: filters.maxPrice
+        maxPrice: filters.maxPrice,
+         ...(categoryName && { category: categoryName })
     }
     const [products, isLoading, refetch] = useProducts(filterParams);
     console.log('ALl products', products)

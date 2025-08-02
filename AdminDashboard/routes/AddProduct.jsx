@@ -227,6 +227,22 @@ const AddProduct = () => {
                                 </div>
                             </div>
                             <div className='flex gap-4 my-4 justify-between'>
+                                {/* category */}
+                                <div>
+                                    <label className='font-semibold block mb-2'>Category</label>
+                                    <select
+                                        {...register('category', { required: 'Category is required' })}
+                                        className='border-2 p-1 border-blue-300'
+                                    >
+                                        <option value="">Select Category</option>
+                                        <option value="T-Shirt">T-shirt</option>
+                                        <option value="Polo Shirt">Polo Shirt</option>
+                                        <option value="Cuban Collar Shirt">Cuban Collar Shirt</option>
+                                        <option value="Dress Shirt">Dress Shirt</option>
+                                        <option value="V Neck">V Neck</option>
+                                    </select>
+                                    {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
+                                </div>
                                 {/* brand */}
                                 <div>
                                     <label className='font-semibold block mb-2'>Brand</label>
@@ -277,7 +293,7 @@ const AddProduct = () => {
                                     </select>
                                     {errors.materials && <p className='text-red-500'>{errors.materials.message}</p>}
                                 </div>
-                                    {/* Gender */}
+                                {/* Gender */}
                                 <div>
                                     <label className='font-semibold block mb-2'>Select Gender</label>
                                     <select
