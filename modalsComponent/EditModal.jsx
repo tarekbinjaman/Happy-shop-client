@@ -261,6 +261,8 @@ const EditModal = ({ id, handleClose }) => {
                                     <option value="Cuban Collar Shirt">Cuban Collar Shirt</option>
                                     <option value="Dress Shirt">Dress Shirt</option>
                                     <option value="V Neck">V Neck</option>
+                                     <option value="Women Sweater">Women Sweater</option>
+                                     <option value="A-Line">A-Line</option>
                                 </select>
                                 {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
                             </div>

@@ -7,17 +7,18 @@ const ProductsCard = ({ product }) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating - filledStars >= 0.5;
     return (
-        <div className='bg-[#F2F0F1] max-w-4xl h-[346px] w-[280px] rounded-2xl relative'>
+        <div className='bg-[#F2F0F1] max-w-4xl h-[320px] w-[280px] rounded-2xl relative flex flex-col'>
             <span className='text-sm rounded-xl px-1 py-1 bg-white  font-semibold text-red-500 absolute top-2 right-2'>-{product?.discount}%</span>
-            <div className='flex justify-center'>
-            <div className='w-[270px] h-[260px]'>
+            <div className='flex justify-center mt-8'>
+            <div className='w-[180px] h-[200px]'>
                 <img src={product.images[0].url} className='w-full h-full object-fill' alt="" />
             </div>
             </div>
+            {/* <div className='flex-1'></div> */}
             <div className='flex justify-center'>
-            <div className='flex items-center justify-between bg-white rounded-xl p-2 w-[270px]'>
+            <div className='flex items-center justify-between bg-white rounded-xl p-2 w-[270px] mb-1.5'>
             <div className='flex flex-col gap-y-2'>
-            <h1 className='font-bold text-sm mt-2'>{product.title}</h1>
+            <h1 className='font-bold text-sm mt-2'>{product.title.split('').slice(0, 25).join('')}</h1>
 
             {/* rating */}
             <div className="flex items-center space-x-1 mt-1">

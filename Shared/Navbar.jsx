@@ -82,17 +82,109 @@ const Navbar = () => {
                                     '>
                                                 <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
                                                 <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
-                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'>Cuban Collar Shirt</span> </li>
-                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'>Dress Shirt</span> </li>
-                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'>V-neck</span></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
                                             </ul>
                                         </div>
                                     </li>
                                 </div>
-                                <li>Women</li>
-                                <li>Boys</li>
-                                <li>Girls</li>
-                                <li>Kids</li>
+                                <div className=''>
+                                    <li className='group'> <span className='flex items-center gap-1 '>Women <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                        <div className='relative'>
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-56 pr-2 space-y-1 border  border-white
+                                    opacity-0 invisible
+                                    group-hover:visible group-hover:opacity-100
+                                    transform 
+                                    transition-all 
+                                    duration-200 
+                                    ease-in-out
+                                    -translate-x-2
+                                    group-hover:translate-x-0
+                                    z-50
+                                    divide-y divide-gray-300
+                                    '>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/A-Line'}> <span className=' hover:ml-2 transition-all duration-300'>A-Line</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div className=''>
+                                    <li className='group'> <span className='flex items-center gap-1 '>Boys <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                        <div className='relative'>
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-56 pr-2 space-y-1 border  border-white
+                                    opacity-0 invisible
+                                    group-hover:visible group-hover:opacity-100
+                                    transform 
+                                    transition-all 
+                                    duration-200 
+                                    ease-in-out
+                                    -translate-x-2
+                                    group-hover:translate-x-0
+                                    z-50
+                                    divide-y divide-gray-300
+                                    '>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div className=''>
+                                    <li className='group'> <span className='flex items-center gap-1 '>Girls <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                        <div className='relative'>
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-56 pr-2 space-y-1 border  border-white
+                                    opacity-0 invisible
+                                    group-hover:visible group-hover:opacity-100
+                                    transform 
+                                    transition-all 
+                                    duration-200 
+                                    ease-in-out
+                                    -translate-x-2
+                                    group-hover:translate-x-0
+                                    z-50
+                                    divide-y divide-gray-300
+                                    '>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </div>
+                                <div className=''>
+                                    <li className='group'> <span className='flex items-center gap-1 '>Kids <GoChevronDown className='group-hover:text-orange-300' /></span>
+                                        <div className='relative'>
+                                            <ul className='absolute top-2 left-0 bg-white/30 backdrop-blur-md shadow-xl py-3 w-56 pr-2 space-y-1 border  border-white
+                                    opacity-0 invisible
+                                    group-hover:visible group-hover:opacity-100
+                                    transform 
+                                    transition-all 
+                                    duration-200 
+                                    ease-in-out
+                                    -translate-x-2
+                                    group-hover:translate-x-0
+                                    z-50
+                                    divide-y divide-gray-300
+                                    '>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </div>
                                 <li>New Arrival</li>
                             </ul>
                         </div>
