@@ -242,6 +242,14 @@ const AddProduct = () => {
                                         <option value="V Neck">V Neck</option>
                                         <option value="Women Sweater">Women Sweater</option>
                                         <option value="A-Line">A-Line</option>
+                                        <option value="Apron">Apron</option>
+                                        <option value="Asymmetrical">Asymmetrical</option>
+                                        <option value="Ball Gown">Ball Gown</option>
+                                        <option value="Caftan">Caftan</option>
+                                        <option value="One-Shoulder">One-Shoulder</option>
+                                        <option value="Yoke Dress">Yoke Dress</option>
+                                        <option value="Wrap Dress">Wrap Dress</option>
+                                        <option value="Basic">Basic</option>
                                     </select>
                                     {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
                                 </div>
