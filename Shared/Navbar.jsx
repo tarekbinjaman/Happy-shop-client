@@ -132,11 +132,51 @@ const Navbar = () => {
                                     z-50
                                     divide-y divide-gray-300
                                     '>
-                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>T Shirt</span></Link></li>
-                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
-                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
-                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
-                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'>
+                                                    <Link className='flex justify-between items-center' to={'/productsList/T-Shirt'}>
+                                                        <span className=' hover:ml-2 transition-all duration-300'>T-shirt</span>
+                                                    </Link>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold relative group/li'>
+                                                    <Link className='flex justify-between items-center' to={'/productsList/Shorts'}>
+                                                        <span className=' hover:ml-2 transition-all duration-300'>Shorts</span>
+                                                    </Link>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Overalls'}>Overalls</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Hoodie'}>Hoodie</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Sweatpants'}>Sweatpants</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Polo Shirt'}>Polo Shirt</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Dungarees'}>Dungarees</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Bomber Jacket'}>Bomber Jacket</Link>
+                                                    </span>
+                                                </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'>
+                                                    <span className='hover:ml-2 transition-all duration-300'>
+                                                        <Link to={'/productsList/Basic-Boys'}>Basic</Link>
+                                                    </span>
+                                                </li>
                                             </ul>
                                         </div>
                                     </li>

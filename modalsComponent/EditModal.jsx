@@ -271,6 +271,13 @@ const EditModal = ({ id, handleClose }) => {
                                      <option value="Yoke Dress">Yoke Dress</option>
                                      <option value="Wrap Dress">Wrap Dress</option>
                                      <option value="Basic">Basic</option>
+                                     <option value="Shorts">Shorts</option>
+                                     <option value="Overalls">Overalls</option>
+                                     <option value="Hoodie">Hoodie</option>
+                                     <option value="Sweatpants">Sweatpants</option>
+                                     <option value="Dungarees">Dungarees</option>
+                                     <option value="Bomber Jacket">Bomber Jacket</option>
+                                     <option value="Basic-Boys">Basic-Boys</option>
                                 </select>
                                 {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
                             </div>
