@@ -278,6 +278,14 @@ const EditModal = ({ id, handleClose }) => {
                                      <option value="Dungarees">Dungarees</option>
                                      <option value="Bomber Jacket">Bomber Jacket</option>
                                      <option value="Basic-Boys">Basic-Boys</option>
+                                     <option value="Frock">Frock</option>
+                                     <option value="Skirt">Skirt</option>
+                                     <option value="Leggings">Leggings</option>
+                                     <option value="Gown">Gown</option>
+                                     <option value="Gown">Rompers</option>
+                                     <option value="Jumpsuit">Jumpsuit</option>
+                                     <option value="Dungarees">Dungarees</option>
+                                     <option value="Tracksuit">Tracksuit</option>
                                 </select>
                                 {errors.category && <p className='text-red-500'>{errors.category.message}</p>}
                             </div>
@@ -343,6 +351,7 @@ const EditModal = ({ id, handleClose }) => {
                                     <option value="Women">Women</option>
                                     <option value="Boys">Boys</option>
                                     <option value="Girls">Girls</option>
+                                    <option value="Kids">Kids</option>
                                 </select>
                                 {errors.gender && <p className='text-red-500'>{errors.gender.message}</p>}
                             </div>
