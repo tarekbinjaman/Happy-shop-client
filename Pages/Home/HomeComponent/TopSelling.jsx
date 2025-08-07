@@ -8,7 +8,7 @@ const TopSelling = () => {
         <div className='mt-12'>
             <h1 style={{ fontFamily: 'Integral CF' }} className='text-4xl text-center'>Top Selling</h1>
             <div className='flex justify-center'>
-                <div className='grid lg:grid-cols-4 grid-cols-2 md:gap-x-20 lg:gap-x-5 gap-x-2 gap-y-8 justify-center mt-18'>
+                <div className='grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-2 md:gap-x-20 lg:gap-x-5 gap-x-2 gap-y-8 justify-center mt-18'>
                     {
                         data.map((product, index) => (
                             <ProductsCard product={product} key={index} />
