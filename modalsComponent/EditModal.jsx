@@ -261,6 +261,9 @@ const EditModal = ({ id, handleClose }) => {
                                     <option value="Cuban Collar Shirt">Cuban Collar Shirt</option>
                                     <option value="Dress Shirt">Dress Shirt</option>
                                     <option value="V Neck">V Neck</option>
+                                    <option value="Casual">Casual</option>
+                                    <option value="Formal">Formal</option>
+                                    <option value="Gym">Gym</option>
                                      <option value="Women Sweater">Women Sweater</option>
                                      <option value="A-Line">A-Line</option>
                                      <option value="Apron">Apron</option>
@@ -271,6 +274,7 @@ const EditModal = ({ id, handleClose }) => {
                                      <option value="Yoke Dress">Yoke Dress</option>
                                      <option value="Wrap Dress">Wrap Dress</option>
                                      <option value="Basic">Basic</option>
+                                     <option value="Party">Party</option>
                                      <option value="Shorts">Shorts</option>
                                      <option value="Overalls">Overalls</option>
                                      <option value="Hoodie">Hoodie</option>

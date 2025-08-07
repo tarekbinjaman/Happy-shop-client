@@ -84,6 +84,9 @@ const Navbar = () => {
                                                 <li className=' pl-4 cursor-pointer  font-semibold relative group/li'><Link className='flex justify-between items-center' to={'/productsList/Polo Shirt'}> <span className=' hover:ml-2 transition-all duration-300'>Polo Shirt</span></Link></li>
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Cuban Collar Shirt'}>Cuban Collar Shirt</Link></span> </li>
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Dress Shirt'}>Dress Shirt</Link></span> </li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/Casual'}>Casual</Link></span></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/Formal'}>Formal</Link></span></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/Gym'}>Gym</Link></span></li>
                                                 <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/V Neck'}>V-neck</Link></span></li>
                                             </ul>
                                         </div>
@@ -113,6 +116,7 @@ const Navbar = () => {
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Yoke Dress'}>Yoke Dress</Link></span> </li>
                                                 <li className=' pl-4 cursor-pointer font-semibold whitespace-nowrap'><span className='hover:ml-2 transition-all duration-300'><Link to={'/productsList/Wrap Dress'}>Wrap Dress</Link></span> </li>
                                                 <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/Basic'}>Basic</Link></span></li>
+                                                <li className=' pl-4 cursor-pointer  font-semibold'><span className='hover:ml-2 transition-all duration-300'><Link to={'productsList/Party'}>Party</Link></span></li>
                                             </ul>
                                         </div>
                                     </li>
