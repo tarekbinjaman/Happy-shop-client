@@ -9,6 +9,7 @@ import ProductsCard from './ProductsCard';
 
 const Products = () => {
     const { categoryName } = useParams();
+    console.log('This is category name', categoryName)
     const [filters, setFilters] = useState({
         gender: '',
         brand: [],
@@ -44,7 +45,7 @@ const Products = () => {
         materials: filters.materials.join(','),
         minPrice: filters.minPrice,
         maxPrice: filters.maxPrice,
-        ...(categoryName && { category: categoryName })
+        ...(categoryName && categoryName !== "newArrival" && { category: categoryName })
     }
     const [products, isLoading, refetch] = useProducts(filterParams);
     console.log('ALl products', products)
@@ -106,10 +107,19 @@ const Products = () => {
                                 <div className='flex justify-center'>
                                     <div className='grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-8'>
                                         {
+                                            categoryName === "newArrival" ? 
+                                                products.slice(-10).map((product, index) => (
+                                                    <ProductsCard product={product} key={index} />
+                                                ))
+                                            
+                                                :
                                             products.map((product, index) => (
                                                 <ProductsCard product={product} key={index} />
                                             ))
                                         }
+                                        
+                                        
+
                                     </div>
                                 </div>
                     }

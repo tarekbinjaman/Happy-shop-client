@@ -263,7 +263,7 @@ const Navbar = () => {
                                         </div>
                                     </li>
                                 </div>
-                                <li>New Arrival</li>
+                                <li className='hover:text-orange-300'><Link to={'/productsList/newArrival'}>New Arrival</Link></li>
                             </ul>
                         </div>
 
