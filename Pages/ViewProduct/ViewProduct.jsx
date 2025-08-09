@@ -66,6 +66,51 @@ const ViewProduct = () => {
                             <span className='line-through text-gray-400 text-3xl font-semibold '>{singleProduct.price}</span>
                             <span className='text-md bg-red-200 px-3 py-1 rounded-2xl font-semibold text-red-500'>-{singleProduct?.discount}%</span>
                         </div>
+                        <div>
+                            {/* description */}
+                            <p>{singleProduct?.description.slice(0, 40)}...</p>
+                            <div className='flex items-center gap-4 mt-2'>
+                                <div>
+                                    <p className='text-xl font-bold text-gray-400'>Brand</p>
+                                    <p>{singleProduct?.brand}</p>
+                                </div>
+                                <div>
+                                    <p className='text-xl font-bold text-gray-400'>Fit Type</p>
+                                    <p>{singleProduct?.fitType}</p>
+                                </div>
+                                <div>
+                                    <p className='text-xl font-bold text-gray-400'>Materials</p>
+                                    <p>{singleProduct?.materials}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            {/* colors */}
+                            <p className='text-md text-gray-400 mb-4'>Colors</p>
+                            <div className='flex gap-4'>
+                                {
+                                    singleProduct?.color.map((col, index) => (
+                                        <div
+                                            style={{ background: col }}
+                                            className={` p-4 w-[20px] rounded-full border border-black`} key={index}>
+
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                        <div>
+                            {/* colors */}
+                            <p className='text-md text-gray-400 mb-4'>Available size</p>
+                            <div className='flex gap-4'>
+                                {
+                                    singleProduct?.size.map((siz, index) => (
+                                        <p className='text-md font-medium bg-gray-300 px-3 py-1 rounded-2xl'>{siz}</p>
+                                    ))
+                                }
+                            </div>
+                            <div className='divider'></div>
+                             </div>
                     </div>
                 </div>
             </div>
