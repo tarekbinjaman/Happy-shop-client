@@ -65,7 +65,7 @@ const Products = () => {
                         </div>
                         {/* gender checkbox */}
                         {
-                            !categoryName
+                            (!categoryName  || categoryName === "newArrival")
                             &&
                             <div>
                                 <h2 className='font-bold mb-2 mt-2'>Gender</h2>

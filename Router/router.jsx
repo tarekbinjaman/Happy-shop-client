@@ -12,6 +12,7 @@ import AdminProfile from '../AdminDashboard/routes/AdminProfile';
 import AddProduct from '../AdminDashboard/routes/AddProduct';
 import AllProduct from '../AdminDashboard/routes/AllProduct';
 import Products from '../Pages/Products/Products';
+import ViewProduct from '../Pages/ViewProduct/ViewProduct';
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
             {
                 path: 'productsList/:categoryName?',
                 element: <Products />
+            },
+            {
+                path: 'viewProduct/:productId?',
+                element: <ViewProduct />
             },
             {
                 path: "register",

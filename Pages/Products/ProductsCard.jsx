@@ -38,7 +38,7 @@ const ProductsCard = ({ product }) => {
             <div className='flex flex-col gap-y-0 justify-end'>
             <p className='font-semibold text-xl flex gap-2 items-center'>{product?.finalPrice} $
                     </p>
-            <Link className='text-end bg-[#e4dede] px-2 py-0.5 rounded-md hover:border-gray-400 border border-white transition-all duration-300 mt-1'>View</Link>
+            <Link to={`/viewProduct/${product?._id}`} className='text-end bg-[#e4dede] px-2 py-0.5 rounded-md hover:border-gray-400 border border-white transition-all duration-300 mt-1'>View</Link>
             </div>
             </div>
             </div>
