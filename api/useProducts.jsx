@@ -7,7 +7,7 @@ import { data } from 'react-router-dom';
 const useProducts = (filterParams) => {
     const axiosSecure = useAxiosSecure();
     const {user} = UseAuth();
-     const {refetch, isLoading, data: useProducts = []} = useQuery({
+     const {refetch, isLoading, data: queryData = {}} = useQuery({
         queryKey: ['useProducts', filterParams],
         queryFn: async () => {
             const queryStr = new URLSearchParams(filterParams).toString();
@@ -15,7 +15,7 @@ const useProducts = (filterParams) => {
             return res.data;
         }
      })
-     const products = useProducts.products || [];
+     const products = queryData.products || [];
     return [products, isLoading, refetch];
 };
 

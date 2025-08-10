@@ -1,20 +1,42 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import useProducts from '../../api/useProducts';
+import { RxBorderSolid } from 'react-icons/rx';
+import { GrAdd } from 'react-icons/gr';
+import { title } from 'framer-motion/client';
 
 const ViewProduct = () => {
     const { productId } = useParams();
-    const [products] = useProducts();
+    const [products, isLoading] = useProducts();
     const [showImage, setShowImage] = useState(null);
+    const [quantity, setQuantity] = useState(1);
+    const [selectedColor, setSelectedColor] = useState('');
+    const [selectedSize, setSelectedSize] = useState('');
     const singleProduct = products.find(items => items?._id === productId);
-    const imageContainer = singleProduct?.images;
-    const firstImage = imageContainer[0]?.url;
+    const imageContainer = singleProduct?.images || [];
+    const firstImage = imageContainer[0]?.url || '';
     const filledStars = Math.floor(singleProduct?.rating);
     const hasHalfStar = singleProduct?.rating >= 0.5;
     useEffect(() => {
-        setShowImage(firstImage)
-    }, [productId])
-    console.log('This is product in single page', imageContainer)
+        firstImage && setShowImage(firstImage);
+    }, [firstImage]);
+    if (isLoading) {
+        return <p>Product is loading</p>
+    };
+    const addToCart = () => {
+        console.log(
+            {
+                productId: productId,
+                title: singleProduct?.title,
+                price: singleProduct?.finalPrice,
+                size: selectedSize,
+                color: selectedColor,
+                quantity: quantity
+            }
+
+        )
+    }
+    console.log('This is product in single page', imageContainer);
     return (
         <div className='w-11/12 mx-auto'>
             <div className={`flex gap-2`}>
@@ -63,12 +85,10 @@ const ViewProduct = () => {
                         {/* price area */}
                         <div className='flex gap-4 items-center'>
                             <span className='text-3xl font-bold'>${singleProduct?.finalPrice}</span>
-                            <span className='line-through text-gray-400 text-3xl font-semibold '>{singleProduct.price}</span>
+                            <span className='line-through text-gray-400 text-3xl font-semibold '>{singleProduct?.price}</span>
                             <span className='text-md bg-red-200 px-3 py-1 rounded-2xl font-semibold text-red-500'>-{singleProduct?.discount}%</span>
                         </div>
                         <div>
-                            {/* description */}
-                            <p>{singleProduct?.description.slice(0, 40)}...</p>
                             <div className='flex items-center gap-4 mt-2'>
                                 <div>
                                     <p className='text-xl font-bold text-gray-400'>Brand</p>
@@ -89,10 +109,11 @@ const ViewProduct = () => {
                             <p className='text-md text-gray-400 mb-4'>Colors</p>
                             <div className='flex gap-4'>
                                 {
-                                    singleProduct?.color.map((col, index) => (
+                                    singleProduct?.color?.map((col, index) => (
                                         <div
+                                            onClick={() => {setSelectedColor(col)}}
                                             style={{ background: col }}
-                                            className={` p-4 w-[20px] rounded-full border border-black`} key={index}>
+                                            className={` p-4 w-[15px] rounded-full border-2 border-black ${selectedColor === col ? 'border-2 border-blue-400' : ''}`} key={index}>
 
                                         </div>
                                     ))
@@ -105,12 +126,30 @@ const ViewProduct = () => {
                             <div className='flex gap-4'>
                                 {
                                     singleProduct?.size.map((siz, index) => (
-                                        <p className='text-md font-medium bg-gray-300 px-3 py-1 rounded-2xl'>{siz}</p>
+                                        <p
+                                        onClick={() => {setSelectedSize(siz)}}
+                                        className={`text-md font-medium bg-gray-300 px-3 py-1 rounded-2xl  border-2 cursor-pointer ${selectedSize === siz && 'border-2 border-blue-400'} `}>{siz}</p>
                                     ))
                                 }
                             </div>
                             <div className='divider'></div>
-                             </div>
+                        </div>
+                        <div>
+                            <div className='flex gap-2 items-center'>
+                                {/* button 1 */}
+                                <div className='inline-flex gap-5 bg-[#f0f0f0] px-4 py-1 rounded-3xl'>
+                                    <button onClick={() => { quantity > 1 && setQuantity(quantity - 1) }} className={`text-xl ${quantity === 1 ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'} `}><RxBorderSolid /></button>
+                                    <p className='text-xl'>{quantity}</p>
+                                    <button onClick={() => { setQuantity(quantity + 1) }} className='text-xl cursor-pointer'><GrAdd /></button>
+                                </div>
+                                {/* button 2 */}
+                                <div className='flex-grow'>
+                                    <button
+                                    onClick={addToCart}
+                                    className='text-sm w-full bg-black px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-gray-600'>Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
