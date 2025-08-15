@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import useProducts from "../../api/useProducts";
 import { RxBorderSolid } from "react-icons/rx";
 import { GrAdd } from "react-icons/gr";
+import ProductList from "./ProductList";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -34,7 +35,8 @@ const ViewProduct = () => {
   };
   console.log("This is product in single page", imageContainer);
   return (
-    <div className="w-11/12 mx-auto">
+    <div className="w-7/10 mx-auto">
+      <div className="flex gap-6 justify-between">
       <div className={`flex gap-8 justify-center`}>
         {/* image area */}
         <div className="flex gap-2">
@@ -174,6 +176,11 @@ const ViewProduct = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="">
+        {/* product list */}
+        <ProductList />
+      </div>
       </div>
     </div>
   );
