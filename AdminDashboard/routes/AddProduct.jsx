@@ -203,11 +203,11 @@ const AddProduct = () => {
                                         }}
                                     >
                                         <option value="">Select Size</option>
-                                        <option value="Small">Small</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Large">Large</option>
-                                        <option value="X-Large">X-Large</option>
-                                        <option value="XX-Large">XX-Large</option>
+                                        <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                        <option value="X-L">X-L</option>
+                                        <option value="2XL">2XL</option>
                                     </select>
                                     <div className='md:grid md:grid-cols-2 lg:grid-cols-5 gap-2 mt-2'>
                                         {size.map((SZ, index) => (
