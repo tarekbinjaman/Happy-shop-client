@@ -35,7 +35,7 @@ const ViewProduct = () => {
   console.log("This is product in single page", imageContainer);
   return (
     <div className="w-11/12 mx-auto">
-      <div className={`flex gap-2 justify-center`}>
+      <div className={`flex gap-8 justify-center`}>
         {/* image area */}
         <div className="flex gap-2">
           {imageContainer.length > 1 && (
@@ -68,14 +68,16 @@ const ViewProduct = () => {
           </div>
         </div>
         {/* text area */}
-        <div>
-          <div className="flex flex-col space-y-2 h-full border">
+
+        <div className="flex flex-col space-y-2 h-[422px] justify-between">
+          {/* text-area 1 / first container */}
+          <div>
             <h1 className="text-4xl font-bold uppercase">
               {singleProduct?.title}
             </h1>
             {/* rating */}
             {/* price area */}
-            <div className="flex gap-4 items-center relative">
+            <div className="flex gap-4 items-center relative mt-2">
               <span className="text-3xl font-bold">
                 ${singleProduct?.finalPrice}
               </span>
@@ -83,12 +85,16 @@ const ViewProduct = () => {
                 -{singleProduct?.discount}%
               </span>
             </div>
-            <div>
-            </div>
-            <div className="flex-1">
+            <div className="mt-2">
               {/* colors */}
-              <p className="text-md text-gray-400">Colors : <span style={{ background: selectedColor }} className='inline-block h-3 w-4 border-gray-500 border-2'></span></p>
-              <div className="flex items-center gap-4">
+              <p className="text-md text-gray-400">
+                Colors :{" "}
+                <span
+                  style={{ background: selectedColor }}
+                  className="inline-block h-3 w-4 border-gray-500 border-2"
+                ></span>
+              </p>
+              <div className="flex items-center gap-4 mt-2 mb-2">
                 {singleProduct?.color?.map((col, index) => (
                   <div
                     onClick={() => {
@@ -96,14 +102,25 @@ const ViewProduct = () => {
                     }}
                     style={{ background: col }}
                     className={` h-6 w-6 border-2 mt-1 cursor-pointer
-    ${selectedColor === col ? "border-black shadow-2xl shadow-blue-300/50 border-3" : "border-gray-400"}`}
+    ${
+      selectedColor === col
+        ? "border-black shadow-2xl shadow-blue-300/50 border-3"
+        : "border-gray-400"
+    }`}
                     key={index}
                   ></div>
                 ))}
               </div>
             </div>
-            <div className="mt-4 bg-gray-200 p-2 flex-1">
-              {/* colors */}
+            <div  className="w-full md:w-96 mt-2">
+              {/* description */}
+              <p className="text-sm">{singleProduct?.description}</p>
+            </div>
+          </div>
+          {/* button area start here  / second container*/}
+          <div className="">
+            <div className="mt-4 bg-gray-200 p-2 flex-1 mb-4">
+              {/* size */}
               <p className="text-xs mb-4 uppercase">Available size</p>
               <div className="flex gap-4">
                 {singleProduct?.size.map((siz, index) => (
@@ -120,41 +137,39 @@ const ViewProduct = () => {
                 ))}
               </div>
             </div>
-            <div className="flex-1">
-              <div className="flex gap-2 items-center">
-                {/* button 1 */}
-                <div className="inline-flex gap-5 bg-[#f0f0f0] px-4 py-1 rounded-3xl">
-                  <button
-                    onClick={() => {
-                      quantity > 1 && setQuantity(quantity - 1);
-                    }}
-                    className={`text-xl ${
-                      quantity === 1
-                        ? "opacity-50 cursor-not-allowed"
-                        : "cursor-pointer"
-                    } `}
-                  >
-                    <RxBorderSolid />
-                  </button>
-                  <p className="text-xl">{quantity}</p>
-                  <button
-                    onClick={() => {
-                      setQuantity(quantity + 1);
-                    }}
-                    className="text-xl cursor-pointer"
-                  >
-                    <GrAdd />
-                  </button>
-                </div>
-                {/* button 2 */}
-                <div className="flex-grow">
-                  <button
-                    onClick={addToCart}
-                    className="text-sm w-full bg-black px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-gray-600"
-                  >
-                    Add to Cart
-                  </button>
-                </div>
+            <div className="flex gap-2 items-center">
+              {/* button 1 */}
+              <div className="inline-flex gap-5 bg-[#f0f0f0] px-4 py-1 rounded-3xl">
+                <button
+                  onClick={() => {
+                    quantity > 1 && setQuantity(quantity - 1);
+                  }}
+                  className={`text-xl ${
+                    quantity === 1
+                      ? "opacity-50 cursor-not-allowed"
+                      : "cursor-pointer"
+                  } `}
+                >
+                  <RxBorderSolid />
+                </button>
+                <p className="text-xl">{quantity}</p>
+                <button
+                  onClick={() => {
+                    setQuantity(quantity + 1);
+                  }}
+                  className="text-xl cursor-pointer"
+                >
+                  <GrAdd />
+                </button>
+              </div>
+              {/* button 2 */}
+              <div className="flex-grow">
+                <button
+                  onClick={addToCart}
+                  className="text-sm w-full bg-black px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-gray-600"
+                >
+                  Add to Cart
+                </button>
               </div>
             </div>
           </div>
