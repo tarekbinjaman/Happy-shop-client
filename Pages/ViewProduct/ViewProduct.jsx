@@ -6,6 +6,8 @@ import { GrAdd } from "react-icons/gr";
 import ProductList from "./ProductList";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { div } from "framer-motion/client";
+import ProductDetails from "./ProductDetails";
+import DeliveryAndReturn from "./DeliveryAndReturn";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -173,7 +175,7 @@ const ViewProduct = () => {
                 <div className="flex-grow">
                   <button
                     onClick={addToCart}
-                    className="text-sm w-full bg-black px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-gray-600"
+                    className="text-sm w-full bg-orange-400 px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-orange-500 transition duration-400"
                   >
                     Add to Cart
                   </button>
@@ -205,9 +207,9 @@ const ViewProduct = () => {
         }
         </div>
         <div>
-          {aciteveTab === 0 && <div>This is product details content.</div>}
+          {aciteveTab === 0 && <div><ProductDetails id={productId} /> </div>}
           {aciteveTab === 1 && <div>This is Reviews content.</div>}
-          {aciteveTab === 2 && <div>This is Delivery and Return content.</div>}
+          {aciteveTab === 2 && <div><DeliveryAndReturn /></div>}
         </div>
       </div>
     </div>
