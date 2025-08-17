@@ -7,7 +7,7 @@ import ProductList from "./ProductList";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
 import { div } from "framer-motion/client";
 import ProductDetails from "./ProductDetails";
-import DeliveryAndReturn from "./DeliveryAndReturn";
+import ProductReview from "./ProductReview";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -22,7 +22,7 @@ const ViewProduct = () => {
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
-  const tabs = ["Product Details", "Reviews","Delivery & Return"];
+  const tabs = ["Product Details", "Reviews"];
 
   useEffect(() => {
     firstImage && setShowImage(firstImage);
@@ -191,7 +191,7 @@ const ViewProduct = () => {
       </div>
       <div className="mt-12">
         {/* tabs */}
-        <div className="flex gap-2.5 border-b border-black justify-center">
+        <div className="flex gap-2.5 border-b border-gray-300 justify-center">
         {
           tabs.map((tab, index) => (
             <button
@@ -208,8 +208,7 @@ const ViewProduct = () => {
         </div>
         <div>
           {aciteveTab === 0 && <div><ProductDetails id={productId} /> </div>}
-          {aciteveTab === 1 && <div>This is Reviews content.</div>}
-          {aciteveTab === 2 && <div><DeliveryAndReturn /></div>}
+          {aciteveTab === 1 && <div><ProductReview /> </div>}
         </div>
       </div>
     </div>

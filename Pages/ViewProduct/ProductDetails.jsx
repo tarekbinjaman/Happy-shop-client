@@ -6,12 +6,12 @@ const ProductDetails = ({id}) => {
     const item = product[0].find(item => item?._id === id);
     console.log('Item', item)
     return (
-        <div className='flex justify-between mt-4'>
-            <div className='w-[350px]'>
+        <div className=' mt-4'>
+            <div className=''>
                 <h1 className='uppercase font-bold mb-3'>Description</h1>
                 <p>{item?.description}</p>
             </div>
-            <div  className='w-[350px] flex justify-center'>
+            <div  className='mt-4'>
                 <div>
                 <h1 className='uppercase font-bold mb-3'>Fit & Features</h1>
                 <ul className="list-disc pl-5 space-y-1 marker:text-black">
@@ -21,7 +21,7 @@ const ProductDetails = ({id}) => {
                 </ul>
                 </div>
             </div>
-            <div className='w-[350px] flex justify-end'>
+            <div className='mt-4'>
                 <div className=''>
                 <h1 className='uppercase font-bold mb-3'>Fabric and Care</h1>
                 <p>Available size:</p>
