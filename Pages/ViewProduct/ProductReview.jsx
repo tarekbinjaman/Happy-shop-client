@@ -1,14 +1,40 @@
 import React, { useState } from "react";
+import UseAuth from "../../Context/UseAuth";
+import axios from "axios";
 
 const ProductReview = () => {
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState('');
-  const handleSubmit = (e) => {
+  const [loading, setLoading] = useState(false);
+  const {user} = UseAuth();
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if(!rating || !review) {
         return alert('please add rating and review properly')
-    }
-    console.log("Selected rating:", rating);
+    };
+    const reviewData = {
+      name: user?.displayName,
+      email: user?.email,
+      rating: rating,
+      review: review,
+    };
+    try{
+      setLoading(true);
+      const res = await axios.post("http://localhost:5000/api/reviews", reviewData);
+      if(res.data.success) {
+        alert("Review submitted successfully");
+        setReview("");
+        setRating(0);
+      } else {
+        alert("Failed to submit review");
+      }
+    } catch (err) {
+      console.error("Error submitting review:", err);
+      alert("something went wrong");
+    } finally {
+      setLoading(false);
+    };
+    console.log("Selected reviewData:", reviewData);
     console.log(review)
   };
   return (
@@ -26,6 +52,7 @@ const ProductReview = () => {
                 name="rating-2"
                 className="mask mask-star-2 bg-yellow-400"
                 value={star}
+                checked={rating === star}
                 onChange={(e) => setRating(Number(e.target.value))}
               />
             ))}
@@ -36,6 +63,7 @@ const ProductReview = () => {
           <input
             type="text"
             name="review"
+            value={review}
             onChange={(e) => setReview(e.target.value)}
             className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 
                focus:border-blue-500 focus:ring focus:ring-blue-200 
