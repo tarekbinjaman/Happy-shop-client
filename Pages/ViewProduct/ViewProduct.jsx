@@ -208,7 +208,7 @@ const ViewProduct = () => {
         </div>
         <div>
           {aciteveTab === 0 && <div><ProductDetails id={productId} /> </div>}
-          {aciteveTab === 1 && <div><ProductReview /> </div>}
+          {aciteveTab === 1 && <div><ProductReview id={productId} /> </div>}
         </div>
       </div>
     </div>
