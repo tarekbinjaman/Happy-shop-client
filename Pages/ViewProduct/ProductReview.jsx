@@ -52,15 +52,15 @@ const ProductReview = ({ id }) => {
         <ReviewProgressBar id={id} />
       </div>
       <form onSubmit={handleSubmit}>
-        <div className="max-w-xl">
+        <div className="w-3/6 mt-8">
           <div className="mt-4">
-            <label>Write your review</label>
+            <label className="font-bold text-md">Write your review</label>
             <textarea
               type="text"
               name="review"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              className="mt-1 block w-xl h-22 rounded-lg border border-gray-300 px-3 py-2 
+              className="mt-1 block w-full h-22 rounded-lg border border-gray-300 px-3 py-2 
                focus:border-blue-500 focus:ring focus:ring-blue-200 
                focus:ring-opacity-50 text-gray-900"
               id=""

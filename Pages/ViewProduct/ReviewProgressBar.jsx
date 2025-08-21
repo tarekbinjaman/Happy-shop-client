@@ -18,6 +18,9 @@ const ReviewProgressBar = ({ id }) => {
   const fourStarReview = reviewRatingData?.filter((item) => item === 4).length;
 
   const fiveStarReview = reviewRatingData?.filter((item) => item === 5).length;
+  const averageRating = 1 * oneStarReview + 2 *  twoStarReview + 3 * threeStarReview + 4 * fourStarReview + 5 * fiveStarReview ;
+  const sumOfAverageRating = averageRating / singleProductReview?.length;
+  console.log('Average rating count:', sumOfAverageRating)
   const starArray = [
     { number: "five", value: fiveStarReview },
     { number: "four", value: fourStarReview },
@@ -28,8 +31,8 @@ const ReviewProgressBar = ({ id }) => {
   ];
   console.log("How many time one two", starArray);
   return (
-    <div>
-      <div className="flex flex-col space-y-2">
+    <div className="flex mt-8">
+      <div className="flex flex-col space-y-2 w-3/6">
         {starArray.map((item) => (
           <div className="flex gap-2 items-center ">
             <div className="flex ">
@@ -42,13 +45,28 @@ const ReviewProgressBar = ({ id }) => {
             </div>
 
             <progress
-              className="progress progress-warning w-2/5 h-3"
+              className="progress progress-warning w-[80%] h-3"
               value={item?.value}
               max="5"
             ></progress>
             <span className="font-bold">{item?.value}</span>
           </div>
         ))}
+      </div>
+      {/* average rating */}
+      <div className="bg-orange-100 w-3/6 flex items-center justify-center rounded-xl">
+      <div className="text-center">
+        <h1 className="text-xl font-bold text-orange-400 mb-2">{Math.floor(sumOfAverageRating * 10)  / 10}</h1>
+
+        <div className="flex gap-2 mb-2">
+            <GoStarFill className="text-[#FCB700]" />
+            <GoStarFill className="text-[#FCB700]" />
+            <GoStarFill className="text-[#FCB700]" />
+            <GoStarFill className="text-[#FCB700]" />
+            <GoStarFill className="text-[#FCB700]" />
+        </div>
+        <p className="text-md font-bold">{singleProductReview?.length} Ratings</p>
+      </div>
       </div>
     </div>
   );
