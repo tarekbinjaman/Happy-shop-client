@@ -3,6 +3,7 @@ import UseAuth from "../../Context/UseAuth";
 import axios from "axios";
 import useReview from "../../api/useReview";
 import ReviewList from "./reviewList";
+import ReviewProgressBar from "./reviewProgressBar";
 
 const ProductReview = ({ id }) => {
   const [rating, setRating] = useState(0);
@@ -47,6 +48,9 @@ const ProductReview = ({ id }) => {
   };
   return (
     <div>
+      <div>
+        <ReviewProgressBar id={id} />
+      </div>
       <form onSubmit={handleSubmit}>
         <div className="max-w-xl">
           <div className="mt-4">

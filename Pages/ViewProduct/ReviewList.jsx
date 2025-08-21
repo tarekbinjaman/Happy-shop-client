@@ -1,19 +1,14 @@
 import { BsThreeDots } from "react-icons/bs";
 import useReview from "../../api/useReview";
+import { useState } from "react";
+import ReviewProgressBar from "./reviewProgressBar";
 
 const ReviewList = ({ id }) => {
   const [reviewData, isLoading, refetch] = useReview();
+  const [reportId, setReportId] = useState(null);
   const singleProductReview =
     reviewData && reviewData.filter((item) => item?.productId === id);
-  const colors = [
-    "bg-red-500",
-    "bg-green-500",
-    "bg-blue-500",
-    "bg-yellow-500",
-    "bg-purple-500",
-    "bg-pink-500",
-    "bg-indigo-500",
-  ];
+
   console.log("Singel product review data ", singleProductReview);
   return (
     <div>
@@ -27,19 +22,23 @@ const ReviewList = ({ id }) => {
             const emptyStars = 5 - filledStars - (hasHalfStar ? 1 : 0);
             return (
               <div className="flex gap-4 items-start max-w-xl">
-                <div
-                  className={`${
-                    colors[Math.floor(Math.random() * colors.length)]
-                  } px-3 py-1 rounded-full`}
-                >
-                  <p className="text-md text-white font-bold">
-                    {item?.name[0]}
-                  </p>
+                <div className={`bg-white border px-3 py-1 rounded-full`}>
+                  <p className="text-md  font-bold">{item?.name[0]}</p>
                 </div>
                 <div className="">
-                  <div className="flex justify-between">
+                  <div className="flex justify-between relative">
                     <h1 className="text-md font-bold">{item?.name}</h1>
-                    <BsThreeDots className="cursor-pointer" />
+                    <BsThreeDots
+                      onClick={() => setReportId(reportId === item?._id ? null : item?._id)}
+                      className="cursor-pointer"
+                    />
+                    {reportId === item?._id && (
+                      <div 
+                      onClick={() => setReportId(null)}
+                      className="absolute bg-gray-300 -right-24 px-4 py-2 transition cursor-pointer">
+                        <p>Report</p>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-2">
                     <div className="flex items-center space-x-1">
