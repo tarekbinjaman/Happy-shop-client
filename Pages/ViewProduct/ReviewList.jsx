@@ -2,6 +2,7 @@ import { BsThreeDots } from "react-icons/bs";
 import useReview from "../../api/useReview";
 import { useState } from "react";
 import ReviewProgressBar from "./reviewProgressBar";
+import { IoBanOutline } from "react-icons/io5";
 
 const ReviewList = ({ id }) => {
   const [reviewData, isLoading, refetch] = useReview();
@@ -13,8 +14,11 @@ const ReviewList = ({ id }) => {
   return (
     <div>
       <h1 className="font-bold mb-4">All reviews</h1>
+      {
+        singleProductReview && singleProductReview.length > 0
+         ?         
       <div className="flex flex-col space-y-3.5">
-        {singleProductReview &&
+        {
           singleProductReview.map((item) => {
             const rating = item?.rating;
             const filledStars = Math.floor(item?.rating);
@@ -71,6 +75,14 @@ const ReviewList = ({ id }) => {
             );
           })}
       </div>
+         :
+         <div className="flex items-center justify-center h-32 w-xl">
+         <div className="flex flex-col items-center justify-center">
+          <h1 className="text-2xl">No review found here</h1>
+          <IoBanOutline className="text-4xl" />
+         </div>
+         </div>
+      }
     </div>
   );
 };
