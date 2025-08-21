@@ -12,7 +12,7 @@ const ReviewList = ({ id }) => {
   console.log("Singel product review data ", singleProductReview);
   return (
     <div>
-      <h1 className="font-bold">All reviews</h1>
+      <h1 className="font-bold mb-4">All reviews</h1>
       <div className="flex flex-col space-y-3.5">
         {singleProductReview &&
           singleProductReview.map((item) => {

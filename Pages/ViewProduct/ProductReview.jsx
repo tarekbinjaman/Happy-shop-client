@@ -44,23 +44,37 @@ const ProductReview = ({ id }) => {
       refetch();
     }
     console.log("Selected reviewData:", reviewData);
-    console.log(review);
   };
+  console.log('here', user);
   return (
     <div>
       <div>
         <ReviewProgressBar id={id} />
       </div>
+      {/* component 1 */}
+      <div className="flex flex-row-reverse justify-between mt-10">
+      <div className="w-3/6">
+      <div className="sticky top-10">
+      <div className="mt-4 flex flex-col  space-y-2">
+        <div className="flex flex-col">
+          <label>Name ●</label>
+          <input type="text" className="rounded-lg border border-gray-300 px-3 py-2 cursor-not-allowed" disabled defaultValue={user?.displayName} />
+        </div>
+        <div className="flex flex-col">
+          <label>Email ●</label>
+          <input type="text" className="rounded-lg border border-gray-300 px-3 py-2 cursor-not-allowed " disabled defaultValue={user?.email} />
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="w-3/6 mt-8">
-          <div className="mt-4">
+        <div className="mt-4">
+          <div className="">
             <label className="font-bold text-md">Write your review</label>
             <textarea
               type="text"
               name="review"
               value={review}
               onChange={(e) => setReview(e.target.value)}
-              className="mt-1 block w-full h-22 rounded-lg border border-gray-300 px-3 py-2 
+              className=" block w-full h-22 rounded-lg border border-gray-300 px-3 py-2 
                focus:border-blue-500 focus:ring focus:ring-blue-200 
                focus:ring-opacity-50 text-gray-900"
               id=""
@@ -91,8 +105,12 @@ const ProductReview = ({ id }) => {
           </div>
         </div>
       </form>
+      </div>
+      </div>
+      {/* component 2 */}
       <div>
         <ReviewList id={id} />
+      </div>
       </div>
     </div>
   );
