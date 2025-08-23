@@ -7,6 +7,7 @@ import ProductList from "./ProductList";
 import ProductDetails from "./ProductDetails";
 import ProductReview from "./ProductReview";
 import { toast } from "react-toastify";
+import axios from "axios";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -44,7 +45,7 @@ const ViewProduct = () => {
       setSizeErrors(false);
     }, 2000);
   };
-  const addToCart = () => {
+  const addToCart = async() => {
     // let newError = {}
     // if(!selectedSize) {
     //   newError.sizeError = "please select a size";
@@ -66,16 +67,26 @@ const ViewProduct = () => {
       triggerColorError();
       hashError = true;
     }
-    if(hashError) return;
+    if (hashError) return;
     console.log("All errors", error);
-    console.log({
+    const cartData = {
       productId: productId,
       title: singleProduct?.title,
       price: singleProduct?.finalPrice,
       size: selectedSize,
       color: selectedColor,
       quantity: quantity,
-    });
+    };
+    const res = await axios.post("http://localhost:5000/api/cartList", cartData)
+    if(res.data.success) {
+      toast.success("Product added successfully");
+      console.log(res.data)
+    } 
+    if(!res.data.success) (
+      (console.log(res))
+    ) 
+      
+    console.log(cartData);
   };
   console.log("This is product in single page", imageContainer);
   return (
@@ -160,11 +171,7 @@ const ViewProduct = () => {
                         borderStyle: selectedColor === col ? "solid" : "dotted",
                       }}
                       className={` h-6 w-6 mt-1 cursor-pointer transition border-2
-    ${
-      selectedColor === col
-        ? " border-blue-400 h-7 w-10"
-        : "border-black "
-    }}
+    ${selectedColor === col ? " border-blue-400 h-9 w-10" : "border-black "}}
     `}
                       key={index}
                     ></div>
