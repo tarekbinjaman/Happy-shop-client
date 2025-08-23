@@ -4,10 +4,9 @@ import useProducts from "../../api/useProducts";
 import { RxBorderSolid } from "react-icons/rx";
 import { GrAdd } from "react-icons/gr";
 import ProductList from "./ProductList";
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { div } from "framer-motion/client";
 import ProductDetails from "./ProductDetails";
 import ProductReview from "./ProductReview";
+import { toast } from "react-toastify";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -19,6 +18,7 @@ const ViewProduct = () => {
   const singleProduct = products.find((items) => items?._id === productId);
   const imageContainer = singleProduct?.images || [];
   const firstImage = imageContainer[0]?.url || "";
+  const [error, setError] = useState({});
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -31,6 +31,21 @@ const ViewProduct = () => {
     return <p>Product is loading</p>;
   }
   const addToCart = () => {
+    let newError = {}
+    if(!selectedSize) {
+      newError.sizeError = "please select a size";
+    };
+    if(!selectedColor) {
+      newError.colorError = "please select a color";
+    };
+    setError(newError);
+    if(newError?.sizeError) (
+      toast.error("Select a size 🤏 before add to cart")
+    );
+    if(newError?.colorError) (
+      toast.error("Select a color 🌈 before add to cart")
+    );
+    console.log("All errors", error);
     console.log({
       productId: productId,
       title: singleProduct?.title,
@@ -103,19 +118,25 @@ const ViewProduct = () => {
                     className="inline-block h-3 w-4 border-gray-500 border-2"
                   ></span>
                 </p>
-                <div className="flex items-center gap-4 mt-2 mb-2">
+                <div className={`flex items-center gap-4 mb-2 border border-white py-1
+                  ${error.colorError ? "animate-pulse border-yellow-700 border-2 pl-2" : ''}
+                  `}>
                   {singleProduct?.color?.map((col, index) => (
                     <div
                       onClick={() => {
                         setSelectedColor(col);
+                        setError((Prev) => ({...Prev, colorError: null}))
                       }}
-                      style={{ background: col }}
-                      className={` h-6 w-6 border-2 mt-1 cursor-pointer
+                      style={{ background: col,
+                        borderStyle: selectedColor === col ? "solid" : "dotted",
+                       }}
+                      className={` h-6 w-6 mt-1 cursor-pointer transition border-2
     ${
       selectedColor === col
-        ? "border-black shadow-2xl shadow-blue-300/50 border-3"
-        : "border-gray-400"
-    }`}
+        ? "border-black shadow-2xl shadow-blue-300/50 "
+        : " border-blue-400"
+    }}
+    `}
                       key={index}
                     ></div>
                   ))}
@@ -128,7 +149,9 @@ const ViewProduct = () => {
             </div>
             {/* button area start here  / second container*/}
             <div className="">
-              <div className="mt-4 bg-gray-200 p-2 flex-1 mb-4">
+              <div className={`mt-4 bg-gray-200 p-2 flex-1 mb-4
+                ${error.sizeError ? "animate-pulse border-yellow-700 border-3" : ''}
+                `}>
                 {/* size */}
                 <p className="text-xs mb-4 uppercase">Available size</p>
                 <div className="flex gap-4">
@@ -136,10 +159,13 @@ const ViewProduct = () => {
                     <p
                       onClick={() => {
                         setSelectedSize(siz);
+                        setError((Prev) => ({...Prev, sizeError: null}))
                       }}
                       className={`text-xs bg-white px-3 py-1  border-2 cursor-pointer ${
                         selectedSize === siz ? " border-black" : "border-white"
-                      } `}
+                      } 
+                      
+                      `}
                     >
                       {siz}
                     </p>

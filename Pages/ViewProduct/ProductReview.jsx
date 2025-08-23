@@ -4,6 +4,7 @@ import axios from "axios";
 import useReview from "../../api/useReview";
 import ReviewList from "./reviewList";
 import ReviewProgressBar from "./reviewProgressBar";
+import { toast } from "react-toastify";
 
 const ProductReview = ({ id }) => {
   const [rating, setRating] = useState(0);
@@ -13,8 +14,11 @@ const ProductReview = ({ id }) => {
   const { user } = UseAuth();
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!rating || !review) {
-      return alert("please add rating and review properly");
+    if (!review) {
+      return toast.error("please add review properly");
+    }
+    if(!rating) {
+      return toast.error("Please add rating properly ⭐⭐⭐⭐⭐")
     }
     const reviewData = {
       name: user?.displayName,
@@ -30,11 +34,11 @@ const ProductReview = ({ id }) => {
         reviewData
       );
       if (res.data.success) {
-        alert("Review submitted successfully");
+        toast.success('Submited')
         setReview("");
         setRating(0);
       } else {
-        alert("Failed to submit review");
+        toast.error("Failed to submit review")
       }
     } catch (err) {
       console.error("Error submitting review:", err);
