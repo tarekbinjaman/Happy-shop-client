@@ -1,3 +1,5 @@
+const { keyframes } = require("framer-motion");
+
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {

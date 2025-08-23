@@ -19,6 +19,8 @@ const ViewProduct = () => {
   const imageContainer = singleProduct?.images || [];
   const firstImage = imageContainer[0]?.url || "";
   const [error, setError] = useState({});
+  const [colorErrors, setColorErrors] = useState(false);
+  const [sizeErrors, setSizeErrors] = useState(false);
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -30,21 +32,41 @@ const ViewProduct = () => {
   if (isLoading) {
     return <p>Product is loading</p>;
   }
+  const triggerColorError = () => {
+    setColorErrors(true);
+    setTimeout(() => {
+      setColorErrors(false);
+    }, 2000);
+  };
+  const triggerSizeError = () => {
+    setSizeErrors(true);
+    setTimeout(() => {
+      setSizeErrors(false);
+    }, 2000);
+  };
   const addToCart = () => {
-    let newError = {}
-    if(!selectedSize) {
-      newError.sizeError = "please select a size";
-    };
-    if(!selectedColor) {
-      newError.colorError = "please select a color";
-    };
-    setError(newError);
-    if(newError?.sizeError) (
-      toast.error("Select a size 🤏 before add to cart")
-    );
-    if(newError?.colorError) (
-      toast.error("Select a color 🌈 before add to cart")
-    );
+    // let newError = {}
+    // if(!selectedSize) {
+    //   newError.sizeError = "please select a size";
+    // };
+    // if(!selectedColor) {
+    //   newError.colorError = "please select a color";
+    // };
+    // setError(newError);
+
+    let hashError = false;
+
+    if (!selectedSize) {
+      toast.error("Select a color before add to cart");
+      triggerSizeError();
+      hashError = true;
+    }
+    if (!selectedColor) {
+      toast.error("Select a size 🤏 before add to cart");
+      triggerColorError();
+      hashError = true;
+    }
+    if(hashError) return;
     console.log("All errors", error);
     console.log({
       productId: productId,
@@ -115,26 +137,33 @@ const ViewProduct = () => {
                   Colors :{" "}
                   <span
                     style={{ background: selectedColor }}
-                    className="inline-block h-3 w-4 border-gray-500 border-2"
+                    className={`inline-block h-3 w-4 border-gray-500 border-2 `}
                   ></span>
                 </p>
-                <div className={`flex items-center gap-4 mb-2 border border-white py-1
-                  ${error.colorError ? "animate-pulse border-yellow-700 border-2 pl-2" : ''}
-                  `}>
+                <div
+                  className={`flex items-center gap-4 mb-2 border border-white py-1
+                  ${
+                    colorErrors
+                      ? "animate-pulse border-yellow-700 border-3 pl-2"
+                      : ""
+                  }
+                  `}
+                >
                   {singleProduct?.color?.map((col, index) => (
                     <div
                       onClick={() => {
                         setSelectedColor(col);
-                        setError((Prev) => ({...Prev, colorError: null}))
+                        setError((Prev) => ({ ...Prev, colorError: null }));
                       }}
-                      style={{ background: col,
+                      style={{
+                        background: col,
                         borderStyle: selectedColor === col ? "solid" : "dotted",
-                       }}
+                      }}
                       className={` h-6 w-6 mt-1 cursor-pointer transition border-2
     ${
       selectedColor === col
-        ? "border-black shadow-2xl shadow-blue-300/50 "
-        : " border-blue-400"
+        ? " border-blue-400 h-7 w-10"
+        : "border-black "
     }}
     `}
                       key={index}
@@ -149,9 +178,11 @@ const ViewProduct = () => {
             </div>
             {/* button area start here  / second container*/}
             <div className="">
-              <div className={`mt-4 bg-gray-200 p-2 flex-1 mb-4
-                ${error.sizeError ? "animate-pulse border-yellow-700 border-3" : ''}
-                `}>
+              <div
+                className={`mt-4 bg-gray-200 p-2 flex-1 mb-4
+                ${sizeErrors ? "animate-pulse border-yellow-700 border-3" : ""}
+                `}
+              >
                 {/* size */}
                 <p className="text-xs mb-4 uppercase">Available size</p>
                 <div className="flex gap-4">
@@ -159,7 +190,7 @@ const ViewProduct = () => {
                     <p
                       onClick={() => {
                         setSelectedSize(siz);
-                        setError((Prev) => ({...Prev, sizeError: null}))
+                        setError((Prev) => ({ ...Prev, sizeError: null }));
                       }}
                       className={`text-xs bg-white px-3 py-1  border-2 cursor-pointer ${
                         selectedSize === siz ? " border-black" : "border-white"
@@ -218,23 +249,33 @@ const ViewProduct = () => {
       <div className="mt-12">
         {/* tabs */}
         <div className="flex gap-2.5 border-b border-gray-300 justify-center">
-        {
-          tabs.map((tab, index) => (
+          {tabs.map((tab, index) => (
             <button
-            key={index}
-            onClick={() => setActiveTab(index)}
-            className={`px-3 py-1 uppercase cursor-pointer transition
-              ${aciteveTab === index ? 'bg-blue-400 text-white' : 'bg-gray-300 text-gray-700'}
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`px-3 py-1 uppercase cursor-pointer transition
+              ${
+                aciteveTab === index
+                  ? "bg-blue-400 text-white"
+                  : "bg-gray-300 text-gray-700"
+              }
               `}
             >
               {tab}
             </button>
-          ))
-        }
+          ))}
         </div>
         <div>
-          {aciteveTab === 0 && <div><ProductDetails id={productId} /> </div>}
-          {aciteveTab === 1 && <div><ProductReview id={productId} /> </div>}
+          {aciteveTab === 0 && (
+            <div>
+              <ProductDetails id={productId} />{" "}
+            </div>
+          )}
+          {aciteveTab === 1 && (
+            <div>
+              <ProductReview id={productId} />{" "}
+            </div>
+          )}
         </div>
       </div>
     </div>
