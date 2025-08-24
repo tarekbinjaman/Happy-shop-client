@@ -8,6 +8,8 @@ import ProductDetails from "./ProductDetails";
 import ProductReview from "./ProductReview";
 import { toast } from "react-toastify";
 import axios from "axios";
+import UseAuth from "../../Context/UseAuth";
+import useCart from "../../api/useCart";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -22,6 +24,8 @@ const ViewProduct = () => {
   const [error, setError] = useState({});
   const [colorErrors, setColorErrors] = useState(false);
   const [sizeErrors, setSizeErrors] = useState(false);
+  const { user } = UseAuth();
+  const [cartData, isCartLoading, cartRefetch] = useCart();
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -45,7 +49,7 @@ const ViewProduct = () => {
       setSizeErrors(false);
     }, 2000);
   };
-  const addToCart = async() => {
+  const addToCart = async () => {
     // let newError = {}
     // if(!selectedSize) {
     //   newError.sizeError = "please select a size";
@@ -70,6 +74,7 @@ const ViewProduct = () => {
     if (hashError) return;
     console.log("All errors", error);
     const cartData = {
+      userEmail: user?.email,
       productId: productId,
       title: singleProduct?.title,
       price: singleProduct?.finalPrice,
@@ -77,15 +82,20 @@ const ViewProduct = () => {
       color: selectedColor,
       quantity: quantity,
     };
-    const res = await axios.post("http://localhost:5000/api/cartList", cartData)
-    if(res.data.success) {
+    const res = await axios.post(
+      "http://localhost:5000/api/cartList",
+      cartData
+    );
+    if (res.data.success) {
       toast.success("Product added successfully");
-      console.log(res.data)
-    } 
-    if(!res.data.success) (
-      (console.log(res))
-    ) 
-      
+      console.log(res.data);
+      setSelectedColor("");
+      setSelectedSize("");
+      setQuantity(1);
+      cartRefetch()
+    }
+    if (!res.data.success) console.log(res);
+
     console.log(cartData);
   };
   console.log("This is product in single page", imageContainer);
