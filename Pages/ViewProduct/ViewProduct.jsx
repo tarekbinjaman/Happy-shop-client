@@ -92,7 +92,7 @@ const ViewProduct = () => {
       setSelectedColor("");
       setSelectedSize("");
       setQuantity(1);
-      cartRefetch()
+      cartRefetch();
     }
     if (!res.data.success) console.log(res);
 
@@ -148,9 +148,15 @@ const ViewProduct = () => {
                 <span className="text-3xl font-bold">
                   ${singleProduct?.finalPrice}
                 </span>
-                <span className="text-[13px] text-red-500 absolute ml-14 -mt-3">
-                  -{singleProduct?.discount}%
-                </span>
+                {imageContainer.length > 1 ? (
+                  <span className="text-[13px] text-red-500 absolute ml-14 -mt-3">
+                    -{singleProduct?.discount}%
+                  </span>
+                ) : (
+                  <span className="text-[13px] text-red-500 absolute ml-18 -mt-3">
+                    -{singleProduct?.discount}%
+                  </span>
+                )}
               </div>
               <div className="mt-2">
                 {/* colors */}
