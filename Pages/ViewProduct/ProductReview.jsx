@@ -56,9 +56,9 @@ const ProductReview = ({ id }) => {
         <ReviewProgressBar id={id} />
       </div>
       {/* component 1 */}
-      <div className="flex flex-row-reverse justify-between mt-10">
-      <div className="w-3/6">
-      <div className="sticky top-10">
+      <div className="flex lg:flex-row-reverse flex-col justify-between mt-10">
+      <div className="lg:w-3/6 mb-4 lg::mb-0">
+      <div className="md:sticky md:top-10">
       <div className="mt-4 flex flex-col  space-y-2">
         <div className="flex flex-col">
           <label>Name ●</label>

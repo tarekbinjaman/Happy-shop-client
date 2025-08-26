@@ -31,8 +31,8 @@ const ReviewProgressBar = ({ id }) => {
   ];
   console.log("How many time one two", starArray);
   return (
-    <div className="flex mt-8">
-      <div className="flex flex-col space-y-2 w-3/6">
+    <div className="flex mt-8 lg:justify-between md:gap-3 md:flex-row flex-col-reverse">
+      <div className="flex flex-col space-y-2 xl:w-3/6 lg:w-4/6 md:w-4/6 mt-4 md:mt-0">
         {starArray.map((item) => (
           <div className="flex gap-2 items-center ">
             <div className="flex ">
@@ -54,7 +54,7 @@ const ReviewProgressBar = ({ id }) => {
         ))}
       </div>
       {/* average rating */}
-      <div className="bg-orange-100 w-3/6 flex items-center justify-center rounded-xl">
+      <div className="bg-orange-100 xl:w-3/6 lg:w-2/6 md:w-2/6 flex items-center justify-center rounded-xl py-4 md:py-0">
       <div className="text-center">
         <h1 className="text-xl font-bold text-orange-400 mb-2">{Math.floor(sumOfAverageRating * 10)  / 10}</h1>
 
