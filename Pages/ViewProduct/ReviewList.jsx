@@ -76,9 +76,9 @@ const ReviewList = ({ id }) => {
           })}
       </div>
          :
-         <div className="flex items-center justify-center h-32 w-xl">
-         <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl">No review found here</h1>
+         <div className="flex items-center justify-center h-80 w-md border">
+         <div className="flex flex-col items-center justify-center ">
+          <h1 className="text-md mb-4 text-blue-600 font-bold">No reviews yet — be the first to share your thoughts!</h1>
           <IoBanOutline className="text-4xl" />
          </div>
          </div>

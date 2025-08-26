@@ -102,9 +102,9 @@ const ViewProduct = () => {
   return (
     <div className="xl:w-7/10 lg:w-11/12 mx-auto ">
       <div className="lg:flex gap-6 justify-between ">
-        <div className={`flex lg:flex-row flex-col gap-8 justify-center`}>
+        <div className={`flex lg:flex-row flex-col gap-8 justify-center lg:px-0 px-4`}>
           {/* image area */}
-          <div className="flex gap-2 justify-center">
+          <div className="flex gap-2 justify-center mt-4">
             {imageContainer.length > 1 && (
               <div className="md:h-[422px] h-[350px] w-[140px] flex flex-col overflow-y-auto space-y-2.5">
                 {/* all images */}
@@ -130,13 +130,13 @@ const ViewProduct = () => {
               <img
                 src={showImage}
                 alt=""
-                className={`w-[400px] h-full object-cover rounded-md ${imageContainer.length >= 1 && 'mt-4'}`}
+                className={`w-[400px] h-full object-cover rounded-md}`}
               />
             </div>
           </div>
           {/* text area */}
 
-          <div className="flex flex-col space-y-2 h-[422px] justify-between">
+          <div className="flex flex-col space-y-2 h-[422px] justify-between ">
             {/* text-area 1 / first container */}
             <div>
               <h1 className="text-4xl font-bold uppercase">
@@ -288,7 +288,7 @@ const ViewProduct = () => {
             </button>
           ))}
         </div>
-        <div>
+        <div className="lg:px-0 px-4">
           {aciteveTab === 0 && (
             <div>
               <ProductDetails id={productId} />{" "}
