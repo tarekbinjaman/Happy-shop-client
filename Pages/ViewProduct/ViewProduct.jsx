@@ -100,13 +100,13 @@ const ViewProduct = () => {
   };
   console.log("This is product in single page", imageContainer);
   return (
-    <div className="xl:w-7/10 lg:w-11/12 mx-auto border">
-      <div className="flex gap-6 justify-between">
-        <div className={`flex gap-8 justify-center`}>
+    <div className="xl:w-7/10 lg:w-11/12 mx-auto ">
+      <div className="lg:flex gap-6 justify-between ">
+        <div className={`flex lg:flex-row flex-col gap-8 justify-center`}>
           {/* image area */}
-          <div className="flex gap-2">
+          <div className="flex gap-2 justify-center">
             {imageContainer.length > 1 && (
-              <div className="h-[422px] w-[140px] flex flex-col overflow-y-auto space-y-2.5">
+              <div className="md:h-[422px] h-[350px] w-[140px] flex flex-col overflow-y-auto space-y-2.5">
                 {/* all images */}
                 {imageContainer.map((img, index) => (
                   <img
@@ -115,7 +115,7 @@ const ViewProduct = () => {
                     onClick={() => {
                       setShowImage(img?.url);
                     }}
-                    className={`w-full h-[133px] object-cover rounded-md
+                    className={`w-full md:h-[133px] flex-1 md:flex-none object-cover rounded-md
                                         ${
                                           showImage === img?.url
                                             ? "border-2 border-blue-500 rounded-md"
@@ -126,17 +126,17 @@ const ViewProduct = () => {
                 ))}
               </div>
             )}
-            <div className="h-[422px]">
+            <div className={`md:h-[422px] h-[350px]`}>
               <img
                 src={showImage}
                 alt=""
-                className="w-[400px] h-full object-cover rounded-md"
+                className={`w-[400px] h-full object-cover rounded-md ${imageContainer.length >= 1 && 'mt-4'}`}
               />
             </div>
           </div>
           {/* text area */}
 
-          <div className="flex flex-col space-y-2 h-[422px] justify-between border-2 border-blue-400">
+          <div className="flex flex-col space-y-2 h-[422px] justify-between">
             {/* text-area 1 / first container */}
             <div>
               <h1 className="text-4xl font-bold uppercase">
@@ -194,7 +194,7 @@ const ViewProduct = () => {
                   ))}
                 </div>
               </div>
-              <div className="w-full md:w-96 mt-2">
+              <div className="w-full lg:w-96 mt-2">
                 {/* description */}
                 <p className="text-sm">{singleProduct?.description}</p>
               </div>

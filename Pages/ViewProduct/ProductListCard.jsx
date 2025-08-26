@@ -13,7 +13,7 @@ const ProductListCard = ({ id }) => {
       <img className="w-16 h-16 object-fill" src={prod?.images[0].url} alt="" />
         </div>
       <div>
-        <h1 className="text-md font-bold">{prod?.title}</h1>
+        <h1 className="xl:text-sm font-bold">{prod?.title.slice(0, 10)}</h1>
 
         {/* rating */}
         <div className="flex items-center space-x-1 mt-1">
