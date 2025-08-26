@@ -100,7 +100,7 @@ const ViewProduct = () => {
   };
   console.log("This is product in single page", imageContainer);
   return (
-    <div className="w-7/10 mx-auto">
+    <div className="xl:w-7/10 lg:w-11/12 mx-auto border">
       <div className="flex gap-6 justify-between">
         <div className={`flex gap-8 justify-center`}>
           {/* image area */}
@@ -136,7 +136,7 @@ const ViewProduct = () => {
           </div>
           {/* text area */}
 
-          <div className="flex flex-col space-y-2 h-[422px] justify-between">
+          <div className="flex flex-col space-y-2 h-[422px] justify-between border-2 border-blue-400">
             {/* text-area 1 / first container */}
             <div>
               <h1 className="text-4xl font-bold uppercase">
@@ -264,7 +264,7 @@ const ViewProduct = () => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="hidden xl:block">
           {/* product list */}
           <ProductList />
         </div>
