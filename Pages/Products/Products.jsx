@@ -52,10 +52,10 @@ const Products = () => {
   console.log("ALl products", products);
   return (
     <div>
-        <div className="sticky top-5 ml-15 z-10">
+        <div className="sticky top-5 md:ml-15 ml-4 z-10 lg:hidden">
         <button 
         onClick={() => {setFilterModal(!filterModal)}}
-        className="cursor-pointer border-2 px-3 py-1 rounded-xl">Filter</button>
+        className="cursor-pointer border-2 px-3 py-1 rounded-xl bg-white/20 backdrop-blur-md hover:bg-white/40">Filter</button>
         </div>
       <div className="flex gap-2 justify-center">
         <aside className="xl:w-1/7 lg:w-2/7 hidden lg:block">
@@ -226,19 +226,19 @@ const Products = () => {
           </div>
         </aside>
         {/* small device sidebar */}
-        <aside className={`xl:w-1/7 lg:w-2/7 lg:hidden sticky top-10 h-screen z-30  ${filterModal ? 'visible' : 'hidden'}`}>
-          <div className="border-2 border-black/10 p-2 rounded-2xl absolute z-30  bg-white/30 backdrop-blur-md -left-3 mt-10 ">
+        <aside className={`xl:w-1/7 lg:w-2/7 lg:hidden sticky top-10 h-screen z-30  ${filterModal ?  "translate-x-0 opacity-100" : "-translate-x-5 opacity-0"} transition-all duration-200 ease-in-out`}>
+          <div className="border-2 border-black/10 p-2 rounded-2xl absolute z-30  bg-white/30 md:backdrop-blur-md backdrop-blur-xl -left-3 mt-10">
             <DualRangeSlider
               values={priceRange}
               setValues={setPriceRange}
               refetch={refetch}
             />
-            <div className="flex items-start">
+            <div className="md:flex items-start">
               {/* parent of parent div */}
               <div className="flex gap-4 items-center justify-between">
                 {/* parent div 1 */}
 
-                <div className="w-32">
+                <div className="md:w-32 w-40">
                   <h2 className="font-bold">Brands</h2>
                   <div className="flex flex-col">
                     <label>
@@ -283,7 +283,7 @@ const Products = () => {
                   </div>
                 </div>
 
-                <div className="w-32">
+                <div className="md:w-32 w-40">
                   {/* gender checkbox */}
                   {(!categoryName || categoryName === "newArrival") && (
                     <div>
@@ -342,7 +342,7 @@ const Products = () => {
 
               <div className="flex items-start gap-4  mt-2 justify-between">
                 {/* parent div 2 */}
-                <div className="w-32">
+                <div className="md:w-32 w-40">
                   <h2 className="font-bold mb-2 ">Fit type</h2>
                   <div className="flex flex-col">
                     <label>
@@ -374,7 +374,7 @@ const Products = () => {
                     </label>
                   </div>
                 </div>
-                <div className="w-32">
+                <div className="md:w-32 w-40">
                   <h2 className="font-bold mb-2 ">Materials</h2>
                   <div className="flex flex-col mb-4">
                     <label>
@@ -446,7 +446,7 @@ const Products = () => {
             </div>
             <button 
             onClick={() => {setFilterModal(!filterModal)}}
-            className="bg-white/10 backdrop-blur-md border border-black/20 w-full rounded-md text-black font-bold inset-shadow-2xs inset-shadow-white hover:bg-white/20 cursor-pointer">
+            className="bg-white/10 backdrop-blur-md border border-black/20 w-full rounded-md text-black font-bold inset-shadow-2xs inset-shadow-white hover:bg-white/20 cursor-pointer transition-all duration-200">
               Close
             </button>
           </div>
