@@ -49,6 +49,14 @@ const Products = () => {
       categoryName !== "newArrival" && { category: categoryName }),
   };
   const [products, isLoading, refetch] = useProducts(filterParams);
+  const [page, setPage] = useState(1);
+  const itemsPerpage = 10;
+  
+  // calculate item to show
+  
+  const start = (page - 1);
+  const end = start + itemsPerpage;
+  
   console.log("ALl products", products);
   return (
     <div>
@@ -477,6 +485,8 @@ const Products = () => {
               </div>
             </div>
           )}
+          {/* pagination button */}
+          <button>This is pagination</button>
         </section>
       </div>
     </div>
