@@ -14,10 +14,7 @@ const useProducts = (filterParams) => {
         queryFn: async () => {
             const res = await axiosSecure.get(`http://localhost:5000/api/products?${queryStr}`);
             return res.data;
-        },
-        
-      keepPreviousData: true,
-      enabled: !!queryStr, // only fetch if queryStr exists
+        }
     
      });
      const products = queryData.products || [];

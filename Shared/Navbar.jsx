@@ -504,6 +504,7 @@ const Navbar = () => {
         <div class="md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 flex-1 hidden xl:block">
           <div class="relative">
             <input
+            
             onChange={handleChange}
             onFocus={() => query && setShowSuggestions(true)}
               class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
