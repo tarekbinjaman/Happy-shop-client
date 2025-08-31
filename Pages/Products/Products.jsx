@@ -49,22 +49,30 @@ const Products = () => {
       categoryName !== "newArrival" && { category: categoryName }),
   };
   const [products, isLoading, refetch] = useProducts(filterParams);
+
+  // pagination
   const [page, setPage] = useState(1);
   const itemsPerpage = 10;
-  
   // calculate item to show
-  
-  const start = (page - 1);
+
+  const start = (page - 1) * itemsPerpage;
   const end = start + itemsPerpage;
+  const currectItems = products.slice(start, end);
+  const totalPages = Math.ceil(products.length / itemsPerpage);
+  console.log("Total pages", totalPages);
   
-  console.log("ALl products", products);
   return (
     <div>
-        <div className="sticky top-5 md:ml-15 ml-4 z-10 lg:hidden">
-        <button 
-        onClick={() => {setFilterModal(!filterModal)}}
-        className="cursor-pointer border-2 px-3 py-1 rounded-xl bg-white/20 backdrop-blur-md hover:bg-white/40">Filter</button>
-        </div>
+      <div className="sticky top-5 md:ml-15 ml-4 z-10 lg:hidden">
+        <button
+          onClick={() => {
+            setFilterModal(!filterModal);
+          }}
+          className="cursor-pointer border-2 px-3 py-1 rounded-xl bg-white/20 backdrop-blur-md hover:bg-white/40"
+        >
+          Filter
+        </button>
+      </div>
       <div className="flex gap-2 justify-center">
         <aside className="xl:w-1/7 lg:w-2/7 hidden lg:block">
           <div className="border border-gray-400 m-4 p-2 rounded-2xl">
@@ -234,7 +242,13 @@ const Products = () => {
           </div>
         </aside>
         {/* small device sidebar */}
-        <aside className={`xl:w-1/7 lg:w-2/7 lg:hidden sticky top-10 h-screen z-30  ${filterModal ?  "translate-x-0 opacity-100" : "-translate-x-5 opacity-0"} transition-all duration-200 ease-in-out`}>
+        <aside
+          className={`xl:w-1/7 lg:w-2/7 lg:hidden sticky top-10 h-screen z-30  ${
+            filterModal
+              ? "translate-x-0 opacity-100"
+              : "-translate-x-5 opacity-0"
+          } transition-all duration-200 ease-in-out`}
+        >
           <div className="border-2 border-black/10 p-2 rounded-2xl absolute z-30  bg-white/30 md:backdrop-blur-md backdrop-blur-xl -left-3 mt-10">
             <DualRangeSlider
               values={priceRange}
@@ -452,9 +466,12 @@ const Products = () => {
                 </div>
               </div>
             </div>
-            <button 
-            onClick={() => {setFilterModal(!filterModal)}}
-            className="bg-white/10 backdrop-blur-md border border-black/20 w-full rounded-md text-black font-bold inset-shadow-2xs inset-shadow-white hover:bg-white/20 cursor-pointer transition-all duration-200">
+            <button
+              onClick={() => {
+                setFilterModal(!filterModal);
+              }}
+              className="bg-white/10 backdrop-blur-md border border-black/20 w-full rounded-md text-black font-bold inset-shadow-2xs inset-shadow-white hover:bg-white/20 cursor-pointer transition-all duration-200"
+            >
               Close
             </button>
           </div>
@@ -474,19 +491,44 @@ const Products = () => {
             <div className="flex justify-center">
               <div className="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-8">
                 {categoryName === "newArrival"
-                  ? products
+                  ? currectItems
                       .slice(-10)
                       .map((product, index) => (
                         <ProductsCard product={product} key={index} />
                       ))
-                  : products.map((product, index) => (
+                  : currectItems.map((product, index) => (
                       <ProductsCard product={product} key={index} />
                     ))}
               </div>
             </div>
           )}
           {/* pagination button */}
-          <button>This is pagination</button>
+          <div className="flex items-center justify-center gap-2 mt-6">
+          <button
+          onClick={() => setPage(page - 1)}
+          disabled = {page === 1}
+          className="px-3 py-1 disabled:opacity-50 bg-gray-200 rounded"
+          >
+            Prev
+          </button>
+          {
+            Array.from({length: totalPages}, (_, i) => (
+              <button
+              className={`${i + 1 === page ? 'bg-black text-white' : 'bg-gray-200 text-black'} px-4 py-1 rounded`}
+              onClick={() => setPage(i + 1)}
+              >
+                {i + 1}
+              </button>
+            ))
+          }
+          <button
+          disabled = {page === totalPages} 
+          onClick={() => setPage(page + 1)}
+          className="px-3 py-1 disabled:opacity-50 bg-gray-200 rounded"
+          >
+            Next
+          </button>
+          </div>
         </section>
       </div>
     </div>
