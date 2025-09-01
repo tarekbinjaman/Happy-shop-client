@@ -64,6 +64,7 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       if (dropdownref.current && !dropdownref.current.contains(event.target)) {
         setDropdownOpen(false);
+        setShowSuggestions(false)
         {
           dropdownOpen ? console.log("dropdown true") : "dropdown false";
         }
@@ -508,7 +509,7 @@ const Navbar = () => {
             onChange={handleChange}
             onFocus={() => query && setShowSuggestions(true)}
               class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
-              placeholder="Search productdd..."
+              placeholder="Search product..."
             />
             <button
               class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
@@ -531,18 +532,32 @@ const Navbar = () => {
           </div>
                 {/* Suggestions Dropdown */}
       {showSuggestions && !ProductLoading && products.length > 0 && (
-        <ul className="absolute z-50 mt-1 w-full bg-white border border-slate-200 rounded-md shadow-md">
+        <ul className="absolute z-50 mt-1 w-2/5 bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
           {products.map((item) => (
-            <li
-              key={item._id}
-              className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-slate-700"
-              onClick={() => {
-                setQuery(item.name);
-                setShowSuggestions(false);
-              }}
-            >
-              {item.name}
-            </li>
+
+
+              // <div               
+              // key={item._id}
+              // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
+              // onClick={() => {
+              //   setQuery(item.title);
+              //   setShowSuggestions(false);
+              // }}>
+              // {item.title}
+              // {item?.images[0]}
+              // </div>
+              <Link 
+              to={`viewProduct/${item?._id}`}>              
+              <div
+              key={item?._id}
+              className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
+              >
+                {item?.title}
+                <img className="w-10 h-10 object-cover" src={item?.images[0].url} alt="" />
+                
+              </div>
+              </Link>
+
           ))}
         </ul>
       )}
