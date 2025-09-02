@@ -531,7 +531,7 @@ const Navbar = () => {
           </div>
           {/* Suggestions Dropdown */}
           {showSuggestions && !ProductLoading && products.length > 0 && (
-            <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
+            <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] lg:w-[514px] bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
               {products.map((item) => (
                 // <div
                 // key={item._id}
