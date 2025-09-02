@@ -694,6 +694,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+      {/* search bar for small device */}
       <div className="relative flex justify-center">
         <div
           className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
@@ -717,6 +718,8 @@ const Navbar = () => {
             </svg>
 
             <input
+              onChange={handleChange}
+              onFocus={() => query && setShowSuggestions(true)}
               class="w-full bg-white backdrop-blur-md placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-white focus:shadow  hover:shadow-2xl hover:shadow-black"
               placeholder="Search here..."
             />
@@ -728,6 +731,36 @@ const Navbar = () => {
               Search
             </button>
           </div>
+                    {/* Suggestions Dropdown */}
+          {showSuggestions && !ProductLoading && products.length > 0 && (
+            <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] md:w-[550px] bg-white border border-slate-200 rounded-md shadow-md px-2 md:max-h-80 w-[300px] max-h-80  overflow-y-auto">
+              {products.map((item) => (
+                // <div
+                // key={item._id}
+                // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
+                // onClick={() => {
+                //   setQuery(item.title);
+                //   setShowSuggestions(false);
+                // }}>
+                // {item.title}
+                // {item?.images[0]}
+                // </div>
+                <Link to={`viewProduct/${item?._id}`}>
+                  <div
+                    key={item?._id}
+                    className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
+                  >
+                    {item?.title}
+                    <img
+                      className="w-10 h-10 object-cover"
+                      src={item?.images[0].url}
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
 
