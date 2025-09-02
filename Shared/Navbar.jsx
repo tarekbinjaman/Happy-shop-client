@@ -29,7 +29,7 @@ const Navbar = () => {
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [cartData, isLoading, refetch] = useCart();
-  
+
   // search bar hooks
   const [query, setQuery] = useState("");
   const [filterParams, setFilterParams] = useState({});
@@ -41,10 +41,10 @@ const Navbar = () => {
     const value = e.target.value;
     setQuery(value);
 
-    if(value.trim()) {
-      setFilterParams({search: value});
+    if (value.trim()) {
+      setFilterParams({ search: value });
       setShowSuggestions(true);
-      console.log("Navbar products", products)
+      console.log("Navbar products", products);
     } else {
       setFilterParams({});
       setShowSuggestions(false);
@@ -64,7 +64,7 @@ const Navbar = () => {
     const handleClickOutside = (event) => {
       if (dropdownref.current && !dropdownref.current.contains(event.target)) {
         setDropdownOpen(false);
-        setShowSuggestions(false)
+        setShowSuggestions(false);
         {
           dropdownOpen ? console.log("dropdown true") : "dropdown false";
         }
@@ -81,7 +81,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between px-4">
         <div className="flex items-center gap-6 whitespace-nowrap">
           {/* logo */}
-          <div className="flex items-end gap-2">
+          <div className="flex xl:items-center items-end gap-2">
             {/* sidebar icon */}
             <div
               className="xl:hidden block mr-3"
@@ -92,7 +92,7 @@ const Navbar = () => {
             {/* logo */}
             <Link to={`/`}>
               <p
-                className="uppercase font-bold md:text-3xl text-2xl"
+                className="uppercase font-bold 2xl:text-3xl text-2xl"
                 style={{ fontFamily: "Integral CF", letterSpacing: "2px" }}
               >
                 <span>shop</span>.co
@@ -102,7 +102,7 @@ const Navbar = () => {
           <div className="hidden 2xl:block xl:block">
             {/* navlinks */}
             <div>
-              <ul className="flex text-[18px] font-normal gap-8 ">
+              <ul className="flex 2xl:text-[18px] xl:text-[15px] font-normal 2xl:gap-8 xl:gap-5">
                 <li className="hover:text-orange-300">
                   <Link to={"/"}>Home</Link>
                 </li>
@@ -502,12 +502,11 @@ const Navbar = () => {
         {/* search bar */}
         {/* <input className='md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 hidden xl:block' placeholder='  🔍 Search for products...' type="text" name="" id="" /> */}
         {/* search bar */}
-        <div class="md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 flex-1 hidden xl:block">
+        <div class="md:mx-8 mx-4  lg:py-2 lg:px-4 p-0.5 flex-1 hidden lg:block">
           <div class="relative">
             <input
-            
-            onChange={handleChange}
-            onFocus={() => query && setShowSuggestions(true)}
+              onChange={handleChange}
+              onFocus={() => query && setShowSuggestions(true)}
               class="w-full bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded-md pl-3 pr-28 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-300 shadow-sm focus:shadow"
               placeholder="Search product..."
             />
@@ -530,37 +529,36 @@ const Navbar = () => {
               Search
             </button>
           </div>
-                {/* Suggestions Dropdown */}
-      {showSuggestions && !ProductLoading && products.length > 0 && (
-        <ul className="absolute z-50 mt-1 w-2/5 bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
-          {products.map((item) => (
-
-
-              // <div               
-              // key={item._id}
-              // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
-              // onClick={() => {
-              //   setQuery(item.title);
-              //   setShowSuggestions(false);
-              // }}>
-              // {item.title}
-              // {item?.images[0]}
-              // </div>
-              <Link 
-              to={`viewProduct/${item?._id}`}>              
-              <div
-              key={item?._id}
-              className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
-              >
-                {item?.title}
-                <img className="w-10 h-10 object-cover" src={item?.images[0].url} alt="" />
-                
-              </div>
-              </Link>
-
-          ))}
-        </ul>
-      )}
+          {/* Suggestions Dropdown */}
+          {showSuggestions && !ProductLoading && products.length > 0 && (
+            <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
+              {products.map((item) => (
+                // <div
+                // key={item._id}
+                // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
+                // onClick={() => {
+                //   setQuery(item.title);
+                //   setShowSuggestions(false);
+                // }}>
+                // {item.title}
+                // {item?.images[0]}
+                // </div>
+                <Link to={`viewProduct/${item?._id}`}>
+                  <div
+                    key={item?._id}
+                    className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
+                  >
+                    {item?.title}
+                    <img
+                      className="w-10 h-10 object-cover"
+                      src={item?.images[0].url}
+                      alt=""
+                    />
+                  </div>
+                </Link>
+              ))}
+            </ul>
+          )}
         </div>
         {/* <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" /> */}
 
@@ -570,7 +568,7 @@ const Navbar = () => {
             {/* profile and cart */}
             <div className="flex items-center gap-4">
               <FaMagnifyingGlass
-                className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden xl:hidden"
+                className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
                 onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
               />
               <div className="relative mr-3">
@@ -585,9 +583,7 @@ const Navbar = () => {
                     {mycart?.length}
                   </p>
                 ) : (
-                  <p className="absolute text-base -top-2 -right-3 ">
-                    0
-                  </p>
+                  <p className="absolute text-base -top-2 -right-3 ">0</p>
                 )}
               </div>
             </div>
@@ -700,13 +696,13 @@ const Navbar = () => {
       </div>
       <div className="relative flex justify-center">
         <div
-          class={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
+          className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
             isSearchBarOpen
               ? "max-h-screen opacity-100 mt-4"
               : "max-h-0 opacity-0"
           } transition-all  duration-700 ease-in-out`}
         >
-          <div class="relative flex items-center ">
+          <div className="relative flex items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
