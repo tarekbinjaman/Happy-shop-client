@@ -29,6 +29,13 @@ const Navbar = () => {
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [cartData, isLoading, refetch] = useCart();
+  const [openSection, setOpenSection] = useState({
+    men: false,
+    women: false,
+    boys: false,
+    girls: false,
+    kids: false,
+  });
 
   // search bar hooks
   const [query, setQuery] = useState("");
@@ -36,11 +43,10 @@ const Navbar = () => {
   const [products, ProductLoading] = useProducts(filterParams);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-
-  // search button function 
+  // search button function
   const handleSearch = () => {
-    if(query.trim()) {
-      navigate(`/productsList?search=${encodeURIComponent(query)}`)
+    if (query.trim()) {
+      navigate(`/productsList?search=${encodeURIComponent(query)}`);
     }
   };
 
@@ -73,7 +79,7 @@ const Navbar = () => {
       if (dropdownref.current && !dropdownref.current.contains(event.target)) {
         setDropdownOpen(false);
         setShowSuggestions(false);
-       
+
         {
           dropdownOpen ? console.log("dropdown true") : "dropdown false";
         }
@@ -742,7 +748,7 @@ const Navbar = () => {
               Search
             </button>
           </div>
-                    {/* Suggestions Dropdown */}
+          {/* Suggestions Dropdown */}
           {showSuggestions && !ProductLoading && products.length > 0 && (
             <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] md:w-[550px] bg-white border border-slate-200 rounded-md shadow-md px-2 md:max-h-80 w-[300px] max-h-80  overflow-y-auto">
               {products.map((item) => (
@@ -792,46 +798,418 @@ const Navbar = () => {
               <IoMdClose />
             </button>
           </div>
-          <ul className="space-y-4">
-            <li className="border-b border-gray-400">
+          <ul className="space-y-4 divide-y-2 divide-black">
+            <li className="">
               <span
-                onClick={() => setIsOpen(!isOpen)}
-                className="flex items-center gap-1 justify-between"
+                onClick={() =>
+                  setOpenSection((prev) => ({ ...prev, men: !prev.men }))
+                }
+                className="cursor-pointer font-bold text-xl text-blue-500 block"
               >
-                Shop{" "}
-                <GoChevronDown
-                  className={`group-hover:text-orange-300 text-3xl cursor-pointer transition-transform duration-300 ${
-                    isOpen ? "rotate-180" : ""
-                  }`}
-                />
+                Men
               </span>
-
-              <div className="relative transition-all duration-300 ease-in-out">
-                <ul
-                  className={` transition-all  duration-300 ease-in-out 
-                                    ${
-                                      isOpen
-                                        ? "max-h-screen opacity-100 "
-                                        : "max-h-0 opacity-0"
-                                    }
-                                    `}
-                >
-                  <li className="border-b-2 border-gray-300 pl-4 cursor-pointer hover:text-orange-300">
-                    Mens
-                  </li>
-                  <li className="border-b-2 border-gray-300 pl-4 cursor-pointer hover:text-orange-300">
-                    Women
-                  </li>
-                  <li className=" pl-4 cursor-pointer hover:text-orange-300">
-                    Kids
-                  </li>
-                </ul>
-              </div>
+              <ul
+                className={` transform divide-y-2  divide-gray-400 overflow-hidden  duration-300 ease-in-out space-y-3 ${
+                  openSection.men
+                    ? "max-h-screen opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                } `}
+              >
+                <li className="  cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="flex justify-between items-center"
+                    to={"/productsList/T-Shirt"}
+                  >
+                    {" "}
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      T Shirt
+                    </span>
+                  </Link>
+                </li>
+                <li className="  cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="flex justify-between items-center"
+                    to={"/productsList/Polo Shirt"}
+                  >
+                    {" "}
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Polo Shirt
+                    </span>
+                  </Link>
+                </li>
+                <li className="  cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"/productsList/Cuban Collar Shirt"}>
+                      Cuban Collar Shirt
+                    </Link>
+                  </span>{" "}
+                </li>
+                <li className="  cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"/productsList/Dress Shirt"}>Dress Shirt</Link>
+                  </span>{" "}
+                </li>
+                <li className="  cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"productsList/Casual"}>Casual</Link>
+                  </span>
+                </li>
+                <li className="  cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"productsList/Formal"}>Formal</Link>
+                  </span>
+                </li>
+                <li className="  cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"productsList/Gym"}>Gym</Link>
+                  </span>
+                </li>
+                <li className="  cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"productsList/V Neck"}>V-neck</Link>
+                  </span>
+                </li>
+              </ul>
             </li>
-            <li className="border-b border-gray-400">On sale</li>
-            <li className="border-b border-gray-400">New Arrivals</li>
-            <li className="border-b border-gray-400">Brands</li>
-            <li className="border-b border-gray-400">Wishlist</li>
+            <li className="">
+              <span
+                onClick={() =>
+                  setOpenSection((prev) => ({ ...prev, women: !prev.women }))
+                }
+                className="cursor-pointer font-bold text-xl text-blue-500 block"
+              >
+                Women
+              </span>
+              <ul
+                className={` space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                  openSection.women
+                    ? "max-h-screen opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                } `}
+              >
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/A-Line"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      A-Line
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Apron"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Apron
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Asymmetrical"}>Asymmetrical </Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Ball Gown"}>Ball Gown</Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Caftan"}>Caftan</Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/One-Shoulder"}>One-Shoulder</Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Yoke Dress"}>Yoke Dress</Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Wrap Dress"}>Wrap Dress</Link>
+                  </span>{" "}
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"productsList/Basic"}>Basic</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"productsList/Party"}>Party</Link>
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li className="">
+              <span
+                onClick={() =>
+                  setOpenSection((prev) => ({ ...prev, boys: !prev.boys }))
+                }
+                className="cursor-pointer font-bold text-xl text-blue-500 block"
+              >
+                Boys
+              </span>
+              <ul
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                  openSection.boys
+                    ? "max-h-screen opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                } `}
+              >
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/T-Shirt"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      T-shirt
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Shorts"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Shorts
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Overalls"}>Overalls</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Hoodie"}>Hoodie</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Sweatpants"}>Sweatpants</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Polo Shirt"}>Polo Shirt</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Dungarees"}>Dungarees</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Bomber Jacket"}>
+                      Bomber Jacket
+                    </Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Basic-Boys"}>Basic</Link>
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li className="">
+              <span
+                onClick={() =>
+                  setOpenSection((prev) => ({ ...prev, girls: !prev.girls }))
+                }
+                className="cursor-pointer font-bold text-xl text-blue-500 block"
+              >
+                Girls
+              </span>
+              <ul
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                  openSection.girls
+                    ? "max-h-screen opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                } `}
+              >
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
+                    to={"/productsList/Frock"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Frock
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Skirt"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Skirt
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Leggings"}>Leggings</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Gown"}>Gown</Link>
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li className="">
+              <span
+                onClick={() =>
+                  setOpenSection((prev) => ({ ...prev, kids: !prev.kids }))
+                }
+                className="cursor-pointer font-bold text-xl text-blue-500 block"
+              >
+                Kids
+              </span>
+              <ul
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                  openSection.kids
+                    ? "max-h-screen opacity-100 mt-2"
+                    : "max-h-0 opacity-0"
+                } `}
+              >
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Rompers"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Rompers
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                  <Link
+                  onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Jumpsuit"}
+                  >
+                    <span className=" hover:ml-2 transition-all duration-300">
+                      Jumpsuit
+                    </span>
+                  </Link>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Dungarees"}>Dungarees</Link>
+                  </span>
+                </li>
+                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
+                  <span className="hover:ml-2 transition-all duration-300">
+                    <Link 
+                    onClick={() => setIsSidebarOpen(false)}
+                    className="block"
+                    to={"/productsList/Tracksuit"}>Tracksuit</Link>
+                  </span>
+                </li>
+              </ul>
+            </li>
+            <li 
+            onClick={() => setIsSidebarOpen(false)}
+            className="hover:text-orange-300 text-xl font-bold text-blue-500">
+              <Link to={"/productsList/newArrival"}>New Arrival</Link>
+            </li>
           </ul>
         </div>
       }
