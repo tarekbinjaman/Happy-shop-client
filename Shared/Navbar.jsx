@@ -36,6 +36,14 @@ const Navbar = () => {
   const [products, ProductLoading] = useProducts(filterParams);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
+
+  // search button function 
+  const handleSearch = () => {
+    if(query.trim()) {
+      navigate(`/productsList?search=${encodeURIComponent(query)}`)
+    }
+  };
+
   // searchbar key handle functions
   const handleChange = (e) => {
     const value = e.target.value;
@@ -65,6 +73,7 @@ const Navbar = () => {
       if (dropdownref.current && !dropdownref.current.contains(event.target)) {
         setDropdownOpen(false);
         setShowSuggestions(false);
+       
         {
           dropdownOpen ? console.log("dropdown true") : "dropdown false";
         }
@@ -513,6 +522,7 @@ const Navbar = () => {
             <button
               class="absolute top-1 right-1 flex items-center rounded bg-slate-800 py-1 px-2.5 border border-transparent text-center text-sm text-white transition-all shadow-sm hover:shadow focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
+              onClick={handleSearch}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -727,6 +737,7 @@ const Navbar = () => {
             <button
               class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
               type="button"
+              onClick={handleSearch}
             >
               Search
             </button>

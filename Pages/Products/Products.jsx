@@ -10,6 +10,8 @@ import ProductsCard from "./ProductsCard";
 const Products = () => {
   const { categoryName } = useParams();
   console.log("This is category name", categoryName);
+  const [searchParams] = useSearchParams();
+  const search = searchParams.get("search") || "";
   const [filters, setFilters] = useState({
     gender: "",
     brand: [],
@@ -45,6 +47,7 @@ const Products = () => {
     materials: filters.materials.join(","),
     minPrice: filters.minPrice,
     maxPrice: filters.maxPrice,
+    search,
     ...(categoryName &&
       categoryName !== "newArrival" && { category: categoryName }),
   };
@@ -514,7 +517,7 @@ const Products = () => {
           {
             Array.from({length: totalPages}, (_, i) => (
               <button
-              className={`${i + 1 === page ? 'bg-black text-white' : 'bg-gray-200 text-black'} px-4 py-1 rounded`}
+              className={`cursor-pointer ${i + 1 === page ? 'bg-black text-white' : 'bg-gray-200 text-black'} px-4 py-1 rounded`}
               onClick={() => setPage(i + 1)}
               >
                 {i + 1}
