@@ -42,6 +42,7 @@ const Navbar = () => {
   const [filterParams, setFilterParams] = useState({});
   const [products, ProductLoading] = useProducts(filterParams);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [cartBar, setCartBar] = useState(false);
 
   // search button function
   const handleSearch = () => {
@@ -589,9 +590,10 @@ const Navbar = () => {
               />
               <div className="relative mr-3">
                 <BsCart2
-                  onClick={() => {
-                    console.log("This is cart data", mycart);
-                  }}
+                  onClick={() => 
+                    setCartBar(!cartBar)
+                    
+                  }
                   className="text-3xl text-gray-500 cursor-pointer hover:text-black "
                 />
                 {mycart?.length > 0 ? (
@@ -1213,6 +1215,19 @@ const Navbar = () => {
           </ul>
         </div>
       }
+
+      {/* cart sidebar */}
+      <div className={`fixed h-full z-50 top-0 right-0 w-96 bg-gray-300/20 backdrop-blur-md
+      border-l-2 border-white duration-300 ease-in-out
+      ${cartBar ? "translate-x-0" : "translate-x-full"}
+      `}>
+        <div className="flex justify-between px-2 py-1 border-2 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
+          <h1 className="text-xl bg-white px-2 py-1 rounded-lg">Shopping Cart</h1>
+          <IoMdClose onClick={() => setCartBar(!cartBar)}
+          className="text-4xl"
+        /></div>
+        <h1>This is right sidebar</h1>
+      </div>
     </nav>
   );
 };
