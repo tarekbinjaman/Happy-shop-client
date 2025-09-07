@@ -102,7 +102,9 @@ const ViewProduct = () => {
   return (
     <div className="xl:w-7/10 lg:w-11/12 mx-auto ">
       <div className="lg:flex gap-6 justify-between ">
-        <div className={`flex lg:flex-row flex-col gap-8 justify-center lg:px-0 px-4`}>
+        <div
+          className={`flex lg:flex-row flex-col gap-8 justify-center lg:px-0 px-4`}
+        >
           {/* image area */}
           <div className="flex gap-2 justify-center mt-4">
             {imageContainer.length > 1 && (
@@ -161,14 +163,18 @@ const ViewProduct = () => {
               <div className="mt-2">
                 {/* colors */}
                 <p className="text-md text-gray-400">
-                  Colors :{" "}
-                  <span
-                    style={{ background: selectedColor }}
-                    className={`inline-block h-3 w-4 border-gray-500 border-2 `}
-                  ></span>
+                  Selected Colors :
+                  {selectedColor ? (
+                    <span
+                      style={{ background: selectedColor }}
+                      className={`inline-block h-3 w-4 border-gray-500 border-2 ml-2`}
+                    ></span>
+                  ) : (
+                    <span className="pl-2">No color selected 🚫</span>
+                  )}
                 </p>
                 <div
-                  className={`flex items-center gap-4 mb-2 border border-white py-1
+                  className={`flex items-center gap-4 mb-2 border border-white py-1 transform duration-300 ease-in-out
                   ${
                     colorErrors
                       ? "animate-pulse border-yellow-700 border-3 pl-2"
@@ -186,8 +192,12 @@ const ViewProduct = () => {
                         background: col,
                         borderStyle: selectedColor === col ? "solid" : "dotted",
                       }}
-                      className={` h-6 w-6 mt-1 cursor-pointer transition border-2
-    ${selectedColor === col ? " border-blue-400 h-9 w-10" : "border-black "}}
+                      className={` mt-1 cursor-pointer transition border-2
+    ${
+      selectedColor === col
+        ? "h-8 w-8 border-3 border-yellow-400 "
+        : "h-6 w-6 border-black "
+    }}
     `}
                       key={index}
                     ></div>
@@ -208,15 +218,15 @@ const ViewProduct = () => {
               >
                 {/* size */}
                 <p className="text-xs mb-4 uppercase">Available size</p>
-                <div className="flex gap-4">
+                <div className="flex gap-4 transform duration-300 ease-in">
                   {singleProduct?.size.map((siz, index) => (
                     <p
                       onClick={() => {
                         setSelectedSize(siz);
                         setError((Prev) => ({ ...Prev, sizeError: null }));
                       }}
-                      className={`text-xs bg-white px-3 py-1  border-2 cursor-pointer ${
-                        selectedSize === siz ? " border-black" : "border-white"
+                      className={`text-xs bg-white px-3 py-1  border-3 cursor-pointer ${
+                        selectedSize === siz ? " border-yellow-400" : "border-white"
                       } 
                       
                       `}

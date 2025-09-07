@@ -16,6 +16,7 @@ import { SlMagnifier } from "react-icons/sl";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import useCart from "../api/useCart";
 import useProducts from "../api/useProducts";
+import { div } from "framer-motion/client";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -24,6 +25,8 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownref = useRef();
+  const cartIcon = useRef();
+  const cartRef = useRef();
   const email = user?.email;
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
@@ -77,10 +80,13 @@ const Navbar = () => {
   };
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (dropdownref.current && !dropdownref.current.contains(event.target)) {
+      if(cartIcon.current && cartIcon.current.contains(event.target)) return;
+      if ((dropdownref.current && !dropdownref.current.contains(event.target)) 
+      && (cartRef.current && !cartRef.current.contains(event.target))
+      ) {
         setDropdownOpen(false);
         setShowSuggestions(false);
-
+        setCartBar(false);
         {
           dropdownOpen ? console.log("dropdown true") : "dropdown false";
         }
@@ -588,7 +594,9 @@ const Navbar = () => {
                 className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
                 onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
               />
-              <div className="relative mr-3">
+              <div 
+              ref={cartIcon}
+              className="relative mr-3">
                 <BsCart2
                   onClick={() => 
                     setCartBar(!cartBar)
@@ -806,7 +814,7 @@ const Navbar = () => {
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, men: !prev.men }))
                 }
-                className="cursor-pointer font-bold text-xl text-blue-500 block"
+                className="cursor-pointer font-bold text-xl text-gray-500 block"
               >
                 Men
               </span>
@@ -898,7 +906,7 @@ const Navbar = () => {
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, women: !prev.women }))
                 }
-                className="cursor-pointer font-bold text-xl text-blue-500 block"
+                className="cursor-pointer font-bold text-xl text-gray-500 block"
               >
                 Women
               </span>
@@ -1002,7 +1010,7 @@ const Navbar = () => {
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, boys: !prev.boys }))
                 }
-                className="cursor-pointer font-bold text-xl text-blue-500 block"
+                className="cursor-pointer font-bold text-xl text-gray-500 block"
               >
                 Boys
               </span>
@@ -1100,7 +1108,7 @@ const Navbar = () => {
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, girls: !prev.girls }))
                 }
-                className="cursor-pointer font-bold text-xl text-blue-500 block"
+                className="cursor-pointer font-bold text-xl text-gray-500 block"
               >
                 Girls
               </span>
@@ -1156,7 +1164,7 @@ const Navbar = () => {
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, kids: !prev.kids }))
                 }
-                className="cursor-pointer font-bold text-xl text-blue-500 block"
+                className="cursor-pointer font-bold text-xl text-gray-500 block"
               >
                 Kids
               </span>
@@ -1217,16 +1225,27 @@ const Navbar = () => {
       }
 
       {/* cart sidebar */}
-      <div className={`fixed h-full z-50 top-0 right-0 w-96 bg-gray-300/20 backdrop-blur-md
+      <div
+      ref={cartRef}
+      className={`fixed h-full z-50 top-0 right-0 w-96 bg-blue-500/20 backdrop-blur-md
       border-l-2 border-white duration-300 ease-in-out
       ${cartBar ? "translate-x-0" : "translate-x-full"}
       `}>
-        <div className="flex justify-between px-2 py-1 border-2 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
+        <div className="flex justify-between px-2 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
           <h1 className="text-xl bg-white px-2 py-1 rounded-lg">Shopping Cart</h1>
           <IoMdClose onClick={() => setCartBar(!cartBar)}
           className="text-4xl"
         /></div>
-        <h1>This is right sidebar</h1>
+        {
+          mycart && mycart?.length > 0 ?
+          <div>
+            <h1>All cart</h1>
+          </div>
+          :
+          <div>
+            <h1>No product to show</h1>
+          </div>
+        }
       </div>
     </nav>
   );
