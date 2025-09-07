@@ -41,6 +41,17 @@ const Navbar = () => {
     kids: false,
   });
 
+  const handleSection = (section) => {
+    setOpenSection({
+      men: false,
+      women: false,
+      boys: false,
+      girls: false,
+      kids: false,
+      [section]: !openSection[section],
+    });
+  };
+
   // search bar hooks
   const [query, setQuery] = useState("");
   const [filterParams, setFilterParams] = useState({});
@@ -793,7 +804,7 @@ const Navbar = () => {
       {/* Sidebar */}
       {
         <div
-          className={`fixed top-0 left-0 w-64 h-full bg-gray-300/50 backdrop-blur-lg shadow-lg z-50 p-4
+          className={`fixed top-0 left-0 w-64 h-full bg-blue-300/50 backdrop-blur-md shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
                     `}
@@ -807,15 +818,13 @@ const Navbar = () => {
               <IoMdClose />
             </button>
           </div>
-          <ul className="space-y-4 divide-y-2 divide-black">
+          <ul className="space-y-4 divide-y-2 ">
             <li>
               <span
-                onClick={() =>
-                  setOpenSection((prev) => ({ ...prev, men: !prev.men }))
-                }
-                className="flex items-center justify-between"
+                onClick={() => handleSection("men")}
+                className="flex items-center justify-between border"
               >
-                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                <span className="cursor-pointer font-bold text-base text-gray-500 block ml-2">
                   Men
                 </span>
                 <span>
@@ -823,7 +832,7 @@ const Navbar = () => {
                 </span>
               </span>
               <ul
-                className={`transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out space-y-3 ${
+                className={`transform divide-y-2 divide-black overflow-hidden duration-300 ease-in-out space-y-3 ${
                   openSection.men
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
@@ -919,7 +928,7 @@ const Navbar = () => {
                     to={"/productsList/V Neck"}
                     className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span>V-neck</span>
+                    <span>V Neck</span>
                     <span>
                       <FiExternalLink />
                     </span>
@@ -930,12 +939,10 @@ const Navbar = () => {
 
             <li>
               <span
-                onClick={() =>
-                  setOpenSection((prev) => ({ ...prev, women: !prev.women }))
-                }
-                className="flex items-center justify-between"
+                onClick={() => handleSection("women")}
+                className="flex items-center justify-between border "
               >
-                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                <span className="cursor-pointer font-bold text-base text-gray-500 block ml-2">
                   Women
                 </span>
                 <span>
@@ -943,7 +950,7 @@ const Navbar = () => {
                 </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-black overflow-hidden duration-300 ease-in-out ${
                   openSection.women
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
@@ -1074,12 +1081,10 @@ const Navbar = () => {
 
             <li>
               <span
-                onClick={() =>
-                  setOpenSection((prev) => ({ ...prev, boys: !prev.boys }))
-                }
-                className="flex items-center justify-between"
+                onClick={() => handleSection("boys")}
+                className="flex items-center justify-between border"
               >
-                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                <span className="cursor-pointer font-bold text-base text-gray-500 block ml-2">
                   Boys
                 </span>
                 <span>
@@ -1087,7 +1092,7 @@ const Navbar = () => {
                 </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-black overflow-hidden duration-300 ease-in-out ${
                   openSection.boys
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
@@ -1206,12 +1211,10 @@ const Navbar = () => {
 
             <li>
               <span
-                onClick={() =>
-                  setOpenSection((prev) => ({ ...prev, girls: !prev.girls }))
-                }
-                className="flex items-center justify-between"
+                onClick={() => handleSection("girls")}
+                className="flex items-center justify-between border"
               >
-                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                <span className="cursor-pointer font-bold text-base text-gray-500 block ml-2">
                   Girls
                 </span>
                 <span>
@@ -1219,7 +1222,7 @@ const Navbar = () => {
                 </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-black overflow-hidden duration-300 ease-in-out ${
                   openSection.girls
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
@@ -1278,12 +1281,10 @@ const Navbar = () => {
 
             <li>
               <span
-                onClick={() =>
-                  setOpenSection((prev) => ({ ...prev, kids: !prev.kids }))
-                }
-                className="flex items-center justify-between"
+                onClick={() => handleSection("kids")}
+                className="flex items-center justify-between border"
               >
-                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                <span className="cursor-pointer font-bold text-base text-gray-500 block ml-2">
                   Kids
                 </span>
                 <span>
@@ -1291,7 +1292,7 @@ const Navbar = () => {
                 </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-black overflow-hidden duration-300 ease-in-out ${
                   openSection.kids
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
@@ -1350,9 +1351,10 @@ const Navbar = () => {
 
             <li
               onClick={() => setIsSidebarOpen(false)}
-              className="hover:text-orange-300 text-xl font-bold text-blue-500"
+              className="hover:text-orange-300 text-xl font-bold text-blue-500 flex justify-between items-center"
             >
               <Link to={"/productsList/newArrival"}>New Arrival</Link>
+               <FiExternalLink />
             </li>
           </ul>
         </div>
@@ -1366,8 +1368,8 @@ const Navbar = () => {
       ${cartBar ? "translate-x-0" : "translate-x-full"}
       `}
       >
-        <div className="flex justify-between px-2 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
-          <h1 className="text-xl bg-white px-2 py-1 rounded-lg">
+        <div className="flex justify-between pl-1 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
+          <h1 className="text-xl bg-white px-2 py-1 rounded-md">
             Shopping Cart
           </h1>
           <IoMdClose
