@@ -17,6 +17,7 @@ import { FaMagnifyingGlass } from "react-icons/fa6";
 import useCart from "../api/useCart";
 import useProducts from "../api/useProducts";
 import { div } from "framer-motion/client";
+import { FiExternalLink } from "react-icons/fi";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -80,9 +81,12 @@ const Navbar = () => {
   };
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if(cartIcon.current && cartIcon.current.contains(event.target)) return;
-      if ((dropdownref.current && !dropdownref.current.contains(event.target)) 
-      && (cartRef.current && !cartRef.current.contains(event.target))
+      if (cartIcon.current && cartIcon.current.contains(event.target)) return;
+      if (
+        dropdownref.current &&
+        !dropdownref.current.contains(event.target) &&
+        cartRef.current &&
+        !cartRef.current.contains(event.target)
       ) {
         setDropdownOpen(false);
         setShowSuggestions(false);
@@ -594,14 +598,9 @@ const Navbar = () => {
                 className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
                 onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
               />
-              <div 
-              ref={cartIcon}
-              className="relative mr-3">
+              <div ref={cartIcon} className="relative mr-3">
                 <BsCart2
-                  onClick={() => 
-                    setCartBar(!cartBar)
-                    
-                  }
+                  onClick={() => setCartBar(!cartBar)}
                   className="text-3xl text-gray-500 cursor-pointer hover:text-black "
                 />
                 {mycart?.length > 0 ? (
@@ -809,415 +808,550 @@ const Navbar = () => {
             </button>
           </div>
           <ul className="space-y-4 divide-y-2 divide-black">
-            <li className="">
+            <li>
               <span
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, men: !prev.men }))
                 }
-                className="cursor-pointer font-bold text-xl text-gray-500 block"
+                className="flex items-center justify-between"
               >
-                Men
+                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                  Men
+                </span>
+                <span>
+                  <GoChevronDown className="text-2xl" />
+                </span>
               </span>
               <ul
-                className={` transform divide-y-2  divide-gray-400 overflow-hidden  duration-300 ease-in-out space-y-3 ${
+                className={`transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out space-y-3 ${
                   openSection.men
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
-                } `}
+                }`}
               >
-                <li className="  cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="flex justify-between items-center"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/T-Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    {" "}
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      T Shirt
+                    <span>T-Shirt</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className="  cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="flex justify-between items-center"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Polo Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    {" "}
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Polo Shirt
+                    <span>Polo Shirt</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className="  cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"/productsList/Cuban Collar Shirt"}>
-                      Cuban Collar Shirt
-                    </Link>
-                  </span>{" "}
+                    to={"/productsList/Cuban Collar Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Cuban Collar Shirt</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className="  cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"/productsList/Dress Shirt"}>Dress Shirt</Link>
-                  </span>{" "}
+                    to={"/productsList/Dress Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Dress Shirt</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className="  cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"productsList/Casual"}>Casual</Link>
-                  </span>
+                    to={"/productsList/Casual"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Casual</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className="  cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"productsList/Formal"}>Formal</Link>
-                  </span>
+                    to={"/productsList/Formal"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Formal</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className="  cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"productsList/Gym"}>Gym</Link>
-                  </span>
+                    to={"/productsList/Gym"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Gym</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className="  cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
-                    className="block"
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    to={"productsList/V Neck"}>V-neck</Link>
-                  </span>
+                    to={"/productsList/V Neck"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>V-neck</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li className="">
+
+            <li>
               <span
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, women: !prev.women }))
                 }
-                className="cursor-pointer font-bold text-xl text-gray-500 block"
+                className="flex items-center justify-between"
               >
-                Women
+                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                  Women
+                </span>
+                <span>
+                  <GoChevronDown className="text-2xl" />
+                </span>
               </span>
               <ul
-                className={` space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
                   openSection.women
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
-                } `}
+                }`}
               >
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
                     to={"/productsList/A-Line"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      A-Line
+                    <span>A-Line</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Apron"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Apron
+                    <span>Apron</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Asymmetrical"}>Asymmetrical </Link>
-                  </span>{" "}
+                    to={"/productsList/Asymmetrical"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Asymmetrical</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Ball Gown"}>Ball Gown</Link>
-                  </span>{" "}
+                    to={"/productsList/Ball Gown"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Ball Gown</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Caftan"}>Caftan</Link>
-                  </span>{" "}
+                    to={"/productsList/Caftan"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Caftan</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/One-Shoulder"}>One-Shoulder</Link>
-                  </span>{" "}
+                    to={"/productsList/One-Shoulder"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>One-Shoulder</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Yoke Dress"}>Yoke Dress</Link>
-                  </span>{" "}
+                    to={"/productsList/Yoke Dress"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Yoke Dress</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Wrap Dress"}>Wrap Dress</Link>
-                  </span>{" "}
+                    to={"/productsList/Wrap Dress"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Wrap Dress</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"productsList/Basic"}>Basic</Link>
-                  </span>
+                    to={"/productsList/Basic"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Basic</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"productsList/Party"}>Party</Link>
-                  </span>
+                    to={"/productsList/Party"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Party</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li className="">
+
+            <li>
               <span
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, boys: !prev.boys }))
                 }
-                className="cursor-pointer font-bold text-xl text-gray-500 block"
+                className="flex items-center justify-between"
               >
-                Boys
+                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                  Boys
+                </span>
+                <span>
+                  <GoChevronDown className="text-2xl" />
+                </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
                   openSection.boys
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
-                } `}
+                }`}
               >
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/T-Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      T-shirt
+                    <span>T-Shirt</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Shorts"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Shorts
+                    <span>Shorts</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Overalls"}>Overalls</Link>
-                  </span>
+                    to={"/productsList/Overalls"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Overalls</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Hoodie"}>Hoodie</Link>
-                  </span>
+                    to={"/productsList/Hoodie"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Hoodie</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Sweatpants"}>Sweatpants</Link>
-                  </span>
+                    to={"/productsList/Sweatpants"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Sweatpants</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Polo Shirt"}>Polo Shirt</Link>
-                  </span>
+                    to={"/productsList/Polo Shirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Polo Shirt</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Dungarees"}>Dungarees</Link>
-                  </span>
+                    to={"/productsList/Dungarees"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Dungarees</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Bomber Jacket"}>
-                      Bomber Jacket
-                    </Link>
-                  </span>
+                    to={"/productsList/Bomber Jacket"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Bomber Jacket</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Basic-Boys"}>Basic</Link>
-                  </span>
+                    to={"/productsList/Basic-Boys"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Basic</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li className="">
+
+            <li>
               <span
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, girls: !prev.girls }))
                 }
-                className="cursor-pointer font-bold text-xl text-gray-500 block"
+                className="flex items-center justify-between"
               >
-                Girls
+                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                  Girls
+                </span>
+                <span>
+                  <GoChevronDown className="text-2xl" />
+                </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
                   openSection.girls
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
-                } `}
+                }`}
               >
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                    className="block"
                     onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Frock"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Frock
+                    <span>Frock</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Skirt"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Skirt
+                    <span>Skirt</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Leggings"}>Leggings</Link>
-                  </span>
+                    to={"/productsList/Leggings"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Leggings</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Gown"}>Gown</Link>
-                  </span>
+                    to={"/productsList/Gown"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Gown</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li className="">
+
+            <li>
               <span
                 onClick={() =>
                   setOpenSection((prev) => ({ ...prev, kids: !prev.kids }))
                 }
-                className="cursor-pointer font-bold text-xl text-gray-500 block"
+                className="flex items-center justify-between"
               >
-                Kids
+                <span className="cursor-pointer font-bold text-base text-gray-500 block">
+                  Kids
+                </span>
+                <span>
+                  <GoChevronDown className="text-2xl" />
+                </span>
               </span>
               <ul
-                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden  duration-300 ease-in-out ${
+                className={`space-y-4 transform divide-y-2 divide-gray-400 overflow-hidden duration-300 ease-in-out ${
                   openSection.kids
                     ? "max-h-screen opacity-100 mt-2"
                     : "max-h-0 opacity-0"
-                } `}
+                }`}
               >
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Rompers"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Rompers
+                    <span>Rompers</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer  font-semibold relative group/li">
+                <li>
                   <Link
-                  onClick={() => setIsSidebarOpen(false)}
-                    className="block"
+                    onClick={() => setIsSidebarOpen(false)}
                     to={"/productsList/Jumpsuit"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
                   >
-                    <span className=" hover:ml-2 transition-all duration-300">
-                      Jumpsuit
+                    <span>Jumpsuit</span>
+                    <span>
+                      <FiExternalLink />
                     </span>
                   </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Dungarees"}>Dungarees</Link>
-                  </span>
+                    to={"/productsList/Dungarees"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Dungarees</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
-                <li className=" pl-4 cursor-pointer font-semibold whitespace-nowrap">
-                  <span className="hover:ml-2 transition-all duration-300">
-                    <Link 
+                <li>
+                  <Link
                     onClick={() => setIsSidebarOpen(false)}
-                    className="block"
-                    to={"/productsList/Tracksuit"}>Tracksuit</Link>
-                  </span>
+                    to={"/productsList/Tracksuit"}
+                    className="hover:ml-2 transition-all duration-300 flex justify-between"
+                  >
+                    <span>Tracksuit</span>
+                    <span>
+                      <FiExternalLink />
+                    </span>
+                  </Link>
                 </li>
               </ul>
             </li>
-            <li 
-            onClick={() => setIsSidebarOpen(false)}
-            className="hover:text-orange-300 text-xl font-bold text-blue-500">
+
+            <li
+              onClick={() => setIsSidebarOpen(false)}
+              className="hover:text-orange-300 text-xl font-bold text-blue-500"
+            >
               <Link to={"/productsList/newArrival"}>New Arrival</Link>
             </li>
           </ul>
@@ -1226,26 +1360,30 @@ const Navbar = () => {
 
       {/* cart sidebar */}
       <div
-      ref={cartRef}
-      className={`fixed h-full z-50 top-0 right-0 w-96 bg-blue-500/20 backdrop-blur-md
+        ref={cartRef}
+        className={`fixed h-full z-50 top-0 right-0 w-96 bg-blue-500/20 backdrop-blur-md
       border-l-2 border-white duration-300 ease-in-out
       ${cartBar ? "translate-x-0" : "translate-x-full"}
-      `}>
+      `}
+      >
         <div className="flex justify-between px-2 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
-          <h1 className="text-xl bg-white px-2 py-1 rounded-lg">Shopping Cart</h1>
-          <IoMdClose onClick={() => setCartBar(!cartBar)}
-          className="text-4xl"
-        /></div>
-        {
-          mycart && mycart?.length > 0 ?
+          <h1 className="text-xl bg-white px-2 py-1 rounded-lg">
+            Shopping Cart
+          </h1>
+          <IoMdClose
+            onClick={() => setCartBar(!cartBar)}
+            className="text-4xl"
+          />
+        </div>
+        {mycart && mycart?.length > 0 ? (
           <div>
             <h1>All cart</h1>
           </div>
-          :
+        ) : (
           <div>
             <h1>No product to show</h1>
           </div>
-        }
+        )}
       </div>
     </nav>
   );
