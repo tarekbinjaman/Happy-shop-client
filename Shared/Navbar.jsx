@@ -31,6 +31,8 @@ const Navbar = () => {
   const searchRef = useRef();
   const searchBarRef = useRef();
   const faSearchIconRef = useRef();
+  const sidebarRef = useRef();
+  const hamburberRef = useRef();
   const email = user?.email;
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
@@ -103,6 +105,11 @@ const Navbar = () => {
       if(!isInsideSearch) {
         setIsSearchBarOpen(false);
       }
+      const isInsideSidebar = (sidebarRef.current && sidebarRef.current.contains(event.target)) || 
+      (hamburberRef.current && hamburberRef.current.contains(event.target))
+      if(!isInsideSidebar) {
+        setIsSidebarOpen(false);
+      }
       if (
         dropdownref.current &&
         !dropdownref.current.contains(event.target) &&
@@ -133,8 +140,10 @@ const Navbar = () => {
             <div
               className="xl:hidden block mr-3"
               onClick={() => setIsSidebarOpen(true)}
-            >
-              <RxHamburgerMenu className="md:text-3xl text-[26px] " />
+              >
+              <RxHamburgerMenu
+              ref={hamburberRef}
+              className="md:text-3xl text-[26px] " />
             </div>
             {/* logo */}
             <Link to={`/`}>
@@ -818,6 +827,7 @@ const Navbar = () => {
       {/* Sidebar */}
       {
         <div
+        ref={sidebarRef}
           className={`fixed top-0 left-0 w-64 h-full bg-blue-300/50 backdrop-blur-md shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
