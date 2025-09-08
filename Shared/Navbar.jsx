@@ -28,6 +28,9 @@ const Navbar = () => {
   const dropdownref = useRef();
   const cartIcon = useRef();
   const cartRef = useRef();
+  const searchRef = useRef();
+  const searchBarRef = useRef();
+  const faSearchIconRef = useRef();
   const email = user?.email;
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
@@ -93,11 +96,18 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cartIcon.current && cartIcon.current.contains(event.target)) return;
+     
+      const isInsideSearch = (searchRef.current && searchRef.current.contains(event.target)) || 
+      (faSearchIconRef.current && faSearchIconRef.current.contains(event.target)) ||
+      (searchBarRef.current && searchBarRef.current.contains(event.target));
+      if(!isInsideSearch) {
+        setIsSearchBarOpen(false);
+      }
       if (
         dropdownref.current &&
         !dropdownref.current.contains(event.target) &&
         cartRef.current &&
-        !cartRef.current.contains(event.target)
+        !cartRef.current.contains(event.target) 
       ) {
         setDropdownOpen(false);
         setShowSuggestions(false);
@@ -606,6 +616,7 @@ const Navbar = () => {
             {/* profile and cart */}
             <div className="flex items-center gap-4">
               <FaMagnifyingGlass
+              ref={faSearchIconRef}
                 className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
                 onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
               />
@@ -733,13 +744,16 @@ const Navbar = () => {
       {/* search bar for small device */}
       <div className="relative flex justify-center">
         <div
+        ref={searchBarRef}
           className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
             isSearchBarOpen
-              ? "max-h-screen opacity-100 mt-4"
-              : "max-h-0 opacity-0"
+            ? "max-h-screen opacity-100 mt-4"
+            : "max-h-0 opacity-0"
           } transition-all  duration-700 ease-in-out`}
-        >
-          <div className="relative flex items-center ">
+          >
+          <div 
+            ref={searchRef}
+          className="relative flex items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
