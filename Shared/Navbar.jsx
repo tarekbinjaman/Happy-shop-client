@@ -16,8 +16,9 @@ import { SlMagnifier } from "react-icons/sl";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import useCart from "../api/useCart";
 import useProducts from "../api/useProducts";
-import { div } from "framer-motion/client";
+import { div, image } from "framer-motion/client";
 import { FiExternalLink } from "react-icons/fi";
+import CartProductCard from "./CartProductCard";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -1404,6 +1405,18 @@ const Navbar = () => {
         {mycart && mycart?.length > 0 ? (
           <div>
             <h1>All cart</h1>
+            <div className="flex flex-col space-y-2">
+              {
+                mycart &&
+                mycart.map(item => (
+                  <CartProductCard 
+                  image={item?.image}
+                  title={item?.title}
+                  description={item?.description}
+                  />
+                ))
+              }
+            </div>
           </div>
         ) : (
           <div>

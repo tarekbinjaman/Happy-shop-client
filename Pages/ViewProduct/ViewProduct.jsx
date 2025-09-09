@@ -78,6 +78,8 @@ const ViewProduct = () => {
       productId: productId,
       title: singleProduct?.title,
       price: singleProduct?.finalPrice,
+      image: singleProduct?.images[0].url,
+      description: singleProduct?.description,
       size: selectedSize,
       color: selectedColor,
       quantity: quantity,
