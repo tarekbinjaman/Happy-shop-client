@@ -1388,7 +1388,7 @@ const Navbar = () => {
       {/* cart sidebar */}
       <div
         ref={cartRef}
-        className={`fixed h-full z-50 top-0 right-0 w-96 bg-blue-500/20 backdrop-blur-md
+        className={`fixed h-full z-50 top-0 right-0 w-96 bg-slate-100 
       border-l-2 border-white duration-300 ease-in-out
       ${cartBar ? "translate-x-0" : "translate-x-full"}
       `}
@@ -1404,15 +1404,16 @@ const Navbar = () => {
         </div>
         {mycart && mycart?.length > 0 ? (
           <div>
-            <h1>All cart</h1>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2 mx-2 mt-4">
               {
                 mycart &&
                 mycart.map(item => (
                   <CartProductCard 
                   image={item?.image}
+                  color={item?.color}
                   title={item?.title}
                   description={item?.description}
+                  size={item?.size}
                   />
                 ))
               }
