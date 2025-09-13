@@ -1399,12 +1399,12 @@ const Navbar = () => {
           </h1>
           <IoMdClose
             onClick={() => setCartBar(!cartBar)}
-            className="text-4xl"
+            className="text-4xl cursor-pointer"
           />
         </div>
         {mycart && mycart?.length > 0 ? (
           <div>
-            <div className="flex flex-col space-y-2 mx-2 mt-4">
+            <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto">
               {
                 mycart &&
                 mycart.map(item => (
