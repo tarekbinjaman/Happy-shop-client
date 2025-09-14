@@ -38,7 +38,7 @@ const Navbar = () => {
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [cartData, isLoading, refetch] = useCart();
+  const [cartData, isLoading, cartRefetch] = useCart();
   const [openSection, setOpenSection] = useState({
     men: false,
     women: false,
@@ -1404,7 +1404,7 @@ const Navbar = () => {
         </div>
         {mycart && mycart?.length > 0 ? (
           <div>
-            <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto">
+            <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto h-[calc(100vh-80px)]">
               {
                 mycart &&
                 mycart.map(item => (
@@ -1414,6 +1414,8 @@ const Navbar = () => {
                   title={item?.title}
                   description={item?.description}
                   size={item?.size}
+                  id={item?._id}
+                  refe={cartRefetch}
                   />
                 ))
               }
