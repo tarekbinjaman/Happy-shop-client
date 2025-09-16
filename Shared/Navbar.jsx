@@ -38,7 +38,7 @@ const Navbar = () => {
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [cartData, isLoading, cartRefetch] = useCart();
+  const [ cartData, isLoading, cartRefetch ] = useCart();
   const [openSection, setOpenSection] = useState({
     men: false,
     women: false,
