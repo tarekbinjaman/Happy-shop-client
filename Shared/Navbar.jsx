@@ -87,8 +87,7 @@ const Navbar = () => {
     }
   };
 
-  const mycart =
-    cartData && cartData.filter((item) => item?.userEmail === email);
+  const mycart = cartData?.filter((item) => item?.userEmail === email) || [];
 
   const isActive = ({ isActive }) =>
     isActive ? "text-blue-500 bg-slate-200" : "";
@@ -1415,7 +1414,7 @@ const Navbar = () => {
                   description={item?.description}
                   size={item?.size}
                   id={item?._id}
-                  refe={cartRefetch}
+                  onRefetch={cartRefetch}
                   />
                 ))
               }

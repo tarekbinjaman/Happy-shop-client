@@ -3,7 +3,7 @@ import axios from "axios"
 import { AsyncCompress } from "three/examples/jsm/libs/fflate.module.js"
 
 const useCart = () => {
-    const {refetch, isLoading, data: cartData = {}} = useQuery({
+    const {refetch, isLoading, data: cartData = []} = useQuery({
         queryKey: ['UseCart', 'cart'],
         queryFn: async () => {
             const res = await axios.get('http://localhost:5000/api/cartList');

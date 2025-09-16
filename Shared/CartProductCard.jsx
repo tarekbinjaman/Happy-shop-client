@@ -12,7 +12,7 @@ const CartProductCard = ({
   description,
   size,
   id,
-  refe,
+  onRefetch,
 }) => {
   const deleteCart = async (id) => {
     Swal.fire({
@@ -36,10 +36,8 @@ const CartProductCard = ({
               text: "Your file has been deleted.",
               icon: "success",
             });
-           refe();
-          } else {
-            toast.success("Prduct delete failed from cart");
-          }
+           await onRefetch();
+          } 
           
         } catch (error) {
           Swal.fire("Error!", "Something went wrong.", "error");
