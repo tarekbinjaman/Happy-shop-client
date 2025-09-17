@@ -36,7 +36,8 @@ const CartProductCard = ({
               text: "Your file has been deleted.",
               icon: "success",
             });
-           await onRefetch();
+           onRefetch();
+           toast.success("Delted successfully")
           } 
           
         } catch (error) {
