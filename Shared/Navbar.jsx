@@ -13,12 +13,14 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import UseAuth from "../Context/UseAuth";
 import currentUser from "../api/currentUser";
 import { SlMagnifier } from "react-icons/sl";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaRegFaceFrownOpen } from "react-icons/fa6";
 import useCart from "../api/useCart";
 import useProducts from "../api/useProducts";
 import { div, image } from "framer-motion/client";
 import { FiExternalLink } from "react-icons/fi";
 import CartProductCard from "./CartProductCard";
+import axios from "axios";
+import { VscArrowSmallRight, VscDebugStart } from "react-icons/vsc";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -38,7 +40,7 @@ const Navbar = () => {
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
-  const [ mycart, cartIsLoading, cartRefetch, isFetching ] = useCart(email);
+  const [data, cartIsLoading, cartRefetch] = useCart(email);
   const [openSection, setOpenSection] = useState({
     men: false,
     women: false,
@@ -46,6 +48,13 @@ const Navbar = () => {
     girls: false,
     kids: false,
   });
+
+  const mycart = data?.cartData;
+
+  // total of my cart price
+  const myCartPrice = mycart?.reduce((acc, item) => acc + item?.price, 0);
+
+  console.log("My cart price 💵", myCartPrice);
 
   const handleSection = (section) => {
     setOpenSection({
@@ -87,7 +96,7 @@ const Navbar = () => {
     }
   };
 
-  console.log('Here is my cart ➡️', mycart)
+  console.log("Here is my cart ➡️", mycart);
 
   // const mycart = cartData?.filter((item) => item?.userEmail === email) || [];
 
@@ -100,23 +109,26 @@ const Navbar = () => {
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (cartIcon.current && cartIcon.current.contains(event.target)) return;
-     
-      const isInsideSearch = (searchRef.current && searchRef.current.contains(event.target)) || 
-      (faSearchIconRef.current && faSearchIconRef.current.contains(event.target)) ||
-      (searchBarRef.current && searchBarRef.current.contains(event.target));
-      if(!isInsideSearch) {
+
+      const isInsideSearch =
+        (searchRef.current && searchRef.current.contains(event.target)) ||
+        (faSearchIconRef.current &&
+          faSearchIconRef.current.contains(event.target)) ||
+        (searchBarRef.current && searchBarRef.current.contains(event.target));
+      if (!isInsideSearch) {
         setIsSearchBarOpen(false);
       }
-      const isInsideSidebar = (sidebarRef.current && sidebarRef.current.contains(event.target)) || 
-      (hamburberRef.current && hamburberRef.current.contains(event.target))
-      if(!isInsideSidebar) {
+      const isInsideSidebar =
+        (sidebarRef.current && sidebarRef.current.contains(event.target)) ||
+        (hamburberRef.current && hamburberRef.current.contains(event.target));
+      if (!isInsideSidebar) {
         setIsSidebarOpen(false);
       }
       if (
         dropdownref.current &&
         !dropdownref.current.contains(event.target) &&
         cartRef.current &&
-        !cartRef.current.contains(event.target) 
+        !cartRef.current.contains(event.target)
       ) {
         setDropdownOpen(false);
         setShowSuggestions(false);
@@ -142,10 +154,11 @@ const Navbar = () => {
             <div
               className="xl:hidden block mr-3"
               onClick={() => setIsSidebarOpen(true)}
-              >
+            >
               <RxHamburgerMenu
-              ref={hamburberRef}
-              className="md:text-3xl text-[26px] " />
+                ref={hamburberRef}
+                className="md:text-3xl text-[26px] "
+              />
             </div>
             {/* logo */}
             <Link to={`/`}>
@@ -627,7 +640,7 @@ const Navbar = () => {
             {/* profile and cart */}
             <div className="flex items-center gap-4">
               <FaMagnifyingGlass
-              ref={faSearchIconRef}
+                ref={faSearchIconRef}
                 className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
                 onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
               />
@@ -755,16 +768,14 @@ const Navbar = () => {
       {/* search bar for small device */}
       <div className="relative flex justify-center">
         <div
-        ref={searchBarRef}
+          ref={searchBarRef}
           className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
             isSearchBarOpen
-            ? "max-h-screen opacity-100 mt-4"
-            : "max-h-0 opacity-0"
+              ? "max-h-screen opacity-100 mt-4"
+              : "max-h-0 opacity-0"
           } transition-all  duration-700 ease-in-out`}
-          >
-          <div 
-            ref={searchRef}
-          className="relative flex items-center ">
+        >
+          <div ref={searchRef} className="relative flex items-center ">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -829,7 +840,7 @@ const Navbar = () => {
       {/* Sidebar */}
       {
         <div
-        ref={sidebarRef}
+          ref={sidebarRef}
           className={`fixed top-0 left-0 w-64 h-full bg-blue-300/50 backdrop-blur-md shadow-lg z-50 p-4
                     transform transition-transform duration-400 ease-in-out
                     ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -1380,7 +1391,7 @@ const Navbar = () => {
               className="hover:text-orange-300 text-xl font-bold text-blue-500 flex justify-between items-center"
             >
               <Link to={"/productsList/newArrival"}>New Arrival</Link>
-               <FiExternalLink />
+              <FiExternalLink />
             </li>
           </ul>
         </div>
@@ -1404,11 +1415,10 @@ const Navbar = () => {
           />
         </div>
         {mycart && mycart?.length > 0 ? (
-          <div>
+          <div className="relative">
             <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto h-[calc(100vh-80px)]">
-              {
-                mycart?.map(item => (
-                  <CartProductCard 
+              {mycart?.map((item) => (
+                <CartProductCard
                   image={item?.image}
                   color={item?.color}
                   title={item?.title}
@@ -1416,14 +1426,40 @@ const Navbar = () => {
                   size={item?.size}
                   id={item?._id}
                   onRefetch={cartRefetch}
-                  />
-                ))
-              }
+                />
+              ))}
             </div>
+
+            <button className="absolute bottom-1 w-full cursor-pointer group">
+              <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-green-800/80 hover:bg-green-800 duration-200 transition text-white rounded px-4 items-center">
+                <span className="flex items-stretch gap-2">
+                  <span className="text-2xl bg-green-500 p-1 px-2 rounded">
+                    <BsCart2 />{" "}
+                  </span>
+                  <span className="flex flex-col">
+                    <span className="text-white text-sm">
+                      {mycart?.length}{" "}
+                      <span style={{ letterSpacing: "1px" }}>Item</span>
+                    </span>
+                    <span className="text-white text-sm text-start">
+                      {myCartPrice}
+                    </span>
+                  </span>
+                </span>
+
+                <span className="flex justify-between items-center">
+                  <span>Place order</span> <VscArrowSmallRight className="text-2xl group-hover:translate-x-2 duration-300 transition" />
+
+                </span>
+              </span>
+            </button>
           </div>
         ) : (
-          <div>
-            <h1>No product to show</h1>
+          <div className="h-[calc(100vh-80px)] flex items-center justify-center">
+            <div className="flex flex-col items-center space-y-2">
+              <FaRegFaceFrownOpen className="text-4xl" />
+              <h1 className="text-xl font-thin">No product to show</h1>
+            </div>
           </div>
         )}
       </div>

@@ -4,6 +4,7 @@ import { IoTrashBin } from "react-icons/io5";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useCart from "../api/useCart";
+import { useQueryClient } from "@tanstack/react-query";
 
 const CartProductCard = ({
   image,
@@ -12,8 +13,9 @@ const CartProductCard = ({
   description,
   size,
   id,
-  onRefetch,
+  onRefetch
 }) => {
+    const queryClient = useQueryClient();
   const deleteCart = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -36,8 +38,7 @@ const CartProductCard = ({
               text: "Your file has been deleted.",
               icon: "success",
             });
-           onRefetch();
-           toast.success("Delted successfully")
+            onRefetch();
           } 
           
         } catch (error) {

@@ -25,7 +25,8 @@ const ViewProduct = () => {
   const [colorErrors, setColorErrors] = useState(false);
   const [sizeErrors, setSizeErrors] = useState(false);
   const { user } = UseAuth();
-  const [cartData, isCartLoading, cartRefetch] = useCart();
+  const [cartData, isCartLoading, cartRefetch] = useCart(user?.email);
+  const quantityPrice = quantity * singleProduct?.finalPrice;
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -77,7 +78,7 @@ const ViewProduct = () => {
       userEmail: user?.email,
       productId: productId,
       title: singleProduct?.title,
-      price: singleProduct?.finalPrice,
+      price: quantityPrice,
       image: singleProduct?.images[0].url,
       description: singleProduct?.description,
       size: selectedSize,
