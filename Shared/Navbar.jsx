@@ -7,7 +7,7 @@ import { GoArrowUpRight, GoChevronDown } from "react-icons/go";
 import { ImCancelCircle } from "react-icons/im";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineManageAccounts, MdOutlineRateReview } from "react-icons/md";
-import { RxHamburgerMenu } from "react-icons/rx";
+import { RxCrossCircled, RxHamburgerMenu } from "react-icons/rx";
 import { TbLogout2, TbShoppingCartCheck } from "react-icons/tb";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import UseAuth from "../Context/UseAuth";
@@ -143,7 +143,7 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  console.log("userData:", userData);
+  console.log("userData: 😊", userData);
   return (
     <nav className="py-4 bg-white md:px-12">
       <div className="flex items-center justify-between px-4">
@@ -1405,15 +1405,45 @@ const Navbar = () => {
       ${cartBar ? "translate-x-0" : "translate-x-full"}
       `}
       >
-        <div className="flex justify-between pl-1 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
-          <h1 className="text-xl bg-white px-2 py-1 rounded-md">
-            Shopping Cart
-          </h1>
-          <IoMdClose
-            onClick={() => setCartBar(!cartBar)}
-            className="text-4xl cursor-pointer"
-          />
+        <div>
+          <div className="flex justify-between pl-1 py-1 border-3 rounded-md mt-4 border-white items-center bg-white/5 backdrop-blur-lg mx-1">
+            <h1 className="text-xl bg-white px-2 py-1 rounded-md">
+              Shopping Cart
+            </h1>
+            <IoMdClose
+              onClick={() => setCartBar(!cartBar)}
+              className="text-4xl cursor-pointer"
+            />
+          </div>
         </div>
+        {mycart?.length > 0 &&
+          (userData?.address ? (
+            <h1>Address</h1>
+          ) : (
+            <div className="flex justify-center mt-4">
+              <label
+                htmlFor="my_modal_6"
+                className="text-xl btn bg-white px-2 py-1 rounded-md border border-slate-400 cursor-pointer hover:bg-white/30"
+              >
+                Add address
+              </label>
+              <input type="checkbox" id="my_modal_6" className="modal-toggle" />
+              <div className="modal" role="dialog">
+                <div className="modal-box">
+                  <span className="flex justify-between mb-4 items-center">
+                  <h3 className="text-md font-thin">Add your shipping address</h3>
+                  <label htmlFor="my_modal_6" className="cursor-pointer"> <RxCrossCircled className="text-3xl text-red-500 font-bold" /></label>
+                  </span>
+                  <textarea name="" className="border border-gray-300 focus:border-gray-300 w-full h-20" id="" />
+                  <div className="modal-action">
+                    <label htmlFor="my_modal_6" className="btn w-full py-1 bg-amber-300">
+                      Add
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         {mycart && mycart?.length > 0 ? (
           <div className="relative">
             <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto h-[calc(100vh-80px)]">
@@ -1430,8 +1460,8 @@ const Navbar = () => {
               ))}
             </div>
 
-            <button className="absolute bottom-1 w-full cursor-pointer group">
-              <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-green-800/80 hover:bg-green-800 duration-200 transition text-white rounded px-4 items-center">
+            <button className="absolute bottom-16 w-full cursor-pointer group">
+              <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-green-800/80 hover:bg-green-800 duration-200 transition text-white rounded-xl px-4 items-center">
                 <span className="flex items-stretch gap-2">
                   <span className="text-2xl bg-green-500 p-1 px-2 rounded">
                     <BsCart2 />{" "}
@@ -1442,14 +1472,14 @@ const Navbar = () => {
                       <span style={{ letterSpacing: "1px" }}>Item</span>
                     </span>
                     <span className="text-white text-sm text-start">
-                      {myCartPrice}
+                      {myCartPrice} <span>$</span>
                     </span>
                   </span>
                 </span>
 
                 <span className="flex justify-between items-center">
-                  <span>Place order</span> <VscArrowSmallRight className="text-2xl group-hover:translate-x-2 duration-300 transition" />
-
+                  <span>Place order</span>{" "}
+                  <VscArrowSmallRight className="text-2xl group-hover:translate-x-2 duration-300 transition" />
                 </span>
               </span>
             </button>
