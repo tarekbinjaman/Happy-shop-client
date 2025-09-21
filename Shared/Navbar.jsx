@@ -21,6 +21,7 @@ import { FiExternalLink } from "react-icons/fi";
 import CartProductCard from "./CartProductCard";
 import axios from "axios";
 import { VscArrowSmallRight, VscDebugStart } from "react-icons/vsc";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -77,6 +78,17 @@ const Navbar = () => {
   // modal toggle state
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [userAddress, setUserAddress] = useState("");
+  const updateData = {
+    useraddress : userAddress
+  }
+  const addAddress = async () => {
+    try {
+        const res = await axios.put(`http://localhost:5000/api/users/${userData?._id}`, updateData)
+        console.log( "!!!!!!!!!!!", res.data)
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
 
   // search button function
   const handleSearch = () => {
@@ -1449,15 +1461,19 @@ const Navbar = () => {
               className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
                 </div>
               </div>
+              
               <textarea 
               value={userAddress} 
               onChange={(e) => setUserAddress(e.target.value)}
               className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg" />
+              
               <button 
-              className="bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300" 
+              className={`bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300 disabled:cursor-not-allowed`} 
+              disabled={!userAddress}
               onClick={() => {
-                setIsAddressOpen(false)
-                console.log("Address 🏠", userAddress)
+                setIsAddressOpen(false);
+                console.log("Address 🏠", userAddress);
+                addAddress();
                 }}>Add</button>
               </div>
               </div>
