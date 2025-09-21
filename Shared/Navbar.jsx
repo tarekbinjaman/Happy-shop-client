@@ -76,6 +76,7 @@ const Navbar = () => {
 
   // modal toggle state
   const [isAddressOpen, setIsAddressOpen] = useState(false);
+  const [userAddress, setUserAddress] = useState("");
 
   // search button function
   const handleSearch = () => {
@@ -1437,17 +1438,27 @@ const Navbar = () => {
                   
              <div 
              onClick={(e) => e.stopPropagation()}
-             className="fixed z-50 inset-0 bg-black/20 backdrop-blur-xs flex items-center justify-center ">
+             className={`fixed z-50 inset-0 bg-black/20 backdrop-blur-xs flex items-center justify-center `}>
               <div>
               <div className="flex flex-col bg-white border/80 w-90 fixed left-1/2 transform -translate-x-1/2 py-3 px-1 top-1/2 -translate-y-1/2 rounded-md">
               <div className="mb-2">
                 <div className="flex justify-between items-center relative">
               <h1 className="text-xl mb-2">Add your address</h1>
-              <RxCrossCircled className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
+              <RxCrossCircled
+              onClick={() => setIsAddressOpen(false)}
+              className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
                 </div>
               </div>
-              <textarea name="" id="" className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg" />
-              <button className="bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300" onClick={() => setIsAddressOpen(false)}>Add</button>
+              <textarea 
+              value={userAddress} 
+              onChange={(e) => setUserAddress(e.target.value)}
+              className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg" />
+              <button 
+              className="bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300" 
+              onClick={() => {
+                setIsAddressOpen(false)
+                console.log("Address 🏠", userAddress)
+                }}>Add</button>
               </div>
               </div>
              </div>
