@@ -16,7 +16,7 @@ import { SlMagnifier } from "react-icons/sl";
 import { FaMagnifyingGlass, FaRegFaceFrownOpen } from "react-icons/fa6";
 import useCart from "../api/useCart";
 import useProducts from "../api/useProducts";
-import { div, image } from "framer-motion/client";
+import { address, div, image } from "framer-motion/client";
 import { FiExternalLink } from "react-icons/fi";
 import CartProductCard from "./CartProductCard";
 import axios from "axios";
@@ -78,9 +78,12 @@ const Navbar = () => {
   // modal toggle state
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [userAddress, setUserAddress] = useState("");
-  const updateData = {
-    useraddress : userAddress
-  }
+  const [mobileNumber, setMobileNumber] = useState();
+  const updateData = { useraddress: [
+   { address : userAddress,
+     number  : mobileNumber
+   }
+  ]}
   const addAddress = async () => {
     try {
         const res = await axios.put(`http://localhost:5000/api/users/${userData?._id}`, updateData)
@@ -1433,8 +1436,8 @@ const Navbar = () => {
           </div>
         </div>
         {mycart?.length > 0 &&
-          (userData?.address ? (
-            <h1>Address</h1>
+          (userData?.useraddress.length > 0 ? (
+            <p>{userData?.useraddress?.[0]?.address}</p>
           ) : (
             <div className="flex justify-center mt-4">
               <button
@@ -1461,15 +1464,25 @@ const Navbar = () => {
               className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
                 </div>
               </div>
+
+              <input 
+              type="number" 
+              value={mobileNumber} 
+              onChange={(e) => setMobileNumber(e.target.value)}
+              className="border border-gray-300 rounded-md focus:border-blue-400 focus:outline-none focus:p-3 text-lg p-3 mb-2"
+              placeholder="📞 Phone number "
+              id="" />
               
               <textarea 
               value={userAddress} 
               onChange={(e) => setUserAddress(e.target.value)}
-              className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg" />
+              placeholder="🏚️ Address"
+              className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg p-3 " />
               
               <button 
               className={`bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300 disabled:cursor-not-allowed`} 
-              disabled={!userAddress}
+              disabled={!userAddress || !mobileNumber}
+              
               onClick={() => {
                 setIsAddressOpen(false);
                 console.log("Address 🏠", userAddress);
