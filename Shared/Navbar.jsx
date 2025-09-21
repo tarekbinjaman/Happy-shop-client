@@ -74,6 +74,9 @@ const Navbar = () => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cartBar, setCartBar] = useState(false);
 
+  // modal toggle state
+  const [isAddressOpen, setIsAddressOpen] = useState(false);
+
   // search button function
   const handleSearch = () => {
     if (query.trim()) {
@@ -1421,27 +1424,38 @@ const Navbar = () => {
             <h1>Address</h1>
           ) : (
             <div className="flex justify-center mt-4">
-              <label
-                htmlFor="my_modal_6"
+              <button
+                onClick={() => setIsAddressOpen(true)}
                 className="text-xl btn bg-white px-2 py-1 rounded-md border border-slate-400 cursor-pointer hover:bg-white/30"
               >
                 Add address
-              </label>
-              <input type="checkbox" id="my_modal_6" className="modal-toggle" />
-              <div className="modal" role="dialog">
-                <div className="modal-box">
-                  <span className="flex justify-between mb-4 items-center">
-                  <h3 className="text-md font-thin">Add your shipping address</h3>
-                  <label htmlFor="my_modal_6" className="cursor-pointer"> <RxCrossCircled className="text-3xl text-red-500 font-bold" /></label>
-                  </span>
-                  <textarea name="" className="border border-gray-300 focus:border-gray-300 w-full h-20" id="" />
-                  <div className="modal-action">
-                    <label htmlFor="my_modal_6" className="btn w-full py-1 bg-amber-300">
-                      Add
-                    </label>
-                  </div>
+              </button>
+
+              {
+                isAddressOpen &&
+                (
+                  
+             <div 
+             onClick={(e) => e.stopPropagation()}
+             className="fixed z-50 inset-0 bg-black/20 backdrop-blur-xs flex items-center justify-center ">
+              <div>
+              <div className="flex flex-col bg-white border/80 w-90 fixed left-1/2 transform -translate-x-1/2 py-3 px-1 top-1/2 -translate-y-1/2 rounded-md">
+              <div className="mb-2">
+                <div className="flex justify-between items-center relative">
+              <h1 className="text-xl mb-2">Add your address</h1>
+              <RxCrossCircled className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
                 </div>
               </div>
+              <textarea name="" id="" className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg" />
+              <button className="bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300" onClick={() => setIsAddressOpen(false)}>Add</button>
+              </div>
+              </div>
+             </div>
+                )
+              }
+              
+
+
             </div>
           ))}
         {mycart && mycart?.length > 0 ? (
