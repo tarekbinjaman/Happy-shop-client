@@ -1,5 +1,6 @@
 import React from "react";
 import useProducts from "../../api/useProducts";
+import { Link } from "react-router-dom";
 
 const ProductListCard = ({ id }) => {
   const product = useProducts();
@@ -8,7 +9,8 @@ const ProductListCard = ({ id }) => {
   const filledStars = Math.floor(rating);
   const hasHalfStar = rating - filledStars >= 0.5;
   return (
-    <div className="flex gap-4">
+    <Link to={`/viewProduct/${id}`}>
+    <div className="flex gap-4 border border-slate-300 pl-2 pr-4 py-2 rounded-md">
         <div className="bg-[#f2f0f1] rounded-xl p-2">
       <img className="w-16 h-16 object-fill" src={prod?.images[0].url} alt="" />
         </div>
@@ -33,6 +35,7 @@ const ProductListCard = ({ id }) => {
         <h1>{prod?.finalPrice}</h1>
       </div>
     </div>
+    </Link>
   );
 };
 
