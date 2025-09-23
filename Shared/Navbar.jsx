@@ -1495,6 +1495,7 @@ const Navbar = () => {
                   size={item?.size}
                   id={item?._id}
                   onRefetch={cartRefetch}
+                  producuId={item?.productId}
                   />
                 ))}
             </div>

@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useCart from "../api/useCart";
 import { useQueryClient } from "@tanstack/react-query";
+import { FaExternalLinkAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const CartProductCard = ({
   image,
@@ -13,7 +15,8 @@ const CartProductCard = ({
   description,
   size,
   id,
-  onRefetch
+  onRefetch,
+  producuId
 }) => {
     const queryClient = useQueryClient();
   const deleteCart = async (id) => {
@@ -71,6 +74,12 @@ const CartProductCard = ({
               <p>
                 Size: <span className="text-gray-600">{size}</span>
               </p>
+              <div className="flex gap-4 items-start">
+                <Link to={`/viewProduct/${producuId}`}>
+              <FaExternalLinkAlt
+              className="text-xl hover:text-blue-400 transition duration-150 cursor-pointer"
+              />
+                </Link>
               <IoTrashBin
                 onClick={() => {
                   deleteCart(id);
@@ -78,6 +87,7 @@ const CartProductCard = ({
                 className="text-2xl mr-2 mb-2 cursor-pointer hover:text-red-500"
                 title="Remove"
               />
+              </div>
             </div>
           </div>
         </div>
