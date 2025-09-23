@@ -678,7 +678,7 @@ const Navbar = () => {
                   className="text-3xl text-gray-500 cursor-pointer hover:text-black "
                 />
                 {mycart?.length > 0 ? (
-                  <p className="absolute text-base -top-2 -right-3 ">
+                  <p className="absolute text-base -top-2 -right-5 ">
                     {mycart?.length}
                   </p>
                 ) : (
