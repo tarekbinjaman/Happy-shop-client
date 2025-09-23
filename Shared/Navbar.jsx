@@ -3,7 +3,7 @@ import { BsCart2 } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import { CiHeart } from "react-icons/ci";
 import { FaAlignLeft } from "react-icons/fa";
-import { GoArrowUpRight, GoChevronDown } from "react-icons/go";
+import { GoArrowUpRight, GoChevronDown, GoPencil } from "react-icons/go";
 import { ImCancelCircle } from "react-icons/im";
 import { IoMdClose } from "react-icons/io";
 import { MdOutlineManageAccounts, MdOutlineRateReview } from "react-icons/md";
@@ -22,6 +22,7 @@ import CartProductCard from "./CartProductCard";
 import axios from "axios";
 import { VscArrowSmallRight, VscDebugStart } from "react-icons/vsc";
 import { toast } from "react-toastify";
+import { IoHome } from "react-icons/io5";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
@@ -1437,7 +1438,27 @@ const Navbar = () => {
         </div>
         {mycart?.length > 0 &&
           (userData?.useraddress.length > 0 ? (
-            <p>{userData?.useraddress?.[0]?.address}</p>
+            <div className="bg-white border border-slate-300 p-2 mx-2 rounded-md mt-4">
+              <div 
+              onClick={() => setIsAddressOpen(true)}
+              className="flex justify-between border-b border-slate-400 mb-2 pb-2 items-center">
+                <h1 className=" text-gray-400">Shipping Address</h1>
+                <span className="flex gap-2 border border-slate-300 px-2 rounded-md hover:bg-gray-300 cursor-pointer transition duration-200">
+                  <span>
+                Change
+                  </span>
+                <GoPencil className="text-xl cursor-pointer" />
+                </span>
+              </div>
+              <div className="flex gap-2">
+              <IoHome className="text-2xl" />
+              <div>
+                <p>{userData?.name}</p>
+                <p>{userData?.useraddress?.[0]?.number}</p>
+              <p>{userData?.useraddress?.[0]?.address}</p>
+              </div>
+              </div>
+            </div>
           ) : (
             <div className="flex justify-center mt-4">
               <button
