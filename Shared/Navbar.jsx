@@ -95,6 +95,13 @@ const Navbar = () => {
     }
   }
 
+  useEffect(() => {
+    if(userData?.useraddress?.[0]?.number || userData?.useraddress?.[0]?.address) {
+      setUserAddress(userData?.useraddress?.[0]?.address);
+      setMobileNumber(userData?.useraddress?.[0]?.number);
+    }
+  },[userData])
+
   // search button function
   const handleSearch = () => {
     if (query.trim()) {
@@ -1434,49 +1441,51 @@ const Navbar = () => {
             <IoMdClose
               onClick={() => setCartBar(!cartBar)}
               className="text-4xl cursor-pointer"
-            />
+              />
           </div>
         </div>
-        {mycart?.length > 0 &&
-          (userData?.useraddress.length > 0 ? (
-            <div className="bg-white border border-slate-300 p-2 mx-2 rounded-md mt-4">
-              <div 
-              onClick={() => setIsAddressOpen(true)}
-              className="flex justify-between border-b border-slate-400 mb-2 pb-2 items-center">
-                <h1 className=" text-gray-400">Shipping Address</h1>
-                <span className="flex gap-2 border border-slate-300 px-2 rounded-md hover:bg-gray-300 cursor-pointer transition duration-200">
-                  <span>
-                Change
-                  </span>
-                <GoPencil className="text-xl cursor-pointer" />
-                </span>
-              </div>
-              <div className="flex gap-2">
-              <IoHome className="text-2xl" />
-              <div>
-                <p>{userData?.name}</p>
-                <p>{userData?.useraddress?.[0]?.number}</p>
-              <p>{userData?.useraddress?.[0]?.address}</p>
-              </div>
-              </div>
-            </div>
-          ) : (
-            <div className="flex justify-center mt-4">
-              <button
-                onClick={() => setIsAddressOpen(true)}
-                className="text-xl btn bg-white px-2 py-1 rounded-md border border-slate-400 cursor-pointer hover:bg-white/30"
-              >
-                Add address
-              </button>
-
-              
-
-
-            </div>
-          ))}
+              {mycart?.length > 0 &&
+                (userData?.useraddress.length > 0 ? (
+                  <div className="bg-white border border-slate-300 p-2  mx-2 rounded-md mt-4 pb-4 shadow-xl">
+                    <div 
+                    onClick={() => setIsAddressOpen(true)}
+                    className="flex justify-between border-b border-slate-400 mb-2 pb-2 items-center">
+                      <h1 className=" text-gray-400">Shipping Address</h1>
+                      <span className="flex gap-2 border border-slate-300 px-2 rounded-md hover:bg-gray-300 cursor-pointer transition duration-200">
+                        <span>
+                      Change
+                        </span>
+                      <GoPencil className="text-xl cursor-pointer" />
+                      </span>
+                    </div>
+                    <div className="flex gap-2 items-start">
+                      <div>
+                    <IoHome className="text-2xl" />
+                      </div>
+                    <div className={`h-40  ${userData?.useraddress?.[0]?.address?.length > 120 ? 'overflow-y-scroll' : ''}`}>
+                      <p>{userData?.name}</p>
+                      <p>{userData?.useraddress?.[0]?.number}</p>
+                    <p className="">{userData?.useraddress?.[0]?.address}</p>
+                    </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex justify-center mt-4">
+                    <button
+                      onClick={() => setIsAddressOpen(true)}
+                      className="text-xl btn bg-white px-2 py-1 rounded-md border border-slate-400 cursor-pointer hover:bg-white/30"
+                    >
+                      Add address
+                    </button>
+      
+                    
+      
+      
+                  </div>
+                ))}
         {mycart && mycart?.length > 0 ? (
           <div className="relative">
-            <div className="flex flex-col space-y-2 mx-2 mt-4 overflow-auto h-[calc(100vh-80px)]">
+            <div className="flex flex-col space-y-2 mb-2 mt-4 overflow-auto h-[calc(100vh-220px)] pb-60">
               {mycart?.map((item) => (
                 <CartProductCard
                   image={item?.image}
@@ -1490,10 +1499,10 @@ const Navbar = () => {
                 ))}
             </div>
 
-            <button className="absolute bottom-16 w-full cursor-pointer group">
-              <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-green-800/80 hover:bg-green-800 duration-200 transition text-white rounded-xl px-4 items-center">
+            <button className="sticky bottom-0 w-full cursor-pointer group">
+              <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-black hover:bg-gray-800 duration-200 transition text-white rounded-xl px-4 items-center">
                 <span className="flex items-stretch gap-2">
-                  <span className="text-2xl bg-green-500 p-1 px-2 rounded">
+                  <span className="text-2xl bg-gray-400 p-1 px-2 rounded">
                     <BsCart2 />{" "}
                   </span>
                   <span className="flex flex-col">
@@ -1530,10 +1539,10 @@ const Navbar = () => {
       onClick={(e) => e.stopPropagation()}
       className={`fixed z-50 inset-0 bg-black/20 backdrop-blur-xs flex items-center justify-center `}>
       <div>
-      <div className="flex flex-col bg-white border/80 w-90 fixed left-1/2 transform -translate-x-1/2 py-3 px-1 top-1/2 -translate-y-1/2 rounded-md">
+      <div className="flex flex-col bg-white border/80 w-90 fixed left-1/2 transform -translate-x-1/2 py-3  top-1/2 -translate-y-1/2 rounded-md px-2">
       <div className="mb-2">
         <div className="flex justify-between items-center relative">
-      <h1 className="text-xl mb-2">Add your address</h1>
+      <h1 className="text-xl  px-2">🏠 Add your address</h1>
       <RxCrossCircled
       onClick={() => setIsAddressOpen(false)}
       className="text-3xl text-red-400  absolute top-0 right-0 cursor-pointer" />
@@ -1542,7 +1551,6 @@ const Navbar = () => {
       
       <input 
       type="number" 
-      value={mobileNumber} 
       defaultValue={userData?.useraddress?.[0]?.number}
       onChange={(e) => setMobileNumber(e.target.value)}
       className="border border-gray-300 rounded-md focus:border-blue-400 focus:outline-none focus:p-3 text-lg p-3 mb-2"
@@ -1551,13 +1559,12 @@ const Navbar = () => {
       
       <textarea 
       defaultValue={userData?.useraddress?.[0]?.address}
-      value={userAddress} 
       onChange={(e) => setUserAddress(e.target.value)}
       placeholder="🏚️ Address"
       className="border border-gray-300 rounded-md h-30 focus:border-blue-400 focus:outline-none focus:p-3 text-lg p-3 " />
       
       <button 
-      className={`bg-yellow-300 mt-2 rounded py-1 cursor-pointer hover:bg-yellow-500 transition duration-300 disabled:cursor-not-allowed`} 
+      className={`bg-black text-white mt-2 rounded py-1 cursor-pointer hover:bg-gray-700 transition duration-300 disabled:cursor-not-allowed`} 
       disabled={!userAddress || !mobileNumber}
       
       onClick={() => {

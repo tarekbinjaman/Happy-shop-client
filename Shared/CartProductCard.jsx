@@ -48,17 +48,17 @@ const CartProductCard = ({
     });
   };
   return (
-    <div className="border border-slate-400 rounded-md">
-      <div className="flex gap-4 h-[140px] p-3">
-        <div className="border border-slate-300 rounded-md">
+    <div className="border border-slate-400 rounded-md mx-4">
+      <div className="flex justify-between gap-4 h-[120px] p-3">
+        <div className="border border-slate-300 rounded-md bg-white/80">
           <img className="w-[90px] h-full" src={image} alt="" />
         </div>
-        <div className="flex flex-col justify-between h-full">
-          <p className="font-bold">{title.slice(0, 25)}</p>
+        <div className="flex flex-col justify-between h-full w-[280px] ">
+          <p className="font-bold text-xl">{title.slice(0, 13)}</p>
           <p className="text-sm">
             {description?.split("").slice(0, 20).join("")}
           </p>
-          <div>
+          <div className="">
             <p>
               Color:{" "}
               <span
@@ -75,7 +75,7 @@ const CartProductCard = ({
                 onClick={() => {
                   deleteCart(id);
                 }}
-                className="text-2xl mr-2 mb-2 cursor-pointer"
+                className="text-2xl mr-2 mb-2 cursor-pointer hover:text-red-500"
                 title="Remove"
               />
             </div>
