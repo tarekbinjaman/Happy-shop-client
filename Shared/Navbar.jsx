@@ -1580,7 +1580,7 @@ const Navbar = () => {
         )
       }
       </div>
-      <ConfirmOrder />
+      <ConfirmOrder subTotal={myCartPrice} />
     </nav>
   );
 };
