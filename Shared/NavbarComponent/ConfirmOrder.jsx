@@ -1,7 +1,9 @@
 import React from "react";
 import { TiTick } from "react-icons/ti";
 
-const ConfirmOrder = ({subTotal}) => {
+const ConfirmOrder = ({subTotal, totalDiscount}) => {
+  const regularDelivery = 30;
+  const finalPayment = subTotal + regularDelivery;
   return (
     <div className="inset-0 bg-black/20 backdrop-blur-xs fixed z-50">
       <div className="bg-slate-100  absolute top-20 left-1/2 -translate-x-1/2 h-[700px] z-50 rounded-2xl lg:w-xl w-lg">
@@ -16,19 +18,12 @@ const ConfirmOrder = ({subTotal}) => {
             <span className="text-gray-500">Order place successfully by</span>
             <span className="font-bold">"Cash On Delivery".</span>{" "}
           </p>
-          <div>
-            <div className="flex flex-col items-center gap-y-2">
-            <div className="bg-green-500 inline-block rounded-full">
-              <TiTick className="text-3xl text-white" />
-            </div>
-              <p className="text-green-600">Order placed</p>
-            </div>
-          </div>
         </div>
         <div className="flex flex-col justify-start items-start px-8 gap-y-2 mt-4 mx-5 rounded-2xl py-4 bg-white">
             <span className="text-lg text-gray-500 flex justify-between w-full "><span>Subtotal (MRP)</span> <span className="text-black font-semibold">{subTotal}💲</span></span>
-            <h1 className="text-lg text-gray-500">Discount Applied</h1>
-            <h1 className="text-lg text-gray-500">Regular Delivery</h1>
+            <span className="text-lg text-gray-500 flex justify-between w-full "><span>Discount Applied (MRP)</span> <span className="text-red-400 font-semibold">- {totalDiscount}💲</span></span>
+            <span className="text-lg text-gray-500 flex justify-between w-full border-b-2 border-gray-300 pb-2"><span>Regular Delivery</span> <span className="text-red-400 font-semibold">+ {regularDelivery}💲</span></span>
+            <span className="text-lg text-gray-500 flex justify-between w-full "><span className="font-bold">Amount Payable</span> <span className="text-gray-500 font-semibold"> {finalPayment}💲</span></span>
         </div>
       </div>
     </div>

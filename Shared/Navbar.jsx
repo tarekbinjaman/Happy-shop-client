@@ -56,6 +56,7 @@ const Navbar = () => {
 
   // total of my cart price
   const myCartPrice = mycart?.reduce((acc, item) => acc + item?.price, 0);
+  const myCartDiscount = mycart?.reduce((acc, item) => acc + item?.discount, 0);
 
   console.log("My cart price 💵", myCartPrice);
 
@@ -1580,7 +1581,9 @@ const Navbar = () => {
         )
       }
       </div>
-      <ConfirmOrder subTotal={myCartPrice} />
+      <div className="">
+      <ConfirmOrder subTotal={myCartPrice} totalDiscount={myCartDiscount} />
+      </div>
     </nav>
   );
 };

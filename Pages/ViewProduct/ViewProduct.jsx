@@ -27,6 +27,7 @@ const ViewProduct = () => {
   const { user } = UseAuth();
   const [cartData, isCartLoading, cartRefetch] = useCart(user?.email);
   const quantityPrice = quantity * singleProduct?.finalPrice;
+  const quantityDiscount = quantity * singleProduct?.discount;
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -79,6 +80,7 @@ const ViewProduct = () => {
       productId: productId,
       title: singleProduct?.title,
       price: quantityPrice,
+      discount: quantityDiscount,
       image: singleProduct?.images[0].url,
       description: singleProduct?.description,
       size: selectedSize,
