@@ -58,6 +58,9 @@ const Navbar = () => {
   const myCartPrice = mycart?.reduce((acc, item) => acc + item?.price, 0);
   const myCartDiscount = mycart?.reduce((acc, item) => acc + item?.discount, 0);
 
+  // confirm modal togglse state
+  const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
+
   console.log("My cart price 💵", myCartPrice);
 
   const handleSection = (section) => {
@@ -1502,7 +1505,9 @@ const Navbar = () => {
                 ))}
             </div>
 
-            <button className="sticky bottom-0 w-full cursor-pointer group">
+            <button 
+            onClick={() => setIsOpenConfirmModal(!isOpenConfirmModal)}
+            className="sticky bottom-0 w-full cursor-pointer group">
               <span className="flex justify-between w-[95%] mx-auto  py-3 border bg-black hover:bg-gray-800 duration-200 transition text-white rounded-xl px-4 items-center">
                 <span className="flex items-stretch gap-2">
                   <span className="text-2xl bg-gray-400 p-1 px-2 rounded">
@@ -1581,9 +1586,12 @@ const Navbar = () => {
         )
       }
       </div>
-      <div className="">
-      <ConfirmOrder subTotal={myCartPrice} totalDiscount={myCartDiscount} />
+      {
+        isOpenConfirmModal &&
+      <div className={`${isAddressOpen ? ' opacity-0' : 'opacity-100'} transition duration-300`}>
+      <ConfirmOrder subTotal={myCartPrice} totalDiscount={myCartDiscount} modal={isOpenConfirmModal} setModal={setIsOpenConfirmModal} />
       </div>
+      }
     </nav>
   );
 };
