@@ -69,12 +69,15 @@ const Navbar = () => {
   // total of my cart price
   const myCartPrice = mycart?.reduce((acc, item) => acc + item?.price, 0);
   const myCartDiscount = mycart?.reduce((acc, item) => acc + item?.discount, 0);
+  const shippingCost = 50;
+  const totalAmount = myCartPrice + shippingCost;
 
+  
   // confirm modal togglse state
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
 
   console.log("My cart price 💵", myCartPrice);
-
+  
   const handleSection = (section) => {
     setOpenSection({
       men: false,
@@ -85,14 +88,14 @@ const Navbar = () => {
       [section]: !openSection[section],
     });
   };
-
+  
   // search bar hooks
   const [query, setQuery] = useState("");
   const [filterParams, setFilterParams] = useState({});
   const [products, ProductLoading] = useProducts(filterParams);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cartBar, setCartBar] = useState(false);
-
+  
   // modal toggle state
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [userAddress, setUserAddress] = useState("");
@@ -114,24 +117,26 @@ const Navbar = () => {
       console.log(err.message);
     }
   };
-
+  
   useEffect(() => {
     if (
       userData?.useraddress?.[0]?.number ||
-      userData?.useraddress?.[0]?.address
+      userData?.useraddress?.[0]?.address ||
+      userData?.useraddress?.[0]?.name
     ) {
       setUserAddress(userData?.useraddress?.[0]?.address);
       setMobileNumber(userData?.useraddress?.[0]?.number);
+      setName(userData?.useraddress?.[0]?.name)
     }
   }, [userData]);
-
+  
   // search button function
   const handleSearch = () => {
     if (query.trim()) {
       navigate(`/productsList?search=${encodeURIComponent(query)}`);
     }
   };
-
+  
   // searchbar key handle functions
   const handleChange = (e) => {
     const value = e.target.value;
@@ -146,24 +151,49 @@ const Navbar = () => {
       setShowSuggestions(false);
     }
   };
-
+  
   console.log("Here is my cart ➡️", mycart);
-
+  
   // const mycart = cartData?.filter((item) => item?.userEmail === email) || [];
-
+  
   const isActive = ({ isActive }) =>
     isActive ? "text-blue-500 bg-slate-200" : "";
   const handleLogout = () => {
     logOut();
     navigate("/login");
   };
+  
+  const orderData = {
+    userEmail: userData?.email,
+    item: myCartNameandPrice,
+    shippingAddress: {
+      name: name,
+      address: userAddress,
+      phone: mobileNumber,
+    },
+    status: "pending",
+    subTotal: myCartPrice,
+    shippingCost: shippingCost,
+    totalAmount: totalAmount,
+  }
 
-  const placeOrder = () => {
-    if (!userAddress || !mobileNumber) {
+  console.log("Order data here 🚚", orderData)
+
+  const placeOrder = async() => {
+    if (!userAddress || !mobileNumber || !name) {
       setIsOpenConfirmModal(false);
-      return toast.error("Please add home address and phone number");
+      return toast.error("Please add home name, address and phone number");
     } else {
-      setIsOpenConfirmModal(!isOpenConfirmModal);
+      try {
+
+        const res = await axios.post(`http://localhost:5000/api/order`, orderData)
+        if(res.data.success) {
+          setIsOpenConfirmModal(!isOpenConfirmModal);
+        }
+      } catch (err) {
+        toast.error("Error while submiting the order")
+        console.log("Error while submiting order", err.message)
+      }
     }
   };
 
