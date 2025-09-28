@@ -92,7 +92,7 @@ const ViewProduct = () => {
       cartData
     );
     if (res.data.success) {
-      toast.success("Product added successfully");
+      toast.success("Product added successfully", {position: "top-center", style:{ width: "750px", height: "50px" }});
       console.log(res.data);
       setSelectedColor("");
       setSelectedSize("");

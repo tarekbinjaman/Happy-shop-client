@@ -172,6 +172,7 @@ const Navbar = () => {
       phone: mobileNumber,
     },
     status: "pending",
+    totalDiscount: myCartDiscount,
     subTotal: myCartPrice,
     shippingCost: shippingCost,
     totalAmount: totalAmount,
@@ -1667,12 +1668,10 @@ const Navbar = () => {
           } transition duration-300`}
         >
           <ConfirmOrder
-            subTotal={myCartPrice}
-            totalDiscount={myCartDiscount}
-            modal={isOpenConfirmModal}
-            setModal={setIsOpenConfirmModal}
-            address={userAddress}
-            number={mobileNumber}
+           email={userData?.email}
+           modal={isOpenConfirmModal}
+           setModal={setIsOpenConfirmModal}
+           refetch={cartRefetch}
           />
         </div>
       )}
