@@ -188,6 +188,8 @@ const Navbar = () => {
 
         const res = await axios.post(`http://localhost:5000/api/order`, orderData)
         if(res.data.success) {
+          await axios.delete(`http://localhost:5000/api/cartList/clear/${userData?.email}`)
+
           setIsOpenConfirmModal(!isOpenConfirmModal);
         }
       } catch (err) {
