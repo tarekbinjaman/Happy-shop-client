@@ -44,6 +44,11 @@ const Authprovider = ({ children }) => {
             try {
                 // if user logged in
                 setUser(currentUser);
+                // try {
+                //     await axios.put(`http://localhost:5000/api/users/${}`)
+                // } catch (err) {
+
+                // }
                 if(currentUser) {
                     console.log(currentUser)
                     const loggedUser = {email : currentUser.email};

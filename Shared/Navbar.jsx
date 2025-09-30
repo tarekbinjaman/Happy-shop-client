@@ -237,7 +237,7 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-  console.log("userData: 😊", userData);
+  console.log("userData: 😊", userData, user);
   return (
     <nav className="py-4 bg-white md:px-12">
       <div className="flex items-center justify-between px-4">
@@ -761,7 +761,7 @@ const Navbar = () => {
                   className="w-[44px] h-[44px] rounded-full
                                  border-2 border-slate-300
                                  object-cover cursor-pointer"
-                  src={user?.photoURL}
+                  src={userData?.photoURL}
                   onClick={() => setDropdownOpen(!dropdownOpen)}
                   alt="profile iamge"
                 />

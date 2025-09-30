@@ -6,7 +6,10 @@ import CustomCursor from '../src/Cursor/CustomCursor';
 
 const MainLayout = () => {
     const location = useLocation();
-    const hideLayout = location.pathname.startsWith('/adminDashboard')
+    const hideLayout = 
+    location.pathname.startsWith('/adminDashboard') ||
+    location.pathname.startsWith('/userDashboard')
+    
     return (
         <div className='flex flex-col min-h-screen'>
             {/* <div className='max-w-11/12 mx-auto'> */}

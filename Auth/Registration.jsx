@@ -39,7 +39,7 @@ const Registration = () => {
                 email: user?.email,
                 isAdmin: false,
                 number_of_meal_added: 0,
-                photo: user?.photoURL,
+                photoURL: user?.photoURL,
             };
 
             // api call
