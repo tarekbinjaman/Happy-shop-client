@@ -14,10 +14,10 @@ const UserDashBoard = () => {
   const isActive = ({ isActive }) =>
     isActive ? "text-blue-500 bg-slate-200 rounded block w-full" : "";
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 bg-white">
       <div className="flex gap-5">
-        <div className="md:w-64 w-32 shadow-xl px-4 py-8   bg-[#F2F0F1] h-screen">
-          <div className="flex flex-col items-center justify-center space-y-1 mb-3">
+        <div className="md:w-64 w-32 shadow-xl px-4 py-8    h-screen">
+          <div className="flex flex-col items-center justify-center space-y-1 mb-3 bg-[#F2F0F1] py-4 rounded">
             <img src={userData?.photoURL} className="rounded-full" alt="" />
             <h1 className="text-sm ">{user?.displayName}</h1>
             <p className="text-gray-400 text-xs">{userData?.email}</p>
@@ -26,10 +26,20 @@ const UserDashBoard = () => {
           {/* routes */}
           <div className="grid grid-cols-1 space-y-1">
             <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
               to="/productsList"
               className={({ isActive }) =>
-                `px-4 py-2 rounded  ${
-                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
                 }`
               }
             >
@@ -38,8 +48,8 @@ const UserDashBoard = () => {
             <NavLink
               to="/userDashboard/myProfile"
               className={({ isActive }) =>
-                `px-4 py-2 rounded  ${
-                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
                 }`
               }
             >
@@ -48,12 +58,52 @@ const UserDashBoard = () => {
             <NavLink
               to="/userDashboard/Order-management"
               className={({ isActive }) =>
-                `px-4 py-2 rounded ${
-                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
                 }`
               }
             >
               Order Management
+            </NavLink>
+            <NavLink
+              to="/userDashboard/address"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
+                }`
+              }
+            >
+              Address
+            </NavLink>
+            <NavLink
+              to="/userDashboard/wish-List"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
+                }`
+              }
+            >
+              WishList
+            </NavLink>
+            <NavLink
+              to="/userDashboard/rewards"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
+                }`
+              }
+            >
+              Loyalty & Rewards
+            </NavLink>
+            <NavLink
+              to="/userDashboard/notification"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded border  ${
+                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
+                }`
+              }
+            >
+              Notification
             </NavLink>
           </div>
           {/* <ul className="space-y-1">

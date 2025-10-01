@@ -14,6 +14,9 @@ import AllProduct from '../AdminDashboard/routes/AllProduct';
 import Products from '../Pages/Products/Products';
 import ViewProduct from '../Pages/ViewProduct/ViewProduct';
 import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
+import Wishlist from '../UserDashBoard/Routes/Wishlist';
+import Notification from '../UserDashBoard/Routes/Notification';
+import LoyaltyandRewards from '../UserDashBoard/Routes/LoyaltyandRewards';
 
 const router = createBrowserRouter([
     {
@@ -74,7 +77,19 @@ const router = createBrowserRouter([
                     {
                         path: "Order-management",
                         element: <OrderManagement />
-                    }
+                    },
+                    {
+                        path: "wish-List",
+                        element: <Wishlist />
+                    },
+                    {
+                        path: "notification",
+                        element: <Notification />
+                    },
+                    {
+                        path: "rewards",
+                        element: <LoyaltyandRewards />
+                    },
                 ]
             }
         ]
