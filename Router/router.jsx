@@ -13,6 +13,7 @@ import AddProduct from '../AdminDashboard/routes/AddProduct';
 import AllProduct from '../AdminDashboard/routes/AllProduct';
 import Products from '../Pages/Products/Products';
 import ViewProduct from '../Pages/ViewProduct/ViewProduct';
+import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 
 const router = createBrowserRouter([
     {
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
                     {
                         path: "address",
                         element: <Address />
+                    },
+                    {
+                        path: "Order-management",
+                        element: <OrderManagement />
                     }
                 ]
             }

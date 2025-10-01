@@ -11,48 +11,79 @@ const UserDashBoard = () => {
   const email = user?.email;
   const [currentUerData, refetchUserList] = currentUser(email);
   const userData = currentUerData?.[0];
-  const isActive = ({ isActive }) => isActive ? 'text-blue-500 bg-slate-200 rounded block w-full' : '';
+  const isActive = ({ isActive }) =>
+    isActive ? "text-blue-500 bg-slate-200 rounded block w-full" : "";
   return (
-    <div className="flex justify-center">
+    <div className="flex gap-4">
       <div className="flex gap-5">
         <div className="md:w-64 w-32 shadow-xl px-4 py-8   bg-[#F2F0F1] h-screen">
           <div className="flex flex-col items-center justify-center space-y-1 mb-3">
             <img src={userData?.photoURL} className="rounded-full" alt="" />
-            <h1 className="text-sm text-white">{user?.displayName}</h1>
+            <h1 className="text-sm ">{user?.displayName}</h1>
             <p className="text-gray-400 text-xs">{userData?.email}</p>
           </div>
-          <ul className="space-y-1">
-            <li>
-              <NavLink className={isActive} to={"/"}>
-                <span className="flex gap-2 items-center">
-                  {" "}
-                  <IoMdHome /> Home
-                </span>
-              </NavLink>
-            </li>
-            <li>
+
+          {/* routes */}
+          <div className="grid grid-cols-1 space-y-1">
+            <NavLink
+              to="/productsList"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded  ${
+                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                }`
+              }
+            >
+              Shop
+            </NavLink>
+            <NavLink
+              to="/userDashboard/myProfile"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded  ${
+                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                }`
+              }
+            >
+              My Profile
+            </NavLink>
+            <NavLink
+              to="/userDashboard/Order-management"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded ${
+                  isActive ? "bg-blue-500 text-white" : "bg-red-300 text-black"
+                }`
+              }
+            >
+              Order Management
+            </NavLink>
+          </div>
+          {/* <ul className="space-y-1">
+            <li className="">
               <NavLink
-                className={isActive}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+      ? "bg-slate-200 text-blue-500 rounded px-3 py-1"
+      : "bg-red-300 px-3 py-1"
+                  } `
+                }
                 to={"/userDashboard/myProfile"}
               >
                 <span className="flex gap-2 items-center">
                   {" "}
-                  <CgProfile /> Dasboard
+               User Profile
                 </span>
               </NavLink>
             </li>
-            <li>
-              <NavLink className={isActive} to={"/adminDashboard/adminProfile"}>
-                <span className="flex gap-2 items-center">
-                  {" "}
-                  <CgProfile /> Admin profile
-                </span>
-              </NavLink>
-            </li>
-            <li>
+            <li className="">
               <NavLink
-                className={isActive}
-                to={"/adminDashboard/orderManagement"}
+                className={({ isActive }) =>
+                  `${
+                    isActive
+                      ? "text-blue-500 rounded "
+                      : ""
+                  }`
+                }
+                to={"/userDashboard/Order-management"}
               >
                 <span className="flex gap-2 items-center">
                   {" "}
@@ -71,7 +102,7 @@ const UserDashBoard = () => {
             </li>
             <li className="text-[18px] font-bold text-blue-500">My reviews</li>
             <li className="text-[18px] font-bold text-blue-500">My wishlist</li>
-          </ul>
+          </ul> */}
         </div>
         <div className="flex-1">
           <Outlet />
