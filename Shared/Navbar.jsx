@@ -72,12 +72,11 @@ const Navbar = () => {
   const shippingCost = 50;
   const totalAmount = myCartPrice + shippingCost;
 
-  
   // confirm modal togglse state
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState(false);
 
   console.log("My cart price 💵", myCartPrice);
-  
+
   const handleSection = (section) => {
     setOpenSection({
       men: false,
@@ -88,14 +87,14 @@ const Navbar = () => {
       [section]: !openSection[section],
     });
   };
-  
+
   // search bar hooks
   const [query, setQuery] = useState("");
   const [filterParams, setFilterParams] = useState({});
   const [products, ProductLoading] = useProducts(filterParams);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [cartBar, setCartBar] = useState(false);
-  
+
   // modal toggle state
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [userAddress, setUserAddress] = useState("");
@@ -117,7 +116,7 @@ const Navbar = () => {
       console.log(err.message);
     }
   };
-  
+
   useEffect(() => {
     if (
       userData?.useraddress?.[0]?.number ||
@@ -126,17 +125,17 @@ const Navbar = () => {
     ) {
       setUserAddress(userData?.useraddress?.[0]?.address);
       setMobileNumber(userData?.useraddress?.[0]?.number);
-      setName(userData?.useraddress?.[0]?.name)
+      setName(userData?.useraddress?.[0]?.name);
     }
   }, [userData]);
-  
+
   // search button function
   const handleSearch = () => {
     if (query.trim()) {
       navigate(`/productsList?search=${encodeURIComponent(query)}`);
     }
   };
-  
+
   // searchbar key handle functions
   const handleChange = (e) => {
     const value = e.target.value;
@@ -151,18 +150,18 @@ const Navbar = () => {
       setShowSuggestions(false);
     }
   };
-  
+
   console.log("Here is my cart ➡️", mycart);
-  
+
   // const mycart = cartData?.filter((item) => item?.userEmail === email) || [];
-  
+
   const isActive = ({ isActive }) =>
     isActive ? "text-blue-500 bg-slate-200" : "";
   const handleLogout = () => {
     logOut();
     navigate("/login");
   };
-  
+
   const orderData = {
     userEmail: userData?.email,
     item: myCartNameandPrice,
@@ -176,26 +175,30 @@ const Navbar = () => {
     subTotal: myCartPrice,
     shippingCost: shippingCost,
     totalAmount: totalAmount,
-  }
+  };
 
-  console.log("Order data here 🚚", orderData)
+  console.log("Order data here 🚚", orderData);
 
-  const placeOrder = async() => {
+  const placeOrder = async () => {
     if (!userAddress || !mobileNumber || !name) {
       setIsOpenConfirmModal(false);
       return toast.error("Please add home name, address and phone number");
     } else {
       try {
-
-        const res = await axios.post(`http://localhost:5000/api/order`, orderData)
-        if(res.data.success) {
-          await axios.delete(`http://localhost:5000/api/cartList/clear/${userData?.email}`)
+        const res = await axios.post(
+          `http://localhost:5000/api/order`,
+          orderData
+        );
+        if (res.data.success) {
+          await axios.delete(
+            `http://localhost:5000/api/cartList/clear/${userData?.email}`
+          );
 
           setIsOpenConfirmModal(!isOpenConfirmModal);
         }
       } catch (err) {
-        toast.error("Error while submiting the order")
-        console.log("Error while submiting order", err.message)
+        toast.error("Error while submiting the order");
+        console.log("Error while submiting order", err.message);
       }
     }
   };
@@ -768,9 +771,10 @@ const Navbar = () => {
               </div>
             ) : (
               // <CgProfile onClick={() => setIsProfileOpen(!isProfileOpen)} className='text-3xl text-gray-500 cursor-pointer hover:text-black' />
-              <button className="btn">
-                <Link to={"/register"}>Register</Link>
-              </button>
+              <Link to={"/register"}>
+                {" "}
+                <button className="btn">Register</button>
+              </Link>
             )}
           </div>
           <div className="relative">
@@ -1668,10 +1672,10 @@ const Navbar = () => {
           } transition duration-300`}
         >
           <ConfirmOrder
-           email={userData?.email}
-           modal={isOpenConfirmModal}
-           setModal={setIsOpenConfirmModal}
-           refetch={cartRefetch}
+            email={userData?.email}
+            modal={isOpenConfirmModal}
+            setModal={setIsOpenConfirmModal}
+            refetch={cartRefetch}
           />
         </div>
       )}

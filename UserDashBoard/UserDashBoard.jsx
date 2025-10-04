@@ -18,8 +18,8 @@ const UserDashBoard = () => {
       <div className="flex gap-5">
         <div className="md:w-64 w-32 shadow-xl px-4 py-8  bg-white  h-screen">
           <div className="flex flex-col items-center justify-center space-y-1 mb-3 bg-[#F2F0F1] py-4 rounded">
-            <img src={userData?.photoURL} className="rounded-full" alt="" />
-            <h1 className="text-sm ">{user?.displayName}</h1>
+            <img src={userData?.photoURL} className="rounded-full w-28 h-28 object-cover" alt="" />
+            <h1 className="text-sm ">{userData?.name}</h1>
             <p className="text-gray-400 text-xs">{userData?.email}</p>
           </div>
 
@@ -105,54 +105,19 @@ const UserDashBoard = () => {
             >
               Notification
             </NavLink>
+            <NavLink
+            to={`/`}
+              onClick={() => logOut()}
+              className={
+                `px-4 py-2 rounded border  
+                    bg-white text-black border-slate-300
+                }`
+              }
+            >
+              Logout
+            </NavLink>
           </div>
-          {/* <ul className="space-y-1">
-            <li className="">
-              <NavLink
-                className={({ isActive }) =>
-                  `${
-                    isActive
-      ? "bg-slate-200 text-blue-500 rounded px-3 py-1"
-      : "bg-red-300 px-3 py-1"
-                  } `
-                }
-                to={"/userDashboard/myProfile"}
-              >
-                <span className="flex gap-2 items-center">
-                  {" "}
-               User Profile
-                </span>
-              </NavLink>
-            </li>
-            <li className="">
-              <NavLink
-                className={({ isActive }) =>
-                  `${
-                    isActive
-                      ? "text-blue-500 rounded "
-                      : ""
-                  }`
-                }
-                to={"/userDashboard/Order-management"}
-              >
-                <span className="flex gap-2 items-center">
-                  {" "}
-                  <AiOutlineProduct /> Order Management
-                </span>
-              </NavLink>
-            </li>
-            <li>
-              <span className="text-[18px] font-bold text-gray-500">
-                My orders
-              </span>
-              <ul className="ml-4">
-                <li>My returns</li>
-                <li>My cancellation</li>
-              </ul>
-            </li>
-            <li className="text-[18px] font-bold text-blue-500">My reviews</li>
-            <li className="text-[18px] font-bold text-blue-500">My wishlist</li>
-          </ul> */}
+
         </div>
         <div className="w-full ">
           <Outlet />
