@@ -14,9 +14,9 @@ const UserDashBoard = () => {
   const isActive = ({ isActive }) =>
     isActive ? "text-blue-500 bg-slate-200 rounded block w-full" : "";
   return (
-    <div className=" bg-white">
+    <div className="bg-[#F2F0F1] ">
       <div className="flex gap-5">
-        <div className="md:w-64 w-32 shadow-xl px-4 py-8    h-screen">
+        <div className="md:w-64 w-32 shadow-xl px-4 py-8  bg-white  h-screen">
           <div className="flex flex-col items-center justify-center space-y-1 mb-3 bg-[#F2F0F1] py-4 rounded">
             <img src={userData?.photoURL} className="rounded-full" alt="" />
             <h1 className="text-sm ">{user?.displayName}</h1>
