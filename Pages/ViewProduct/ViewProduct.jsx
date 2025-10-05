@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import UseAuth from "../../Context/UseAuth";
 import useCart from "../../api/useCart";
+import { IoHeartOutline } from "react-icons/io5";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -92,7 +93,10 @@ const ViewProduct = () => {
       cartData
     );
     if (res.data.success) {
-      toast.success("Product added successfully", {position: "top-center", style:{ width: "750px", height: "50px" }});
+      toast.success("Product added successfully", {
+        position: "top-center",
+        style: { width: "750px", height: "50px" },
+      });
       console.log(res.data);
       setSelectedColor("");
       setSelectedSize("");
@@ -103,6 +107,30 @@ const ViewProduct = () => {
 
     console.log(cartData);
   };
+
+  const addToWishList = async() => {
+    try {
+
+      const wishlistData = {
+        userEmail: user?.email,
+        productId: productId,
+        title: singleProduct?.title,
+        price: quantityPrice,
+        image: singleProduct?.images[0].url,
+        description: singleProduct?.description,
+      };
+      const res = await axios.post("http://localhost:5000/api/wishlist", wishlistData)
+  
+      if(res.data.success) {
+        toast.success("Added to wishlist", {position: "top-center"})
+      } 
+    } catch (err) {
+
+      toast.error("Wishlist added failed")
+    }
+    
+  };
+
   console.log("This is product in single page", imageContainer);
   return (
     <div className="xl:w-7/10 lg:w-11/12 mx-auto ">
@@ -231,7 +259,9 @@ const ViewProduct = () => {
                         setError((Prev) => ({ ...Prev, sizeError: null }));
                       }}
                       className={`text-xs bg-white px-3 py-1  border-3 cursor-pointer ${
-                        selectedSize === siz ? " border-yellow-400" : "border-white"
+                        selectedSize === siz
+                          ? " border-yellow-400"
+                          : "border-white"
                       } 
                       
                       `}
@@ -268,12 +298,23 @@ const ViewProduct = () => {
                 </div>
                 {/* button 2 */}
                 <div className="flex-grow">
-                  <button
-                    onClick={addToCart}
-                    className="text-sm w-full bg-orange-400 px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-orange-500 transition duration-400"
-                  >
-                    Add to Cart
-                  </button>
+                  <div className="flex gap-2 items-center">
+                    <button
+                      onClick={addToCart}
+                      className="text-sm w-full bg-orange-400 px-6 py-2 rounded-3xl text-white cursor-pointer hover:bg-orange-500 transition duration-400"
+                    >
+                      Add to Cart
+                    </button>
+
+                    {/* Wishlist button */}
+                    <button
+                    onClick={() => addToWishList()}
+                      title="Add to wishlist"
+                      className="text-red-500 text-2xl border px-2 py-0.5 cursor-pointer rounded"
+                    >
+                      <IoHeartOutline />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

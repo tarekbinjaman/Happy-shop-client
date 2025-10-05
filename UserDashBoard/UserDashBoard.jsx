@@ -86,24 +86,24 @@ const UserDashBoard = () => {
               WishList
             </NavLink>
             <NavLink
-              to="/userDashboard/rewards"
+              to="/userDashboard/product-review"
               className={({ isActive }) =>
                 `px-4 py-2 rounded border  ${
                   isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
                 }`
               }
             >
-              Loyalty & Rewards
+              Product review
             </NavLink>
             <NavLink
-              to="/userDashboard/notification"
+              to="/userDashboard/returnandCancelation"
               className={({ isActive }) =>
                 `px-4 py-2 rounded border  ${
                   isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
                 }`
               }
             >
-              Notification
+              My return and cancelation
             </NavLink>
             <NavLink
             to={`/`}

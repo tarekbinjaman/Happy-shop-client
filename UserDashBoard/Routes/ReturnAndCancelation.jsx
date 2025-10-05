@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Notification = () => {
+const ReturnAndCancelation = () => {
     return (
         <div>
             <h1>Notification page</h1>
@@ -8,4 +8,4 @@ const Notification = () => {
     );
 };
 
-export default Notification;
+export default ReturnAndCancelation;

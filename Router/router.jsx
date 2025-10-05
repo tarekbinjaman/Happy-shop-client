@@ -15,8 +15,10 @@ import Products from '../Pages/Products/Products';
 import ViewProduct from '../Pages/ViewProduct/ViewProduct';
 import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 import Wishlist from '../UserDashBoard/Routes/Wishlist';
-import Notification from '../UserDashBoard/Routes/Notification';
-import LoyaltyandRewards from '../UserDashBoard/Routes/LoyaltyandRewards';
+import Notification from '../UserDashBoard/Routes/ReturnAndCancelation';
+import LoyaltyandRewards from '../UserDashBoard/Routes/ProductReview';
+import ProductReview from '../UserDashBoard/Routes/ProductReview';
+import ReturnAndCancelation from '../UserDashBoard/Routes/ReturnAndCancelation';
 
 const router = createBrowserRouter([
     {
@@ -83,12 +85,12 @@ const router = createBrowserRouter([
                         element: <Wishlist />
                     },
                     {
-                        path: "notification",
-                        element: <Notification />
+                        path: "returnandCancelation",
+                        element: <ReturnAndCancelation />
                     },
                     {
-                        path: "rewards",
-                        element: <LoyaltyandRewards />
+                        path: "product-review",
+                        element: <ProductReview />
                     },
                 ]
             }

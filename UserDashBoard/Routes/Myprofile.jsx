@@ -52,8 +52,9 @@ const Myprofile = () => {
     e.preventDefault();
     const res =  await axios.put(`http://localhost:5000/api/users/${userData?._id}`, {name: name})
     if(res.data.success) {
-      toast.success("User data updated", {position: "top-center"})
-      setModal(!modal)
+      toast.success("User data updated", {position: "top-center"});
+      refetchUserList();
+      setModal(!modal);
     }
     console.log("Here is the name and email", name, userEmail)
   }
@@ -70,7 +71,7 @@ const Myprofile = () => {
         />
 
         <LuPencilLine
-          onClick={() => setModal(!modal)}
+          onClick={() => setModal(true)}
           className="absolute top-1 right-2 text-xl cursor-pointer z-20 hover:scale-125 transition-all ease-in duration-200 hover:text-blue-400"
 
         />
@@ -143,7 +144,8 @@ const Myprofile = () => {
                 Submit
               </button>
               <button 
-              onClick={() => setModal(!modal)}
+              onClick={() => setModal(false)}
+              type="button"
               className="mt-4 
               cursor-pointer hover:shadow-lg
               border border-gray-400 px-10 hover:border-black transition duration-300">
