@@ -11,6 +11,7 @@ import axios from "axios";
 import UseAuth from "../../Context/UseAuth";
 import useCart from "../../api/useCart";
 import { IoHeartOutline } from "react-icons/io5";
+import useWishList from "../../api/useWishList";
 
 const ViewProduct = () => {
   const { productId } = useParams();
@@ -29,6 +30,12 @@ const ViewProduct = () => {
   const [cartData, isCartLoading, cartRefetch] = useCart(user?.email);
   const quantityPrice = quantity * singleProduct?.finalPrice;
   const quantityDiscount = quantity * singleProduct?.discount;
+  const [wishListData, wishListLoading, wishListRefetch] = useWishList(user?.email);
+
+  // checking is included in Wishlist or not
+  const isIncludedInWishList = wishListData && wishListData.find(item => item?.productId === singleProduct?.productId)
+
+  console.log("isIncludedInWishList 📋📋📋📋", wishListData)
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
