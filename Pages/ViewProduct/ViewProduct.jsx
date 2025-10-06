@@ -33,9 +33,9 @@ const ViewProduct = () => {
   const [wishListData, wishListLoading, wishListRefetch] = useWishList(user?.email);
 
   // checking is included in Wishlist or not
-  const isIncludedInWishList = wishListData && wishListData.find(item => item?.productId === singleProduct?.productId)
+  const isIncludedInWishList = wishListData && wishListData.find(item => item?.productId === singleProduct?._id)
 
-  console.log("Wishlist data 📋📋📋📋", wishListData);
+  console.log("Wishlist data 📋📋📋📋", isIncludedInWishList);
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -138,6 +138,8 @@ const ViewProduct = () => {
     }
     
   };
+
+  console.log("Single product detail", singleProduct)
 
   console.log("This is product in single page", imageContainer);
   return (
