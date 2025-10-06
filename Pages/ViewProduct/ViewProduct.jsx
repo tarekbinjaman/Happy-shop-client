@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import axios from "axios";
 import UseAuth from "../../Context/UseAuth";
 import useCart from "../../api/useCart";
-import { IoHeartOutline } from "react-icons/io5";
+import { IoHeartOutline, IoHeartSharp } from "react-icons/io5";
 import useWishList from "../../api/useWishList";
 
 const ViewProduct = () => {
@@ -33,9 +33,10 @@ const ViewProduct = () => {
   const [wishListData, wishListLoading, wishListRefetch] = useWishList(user?.email);
 
   // checking is included in Wishlist or not
-  const isIncludedInWishList = wishListData && wishListData.find(item => item?.productId === singleProduct?._id)
+  const isIncludedInWishList = wishListData && wishListData.some(item => item?.productId === singleProduct?._id)
+  const currentWIshlistData = wishListData && wishListData.find(item => item?.productId === singleProduct?._id)
 
-  console.log("Wishlist data 📋📋📋📋", isIncludedInWishList);
+  console.log("Wishlist data 📋📋📋📋", currentWIshlistData);
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -116,25 +117,35 @@ const ViewProduct = () => {
   };
 
   const addToWishList = async() => {
-    try {
-
-      const wishlistData = {
-        userEmail: user?.email,
-        productId: productId,
-        title: singleProduct?.title,
-        price: quantityPrice,
-        image: singleProduct?.images[0].url,
-        description: singleProduct?.description,
-      };
-      const res = await axios.post("http://localhost:5000/api/wishlist", wishlistData)
-  
-      if(res.data.success) {
-        toast.success("Added to wishlist", {position: "top-center"})
-        console.log("+++++++++++++", res.data.wishList)
+    if(isIncludedInWishList) {
+      const res = await axios.delete(`http://localhost:5000/api/wishlist/${currentWIshlistData?._id}`)
+      if(res.data?.success) {
+        wishListRefetch()
+        toast.info("Delteded from wishlist", {position: "top-center"})
       } 
-    } catch (err) {
+    } else {
 
-      toast.error("Wishlist added failed")
+      try {
+  
+        const wishlistData = {
+          userEmail: user?.email,
+          productId: productId,
+          title: singleProduct?.title,
+          price: quantityPrice,
+          image: singleProduct?.images[0].url,
+          description: singleProduct?.description,
+        };
+        const res = await axios.post("http://localhost:5000/api/wishlist", wishlistData)
+    
+        if(res.data.success) {
+          wishListRefetch()
+          toast.success("Added to wishlist", {position: "top-center"})
+          console.log("+++++++++++++", res.data.wishList)
+        } 
+      } catch (err) {
+  
+        toast.error("Wishlist added failed")
+      }
     }
     
   };
@@ -322,7 +333,15 @@ const ViewProduct = () => {
                       title="Add to wishlist"
                       className="text-red-500 text-2xl border px-2 py-0.5 cursor-pointer rounded"
                     >
+                    {
+                      isIncludedInWishList 
+                      ?
+                      <IoHeartSharp />
+                      
+                      :
+
                       <IoHeartOutline />
+                    }
                     </button>
                   </div>
                 </div>
