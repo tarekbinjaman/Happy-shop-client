@@ -1,19 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
+import axios from 'axios';
 
-const useWishList = (email ) => {
+const useWishList = (email) => {
   const {
     refetch,
     isLoading,
-    data: wishList = {},
+    data: wishList = [],
   } = useQuery({
     queryKey: ["wishlist", email],
     enabled: !!email,
     queryFn: async () => {
-      const res = await axios.get(
+      const res = await  axios.get(
         `http://localhost:5000/api/wishlist?email=${email}`
       );
-      return res.data?.wishListData;
+      return res.data?.wishListData || []; // ✅ return only array
     },
   });
   return [wishList, isLoading, refetch];

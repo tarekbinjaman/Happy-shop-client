@@ -35,7 +35,7 @@ const ViewProduct = () => {
   // checking is included in Wishlist or not
   const isIncludedInWishList = wishListData && wishListData.find(item => item?.productId === singleProduct?.productId)
 
-  console.log("isIncludedInWishList 📋📋📋📋", wishListData)
+  console.log("Wishlist data 📋📋📋📋", wishListData);
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab
@@ -130,6 +130,7 @@ const ViewProduct = () => {
   
       if(res.data.success) {
         toast.success("Added to wishlist", {position: "top-center"})
+        console.log("+++++++++++++", res.data.wishList)
       } 
     } catch (err) {
 
