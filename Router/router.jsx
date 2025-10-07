@@ -15,10 +15,7 @@ import Products from '../Pages/Products/Products';
 import ViewProduct from '../Pages/ViewProduct/ViewProduct';
 import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 import Wishlist from '../UserDashBoard/Routes/Wishlist';
-import Notification from '../UserDashBoard/Routes/ReturnAndCancelation';
-import LoyaltyandRewards from '../UserDashBoard/Routes/ProductReview';
 import ProductReview from '../UserDashBoard/Routes/ProductReview';
-import ReturnAndCancelation from '../UserDashBoard/Routes/ReturnAndCancelation';
 
 const router = createBrowserRouter([
     {
@@ -83,10 +80,6 @@ const router = createBrowserRouter([
                     {
                         path: "wish-List",
                         element: <Wishlist />
-                    },
-                    {
-                        path: "returnandCancelation",
-                        element: <ReturnAndCancelation />
                     },
                     {
                         path: "product-review",

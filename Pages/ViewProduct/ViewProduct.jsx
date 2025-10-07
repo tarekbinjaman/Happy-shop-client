@@ -36,7 +36,7 @@ const ViewProduct = () => {
   const isIncludedInWishList = wishListData && wishListData.some(item => item?.productId === singleProduct?._id)
   const currentWIshlistData = wishListData && wishListData.find(item => item?.productId === singleProduct?._id)
 
-  console.log("Wishlist data 📋📋📋📋", currentWIshlistData);
+  console.log("Wishlist data 📋📋📋📋", isIncludedInWishList);
 
   // tabs hooks
   const [aciteveTab, setActiveTab] = useState(0); // 0 = first tab

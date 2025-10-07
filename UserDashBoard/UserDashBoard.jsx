@@ -96,16 +96,6 @@ const UserDashBoard = () => {
               Product review
             </NavLink>
             <NavLink
-              to="/userDashboard/returnandCancelation"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded border  ${
-                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
-                }`
-              }
-            >
-              My return and cancelation
-            </NavLink>
-            <NavLink
             to={`/`}
               onClick={() => logOut()}
               className={
