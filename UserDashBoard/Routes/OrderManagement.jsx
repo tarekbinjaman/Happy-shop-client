@@ -12,10 +12,13 @@ const OrderManagement = () => {
             {
                 orderData?.length > 0 &&
                 orderData ?
-                <div>
+                <div className='flex flex-col'>
                     {
                         orderData.map((item) => (
-                            <p>One</p>
+                            <div className='border border-slate-300 rounded-2xl p-4'>
+                                <h1 className='border-b-2 border-slate-300 pb-4 text-md font-thin'><span className='font-bold'>Order ID:</span> {item?._id}</h1>
+                                <p>One</p>
+                            </div>
                         ))
                     }
                 </div>
