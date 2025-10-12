@@ -8,11 +8,11 @@ const useOrder = (email) => {
         queryKey: ['cartData', email],
         queryFn: async () => {
             const res = await axios.get(`http://localhost:5000/api/order?email=${email}`);
-            return res.data;
+             return res.data.Data;
         },
         enabled: !!email
     })
-    return [orderData?.Data , isLoading, refetch];
+    return [orderData , isLoading, refetch];
 }
 
 export default useOrder;

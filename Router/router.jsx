@@ -16,6 +16,7 @@ import ViewProduct from '../Pages/ViewProduct/ViewProduct';
 import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 import Wishlist from '../UserDashBoard/Routes/Wishlist';
 import ProductReview from '../UserDashBoard/Routes/ProductReview';
+import ViewOrder from '../UserDashBoard/Routes/viewOrder';
 
 const router = createBrowserRouter([
     {
@@ -85,8 +86,13 @@ const router = createBrowserRouter([
                         path: "product-review",
                         element: <ProductReview />
                     },
+
                 ]
-            }
+            },
+                                {
+                        path: "view-order/:id",
+                        element: <ViewOrder />
+                    }
         ]
     }
 ])

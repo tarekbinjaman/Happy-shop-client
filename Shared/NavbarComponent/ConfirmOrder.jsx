@@ -2,15 +2,18 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { TiTick } from "react-icons/ti";
 
-const ConfirmOrder = ({email, modal, setModal, refetch}) => {
+const ConfirmOrder = ({id, email, modal, setModal, refetch}) => {
   const [orderData, setOrderData] = useState();
   useEffect( () => {
     const fetchOrderData = async () => {
     try {
-        const res = await  axios.get(`http://localhost:5000/api/order/${email}`);
+        const res = await  axios.get(`http://localhost:5000/api/order?email=${email}`);
               if (res?.data?.success) {
         console.log("Order data: ⬇️", res.data.Data);
         setOrderData(res.data.Data);
+        console.log("kkkkkkkkkkkkkkkkkkkkkk", res.data.Data)
+        const currentOrder = res?.data?.Data.find((item) => item?._id === id)
+        setOrderData(currentOrder)
       } else {
         console.log("API returned success: false");
       }

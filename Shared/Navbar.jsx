@@ -44,6 +44,7 @@ const Navbar = () => {
   const userData = currentUerData?.[0];
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [data, cartIsLoading, cartRefetch] = useCart(email);
+  const [confirmModarId, setConfirmModalID] = useState("");
   const [openSection, setOpenSection] = useState({
     men: false,
     women: false,
@@ -62,6 +63,8 @@ const Navbar = () => {
       price: item?.price,
       size: item?.size,
       image: item?.image,
+      description: item?.description,
+      quantity: item?.quantity
     }));
   console.log("MyCartNameandPrice 🌊", myCartNameandPrice);
   console.log("Mycart data 🏬", mycart);
@@ -193,7 +196,7 @@ const Navbar = () => {
           await axios.delete(
             `http://localhost:5000/api/cartList/clear/${userData?.email}`
           );
-
+          setConfirmModalID(res.data.order?._id)
           setIsOpenConfirmModal(!isOpenConfirmModal);
         }
       } catch (err) {
@@ -1672,6 +1675,7 @@ const Navbar = () => {
           } transition duration-300`}
         >
           <ConfirmOrder
+            id={confirmModarId}
             email={userData?.email}
             modal={isOpenConfirmModal}
             setModal={setIsOpenConfirmModal}

@@ -3,6 +3,7 @@ import UseAuth from '../../Context/UseAuth';
 import useOrder from '../../api/useOrder';
 import { MdHome } from "react-icons/md";
 import { PiPersonSimpleBikeLight } from "react-icons/pi";
+import { Link } from 'react-router-dom';
 
 const OrderManagement = () => {
     const {user} = UseAuth();
@@ -17,7 +18,9 @@ const OrderManagement = () => {
                 <div className='flex flex-col space-y-3'>
                     {
                         orderData.map((item) => (
-                            <div className='border border-slate-300 rounded-2xl p-4 bg-white/40 backdrop-blur-md'>
+                            <div
+                            key={item?._id}
+                            className='border border-slate-300 rounded-2xl p-4 bg-white/40 backdrop-blur-md'>
                                 <div className='pb-4 border-b-2 border-slate-300 flex justify-between'>
                                 <h1 className='  text-md font-thin'><span className='font-bold'>Order ID:</span> {item?._id}</h1>
                                 <div className='inline-flex items-center space-y-2 bg-gray-300  px-5 py-1 rounded-lg'>
@@ -47,7 +50,9 @@ const OrderManagement = () => {
                                     </div>
                                     <div className='flex gap-2'>
                                         <button className='bg-green-400 px-2 py-1 rounded border border-green-400 hover:border-black transition duration-200 cursor-pointer'>Order again</button>
-                                        <button className='bg-gray-300 px-2 py-1 rounded border border-gray-300 hover:border-black transition duration-200 cursor-pointer'>View order</button>
+                                       <Link to={`/view-order/${item?._id}`}>
+                                       <button className='bg-gray-300 px-2 py-1 rounded border border-gray-300 hover:border-black transition duration-200 cursor-pointer'>View order</button>
+                                       </Link> 
                                     </div>
                                 </div>
                             </div>
