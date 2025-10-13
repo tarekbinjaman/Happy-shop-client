@@ -50,7 +50,7 @@ const OrderManagement = () => {
                                     </div>
                                     <div className='flex gap-2'>
                                         <button className='bg-green-400 px-2 py-1 rounded border border-green-400 hover:border-black transition duration-200 cursor-pointer'>Order again</button>
-                                       <Link to={`/view-order/${item?._id}`}>
+                                       <Link to={`/userDashboard/view-order/${item?._id}`}>
                                        <button className='bg-gray-300 px-2 py-1 rounded border border-gray-300 hover:border-black transition duration-200 cursor-pointer'>View order</button>
                                        </Link> 
                                     </div>

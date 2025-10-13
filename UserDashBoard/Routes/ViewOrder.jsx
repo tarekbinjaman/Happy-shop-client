@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import UseAuth from "../../Context/UseAuth";
 import axios from "axios";
+import { MdHome } from "react-icons/md";
 
 const ViewOrder = () => {
   const { user } = UseAuth();
@@ -9,13 +10,15 @@ const ViewOrder = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
     const onfetch = async () => {
-      const res = await axios.get(`http://localhost:5000/api/order?email=${user?.email}`)
-      if(res.data.success) {
-        setData(res.data.Data)
+      const res = await axios.get(
+        `http://localhost:5000/api/order?email=${user?.email}`
+      );
+      if (res.data.success) {
+        setData(res.data.Data);
       }
-    }
-    onfetch()
-  },[user?.email])
+    };
+    onfetch();
+  }, [user?.email]);
 
   // Wait until the data is loaded
 
@@ -25,29 +28,58 @@ const ViewOrder = () => {
 
   return (
     <div>
-      <div className="flex flex-col">
-      {
-        orderData &&
-        orderData?.item.map((items) => (
-          <div>
-          <div className="flex space-x-2">
-            <div>
-              <img className="w-20" src={items?.image} alt="" />
+      <div className="flex flex-col space-y-5 mx-8 mt-8 bg-white p-8 rounded-2xl">
+        {orderData &&
+          orderData?.item.map((items) => (
+            <div className="flex justify-between bg-white px-2 py-1 rounded-md border border-slate-300">
+              <div className="flex space-x-2">
+                <div>
+                  <img className="w-20" src={items?.image} alt="" />
+                </div>
+                <div>
+                  <h1>{items?.title}</h1>
+                  <h1 className="text-gray-400 mt-2">
+                    {items?.description.slice(0, 15)}
+                  </h1>
+                </div>
+              </div>
+              <div>
+                <p>
+                  <span className="font-bold text-lg">Price</span>{" "}
+                  <span>{items?.price}</span>$
+                </p>
+                <span>
+                  <span className="font-thin text-lg text-gray-400">
+                    Quantitiy:
+                  </span>{" "}
+                  <span className="font-bold text-lg">{items?.quantity}</span>
+                </span>
+                <p className="text-lg bg-green-400 text-center rounded-lg">
+                  {orderData?.status}
+                </p>
+              </div>
             </div>
-            <div>
-            <h1>{items?.title}</h1>
-            <h1 className="text-gray-400 mt-2">{items?.description.slice(0, 15)}</h1>
-            </div>
+          ))}
+        <button className="border w-full cursor-pointer hover:bg-green-300 transition duration-200 rounded py-2 ">
+          Create another order with these items
+        </button>
+      </div>
+      <div className="bg-white mx-8 py-2 mt-4 rounded-2xl">
+        <div className="flex justify-between mx-4">
+          <span className="text-lg font-bold">Shipping Address</span>
+          <button className="border px-4 py-1 rounded cursor-pointer hover:bg-slate-300 transition duration-200">Cancel order</button>
+        </div>
+        <div className="divider"></div>
+        <div className="flex items-start gap-2">
+          <div className="pl-2">
+          <MdHome className="text-2xl " />
           </div>
-          <div>
-            <p><span className="font-bold">Price</span> <span>{items?.price}</span>$</p>
-            <span>
-          <span className="font-bold ">Quantitiy:</span> <span className="text-gray-500">{items?.quantity}</span>
-            </span>
+          <div className="flex flex-col">
+            <p>{orderData?.shippingAddress?.name}</p>
+            <p>{orderData?.shippingAddress?.phone}</p>
+            <p>{orderData?.shippingAddress?.address}</p>
           </div>
-          </div>
-        ))
-      }
+        </div>
       </div>
     </div>
   );

@@ -86,13 +86,13 @@ const router = createBrowserRouter([
                         path: "product-review",
                         element: <ProductReview />
                     },
+                    {
+            path: "view-order/:id",
+            element: <ViewOrder />
+        }
 
                 ]
             },
-                                {
-                        path: "view-order/:id",
-                        element: <ViewOrder />
-                    }
         ]
     }
 ])
