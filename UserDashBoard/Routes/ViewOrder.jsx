@@ -110,7 +110,12 @@ const ViewOrder = () => {
           <span className="text-lg font-bold">Shipping Address</span>
           <button
           onClick={() => cancelOrder()}
-          className={`border px-4 py-1 rounded cursor-pointer hover:bg-slate-300 transition duration-200 ${orderData?.status === "cancel" && "cursor-not-allowed"}`}>
+            className={`border px-4 py-1 rounded transition duration-200 
+    ${
+      orderData?.status === "cancel"
+        ? "cursor-not-allowed bg-gray-300 text-gray-500"
+        : "cursor-pointer hover:bg-slate-300"
+    }`}>
             Cancel order
           </button>
         </div>
