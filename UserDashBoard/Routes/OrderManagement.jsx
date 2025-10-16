@@ -46,7 +46,7 @@ const OrderManagement = () => {
                                 <div className='flex justify-between items-center'>
                                     <div>
                                         <span>Status:</span>
-                                        <span className='px-2 py-0.5 rounded bg-gray-300'>{item?.status}</span>
+                                        <span className='px-2 py-0.5 rounded bg-gray-300'>{item?.status && item?.status === "cancel" ? "Canceled" : item?.status}</span>
                                     </div>
                                     <div className='flex gap-2'>
                                         <button className='bg-green-400 px-2 py-1 rounded border border-green-400 hover:border-black transition duration-200 cursor-pointer'>Order again</button>

@@ -12,14 +12,12 @@ import useOrder from "../../api/useOrder";
 const ViewOrder = () => {
   const { user } = UseAuth();
   const { id } = useParams();
-  const  [datas , isLoading, refetch] = useOrder(user?.email); 
+  const [datas, isLoading, refetch] = useOrder(user?.email);
   const orderData = datas && datas.find((item) => item?._id === id);
-  console.log("Datassssssssssssssssssssssssssssssssssss", orderData)
+  console.log("Datassssssssssssssssssssssssssssssssssss", orderData);
 
-  
-  
   console.log("orderData >>>>>>>>>++++++++++++++++++++++++++++++", orderData);
-  
+
   const newOrder = {
     userEmail: orderData?.userEmail,
     item: orderData?.item,
@@ -31,42 +29,54 @@ const ViewOrder = () => {
     totalAmount: orderData?.totalAmount,
   };
 
-  const addAnotherOrder = async() => {
-          try {
-        const res = await axios.post(
-          `http://localhost:5000/api/order`,
-          newOrder
-        );
-        if (res.data.success) {
-          toast.success("Order added", {position: "top-center"})
-        }
-      } catch (err) {
-        toast.error("Error while submiting the order");
-        console.log("Error while submiting order", err.message);
-      }
-  }
- const cancel = {status: "cancel"}
-  const cancelOrder = async() => {
+  const addAnotherOrder = async () => {
     try {
-      console.log("ORder........................................")
+      const res = await axios.post(`http://localhost:5000/api/order`, newOrder);
+      if (res.data.success) {
+        toast.success("Order added", { position: "top-center" });
+      }
+    } catch (err) {
+      toast.error("Error while submiting the order");
+      console.log("Error while submiting order", err.message);
+    }
+  };
+  const cancel = { status: "cancel" };
+  const cancelOrder = async () => {
+    try {
+      console.log("ORder........................................");
       const res = await axios.put(
         `http://localhost:5000/api/order/${orderData?._id}`,
-        {status: "cancel"}
-      )
-      if(res.data.success){
+        { status: "cancel" }
+      );
+      if (res.data.success) {
         toast.info("Order canceled");
         refetch();
       }
-    } catch(err) {
-      toast.error("Error while canceling order")
-      console.log("Error while canceling order", err.message)
+    } catch (err) {
+      toast.error("Error while canceling order");
+      console.log("Error while canceling order", err.message);
     }
-  }
+  };
 
-  console.log("🪝", newOrder)
+  console.log("🪝", newOrder);
 
   return (
     <div>
+
+    {
+      orderData?.status === "cancel" 
+      ?
+        ""
+      : 
+      <div class="steps w-full">
+        <div class={`step step-primary`}>Ordered</div>
+        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Processed</div>
+        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Shipped</div>
+        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Delivered</div>
+      </div>
+    }
+
+
       <div className="flex flex-col space-y-5 mx-8 mt-8 bg-white p-8 rounded-2xl">
         {orderData &&
           orderData?.item.map((items) => (
@@ -94,14 +104,17 @@ const ViewOrder = () => {
                   <span className="font-bold text-lg">{items?.quantity}</span>
                 </span>
                 <p className="text-lg bg-green-400 text-center rounded-lg">
-                  {orderData?.status}
+                  {orderData?.status && orderData?.status === "cancel"
+                    ? "Canceled"
+                    : orderData?.status}
                 </p>
               </div>
             </div>
           ))}
         <button
-        onClick={addAnotherOrder}
-        className="border w-full cursor-pointer bg-slate-200 hover:bg-green-300 transition duration-200 rounded py-2 ">
+          onClick={addAnotherOrder}
+          className="border w-full cursor-pointer bg-slate-200 hover:bg-green-300 transition duration-200 rounded py-2 "
+        >
           Create another order with these items
         </button>
       </div>
@@ -109,13 +122,14 @@ const ViewOrder = () => {
         <div className="flex justify-between mx-4 items-center">
           <span className="text-lg font-bold">Shipping Address</span>
           <button
-          onClick={() => cancelOrder()}
+            onClick={() => cancelOrder()}
             className={`border px-4 py-1 rounded transition duration-200 
     ${
       orderData?.status === "cancel"
-        ? "cursor-not-allowed bg-gray-300 text-gray-500"
+        ? "cursor-not-allowed bg-gray-300 text-gray-500/40"
         : "cursor-pointer hover:bg-slate-300"
-    }`}>
+    }`}
+          >
             Cancel order
           </button>
         </div>
@@ -197,22 +211,22 @@ const ViewOrder = () => {
             </p>
           </div>
         </div>
-        <div className="mt-4 flex justify-center">          
-        <PDFDownloadLink
-          document={<InvoicePDF orderData={orderData} />}
-          fileName={`invoice_${orderData?._id}.pdf`}
-          style={{
-            padding: "10px",
-            backgroundColor: "#4caf50",
-            color: "#fff",
-            borderRadius: "5px",
-            textDecoration: "none",
-            width: "100%",
-            textAlign: "center",
-          }}
-        >
-          {({ loading }) => (loading ? "Loading..." : "Download Invoice")}
-        </PDFDownloadLink>
+        <div className="mt-4 flex justify-center">
+          <PDFDownloadLink
+            document={<InvoicePDF orderData={orderData} />}
+            fileName={`invoice_${orderData?._id}.pdf`}
+            style={{
+              padding: "10px",
+              backgroundColor: "#4caf50",
+              color: "#fff",
+              borderRadius: "5px",
+              textDecoration: "none",
+              width: "100%",
+              textAlign: "center",
+            }}
+          >
+            {({ loading }) => (loading ? "Loading..." : "Download Invoice")}
+          </PDFDownloadLink>
         </div>
       </div>
     </div>
