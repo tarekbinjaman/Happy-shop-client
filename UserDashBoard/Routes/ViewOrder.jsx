@@ -7,29 +7,63 @@ import { toast } from "react-toastify";
 import { IoCopyOutline } from "react-icons/io5";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import InvoicePDF from "./InvoicePDF"; // path to the PDF component
+import useOrder from "../../api/useOrder";
 
 const ViewOrder = () => {
   const { user } = UseAuth();
   const { id } = useParams();
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    const onfetch = async () => {
-      const res = await axios.get(
-        `http://localhost:5000/api/order?email=${user?.email}`
-      );
-      if (res.data.success) {
-        setData(res.data.Data);
-      }
-    };
-    onfetch();
-  }, [user?.email]);
+  const  [datas , isLoading, refetch] = useOrder(user?.email); 
+  const orderData = datas && datas.find((item) => item?._id === id);
+  console.log("Datassssssssssssssssssssssssssssssssssss", orderData)
 
-  // Wait until the data is loaded
-
-  const orderData = data && data.find((item) => item?._id === id);
-
+  
+  
   console.log("orderData >>>>>>>>>++++++++++++++++++++++++++++++", orderData);
+  
+  const newOrder = {
+    userEmail: orderData?.userEmail,
+    item: orderData?.item,
+    shippingAddress: orderData?.shippingAddress,
+    status: "pending",
+    totalDiscount: orderData?.totalDiscount,
+    subTotal: orderData?.subTotal,
+    shippingCost: orderData?.shippingCost,
+    totalAmount: orderData?.totalAmount,
+  };
 
+  const addAnotherOrder = async() => {
+          try {
+        const res = await axios.post(
+          `http://localhost:5000/api/order`,
+          newOrder
+        );
+        if (res.data.success) {
+          toast.success("Order added", {position: "top-center"})
+        }
+      } catch (err) {
+        toast.error("Error while submiting the order");
+        console.log("Error while submiting order", err.message);
+      }
+  }
+ const cancel = {status: "cancel"}
+  const cancelOrder = async() => {
+    try {
+      console.log("ORder........................................")
+      const res = await axios.put(
+        `http://localhost:5000/api/order/${orderData?._id}`,
+        {status: "cancel"}
+      )
+      if(res.data.success){
+        toast.info("Order canceled");
+        refetch();
+      }
+    } catch(err) {
+      toast.error("Error while canceling order")
+      console.log("Error while canceling order", err.message)
+    }
+  }
+
+  console.log("🪝", newOrder)
 
   return (
     <div>
@@ -65,14 +99,18 @@ const ViewOrder = () => {
               </div>
             </div>
           ))}
-        <button className="border w-full cursor-pointer bg-slate-200 hover:bg-green-300 transition duration-200 rounded py-2 ">
+        <button
+        onClick={addAnotherOrder}
+        className="border w-full cursor-pointer bg-slate-200 hover:bg-green-300 transition duration-200 rounded py-2 ">
           Create another order with these items
         </button>
       </div>
       <div className="bg-white mx-8 py-2 mt-4 rounded-xl">
         <div className="flex justify-between mx-4 items-center">
           <span className="text-lg font-bold">Shipping Address</span>
-          <button className="border px-4 py-1 rounded cursor-pointer hover:bg-slate-300 transition duration-200">
+          <button
+          onClick={() => cancelOrder()}
+          className={`border px-4 py-1 rounded cursor-pointer hover:bg-slate-300 transition duration-200 ${orderData?.status === "cancel" && "cursor-not-allowed"}`}>
             Cancel order
           </button>
         </div>
