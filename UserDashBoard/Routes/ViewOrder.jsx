@@ -70,9 +70,9 @@ const ViewOrder = () => {
       : 
       <div class="steps w-full">
         <div class={`step step-primary`}>Ordered</div>
-        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Processed</div>
-        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Shipped</div>
-        <div class={`step ${orderData?.status === "processed" || "shipped" || "delivered" ? "step-primary" : ""} `}>Delivered</div>
+        <div class={`step ${["processed", "shipped", "delivered"].includes(orderData?.status) ? "step-primary" : ""} `}>Processed</div>
+        <div class={`step ${["shipped", "delivered"].includes(orderData?.status) ? "step-primary" : ""} `}>Shipped</div>
+        <div class={`step ${orderData?.status ==="delivered" ? "step-primary" : ""} `}>Delivered</div>
       </div>
     }
 
