@@ -29,7 +29,6 @@ const AdminDashboard = () => {
                             <ul className='md:text-base text-sm space-y-2 text-white'>
                                 <li><NavLink className={isActive} to={'/'}><span className='flex gap-2 items-center'> <IoMdHome /> Home</span></NavLink></li>
                                 <li><NavLink className={isActive} to={'/adminDashboard/adminDashBoard'}><span className='flex gap-2 items-center'> <CgProfile /> Dasboard</span></NavLink></li>
-                                <li><NavLink className={isActive} to={'/adminDashboard/adminProfile'}><span className='flex gap-2 items-center'> <CgProfile /> Admin profile</span></NavLink></li>
                                 <li><NavLink className={isActive} to={'/adminDashboard/orderManagement'}><span className='flex gap-2 items-center'> <AiOutlineProduct /> Order Management</span></NavLink></li>
                                 <li><NavLink className={isActive} to={'/adminDashboard/userManagemnet'}><span className='flex gap-2 items-center'> <AiOutlineProduct /> User Management</span></NavLink></li>
                                 <li><NavLink className={isActive} to={'/adminDashboard/allProduct'}><span className='flex gap-2 items-center'> <AiOutlineProduct /> Product Management</span></NavLink></li>
@@ -47,7 +46,7 @@ const AdminDashboard = () => {
                         <li className='text-[18px] font-bold text-blue-500'>My wishlist</li>
                     </ul>
                 </div>
-                <div className='w-full mt-4'>
+                <div className='flex-1 bg-[#F2F0F1] p-6 overflow-y-auto h-screen'>
                     <Outlet />
                 </div>
             </div>
