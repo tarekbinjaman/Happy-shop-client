@@ -2,11 +2,21 @@ import React from 'react';
 import useWishList from '../../api/useWishList';
 import UseAuth from '../../Context/UseAuth';
 import { div } from 'framer-motion/client';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const Wishlist = () => {
     const {user} = UseAuth();
     const [wishList, isLoading, refetch] = useWishList(user?.email);
     console.log("Here it is dude )))))))))))))))))))))))", wishList)
+    const removeWishlist = async(id) => {
+        const res = await axios.delete(`http://localhost:5000/api/wishlist/${id}`)
+        if(res?.data?.success) {
+            toast.info("Product removed from wishlist");
+            refetch();
+        }
+    }
     return (
         <div className='mt-8 '>
             <h1 className='pl-10 text-2xl font-bold mb-4'>Wishlist</h1>
@@ -32,13 +42,14 @@ const Wishlist = () => {
                                 {/* buttons */}
                                 <div className='flex gap-4'>
                                     <div>
-                                <button className='px-3 py-1 bg-amber-300 cursor-pointer hover:bg-amber-500 transition duration-300'>Add to cart</button>
-                                    </div>
-                                    <div>
+                                        <Link to={`/viewProduct/${item?.productId}`}>
                                 <button className='px-3 py-1 bg-green-500 cursor-pointer hover:bg-green-600 transition duration-300 '>View Product</button>
+                                        </Link>
                                     </div>
                                     <div>
-                                <button className='px-3 py-1 bg-red-400 cursor-pointer hover:bg-red-500 text-white transition duration-300 '>Remove</button>
+                                <button
+                                onClick={() => removeWishlist(item?._id)}
+                                className='px-3 py-1 bg-red-400 cursor-pointer hover:bg-red-500 text-white transition duration-300 '>Remove</button>
                                     </div>
                                 </div>
                             </div>

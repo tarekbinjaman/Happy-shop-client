@@ -66,16 +66,6 @@ const UserDashBoard = () => {
               Order Management
             </NavLink>
             <NavLink
-              to="/userDashboard/address"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded border  ${
-                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
-                }`
-              }
-            >
-              Address
-            </NavLink>
-            <NavLink
               to="/userDashboard/wish-List"
               className={({ isActive }) =>
                 `px-4 py-2 rounded border  ${
@@ -84,16 +74,6 @@ const UserDashBoard = () => {
               }
             >
               WishList
-            </NavLink>
-            <NavLink
-              to="/userDashboard/product-review"
-              className={({ isActive }) =>
-                `px-4 py-2 rounded border  ${
-                  isActive ? "bg-[#F2F0F1] text-black border-slate-400" : "bg-white text-black border-slate-300"
-                }`
-              }
-            >
-              Product review
             </NavLink>
             <NavLink
             to={`/`}
