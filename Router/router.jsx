@@ -17,6 +17,7 @@ import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 import Wishlist from '../UserDashBoard/Routes/Wishlist';
 import ProductReview from '../UserDashBoard/Routes/ProductReview';
 import ViewOrder from '../UserDashBoard/Routes/viewOrder';
+import UserManagement from '../AdminDashboard/routes/userManagement';
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
                     {
                         path: "allProduct",
                         element: <AllProduct />
+                    },
+                    {
+                        path: "userManagemnet",
+                        element: <UserManagement />
                     }
                 ]
             },

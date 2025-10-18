@@ -7,11 +7,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { FcGoogle } from "react-icons/fc";
 import axios from "axios";
+import currentUser from "../api/currentUser";
+import allUsers from "../api/allUsers";
 
 const Login = () => {
   const { userLogin, googleSignin } = UseAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const [users, refetch] = allUsers();
   const [error, setError] = useState(null);
   const {
     register,
@@ -24,27 +27,32 @@ const Login = () => {
     try {
       const result = await googleSignin();
       const user = result.user;
-      console.log(user);
-      const userData = {
-        name: user?.displayName,
-        email: user?.email,
-        isAdmin: false,
-        number_of_meal_added: 0,
-        photo: user?.photoURL,
-        agree: false,
-      };
-
-      // api call
-    //   const res = await fetch("http://localhost:5000/api/users", {
-    //     method: "POST",
-    //     headers: { "content-Type": "application/json" },
-    //     body: JSON.stringify(userData),
-    //   });
-    const res = await axios.post(`http://localhost:5000/api/users`, userData)
-
-    if(res.data.success) {
+      const isUserAvailable = users.some((item) => item?.email === user?.email)
+      if(isUserAvailable) {
         navigate('/')
-    }
+      } else {
+
+        const userData = {
+          name: user?.displayName,
+          email: user?.email,
+          isAdmin: false,
+          number_of_meal_added: 0,
+          photo: user?.photoURL,
+          agree: false,
+        };
+  
+        // api call
+      //   const res = await fetch("http://localhost:5000/api/users", {
+      //     method: "POST",
+      //     headers: { "content-Type": "application/json" },
+      //     body: JSON.stringify(userData),
+      //   });
+      const res = await axios.post(`http://localhost:5000/api/users`, userData)
+  
+      if(res.data.success) {
+          navigate('/')
+      }
+      }
     } catch (error) {
       console.log(error);
     }
