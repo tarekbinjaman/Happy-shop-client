@@ -15,7 +15,7 @@ const CustomCursor = () => {
 
       const target = e.target;
       if (cursorRef.current) {
-        if (target.tagName === "A" || target.closest("a")) {
+        if (target.tagName === "A" || target.closest("a") || target.closest("BUTTON") || target.closest("button")) {
           cursorRef.current.classList.add("shrink");
         } else {
           cursorRef.current.classList.remove("shrink");
