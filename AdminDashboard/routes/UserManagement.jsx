@@ -3,6 +3,7 @@ import allUsers from "../../api/allUsers";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
 import axios from "axios";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 const UserManagement = () => {
   const [users, refetch] = allUsers();
@@ -10,7 +11,7 @@ const UserManagement = () => {
   const [modal, setModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [editButton, setEditButton] = useState(false);
-  const makeAdmin = async(id) => {
+  const makeAdmin = async (id) => {
     const res = await axios.put(`http://localhost:5000/api/users/${id}`, {
       isAdmin: true,
     });
@@ -22,7 +23,7 @@ const UserManagement = () => {
     }
     console.log(id);
   };
-  const blockUser = async(id) => {
+  const blockUser = async (id) => {
     const res = await axios.put(`http://localhost:5000/api/users/${id}`, {
       isBlocked: true,
     });
@@ -31,13 +32,39 @@ const UserManagement = () => {
       toast.info("User blocked");
     }
   };
-  const deleteUser = async(id) => {
-    const res = await axios.delete(`http://localhost:5000/api/users/${id}`)
-    if (res.data.success) {
-      refetch();
-      toast.info("User deleted");
-    }
+  const deleteUser = async (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const res = await axios.delete(
+            `http://localhost:5000/api/users/${id}`
+          );
+          if (res.status === 200) {
+            toast.success("Product deleted successfully");
+            refetch();
+          }
+        } catch (err) {
+          console.error(err);
+          Swal.fire("Failed! Something went wrong");
+          toast.error("Failed to delte product");
+        }
+      }
+    });
+    // const res = await axios.delete(`http://localhost:5000/api/users/${id}`)
+    // if (res.data.success) {
+    //   refetch();
+    //   toast.info("User deleted");
+    // }
   };
+
   return (
     <div>
       <h1 className="text-xl font-bold">User list</h1>
@@ -74,13 +101,15 @@ const UserManagement = () => {
                     View
                   </button>
                   <button
-                  onClick={() => deleteUser(user?._id)}
-                  className="bg-black text-white px-2 py-0.5 rounded-sm cursor-pointer hover:scale-110 transition duration-200 w-20">
+                    onClick={() => deleteUser(user?._id)}
+                    className="bg-black text-white px-2 py-0.5 rounded-sm cursor-pointer hover:scale-110 transition duration-200 w-20"
+                  >
                     Delete
                   </button>
                   <button
-                  onClick={() => blockUser(user?._id)}
-                  className="bg-red-400 text-white px-4 py-0.5 rounded-sm cursor-pointer hover:scale-110 transition duration-200 w-20">
+                    onClick={() => blockUser(user?._id)}
+                    className="bg-red-400 text-white px-4 py-0.5 rounded-sm cursor-pointer hover:scale-110 transition duration-200 w-20"
+                  >
                     {user?.isBlocked ? "Blocked" : "Block"}
                   </button>
                 </td>
@@ -147,9 +176,16 @@ const UserManagement = () => {
                           >
                             Make admin
                           </button>
-                            <span 
+                          <span
                             onClick={() => setEditButton(false)}
-                            className={`${editButton ? "opacity-100 visible" :"opacity-0 invisible"} absolute bg-red-400 z-50 -top-6 left-19 rounded-full w-5 h-5 text-xs hover:bg-red-600 text-center text-white cursor-pointer`}>X</span>
+                            className={`${
+                              editButton
+                                ? "opacity-100 visible"
+                                : "opacity-0 invisible"
+                            } absolute bg-red-400 z-50 -top-6 left-19 rounded-full w-5 h-5 text-xs hover:bg-red-600 text-center text-white cursor-pointer`}
+                          >
+                            X
+                          </span>
                         </div>
                       }
                     </div>
@@ -160,7 +196,7 @@ const UserManagement = () => {
             <div className="flex justify-center mx-0.5 mb-0.5">
               <button
                 onClick={() => {
-                  setEditButton(false)
+                  setEditButton(false);
                   setModal(false);
                 }}
                 className="bg-gray-700 text-white rounded w-full cursor-pointer hover:bg-black transition duration-500"
