@@ -209,7 +209,7 @@ const Registration = () => {
                       //   setFiles(e.target.files[0]);
                       handelUpload(e.target.files[0]);
                     }}
-                    className="absolute inset-0 opacity-0 cursor-pointer"
+                    className="absolute inset-0 opacity-0 cursor-pointer z-30"
                   />
                 </div>
               </div>
