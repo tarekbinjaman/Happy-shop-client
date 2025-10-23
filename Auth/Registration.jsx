@@ -154,6 +154,7 @@ const Registration = () => {
   return (
     <div>
       <div className="flex justify-center mt-8">
+        <div className="hidden lg:block">
         <div className="flex justify-between gap-3 relative">
           <div className={`${openForm ? "absolute z-50 -translate-x-100" : "translate-x-0 absolute z-50"} transition duration-400 ease-in-out`}>
           <div className="w-[400px] h-[600px] relative shadow-xl border rounded-2xl">
@@ -302,6 +303,126 @@ const Registration = () => {
             </div>
           </div>
         </div>
+        </div>
+        {/* Registration form for small device */}
+                  <div className={`flex flex-col space-y-3 p-4 rounded-t-2xl w-[400px] h-[600px] bg-white border rounded-2xl shadow-2xl lg:hidden`}>
+            <form className="" onSubmit={handleSubmit(onsubmit)}>
+              <div className="flex justify-center">
+                <div className="relative flex items-center justify-center group hover:cursor-pointer w-32 h-[126px]">
+                  {/* Image */}
+                  <img
+                    src={
+                      userPhoto ||
+                      "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
+                    }
+                    className="rounded-full w-32 h-[126px] object-cover"
+                    alt=""
+                  />
+
+                  {/* black overlay */}
+                  <div className="absolute inset-0 z-20 bg-black/40 opacity-60 group-hover:opacity-100 transition duration-300 rounded-full"></div>
+
+                  {/* icon */}
+                  <LuPencilLine className="absolute text-gray-300 group-hover:text-white transition duration-300" />
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      //   setFiles(e.target.files[0]);
+                      handelUpload(e.target.files[0]);
+                    }}
+                    className="absolute inset-0 opacity-0 cursor-pointer z-30"
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-x-3 gap-y-8 mb-8">
+                <div className="form-control">
+                  <label className="label text-xl text-gray-500 mb-2">
+                    Name
+                  </label>
+                  <div>
+                    <input
+                      type="text"
+                      className="border-pink-400 border-2 p-1 w-full"
+                      {...register("name", { require: "Name is required" })}
+                    />
+                  </div>
+                  {errors.name && <p>{errors.name.message}</p>}
+                </div>
+                <div className="flex justify-between">
+                  <div className="form-control">
+                    <label className="label text-xl mb-2 text-gray-500">
+                      Email
+                    </label>
+                    <div>
+                      <input
+                        type="email"
+                        className="border-pink-400 border-2 p-1 w-[170px]"
+                        {...register("email", { require: "Email is required" })}
+                      />
+                    </div>
+                    {errors.email && <p>{errors.email.message}</p>}
+                  </div>
+                  <div className="form-control">
+                    <label className="label text-xl mb-2 text-gray-500">
+                      Password
+                    </label>
+                    <div>
+                      <input
+                        type="password"
+                        className="border-pink-400 border-2 p-1 w-[170px]"
+                        {...register("password", {
+                          require: "password is required",
+                        })}
+                      />
+                    </div>
+                    {errors.password && <p>{errors.password.message}</p>}
+                  </div>
+                </div>
+              </div>
+              <div className="form-control">
+                <label className="flex items-center gap-2 text-sm">
+                  <input
+                    type="checkbox"
+                    {...register("agree", {
+                      required: "you must agree to the terms and conditions",
+                    })}
+                  />
+                  I agree to the{" "}
+                  <span className="text-blue-600 underline cursor-pointer">
+                    terms and conditions
+                  </span>
+                </label>
+                {errors.agree && (
+                  <p className="text-red-500 text-sm">{errors.agree.message}</p>
+                )}
+              </div>
+              <div className="from-control mt-8">
+                <button
+                  type="submit"
+                  className="btn btn-primary bg-pink-500 w-full"
+                >
+                  Register now
+                </button>
+              </div>
+            </form>
+            <div className="divider">or</div>
+            <p className="text-center">
+              Already have an account?{" "}
+              <Link to={"/login"} className="text-blue-400 underline">
+                Login
+              </Link>
+            </p>
+            <div className="flex justify-center 4">
+              <button
+                className="cursor-pointer flex gap-2 items-center btn"
+                onClick={googleClick}
+              >
+                {" "}
+                <FcGoogle className="text-xl" /> Sign up
+              </button>
+            </div>
+          </div>
       </div>
       <div className={`${openForm ? "mt-200" : "mt-40" } `}></div>
     </div>

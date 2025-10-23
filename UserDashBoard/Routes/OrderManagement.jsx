@@ -93,7 +93,7 @@ const OrderManagement = () => {
           ))}
         </div>
       ) : (
-        <p>Nai</p>
+        <p>No order found</p>
       )}
     </div>
   );

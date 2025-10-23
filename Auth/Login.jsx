@@ -74,8 +74,7 @@ const Login = () => {
   };
   return (
     <div>
-      <h1>This is login page</h1>
-      <div className="flex justify-center">
+      <div className="flex justify-center mt-10">
         <div className="w-[400px] relative shadow-xl">
           <div className="absolute text-white ml-6 mt-6 font-bold">
             <h2 className="text-2xl uppercase">
@@ -91,7 +90,7 @@ const Login = () => {
             <GoArrowRight className="text-white text-2xl" />
           </div>
 
-          <div className=" bg-white rounded-2xl p-6 pt-8 absolute w-full z-10 -mt-72">
+          <div className=" bg-white rounded-2xl p-6 pt-8 absolute w-full z-10 -mt-72 shadow-2xl">
             <h3 className="text-2xl font-bold mb-2">Sign in</h3>
             <div className="form-control">
               <form onSubmit={handleSubmit(onsubmit)}>
@@ -136,6 +135,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <div className="h-80 md:h-40"></div>
     </div>
   );
 };
