@@ -782,7 +782,7 @@ const Navbar = () => {
           </div>
           <div className="relative">
             <div
-              className={`bg-[#f2f0f1]/60 backdrop-blur-lg border-2 border-white rounded-2xl border-black-300 px-4 py-3 -translate-y-4 absolute mt-8 md:-ml-40 -ml-44 z-50
+              className={`bg-[#f2f0f1]/60 backdrop-blur-lg border-2 border-white rounded-2xl border-black-300 px-4 py-3 -translate-y-4 absolute mt-8 md:-ml-16 -ml-10 z-50
                         invisible  transition-opacity duration-300 ease-in-out
                         ${
                           dropdownOpen
@@ -817,7 +817,7 @@ const Navbar = () => {
                     ))}
                   <NavLink
                     className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`}
-                    to={`/myProfile`}
+                    to={`/userDashboard/Order-management`}
                   >
                     <TbShoppingCartCheck />
                     <span className="whitespace-nowrap hover:text-orange-300">
@@ -826,29 +826,11 @@ const Navbar = () => {
                   </NavLink>
                   <NavLink
                     className={`flex gap-2 items-center pt-4  border-b border-gray-300 pb-2`}
-                    to={`/myProfile`}
+                    to={`/userDashboard/wish-List`}
                   >
                     <CiHeart />
                     <span className="whitespace-nowrap hover:text-orange-300">
                       Wishlist
-                    </span>
-                  </NavLink>
-                  <NavLink
-                    className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`}
-                    to={`/myProfile`}
-                  >
-                    <MdOutlineRateReview />
-                    <span className="whitespace-nowrap hover:text-orange-300">
-                      My reviews
-                    </span>
-                  </NavLink>
-                  <NavLink
-                    className={`flex gap-2 items-center pt-4 border-b border-gray-300 pb-2`}
-                    to={`/myProfile`}
-                  >
-                    <ImCancelCircle />
-                    <span className="whitespace-nowrap hover:text-orange-300">
-                      My return and cancellation
                     </span>
                   </NavLink>
                   <NavLink

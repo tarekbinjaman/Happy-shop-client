@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useProducts from "../../../api/useProducts";
 import ProductsCard from "../../Products/ProductsCard";
 import product2 from "./Product2";
@@ -17,7 +18,9 @@ const TopSelling = () => {
                 </div>
             </div>
             <div className='flex justify-center mt-12'>
+                <Link to={`/productsList`}>
                 <button className='bg-white px-12 py-2 border rounded-4xl cursor-pointer hover:bg-black hover:text-white transition-colors duration-200 ease-in-out'>View all</button>
+                </Link>
             </div>
             <div className='w-11/12 mx-auto mt-10'>
                 <div className='divider'></div>
