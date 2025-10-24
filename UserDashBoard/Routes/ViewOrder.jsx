@@ -77,7 +77,7 @@ const ViewOrder = () => {
     }
 
 
-      <div className="flex flex-col space-y-5 mx-8 mt-8 bg-white p-8 rounded-2xl">
+      <div className="flex flex-col space-y-5 md:mx-8 mt-8 bg-white p-8 rounded-2xl">
         {orderData &&
           orderData?.item.map((items) => (
             <div className="flex justify-between bg-white px-2 py-1 rounded-md border border-slate-300">
@@ -85,25 +85,25 @@ const ViewOrder = () => {
                 <div>
                   <img className="w-20" src={items?.image} alt="" />
                 </div>
-                <div>
-                  <h1>{items?.title}</h1>
-                  <h1 className="text-gray-400 mt-2">
+                <div className="mt-2">
+                  <h1 className="text-sm md:text-base">{items?.title}</h1>
+                  <h1 className="text-gray-400 mt-2 text-xs md:text-base">
                     {items?.description.slice(0, 15)}
                   </h1>
                 </div>
               </div>
               <div>
                 <p>
-                  <span className="font-bold text-lg">Price</span>{" "}
+                  <span className="font-bold md:text-lg text-sm">Price</span>{" "}
                   <span>{items?.price}</span>$
                 </p>
                 <span>
-                  <span className="font-thin text-lg text-gray-400">
+                  <span className="font-thin md:text-lg text-sm text-gray-400">
                     Quantitiy:
                   </span>{" "}
                   <span className="font-bold text-lg">{items?.quantity}</span>
                 </span>
-                <p className="text-lg bg-green-400 text-center rounded-lg">
+                <p className="md:text-lg text-sm bg-green-400 text-center rounded-lg">
                   {orderData?.status && orderData?.status === "cancel"
                     ? "Canceled"
                     : orderData?.status}
@@ -118,7 +118,7 @@ const ViewOrder = () => {
           Create another order with these items
         </button>
       </div>
-      <div className="bg-white mx-8 py-2 mt-4 rounded-xl">
+      <div className="bg-white md:mx-8 py-2 mt-4 rounded-xl">
         <div className="flex justify-between mx-4 items-center">
           <span className="text-lg font-bold">Shipping Address</span>
           <button
@@ -145,7 +145,7 @@ const ViewOrder = () => {
           </div>
         </div>
       </div>
-      <div id="invoice-area" className="mx-8 mt-5 bg-white p-4 rounded-xl mb-8">
+      <div id="invoice-area" className="md:mx-8 mt-5 bg-white p-4 rounded-xl mb-8">
         <div>
           <p className="p-3 rounded-lg border-3 border-dotted border-gray-400 bg-[#E7F1F1]">
             <span>

@@ -19,13 +19,13 @@ const Wishlist = () => {
     }
     return (
         <div className='mt-8 '>
-            <h1 className='pl-10 text-2xl font-bold mb-4'>Wishlist</h1>
+            <h1 className='md:pl-10 text-2xl font-bold mb-4'>Wishlist</h1>
             <div> 
                 {
                 wishList && wishList.length > 0 
                 ?
 
-                <div className='flex flex-col space-y-2 w-full px-10'>
+                <div className='flex flex-col space-y-2 w-full md:px-10'>
                     {
                         wishList.map((item) => (
                             <div className='flex items-center justify-between border border-slate-300 px-4 py-1 bg-white'>
@@ -34,8 +34,8 @@ const Wishlist = () => {
                                     <img src={item?.image} alt="" />
                                 </div>
                                 <div className='flex flex-col'>
-                                <p className='text-lg'>{item?.title}</p>
-                                <p className='text-sm'>{item?.description.slice(0, 30)}</p>
+                                <p className='md:text-lg text-sm'>{item?.title}</p>
+                                <p className='md:text-sm text-xs text-gray-400'>{item?.description.slice(0, 30)}</p>
                                 </div>
                                 </div>
 
@@ -43,13 +43,13 @@ const Wishlist = () => {
                                 <div className='flex gap-4'>
                                     <div>
                                         <Link to={`/viewProduct/${item?.productId}`}>
-                                <button className='px-3 py-1 bg-green-500 cursor-pointer hover:bg-green-600 transition duration-300 '>View Product</button>
+                                <button className='px-3 py-1 bg-green-500 cursor-pointer hover:bg-green-600 transition duration-300 text-xs md:text-base'>View</button>
                                         </Link>
                                     </div>
                                     <div>
                                 <button
                                 onClick={() => removeWishlist(item?._id)}
-                                className='px-3 py-1 bg-red-400 cursor-pointer hover:bg-red-500 text-white transition duration-300 '>Remove</button>
+                                className='px-3 py-1 bg-red-400 cursor-pointer hover:bg-red-500 text-white transition duration-300 text-xs md:text-base'>Remove</button>
                                     </div>
                                 </div>
                             </div>

@@ -6,6 +6,7 @@ import { IoMdHome } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { AiOutlineProduct } from "react-icons/ai";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { GoChevronLeft } from "react-icons/go";
 
 const UserDashBoard = () => {
   const { logOut, user } = UseAuth();
@@ -13,11 +14,9 @@ const UserDashBoard = () => {
   const [currentUerData, refetchUserList] = currentUser(email);
   const [openSidebar, setOpenSidebar] = useState(false);
   const userData = currentUerData?.[0];
-  const isActive = ({ isActive }) =>
-    isActive ? "text-blue-500 bg-slate-200 rounded block w-full" : "";
   return (
     <div className="bg-[#F2F0F1] ">
-      <div className="flex gap-5">
+      <div className="flex md:gap-5">
         <div className="md:w-64 w-32 shadow-xl px-4 py-8  bg-white  h-screen hidden lg:block">
           <div className="flex flex-col items-center justify-center space-y-1 mb-3 bg-[#F2F0F1] py-4 rounded">
             <img
@@ -102,10 +101,19 @@ const UserDashBoard = () => {
             </NavLink>
           </div>
         </div>
-        <div className="relative">
-          <RxHamburgerMenu 
-          onClick={() => setOpenSidebar(!openSidebar)}
-          className="text-3xl absolute md:-right-180 -right-100 top-6 cursor-pointer hover:scale-110 transition duration-200 z-50 bg-fuchsia-50 px-0.5 py-1" />
+        <div className="relative lg:hidden">
+          {
+            openSidebar 
+            ?
+            <GoChevronLeft
+            onClick={() => setOpenSidebar(!openSidebar)}
+            className="text-3xl absolute md:-right-180 -right-100 top-6 cursor-pointer hover:scale-110 transition duration-200 z-50 bg-fuchsia-50 px-0.5 py-1"
+            />
+            :
+            <RxHamburgerMenu 
+            onClick={() => setOpenSidebar(!openSidebar)}
+            className="text-3xl absolute md:-right-180 -right-100 top-6 cursor-pointer hover:scale-110 transition duration-200 z-50 bg-fuchsia-50 px-0.5 py-1" />
+          }
         </div>
 
           <div className={`inset-0 bg-black/20 backdrop-blur-sm fixed z-30 ${openSidebar ? "opacity-100 visible" : "opacity-0 invisible"} transition duration-300`}>

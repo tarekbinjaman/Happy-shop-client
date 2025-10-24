@@ -35,7 +35,7 @@ const OrderManagement = () => {
   };
   console.log("Here is order data+++++++++", orderData);
   return (
-    <div className="mx-6 mt-10">
+    <div className="md:mx-6 mt-10">
       <h1 className="font-bold mt-6 mb-5 text-xl">My order</h1>
       {orderData?.length > 0 && orderData ? (
         <div className="flex flex-col space-y-3">
@@ -48,10 +48,10 @@ const OrderManagement = () => {
                 <h1 className="  text-md font-thin">
                   <span className="font-bold">Order ID:</span> {item?._id}
                 </h1>
-                <div className="inline-flex items-center space-y-2 bg-gray-300  px-5 py-1 rounded-lg">
-                  <PiPersonSimpleBikeLight className="text-xl mr-2" />
+                <div className="inline-flex items-center  md:bg-gray-300  md:px-5 md:py-1 rounded-lg">
+                  <PiPersonSimpleBikeLight className="text-xl mr-2 hidden md:block" />
 
-                  <span className="text-xs">Regular delivery</span>
+                  <span className="md:text-xs text-[12px] whitespace-nowrap md:border-none border md:px-0 px-2">Regular delivery</span>
                 </div>
               </div>
               <div className="flex items-start mt-4 gap-2">
