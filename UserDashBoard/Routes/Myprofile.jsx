@@ -72,7 +72,7 @@ const Myprofile = () => {
 
   return (
     <div className="flex justify-center items-center h-screen relative">
-      <div className="flex flex-col items-center space-y-3  border-2 border-slate-300  pb-8 relative w-4xl bg-slate-300">
+      <div className="flex flex-col items-center space-y-3  border-2 border-slate-300  pb-8 relative md:w-4xl w-[400px] bg-slate-300">
         <div className="bg-white h-40 w-full"></div>
 
         <img
@@ -89,7 +89,7 @@ const Myprofile = () => {
         <div className="mt-8">
           <p className="text-sm text-center text-gray-500">{userData?.email}</p>
         </div>
-        <div className="bg-white w-2xl p-4 rounded-2xl">
+        <div className="bg-white md:w-2xl w-[370px] p-4 rounded-2xl">
           <div className="flex justify-start">
             <div>
               <AiTwotoneHome className="text-2xl" />
@@ -120,7 +120,7 @@ const Myprofile = () => {
         `}
       >
         <div
-          className={` bg-white absolute z-50 left-1/2 -translate-x-1/2 w-xl shadow-2xl flex flex-col items-center py-8 transform  transition-all duration-300
+          className={` bg-white absolute z-50 left-1/2 -translate-x-1/2 md:w-xl w-[400px] shadow-2xl flex flex-col items-center py-8 transform  transition-all duration-300
             ${modal ? "scale-100 opacity-100" : "scale-90 opacity-90"}
             `}
         >
@@ -150,13 +150,13 @@ const Myprofile = () => {
           <form onSubmit={handleSubmit}>
             <div>
               {/* input fields */}
-              <div className="flex gap-4 mt-3">
+              <div className="flex gap-4 mt-3 w-[380px]">
               <div className="flex flex-col gap-1">
                 <label className="text-lg text-gray-400">Name</label>
                 <input
                   defaultValue={userData?.useraddress?.[0]?.name}
                   type="text"
-                  className="border border-gray-300 pl-4"
+                  className="border border-gray-300 pl-4 w-[182px]"
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
@@ -165,7 +165,7 @@ const Myprofile = () => {
                 <input
                   defaultValue={userData?.useraddress?.[0]?.number}
                   type="text"
-                  className="border border-gray-300 pl-4"
+                  className="border border-gray-300 pl-4 w-[182px]"
                   onChange={(e) => setMobileNumber(e.target.value)}
                 />
               </div>
