@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../Shared/Navbar';
+import Navbar from '.././src/Shared/Navbar';
 import { Outlet, useLocation } from 'react-router-dom';
-import Footer from '../Shared/Footer';
+import Footer from '.././src/Shared/Footer';
 import CustomCursor from '../src/Cursor/CustomCursor';
 
 const MainLayout = () => {

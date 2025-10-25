@@ -1,0 +1,103 @@
+import React from "react";
+import UseAuth from "../../../Context/UseAuth";
+import useOrder from "../../../api/useOrder";
+import { MdHome } from "react-icons/md";
+import { PiPersonSimpleBikeLight } from "react-icons/pi";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { toast } from "react-toastify";
+
+const OrderManagement = () => {
+  const { user } = UseAuth();
+  const [orderData, isLoading, refetch] = useOrder(user?.email);
+  
+  const addAnotherOrder = async (orderItem) => {
+      const newOrder = {
+        userEmail: orderItem?.userEmail,
+        item: orderItem?.item,
+        shippingAddress: orderItem?.shippingAddress,
+        status: "pending",
+        totalDiscount: orderItem?.totalDiscount,
+        subTotal: orderItem?.subTotal,
+        shippingCost: orderItem?.shippingCost,
+        totalAmount: orderItem?.totalAmount,
+      };
+    try {
+      const res = await axios.post(`http://localhost:5000/api/order`, newOrder);
+      if (res.data.success) {
+        toast.success("Order added", { position: "top-center" });
+        refetch();
+      }
+    } catch (err) {
+      toast.error("Error while submiting the order");
+      console.log("Error while submiting order", err.message);
+    }
+  };
+  console.log("Here is order data+++++++++", orderData);
+  return (
+    <div className="md:mx-6 mt-10">
+      <h1 className="font-bold mt-6 mb-5 text-xl">My order</h1>
+      {orderData?.length > 0 && orderData ? (
+        <div className="flex flex-col space-y-3">
+          {orderData.map((item) => (
+            <div
+              key={item?._id}
+              className="border border-slate-300 rounded-2xl p-4 bg-white/40 backdrop-blur-md"
+            >
+              <div className="pb-4 border-b-2 border-slate-300 flex justify-between">
+                <h1 className="  text-md font-thin">
+                  <span className="font-bold">Order ID:</span> {item?._id}
+                </h1>
+                <div className="inline-flex items-center  md:bg-gray-300  md:px-5 md:py-1 rounded-lg">
+                  <PiPersonSimpleBikeLight className="text-xl mr-2 hidden md:block" />
+
+                  <span className="md:text-xs text-[12px] whitespace-nowrap md:border-none border md:px-0 px-2">Regular delivery</span>
+                </div>
+              </div>
+              <div className="flex items-start mt-4 gap-2">
+                <MdHome className="text-2xl" />
+                <div className="flex flex-col">
+                  <p>{item?.shippingAddress?.name}</p>
+                  <p>{item?.shippingAddress?.phone}</p>
+                  <p>{item?.shippingAddress?.address}</p>
+                </div>
+              </div>
+              <div className="flex justify-between items-center mt-6">
+                <h1 className="font-mono">Amount payable</h1>
+                <h1 className="font-mono text-xl">{item?.totalAmount}$</h1>
+              </div>
+              <div className="divider" />
+              <div className="flex justify-between items-center">
+                <div>
+                  <span>Status:</span>
+                  <span className="px-2 py-0.5 rounded bg-gray-300">
+                    {item?.status && item?.status === "cancel"
+                      ? "Canceled"
+                      : item?.status}
+                  </span>
+                </div>
+                <div className="flex gap-2">
+                  <button 
+                  onClick={() => addAnotherOrder(item)}
+                  className="bg-green-400 px-2 py-1 rounded border border-green-400 hover:border-black transition duration-200 cursor-pointer">
+                    Order again
+                  </button>
+                  <Link to={`/userDashboard/view-order/${item?._id}`}>
+                    <button className="bg-gray-300 px-2 py-1 rounded border border-gray-300 hover:border-black transition duration-200 cursor-pointer">
+                      View order
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>No order found</p>
+      )}
+    </div>
+  );
+};
+
+export default OrderManagement;
+<h1>Order management</h1>;
