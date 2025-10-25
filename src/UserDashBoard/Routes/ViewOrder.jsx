@@ -31,7 +31,7 @@ const ViewOrder = () => {
 
   const addAnotherOrder = async () => {
     try {
-      const res = await axios.post(`http://localhost:5000/api/order`, newOrder);
+      const res = await axios.post(`https://happy-shop-snowy.vercel.app/api/order`, newOrder);
       if (res.data.success) {
         toast.success("Order added", { position: "top-center" });
       }
@@ -45,7 +45,7 @@ const ViewOrder = () => {
     try {
       console.log("ORder........................................");
       const res = await axios.put(
-        `http://localhost:5000/api/order/${orderData?._id}`,
+        `https://happy-shop-snowy.vercel.app/api/order/${orderData?._id}`,
         { status: "cancel" }
       );
       if (res.data.success) {

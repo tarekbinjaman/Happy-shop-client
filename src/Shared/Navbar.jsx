@@ -110,7 +110,7 @@ const Navbar = () => {
   const addAddress = async () => {
     try {
       const res = await axios.put(
-        `http://localhost:5000/api/users/${userData?._id}`,
+        `https://happy-shop-snowy.vercel.app/api/users/${userData?._id}`,
         updateData
       );
       refetchUserList();
@@ -189,12 +189,12 @@ const Navbar = () => {
     } else {
       try {
         const res = await axios.post(
-          `http://localhost:5000/api/order`,
+          `https://happy-shop-snowy.vercel.app/api/order`,
           orderData
         );
         if (res.data.success) {
           await axios.delete(
-            `http://localhost:5000/api/cartList/clear/${userData?.email}`
+            `https://happy-shop-snowy.vercel.app/api/cartList/clear/${userData?.email}`
           );
           setConfirmModalID(res.data.order?._id)
           setIsOpenConfirmModal(!isOpenConfirmModal);

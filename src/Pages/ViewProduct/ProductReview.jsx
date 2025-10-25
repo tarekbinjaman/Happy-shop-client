@@ -30,7 +30,7 @@ const ProductReview = ({ id }) => {
     try {
       setLoading(true);
       const res = await axios.post(
-        "http://localhost:5000/api/reviews",
+        "https://happy-shop-snowy.vercel.app/api/reviews",
         reviewData
       );
       if (res.data.success) {

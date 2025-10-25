@@ -12,7 +12,7 @@ const useProducts = (filterParams) => {
      const {refetch, isLoading, data: queryData = {}} = useQuery({
         queryKey: ['useProducts', queryStr],
         queryFn: async () => {
-            const res = await axiosSecure.get(`http://localhost:5000/api/products?${queryStr}`);
+            const res = await axiosSecure.get(`https://happy-shop-snowy.vercel.app/api/products?${queryStr}`);
             return res.data;
         }
     

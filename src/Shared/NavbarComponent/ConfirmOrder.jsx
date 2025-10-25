@@ -7,7 +7,7 @@ const ConfirmOrder = ({id, email, modal, setModal, refetch}) => {
   useEffect( () => {
     const fetchOrderData = async () => {
     try {
-        const res = await  axios.get(`http://localhost:5000/api/order?email=${email}`);
+        const res = await  axios.get(`https://happy-shop-snowy.vercel.app/api/order?email=${email}`);
               if (res?.data?.success) {
         console.log("Order data: ⬇️", res.data.Data);
         setOrderData(res.data.Data);

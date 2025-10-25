@@ -11,7 +11,7 @@ const Wishlist = () => {
     const [wishList, isLoading, refetch] = useWishList(user?.email);
     console.log("Here it is dude )))))))))))))))))))))))", wishList)
     const removeWishlist = async(id) => {
-        const res = await axios.delete(`http://localhost:5000/api/wishlist/${id}`)
+        const res = await axios.delete(`https://happy-shop-snowy.vercel.app/api/wishlist/${id}`)
         if(res?.data?.success) {
             toast.info("Product removed from wishlist");
             refetch();

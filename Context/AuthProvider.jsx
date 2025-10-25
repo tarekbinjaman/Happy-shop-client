@@ -45,17 +45,17 @@ const Authprovider = ({ children }) => {
                 // if user logged in
                 setUser(currentUser);
                 // try {
-                //     await axios.put(`http://localhost:5000/api/users/${}`)
+                //     await axios.put(`https://happy-shop-snowy.vercel.app/api/users/${}`)
                 // } catch (err) {
 
                 // }
                 if(currentUser) {
                     console.log(currentUser)
                     const loggedUser = {email : currentUser.email};
-                    await axios.post('http://localhost:5000/api/login', loggedUser, {withCredentials: true});
+                    await axios.post('https://happy-shop-snowy.vercel.app/api/login', loggedUser, {withCredentials: true});
                 } else {
                     // If user is logged out
-                    await axios.post('http://localhost:5000/api/login', {}, {withCredentials: true});
+                    await axios.post('https://happy-shop-snowy.vercel.app/api/login', {}, {withCredentials: true});
                 }
             } catch (error) {
                 console.error('Unexpected error in auth observer:', error);

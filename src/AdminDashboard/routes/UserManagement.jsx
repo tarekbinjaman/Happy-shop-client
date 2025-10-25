@@ -12,7 +12,7 @@ const UserManagement = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [editButton, setEditButton] = useState(false);
   const makeAdmin = async (id) => {
-    const res = await axios.put(`http://localhost:5000/api/users/${id}`, {
+    const res = await axios.put(`https://happy-shop-snowy.vercel.app/api/users/${id}`, {
       isAdmin: true,
     });
     if (res.data.success) {
@@ -24,7 +24,7 @@ const UserManagement = () => {
     console.log(id);
   };
   const blockUser = async (id) => {
-    const res = await axios.put(`http://localhost:5000/api/users/${id}`, {
+    const res = await axios.put(`https://happy-shop-snowy.vercel.app/api/users/${id}`, {
       isBlocked: true,
     });
     if (res.data.success) {
@@ -45,7 +45,7 @@ const UserManagement = () => {
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:5000/api/users/${id}`
+            `https://happy-shop-snowy.vercel.app/api/users/${id}`
           );
           if (res.status === 200) {
             toast.success("Product deleted successfully");
@@ -58,7 +58,7 @@ const UserManagement = () => {
         }
       }
     });
-    // const res = await axios.delete(`http://localhost:5000/api/users/${id}`)
+    // const res = await axios.delete(`https://happy-shop-snowy.vercel.app/api/users/${id}`)
     // if (res.data.success) {
     //   refetch();
     //   toast.info("User deleted");

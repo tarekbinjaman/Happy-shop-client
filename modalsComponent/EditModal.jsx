@@ -128,7 +128,7 @@ const EditModal = ({ id, handleClose }) => {
     setImageUrls(updateImages);
     try {
       // delete from imageBB serve
-      await axios.post("http://localhost:5000/api/delete-image", {
+      await axios.post("https://happy-shop-snowy.vercel.app/api/delete-image", {
         public_id: imageToDelete.public_id,
       });
     } catch (error) {
@@ -154,10 +154,10 @@ const EditModal = ({ id, handleClose }) => {
     console.log("Final Product Data", fullData);
     // from here you will send data to backend
     try {
-      // const res = await axios.post('http://localhost:5000/api/products', fullData)
+      // const res = await axios.post('https://happy-shop-snowy.vercel.app/api/products', fullData)
       //     toast.success("Product added");
       const res = await axios.put(
-        `http://localhost:5000/api/products/${id}`,
+        `https://happy-shop-snowy.vercel.app/api/products/${id}`,
         fullData
       );
       toast.success("Product update successfully");

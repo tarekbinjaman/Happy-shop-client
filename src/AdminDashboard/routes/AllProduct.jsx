@@ -51,7 +51,7 @@ const AllProduct = () => {
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:5000/api/products/${id}`
+            `https://happy-shop-snowy.vercel.app/api/products/${id}`
           );
           if (res.status === 200) {
             toast.success("Product deleted successfully");

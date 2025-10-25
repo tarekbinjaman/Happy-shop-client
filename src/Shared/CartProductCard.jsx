@@ -32,7 +32,7 @@ const CartProductCard = ({
       if (result.isConfirmed) {
         try {
           const res = await axios.delete(
-            `http://localhost:5000/api/cartList/${id}`
+            `https://happy-shop-snowy.vercel.app/api/cartList/${id}`
           );
 
           if (res.data.success) {

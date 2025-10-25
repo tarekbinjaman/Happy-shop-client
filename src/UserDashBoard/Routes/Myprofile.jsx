@@ -43,7 +43,7 @@ const Myprofile = () => {
       const imageUrl = cloudinaryUploadRes.data.secure_url;
 
       // update image in backend
-      await axios.put(`http://localhost:5000/api/users/${userData?._id}`, {
+      await axios.put(`https://happy-shop-snowy.vercel.app/api/users/${userData?._id}`, {
         photoURL: imageUrl,
       });
       toast.success("Image upload successfully!", { position: "top-center" });
@@ -59,7 +59,7 @@ const Myprofile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const res = await axios.put(
-      `http://localhost:5000/api/users/${userData?._id}`,
+      `https://happy-shop-snowy.vercel.app/api/users/${userData?._id}`,
       updateData
     );
     if (res.data.success) {

@@ -97,7 +97,7 @@ const ViewProduct = () => {
       quantity: quantity,
     };
     const res = await axios.post(
-      "http://localhost:5000/api/cartList",
+      "https://happy-shop-snowy.vercel.app/api/cartList",
       cartData
     );
     if (res.data.success) {
@@ -118,7 +118,7 @@ const ViewProduct = () => {
 
   const addToWishList = async() => {
     if(isIncludedInWishList) {
-      const res = await axios.delete(`http://localhost:5000/api/wishlist/${currentWIshlistData?._id}`)
+      const res = await axios.delete(`https://happy-shop-snowy.vercel.app/api/wishlist/${currentWIshlistData?._id}`)
       if(res.data?.success) {
         wishListRefetch()
         toast.info("Delteded from wishlist", {position: "top-center"})
@@ -135,7 +135,7 @@ const ViewProduct = () => {
           image: singleProduct?.images[0].url,
           description: singleProduct?.description,
         };
-        const res = await axios.post("http://localhost:5000/api/wishlist", wishlistData)
+        const res = await axios.post("https://happy-shop-snowy.vercel.app/api/wishlist", wishlistData)
     
         if(res.data.success) {
           wishListRefetch()

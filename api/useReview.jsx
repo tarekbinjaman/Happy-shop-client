@@ -6,7 +6,7 @@ const useReview = () => {
    const {refetch, isLoading, data: reviewData = {} } = useQuery({
     queryKey: ['useReview'],
     queryFn: async () => {
-        const res = await axios.get('http://localhost:5000/api/reviews');
+        const res = await axios.get('https://happy-shop-snowy.vercel.app/api/reviews');
         return res.data;
     }
    })

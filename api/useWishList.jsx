@@ -11,7 +11,7 @@ const useWishList = (email) => {
     enabled: !!email,
     queryFn: async () => {
       const res = await  axios.get(
-        `http://localhost:5000/api/wishlist?email=${email}`
+        `https://happy-shop-snowy.vercel.app/api/wishlist?email=${email}`
       );
       return res.data?.wishListData || []; // ✅ return only array
     },

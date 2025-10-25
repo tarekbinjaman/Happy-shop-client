@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000/api/',
+    baseURL: 'https://happy-shop-snowy.vercel.app/api/',
     withCredentials: true
 });
 

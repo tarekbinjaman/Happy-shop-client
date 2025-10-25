@@ -42,12 +42,12 @@ const Login = () => {
         };
   
         // api call
-      //   const res = await fetch("http://localhost:5000/api/users", {
+      //   const res = await fetch("https://happy-shop-snowy.vercel.app/api/users", {
       //     method: "POST",
       //     headers: { "content-Type": "application/json" },
       //     body: JSON.stringify(userData),
       //   });
-      const res = await axios.post(`http://localhost:5000/api/users`, userData)
+      const res = await axios.post(`https://happy-shop-snowy.vercel.app/api/users`, userData)
   
       if(res.data.success) {
           navigate('/')

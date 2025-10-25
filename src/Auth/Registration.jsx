@@ -55,7 +55,7 @@ const Registration = () => {
       setUserPhoto(imageUrl);
 
       // update image in backend
-      //   await axios.put(`http://localhost:5000/api/users/${userData?._id}`, {
+      //   await axios.put(`https://happy-shop-snowy.vercel.app/api/users/${userData?._id}`, {
       //     photoURL: imageUrl,
       //   });
       //   toast.success("Image upload successfully!", { position: "top-center" });
@@ -82,7 +82,7 @@ const Registration = () => {
       };
 
       // api call
-      const res = await fetch("http://localhost:5000/api/users", {
+      const res = await fetch("https://happy-shop-snowy.vercel.app/api/users", {
         method: "POST",
         headers: { "content-Type": "application/json" },
         body: JSON.stringify(userData),
@@ -137,7 +137,7 @@ const Registration = () => {
       };
       console.log("User data", userData);
 
-      const res = await fetch("http://localhost:5000/api/users", {
+      const res = await fetch("https://happy-shop-snowy.vercel.app/api/users", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
