@@ -16,8 +16,8 @@ import ViewProduct from '..//Pages/ViewProduct/ViewProduct';
 import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 import Wishlist from '../UserDashBoard/Routes/Wishlist';
 import ProductReview from '../UserDashBoard/Routes/ProductReview';
-import ViewOrder from "../UserDashboard/Routes/ViewOrder";
 import UserManagement from '../AdminDashboard/routes/userManagement';
+import ViewOrder from '../UserDashBoard/Routes/ViewOrder';
 
 const router = createBrowserRouter([
     {
