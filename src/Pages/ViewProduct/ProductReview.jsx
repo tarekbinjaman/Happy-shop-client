@@ -3,7 +3,7 @@ import UseAuth from "../../../Context/UseAuth";
 import axios from "axios";
 import useReview from "../../../api/useReview";
 import ReviewList from "./ReviewList";
-import ReviewProgressBar from "./reviewProgressBar";
+import ReviewProgressBar from "./ReviewProgressBar";
 import { toast } from "react-toastify";
 
 const ProductReview = ({ id }) => {

@@ -23,7 +23,7 @@ import axios from "axios";
 import { VscArrowSmallRight, VscDebugStart } from "react-icons/vsc";
 import { toast } from "react-toastify";
 import { IoHome } from "react-icons/io5";
-import ConfirmOrder from "./NavbarComponent/confirmOrder";
+import ConfirmOrder from "./NavbarComponent/ConfirmOrder";
 
 const Navbar = () => {
   const { logOut, user } = UseAuth();
