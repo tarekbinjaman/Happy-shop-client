@@ -4,8 +4,6 @@ import MainLayout from '../../MainLayout/MainLayout';
 import Home from '../Pages/Home/Home';
 import AdminDashboard from '../AdminDashboard/AdminDashboard';
 import UserDashBoard from '../UserDashBoard/UserDashBoard';
-import Myprofile from '../UserDashBoard/Routes/Myprofile';
-import Address from '../UserDashBoard/Routes/Address';
 import Login from '../Auth/Login';
 import Registration from '../Auth/Registration';
 import AdminProfile from '../AdminDashboard/routes/AdminProfile';
@@ -13,11 +11,15 @@ import AddProduct from '../AdminDashboard/routes/AddProduct';
 import AllProduct from '../AdminDashboard/routes/AllProduct';
 import Products from '../Pages/Products/Products';
 import ViewProduct from '..//Pages/ViewProduct/ViewProduct';
-import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
-import Wishlist from '../UserDashBoard/Routes/Wishlist';
-import ProductReview from '../UserDashBoard/Routes/ProductReview';
+
+
+import Myprofile from '../UserDashBoard/Routes/Myprofile';
+import Address from '../UserDashBoard/Routes/Address'
 import UserManagement from '../AdminDashboard/routes/userManagement';
 import ViewOrder from '../UserDashBoard/Routes/ViewOrder';
+import ProductReview from '../Pages/ViewProduct/ProductReview';
+import Wishlist from '../UserDashBoard/Routes/Wishlist';
+import OrderManagement from '../UserDashBoard/Routes/OrderManagement';
 
 const router = createBrowserRouter([
     {
