@@ -45,6 +45,7 @@ const Navbar = () => {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false);
   const [data, cartIsLoading, cartRefetch] = useCart(email);
   const [confirmModarId, setConfirmModalID] = useState("");
+  const [orderid, setOrderid] = useState("");
   const [openSection, setOpenSection] = useState({
     men: false,
     women: false,
@@ -196,6 +197,7 @@ const Navbar = () => {
           await axios.delete(
             `https://happy-shop-snowy.vercel.app/api/cartList/clear/${userData?.email}`
           );
+          setOrderid(res?.data?.order?._id)
           setConfirmModalID(res.data.order?._id)
           setIsOpenConfirmModal(!isOpenConfirmModal);
         }
@@ -1662,6 +1664,7 @@ const Navbar = () => {
             modal={isOpenConfirmModal}
             setModal={setIsOpenConfirmModal}
             refetch={cartRefetch}
+            ordeId={orderid}
           />
         </div>
       )}

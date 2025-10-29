@@ -16,9 +16,9 @@ const CartProductCard = ({
   size,
   id,
   onRefetch,
-  producuId
+  ordeId,
 }) => {
-    const queryClient = useQueryClient();
+  const queryClient = useQueryClient();
   const deleteCart = async (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,8 +42,7 @@ const CartProductCard = ({
               icon: "success",
             });
             onRefetch();
-          } 
-          
+          }
         } catch (error) {
           Swal.fire("Error!", "Something went wrong.", "error");
         }
@@ -75,18 +74,16 @@ const CartProductCard = ({
                 Size: <span className="text-gray-600">{size}</span>
               </p>
               <div className="flex gap-4 items-start">
-                <Link to={`/viewProduct/${producuId}`}>
-              <FaExternalLinkAlt
-              className="text-xl hover:text-blue-400 transition duration-150 cursor-pointer"
-              />
+                <Link to={`/userDashboard/viewProduct/${ordeId}`}>
+                  <FaExternalLinkAlt className="text-xl hover:text-blue-400 transition duration-150 cursor-pointer" />
                 </Link>
-              <IoTrashBin
-                onClick={() => {
-                  deleteCart(id);
-                }}
-                className="text-2xl mr-2 mb-2 cursor-pointer hover:text-red-500"
-                title="Remove"
-              />
+                <IoTrashBin
+                  onClick={() => {
+                    deleteCart(id);
+                  }}
+                  className="text-2xl mr-2 mb-2 cursor-pointer hover:text-red-500"
+                  title="Remove"
+                />
               </div>
             </div>
           </div>

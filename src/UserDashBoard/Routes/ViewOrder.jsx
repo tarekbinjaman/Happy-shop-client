@@ -12,8 +12,9 @@ import useOrder from "../../../api/useOrder";
 const ViewOrder = () => {
   const { user } = UseAuth();
   const { id } = useParams();
-  const [datas, isLoading, refetch] = useOrder(user?.email);
-  const orderData = datas && datas.find((item) => item?._id === id);
+const [datas, isLoading, refetch] = useOrder(user?.email);
+const orderList = Array.isArray(datas) ? datas : datas?.data || [];
+const orderData = orderList.find((item) => item?._id === id);
   console.log("Datassssssssssssssssssssssssssssssssssss", orderData);
 
   console.log("orderData >>>>>>>>>++++++++++++++++++++++++++++++", orderData);

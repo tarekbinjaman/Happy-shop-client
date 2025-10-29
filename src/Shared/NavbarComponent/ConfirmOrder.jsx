@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { TiTick } from "react-icons/ti";
+import { Link } from "react-router-dom";
 
-const ConfirmOrder = ({id, email, modal, setModal, refetch}) => {
+const ConfirmOrder = ({id, email, modal, setModal, refetch, ordeId}) => {
   const [orderData, setOrderData] = useState();
   useEffect( () => {
     const fetchOrderData = async () => {
@@ -58,7 +59,9 @@ const ConfirmOrder = ({id, email, modal, setModal, refetch}) => {
 
         {/* button */}
         <div className="md:mx-5 mx-2 ">
+          <Link to={`/userDashboard/view-order/${ordeId}`}>
           <button className="bg-white border-2 border-slate-400 w-full py-2 hover:bg-slate-200 cursor-pointer transition duration-150 rounded-lg">Track order</button>
+          </Link>
           <button 
           onClick={() => {
             setModal(!modal)
