@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import UseAuth from "../../../Context/UseAuth";
 import axios from "axios";
 import useReview from "../../../api/useReview";
-import ReviewList from "./reviewList";
+import ReviewList from "./ReviewList";
 import ReviewProgressBar from "./reviewProgressBar";
 import { toast } from "react-toastify";
 
