@@ -1,7 +1,7 @@
 import { BsThreeDots } from "react-icons/bs";
 import useReview from "../../../api/useReview";
 import { useState } from "react";
-import ReviewProgressBar from "./reviewProgressBar";
+import ReviewProgressBar from "./ReviewProgressBar";
 import { IoBanOutline } from "react-icons/io5";
 
 const ReviewList = ({ id }) => {
