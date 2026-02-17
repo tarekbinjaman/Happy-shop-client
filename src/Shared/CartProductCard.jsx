@@ -16,7 +16,7 @@ const CartProductCard = ({
   size,
   id,
   onRefetch,
-  ordeId,
+  producuId,
 }) => {
   const queryClient = useQueryClient();
   const deleteCart = async (id) => {
@@ -74,7 +74,7 @@ const CartProductCard = ({
                 Size: <span className="text-gray-600">{size}</span>
               </p>
               <div className="flex gap-4 items-start">
-                <Link to={`/userDashboard/viewProduct/${ordeId}`}>
+                <Link to={`/viewProduct/${producuId}`}>
                   <FaExternalLinkAlt className="text-xl hover:text-blue-400 transition duration-150 cursor-pointer" />
                 </Link>
                 <IoTrashBin
