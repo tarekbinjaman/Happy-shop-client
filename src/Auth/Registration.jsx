@@ -151,7 +151,7 @@ const Registration = () => {
                   : "translate-x-0 absolute z-50"
               } transition duration-400 ease-in-out`}
             >
-              <div className="w-[400px] h-[600px] relative shadow-xl border rounded-2xl">
+              <div className="w-[400px] h-[600px] relative shadow-xl  rounded-2xl">
                 <img
                   src={login_bg}
                   className="rounded-t-2xl h-[460px] w-full object-cover"
@@ -178,7 +178,7 @@ const Registration = () => {
               </div>
             </div>
             <div
-              className={`flex flex-col space-y-3 p-4 rounded-t-2xl w-[400px] h-[600px] bg-white border rounded-2xl ${
+              className={`flex flex-col space-y-3 p-4 rounded-t-2xl w-[400px] h-[600px] bg-white  rounded-2xl ${
                 openForm
                   ? "absolute z-30 translate-x-10 opacity-100"
                   : "opacity-0"
@@ -211,11 +211,11 @@ const Registration = () => {
 
                 <div className="flex flex-col gap-x-3 gap-y-8 mb-8">
                   <div className="form-control">
-                    <label className="label text-xl text-gray-500 mb-2">Name</label>
+                    <label className="label text-md text-gray-500 mb-2">Name</label>
                     <div>
                       <input
                         type="text"
-                        className="border-pink-400 border-2 p-1 w-full"
+                        className="border-pink-400 input p-1 w-full"
                         {...register("name", { required: "Name is required" })}
                       />
                     </div>
@@ -223,22 +223,22 @@ const Registration = () => {
                   </div>
                   <div className="flex justify-between">
                     <div className="form-control">
-                      <label className="label text-xl mb-2 text-gray-500">Email</label>
+                      <label className="label text-md text-gray-500 mb-2">Email</label>
                       <div>
                         <input
                           type="email"
-                          className="border-pink-400 border-2 p-1 w-[170px]"
+                          className="border-pink-400 input p-1 w-[170px]"
                           {...register("email", { required: "Email is required" })}
                         />
                       </div>
                       {errors.email && <p>{errors.email.message}</p>}
                     </div>
                     <div className="form-control">
-                      <label className="label text-xl mb-2 text-gray-500">Password</label>
+                      <label className="label text-md text-gray-500 mb-2">Password</label>
                       <div>
                         <input
                           type="password"
-                          className="border-pink-400 border-2 p-1 w-[170px]"
+                          className="border-pink-400 input p-1 w-[170px]"
                           {...register("password", { required: "Password is required" })}
                         />
                       </div>
@@ -264,7 +264,7 @@ const Registration = () => {
                 <div className="from-control mt-8">
                   <button
                     type="submit"
-                    className="btn btn-primary bg-pink-500 w-full"
+                    className="btn btn-primary bg-[#EF255D] hover:bg-[#ff376f] w-full text-white hover:text-lg transition-all duration-300 "
                   >
                     Register now
                   </button>
