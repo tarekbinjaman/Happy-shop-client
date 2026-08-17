@@ -293,6 +293,109 @@ const Registration = () => {
         <div className="flex flex-col space-y-3 p-4 rounded-t-2xl w-[400px] h-[600px] bg-white border rounded-2xl shadow-2xl lg:hidden">
           {/* The same form structure as above, including photo upload and hidden input */}
           {/* You can repeat the same changes here for mobile */}
+                      <div>
+              <form onSubmit={handleSubmit(onsubmit)}>
+                <div className="flex justify-center">
+                  <div className="relative flex items-center justify-center group hover:cursor-pointer w-32 h-[126px]">
+                    <img
+                      src={
+                        userPhoto ||
+                        "https://png.pngtree.com/png-vector/20221125/ourmid/pngtree-no-image-available-icon-flatvector-illustration-picture-coming-creative-vector-png-image_40968940.jpg"
+                      }
+                      className="rounded-full w-32 h-[126px] object-cover"
+                      alt=""
+                    />
+                    <div className="absolute inset-0 z-20 bg-black/40 opacity-60 group-hover:opacity-100 transition duration-300 rounded-full"></div>
+                    <LuPencilLine className="absolute text-gray-300 group-hover:text-white transition duration-300" />
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => handelUpload(e.target.files[0])}
+                      className="absolute inset-0 opacity-0 cursor-pointer z-30"
+                    />
+                  </div>
+                </div>
+
+                {/* Hidden input for photoURL */}
+                <input type="hidden" {...register("photoURL")} value={userPhoto} />
+
+                <div className="flex flex-col gap-x-3 gap-y-8 mb-8">
+                  <div className="form-control">
+                    <label className="label text-md text-gray-500 mb-2">Name</label>
+                    <div>
+                      <input
+                        type="text"
+                        className="border-pink-400 input p-1 w-full"
+                        {...register("name", { required: "Name is required" })}
+                      />
+                    </div>
+                    {errors.name && <p>{errors.name.message}</p>}
+                  </div>
+                  <div className="flex justify-between">
+                    <div className="form-control">
+                      <label className="label text-md text-gray-500 mb-2">Email</label>
+                      <div>
+                        <input
+                          type="email"
+                          className="border-pink-400 input p-1 w-[170px]"
+                          {...register("email", { required: "Email is required" })}
+                        />
+                      </div>
+                      {errors.email && <p>{errors.email.message}</p>}
+                    </div>
+                    <div className="form-control">
+                      <label className="label text-md text-gray-500 mb-2">Password</label>
+                      <div>
+                        <input
+                          type="password"
+                          className="border-pink-400 input p-1 w-[170px]"
+                          {...register("password", { required: "Password is required" })}
+                        />
+                      </div>
+                      {errors.password && <p>{errors.password.message}</p>}
+                    </div>
+                  </div>
+                </div>
+                <div className="form-control">
+                  <label className="flex items-center gap-2 text-sm">
+                    <input
+                      type="checkbox"
+                      {...register("agree", { required: "You must agree to terms" })}
+                    />
+                    I agree to the{" "}
+                    <span className="text-blue-600 underline cursor-pointer">
+                      terms and conditions
+                    </span>
+                  </label>
+                  {errors.agree && (
+                    <p className="text-red-500 text-sm">{errors.agree.message}</p>
+                  )}
+                </div>
+                <div className="from-control mt-8">
+                  <button
+                    type="submit"
+                    className="btn btn-primary bg-[#EF255D] hover:bg-[#ff376f] w-full text-white hover:text-lg transition-all duration-300 "
+                  >
+                    Register now
+                  </button>
+                </div>
+              </form>
+              <div className="divider">or</div>
+              <p className="text-center">
+                Already have an account?{" "}
+                <Link to={"/login"} className="text-blue-400 underline">
+                  Login
+                </Link>
+              </p>
+              <div className="flex justify-center">
+                <button
+                  className="cursor-pointer flex gap-2 items-center btn"
+                  onClick={googleClick}
+                >
+                  <FcGoogle className="text-xl" /> Sign up
+                </button>
+              </div>
+            </div>
         </div>
       </div>
       <div className={`${openForm ? "mt-200" : "mt-40"}`}></div>
