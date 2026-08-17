@@ -25,6 +25,102 @@ import { toast } from "react-toastify";
 import { IoHome } from "react-icons/io5";
 import ConfirmOrder from "./NavbarComponent/ConfirmOrder";
 
+// const categoryMenus = {
+//   Men: [
+//     ["T Shirt", "T-Shirt"],
+//     ["Polo Shirt", "Polo Shirt"],
+//     ["Cuban Collar Shirt", "Cuban Collar Shirt"],
+//     ["Dress Shirt", "Dress Shirt"],
+//     ["Casual", "Casual"],
+//     ["Formal", "Formal"],
+//     ["Gym", "Gym"],
+//     ["V-neck", "V Neck"],
+//   ],
+
+//   Women: [
+//     ["A-Line", "A-Line"],
+//     ["Apron", "Apron"],
+//     ["Asymmetrical", "Asymmetrical"],
+//     ["Ball Gown", "Ball Gown"],
+//     ["Caftan", "Caftan"],
+//     ["One-Shoulder", "One-Shoulder"],
+//     ["Yoke Dress", "Yoke Dress"],
+//     ["Wrap Dress", "Wrap Dress"],
+//     ["Basic", "Basic"],
+//     ["Party", "Party"],
+//   ],
+
+//   Boys: [
+//     ["T-shirt", "T-Shirt"],
+//     ["Shorts", "Shorts"],
+//     ["Overalls", "Overalls"],
+//     ["Hoodie", "Hoodie"],
+//     ["Sweatpants", "Sweatpants"],
+//     ["Polo Shirt", "Polo Shirt"],
+//     ["Dungarees", "Dungarees"],
+//     ["Bomber Jacket", "Bomber Jacket"],
+//     ["Basic", "Basic-Boys"],
+//   ],
+
+//   Girls: [
+//     ["Frock", "Frock"],
+//     ["Skirt", "Skirt"],
+//     ["Leggings", "Leggings"],
+//     ["Gown", "Gown"],
+//   ],
+
+//   Kids: [
+//     ["Rompers", "Rompers"],
+//     ["Jumpsuit", "Jumpsuit"],
+//     ["Dungarees", "Dungarees"],
+//     ["Tracksuit", "Tracksuit"],
+//   ],
+// };
+
+// const DesktopCategoryDropdown = ({ title, items }) => {
+//   return (
+//     <li className="group relative">
+//       <span className="flex items-center gap-1 cursor-pointer">
+//         {title}
+//         <GoChevronDown className="group-hover:text-orange-300" />
+//       </span>
+
+//       <div className="relative">
+//         <ul
+//           className="
+//             absolute top-2 left-0
+//             bg-white/30 backdrop-blur-md
+//             shadow-xl py-3 w-56 pr-2 space-y-1
+//             border border-white
+//             opacity-0 invisible
+//             group-hover:visible group-hover:opacity-100
+//             transform transition-all duration-200 ease-in-out
+//             -translate-x-2 group-hover:translate-x-0
+//             z-50
+//             divide-y divide-gray-300
+//           "
+//         >
+//           {items.map(([label, path]) => (
+//             <li
+//               key={label}
+//               className="pl-4 cursor-pointer font-semibold whitespace-nowrap"
+//             >
+//               <Link
+//                 to={`/productsList/${path}`}
+//                 className="flex justify-between items-center"
+//               >
+//                 <span className="hover:ml-2 transition-all duration-300">
+//                   {label}
+//                 </span>
+//               </Link>
+//             </li>
+//           ))}
+//         </ul>
+//       </div>
+//     </li>
+//   );
+// };
+
 const Navbar = () => {
   const { logOut, user } = UseAuth();
   const navigate = useNavigate();
@@ -65,7 +161,7 @@ const Navbar = () => {
       size: item?.size,
       image: item?.image,
       description: item?.description,
-      quantity: item?.quantity
+      quantity: item?.quantity,
     }));
   console.log("MyCartNameandPrice 🌊", myCartNameandPrice);
   console.log("Mycart data 🏬", mycart);
@@ -112,7 +208,7 @@ const Navbar = () => {
     try {
       const res = await axios.put(
         `https://happy-shop-snowy.vercel.app/api/users/${userData?._id}`,
-        updateData
+        updateData,
       );
       refetchUserList();
       console.log("!!!!!!!!!!!", res.data);
@@ -191,14 +287,14 @@ const Navbar = () => {
       try {
         const res = await axios.post(
           `https://happy-shop-snowy.vercel.app/api/order`,
-          orderData
+          orderData,
         );
         if (res.data.success) {
           await axios.delete(
-            `https://happy-shop-snowy.vercel.app/api/cartList/clear/${userData?.email}`
+            `https://happy-shop-snowy.vercel.app/api/cartList/clear/${userData?.email}`,
           );
-          setOrderid(res?.data?.order?._id)
-          setConfirmModalID(res.data.order?._id)
+          setOrderid(res?.data?.order?._id);
+          setConfirmModalID(res.data.order?._id);
           setIsOpenConfirmModal(!isOpenConfirmModal);
         }
       } catch (err) {
@@ -208,43 +304,60 @@ const Navbar = () => {
     }
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (cartIcon.current && cartIcon.current.contains(event.target)) return;
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    // -----------------------------
+    // CART ICON
+    // -----------------------------
+    if (cartIcon.current?.contains(event.target)) {
+      return;
+    }
 
-      const isInsideSearch =
-        (searchRef.current && searchRef.current.contains(event.target)) ||
-        (faSearchIconRef.current &&
-          faSearchIconRef.current.contains(event.target)) ||
-        (searchBarRef.current && searchBarRef.current.contains(event.target));
-      if (!isInsideSearch) {
-        setIsSearchBarOpen(false);
-      }
-      const isInsideSidebar =
-        (sidebarRef.current && sidebarRef.current.contains(event.target)) ||
-        (hamburberRef.current && hamburberRef.current.contains(event.target));
-      if (!isInsideSidebar) {
-        setIsSidebarOpen(false);
-      }
-      if (
-        dropdownref.current &&
-        !dropdownref.current.contains(event.target) &&
-        cartRef.current &&
-        !cartRef.current.contains(event.target)
-      ) {
-        setDropdownOpen(false);
-        setShowSuggestions(false);
-        setCartBar(false);
-        {
-          dropdownOpen ? console.log("dropdown true") : "dropdown false";
-        }
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => {
-      document.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+    // -----------------------------
+    // SEARCH BAR
+    // -----------------------------
+    const clickedInsideSearch =
+      searchRef.current?.contains(event.target) ||
+      searchBarRef.current?.contains(event.target) ||
+      faSearchIconRef.current?.contains(event.target);
+
+    if (!clickedInsideSearch) {
+      setIsSearchBarOpen(false);
+      setShowSuggestions(false);
+    }
+
+    // -----------------------------
+    // SIDEBAR
+    // -----------------------------
+    const clickedInsideSidebar =
+      sidebarRef.current?.contains(event.target) ||
+      hamburberRef.current?.contains(event.target);
+
+    if (!clickedInsideSidebar) {
+      setIsSidebarOpen(false);
+    }
+
+    // -----------------------------
+    // PROFILE DROPDOWN / CART
+    // -----------------------------
+    const clickedInsideDropdown =
+      dropdownref.current?.contains(event.target);
+
+    const clickedInsideCart =
+      cartRef.current?.contains(event.target);
+
+    if (!clickedInsideDropdown && !clickedInsideCart) {
+      setDropdownOpen(false);
+      setCartBar(false);
+    }
+  };
+
+  document.addEventListener("click", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("click", handleClickOutside);
+  };
+}, []);
   console.log("userData: 😊", userData, user);
   return (
     <nav className="py-4 bg-white md:px-12">
@@ -253,15 +366,13 @@ const Navbar = () => {
           {/* logo */}
           <div className="flex xl:items-center items-end gap-2">
             {/* sidebar icon */}
-            <div
-              className="xl:hidden block mr-3"
-              onClick={() => setIsSidebarOpen(true)}
-            >
-              <RxHamburgerMenu
-                ref={hamburberRef}
-                className="md:text-3xl text-[26px] "
-              />
-            </div>
+<div
+  ref={hamburberRef}
+  className="xl:hidden block mr-3 cursor-pointer"
+  onClick={() => setIsSidebarOpen(true)}
+>
+  <RxHamburgerMenu className="md:text-3xl text-[26px]" />
+</div>
             {/* logo */}
             <Link to={`/`}>
               <p
@@ -705,33 +816,39 @@ const Navbar = () => {
           </div>
           {/* Suggestions Dropdown */}
           {showSuggestions && !ProductLoading && products.length > 0 && (
-            <ul className="absolute z-50 mt-1 2xl:w-[745px] xl:w-[453px] lg:w-[514px] bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
-              {products.map((item) => (
-                // <div
-                // key={item._id}
-                // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
-                // onClick={() => {
-                //   setQuery(item.title);
-                //   setShowSuggestions(false);
-                // }}>
-                // {item.title}
-                // {item?.images[0]}
-                // </div>
-                <Link to={`viewProduct/${item?._id}`}>
-                  <div
-                    key={item?._id}
-                    className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
-                  >
-                    {item?.title}
-                    <img
-                      className="w-10 h-10 object-cover"
-                      src={item?.images[0].url}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-              ))}
-            </ul>
+            <div>
+              <div
+                className="fixed inset-0 bg-black/20 z-40"
+                onClick={() => setShowSuggestions(false)}
+              />
+              <ul className="absolute z-50 mt-1 2xl:w-[745px] xl:w-[453px] lg:w-[514px] bg-white border border-slate-200 rounded-md shadow-md px-2 max-h-3/6 overflow-y-auto">
+                {products.map((item) => (
+                  // <div
+                  // key={item._id}
+                  // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
+                  // onClick={() => {
+                  //   setQuery(item.title);
+                  //   setShowSuggestions(false);
+                  // }}>
+                  // {item.title}
+                  // {item?.images[0]}
+                  // </div>
+                  <Link to={`viewProduct/${item?._id}`}>
+                    <div
+                      key={item?._id}
+                      className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
+                    >
+                      {item?.title}
+                      <img
+                        className="w-10 h-10 object-cover"
+                        src={item?.images[0].url}
+                        alt=""
+                      />
+                    </div>
+                  </Link>
+                ))}
+              </ul>
+            </div>
           )}
         </div>
         {/* <input className='md:mx-8 mx-4  lg:p-2 p-0.5 rounded-3xl bg-[#f0f0f0] flex-1 md:hidden' placeholder='  🔍 ' type="text" name="" id="" /> */}
@@ -743,8 +860,11 @@ const Navbar = () => {
             <div className="flex items-center gap-4">
               <FaMagnifyingGlass
                 ref={faSearchIconRef}
-                className="text-2xl font-bold text-gray-500 cursor-pointer hover:text-black 2xl:hidden lg:hidden"
-                onClick={() => setIsSearchBarOpen(!isSearchBarOpen)}
+                className="block cursor-pointer text-2xl font-bold text-gray-500 hover:text-black lg:hidden"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsSearchBarOpen((prev) => !prev);
+                }}
               />
               <div ref={cartIcon} className="relative mr-3">
                 <BsCart2
@@ -851,76 +971,74 @@ const Navbar = () => {
         </div>
       </div>
       {/* search bar for small device */}
-      <div className="relative flex justify-center">
-        <div
-          ref={searchBarRef}
-          className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] min-w-[200px] ${
-            isSearchBarOpen
-              ? "max-h-screen opacity-100 mt-4"
-              : "max-h-0 opacity-0"
-          } transition-all  duration-700 ease-in-out`}
-        >
-          <div ref={searchRef} className="relative flex items-center ">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              class="absolute w-5 h-5 top-2.5 left-2.5 text-slate-600"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z"
-                clip-rule="evenodd"
+{/* Search bar for small devices */}
+<div className="relative flex justify-center px-4">
+  <div
+    ref={searchBarRef}
+    className={`w-full max-w-sm md:max-w-[640px] lg:max-w-[890px] ${
+      isSearchBarOpen
+        ? "mt-4 max-h-[500px] opacity-100"
+        : "max-h-0 opacity-0 pointer-events-none"
+    } overflow-hidden transition-all duration-500 ease-in-out`}
+  >
+    <div ref={searchRef} className="relative flex items-center">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="absolute left-2.5 top-2.5 h-5 w-5 text-slate-600"
+      >
+        <path
+          fillRule="evenodd"
+          d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 14.59 5.28l4.69 4.69a.75.75 0 1 0 1.06 1.06l-4.69-4.69A8.25 8.25 0 0 0 10.5 3.75Z"
+          clipRule="evenodd"
+        />
+      </svg>
+
+      <input
+        value={query}
+        onChange={handleChange}
+        onFocus={() => query && setShowSuggestions(true)}
+        className="w-full rounded-md border border-slate-300 bg-white py-2 pl-10 pr-3 text-sm text-slate-700 placeholder:text-slate-600 focus:border-slate-400 focus:outline-none"
+        placeholder="Search here..."
+      />
+
+      <button
+        type="button"
+        onClick={handleSearch}
+        className="ml-2 rounded-md bg-slate-800 px-4 py-2 text-sm text-white transition hover:bg-slate-700"
+      >
+        Search
+      </button>
+    </div>
+
+    {/* Suggestions */}
+    {showSuggestions && !ProductLoading && products?.length > 0 && (
+      <ul className="mt-1 max-h-80 w-full overflow-y-auto rounded-md border border-slate-200 bg-white px-2 shadow-md">
+        {products.map((item) => (
+          <Link
+            key={item?._id}
+            to={`/viewProduct/${item?._id}`}
+            onClick={() => {
+              setShowSuggestions(false);
+              setIsSearchBarOpen(false);
+            }}
+          >
+            <div className="my-3 flex w-full cursor-pointer items-center justify-between rounded-md border border-slate-200 bg-white px-3 py-1 hover:border-blue-500">
+              <span>{item?.title}</span>
+
+              <img
+                className="h-10 w-10 object-cover"
+                src={item?.images?.[0]?.url}
+                alt={item?.title}
               />
-            </svg>
-
-            <input
-              onChange={handleChange}
-              onFocus={() => query && setShowSuggestions(true)}
-              class="w-full bg-white backdrop-blur-md placeholder:text-slate-600 text-slate-700 text-sm border border-slate-300 rounded-md pl-10 pr-3 py-2 transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-white focus:shadow  hover:shadow-2xl hover:shadow-black"
-              placeholder="Search here..."
-            />
-
-            <button
-              class="rounded-md bg-slate-800 py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none ml-2"
-              type="button"
-              onClick={handleSearch}
-            >
-              Search
-            </button>
-          </div>
-          {/* Suggestions Dropdown */}
-          {showSuggestions && !ProductLoading && products.length > 0 && (
-            <ul className="absolute z-50 mt-1 2xl:w-[954px] xl:w-[453px] md:w-[550px] bg-white border border-slate-200 rounded-md shadow-md px-2 md:max-h-80 w-[300px] max-h-80  overflow-y-auto">
-              {products.map((item) => (
-                // <div
-                // key={item._id}
-                // className="px-3 py-2 cursor-pointer hover:bg-slate-100 text-sm text-blackflex"
-                // onClick={() => {
-                //   setQuery(item.title);
-                //   setShowSuggestions(false);
-                // }}>
-                // {item.title}
-                // {item?.images[0]}
-                // </div>
-                <Link to={`viewProduct/${item?._id}`}>
-                  <div
-                    key={item?._id}
-                    className="px-3 py-1 w-full bg-white border border-slate-200 rounded-md shadow-md flex justify-between items-center my-3 cursor-pointer hover:border-blue-500"
-                  >
-                    {item?.title}
-                    <img
-                      className="w-10 h-10 object-cover"
-                      src={item?.images[0].url}
-                      alt=""
-                    />
-                  </div>
-                </Link>
-              ))}
-            </ul>
-          )}
-        </div>
-      </div>
+            </div>
+          </Link>
+        ))}
+      </ul>
+    )}
+  </div>
+</div>
 
       {/* Sidebar */}
       {
